@@ -1,0 +1,3 @@
+default: styles/application.scss
+contrast: styles/contrast.scss
+gabsocial-light: styles/gabsocial-light.scss

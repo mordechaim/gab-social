@@ -1,0 +1,2 @@
+#!/bin/bash
+git archive --format zip --output ~/gab-social.zip develop

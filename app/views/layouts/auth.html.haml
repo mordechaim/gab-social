@@ -1,0 +1,16 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+
+- content_for :content do
+  .container-alt
+    .logo-container
+      %h1
+        = link_to root_path do
+          = image_pack_tag 'logo_full.png', alt: 'Gab Social'
+
+    .form-container
+      = render 'flashes'
+
+      = yield
+
+= render template: 'layouts/application'

@@ -1,0 +1,230 @@
+.tabs-bar {
+	display: flex;
+	box-sizing: border-box;
+	background: #000;
+	flex: 0 0 auto;
+	overflow-y: auto;
+	height: 50px;
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+
+	&__container {
+		display: flex;
+		box-sizing: border-box;
+		width:100%;
+		max-width: 1200px;
+		margin: 0 auto;
+		padding: 0 15px;
+
+		// NOTE - might need to adjust this based on column sizing
+		@media screen and (max-width: $nav-breakpoint-4) {padding: 0 20px;}
+
+	}
+
+	&__split {
+		display: flex;
+		width: auto;
+
+		&--left {
+			margin-right: auto;
+		}
+
+		&--right {
+			margin-left: auto;
+			padding-top: 8px;
+			@media screen and (max-width: $nav-breakpoint-3) {padding-top: 4px;}
+		}
+	}
+
+	&__search-container {
+		display: block;
+		@media screen and (max-width: $nav-breakpoint-2) {display: none;}
+		width: 251px;
+		.search {
+			margin: 0;
+		}
+	}
+
+	&__profile {
+		position: relative;
+		overflow: hidden;
+		margin: 0 0 0 20px;
+		height: 34px;
+		width: 34px;
+
+		@media screen and (max-width: $nav-breakpoint-3) {
+			height: 42px;
+			width: 42px;
+			margin: 0;
+		}
+
+		.account__avatar {
+			width: 34px;
+			height: 34px;
+			background-size: 34px 34px;
+
+			@media screen and (max-width: $nav-breakpoint-3) {
+				width: 42px;
+				height: 42px;
+				background-size: 42px 42px;
+			}
+
+
+		}
+
+		.compose__action-bar {
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: -5px;
+			bottom: 0;
+
+			i {
+				display: none;
+			}
+		}
+	}
+	&__button-compose {
+		display: block;
+		@media screen and (max-width: $nav-breakpoint-3) {display: none;}
+		width: 70px;
+		height: 34px;
+		margin-left: 20px;
+		border-radius: 4px;
+		background-image: url('../images/sprite-main-navigation.png');
+		background-color: $gab-brand-default !important;
+		background-repeat: no-repeat;
+		background-size: 161px 152px;
+		background-position: 18px 2px;
+		&:hover {
+			background-color: lighten($gab-brand-default, 5%) !important;
+			background-position: 18px -98px;
+			box-shadow: inset 0px 0px 6px darken($gab-brand-default, 10%);
+		}
+		span {display: none;}
+	}
+
+	&__button {
+		margin-left: 12px;
+    height: 34px;
+	}
+
+	.flex {
+		display: flex;
+	}
+}
+
+
+
+.tabs-bar__link {
+	display: flex;
+	flex: 1 1 auto;
+	margin: 0 25px 0 0;
+	color: white;
+	text-decoration: none;
+	text-align: center;
+	background-repeat: no-repeat;
+
+	// NOTE - Explore not using SVG for the navigation icons.
+	// The icon pixels shift around too much on crappy screens in certain situations
+	// If switched to an @2x png sprite, subtle shading and color can be introduced
+
+	&.home {
+		padding: 16px 0 0 25px;
+		background-image: url('../images/gab-icons/icon-home-sprite.svg');
+		background-size: 17px 114px;
+		background-position: 0 -82px;
+		&.active{background-position: 0 18px;}
+		@media screen and (max-width: $nav-breakpoint-1) {
+			background-size: 24px 160.94px;
+			@-moz-document url-prefix() {
+				&.active{background-position: center 10px !important;}
+			}
+		}
+	}
+	&.explore,
+	&.notifications,
+	&.messages,
+	&.optional {
+		padding: 16px 0 0 23px;
+		background-size: 14px 114px;
+		@media screen and (max-width: $nav-breakpoint-1) {
+			background-size: 20px 160.94px;
+		}
+
+		background-position: 0 -82px;
+		&.active{background-position: 0 18px;}
+	}
+	&.explore {background-image: url('../images/gab-icons/icon-explore-sprite.svg');}
+	&.notifications {background-image: url('../images/gab-icons/icon-notifications-sprite.svg');}
+	&.messages {background-image: url('../images/gab-icons/icon-messages-sprite.svg');}
+	&.optional {background-image: url('../images/gab-icons/icon-search-sprite.svg');}
+
+
+	&.optional {
+		display: none;
+		@media screen and (max-width: $nav-breakpoint-2) {display: flex;}
+	}
+
+
+	// REWORK THIS BECAUSE OF FIREFOX BUGS
+
+	@media screen and (max-width: $nav-breakpoint-1) {
+		&.home,
+		&.explore,
+		&.notifications,
+		&.messages,
+		&.optional {
+			width: 46px;
+			height: 42px;
+			margin: 4px 0 0 0;
+			padding: 0;
+			background-position: center -130px;
+			&.active {
+				height: 38px;
+				border-bottom: 4px solid $gab-active-border;
+				background-position: center 11px;
+			}
+		}
+		& span {display: none;}
+	}
+
+	// END REWORK
+
+	&.active {color: $gab-text-highlight;}
+
+	&--logo {
+		display: block;
+
+
+		// NOTE - Revisit right-margin of home button / positioning between 376px and 350px
+		//		- want to keep the icons centered between logo and profile image while shrinking
+		@media screen and (max-width: $nav-breakpoint-4) {display:none;}
+
+		width: 50px;
+		height: 50px;
+		margin-right: 35px;
+		border: none;
+		background-image: url('../images/gab_logo.svg');
+		background-repeat: no-repeat;
+		background-position: 0 10px;
+		background-size: 50px 30px;
+		& span {display: none !important;}
+		&:hover {
+			background-color: #000 !important;
+			border: none !important;
+		}
+	}
+
+	&--no-highlight,
+	&--no-highlight:hover,
+	&--no-highlight.active,
+	&--no-highlight:active,
+	&--no-highlight:focus {
+		background: transparent !important;
+		border-bottom-color: transparent !important;
+	}
+
+}

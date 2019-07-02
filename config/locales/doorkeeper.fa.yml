@@ -1,0 +1,120 @@
+---
+fa:
+  activerecord:
+    attributes:
+      doorkeeper/application:
+        name: نام برنامه
+        redirect_uri: نشانی تغییرمسیر
+        scopes: محدوده
+        website: وبگاه برنامه
+    errors:
+      models:
+        doorkeeper/application:
+          attributes:
+            redirect_uri:
+              fragment_present: نمی‌تواند چندتکه باشد.
+              invalid_uri: باید یک نشانی معتبر باشد.
+              relative_uri: باید یک نشانی مطلق باشد.
+              secured_uri: باید یک نشانی HTTPS/SSL باشد.
+  doorkeeper:
+    applications:
+      buttons:
+        authorize: اجازه دادن
+        cancel: لغو
+        destroy: پاک کردن
+        edit: ویرایش
+        submit: Submit
+      confirmations:
+        destroy: آیا مطمئن هستید؟
+      edit:
+        title: ویرایش برنامه
+      form:
+        error: اوخ! ببینید چیزی را اشتباهی در فرم وارد نکرده‌اید؟
+      help:
+        native_redirect_uri: برای آزمایش‌های محلی %{native_redirect_uri} را به کار ببرید
+        redirect_uri: هر URI را در یک سطر جدا بنویسید
+        scopes: دامنه‌ها را با فاصلهٔ خالی از هم جدا کنید. برای به‌کاربردن دامنهٔ پیش‌فرض خالی بگذارید.
+      index:
+        application: برنامه
+        callback_url: نشانی Callback
+        delete: حذف
+        name: نام
+        new: برنامهٔ تازه
+        scopes: دامنه‌ها
+        show: نمایش
+        title: برنامه‌های شما
+      new:
+        title: برنامهٔ تازه
+      show:
+        actions: Actions
+        application_id: کلید کلاینت
+        callback_urls: نشانی‌های Callabck
+        scopes: دامنه‌ها
+        secret: کد سری کلاینت
+        title: 'برنامه: %{name}'
+    authorizations:
+      buttons:
+        authorize: اجازه دادن
+        deny: لغو اجازه
+      error:
+        title: خطایی رخ داد
+      new:
+        able_to: اجازه خواهد داشت
+        prompt: برنامهٔ %{client_name} می‌خواهد به حساب شما دسترسی داشته باشد
+        title: نیاز به اجازه دادن
+      show:
+        title: این کد مجوز را کپی کرده و در برنامه وارد کنید.
+    authorized_applications:
+      buttons:
+        revoke: فسخ
+      confirmations:
+        revoke: آیا مطمئن هستید؟
+      index:
+        application: برنامه
+        created_at: مجازشده از
+        date_format: "%Y-%m-%d %H:%M:%S"
+        scopes: اجازه‌ها
+        title: برنامه‌های مجاز
+    errors:
+      messages:
+        access_denied: دارندهٔ منبع یا سرور اجازه دهنده درخواست را نپذیرفت.
+        credential_flow_not_configured: Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.
+        invalid_client: Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.
+        invalid_grant: The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.
+        invalid_redirect_uri: The redirect uri included is not valid.
+        invalid_request: The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.
+        invalid_resource_owner: The provided resource owner credentials are not valid, or resource owner cannot be found
+        invalid_scope: The requested scope is invalid, unknown, or malformed.
+        invalid_token:
+          expired: کد دسترسی منقضی شده است
+          revoked: کد دسترسی فسخ شده است
+          unknown: کد دسترسی معتبر نیست
+        resource_owner_authenticator_not_configured: Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.
+        server_error: خطای پیش‌بینی‌نشده‌ای برای سرور اجازه‌دهنده رخ داد که جلوی اجرای این درخواست را گرفت.
+        temporarily_unavailable: سرور اجازه‌دهنده به دلیل بار زیاد یا تعمیرات سرور هم‌اینک نمی‌تواند درخواست شما را بررسی کند.
+        unauthorized_client: The client is not authorized to perform this request using this method.
+        unsupported_grant_type: The authorization grant type is not supported by the authorization server.
+        unsupported_response_type: The authorization server does not support this response type.
+    flash:
+      applications:
+        create:
+          notice: برنامه ساخته شد.
+        destroy:
+          notice: برنامه حذف شد.
+        update:
+          notice: برنامه به‌روز شد.
+      authorized_applications:
+        destroy:
+          notice: برنامه فسخ شد.
+    layouts:
+      admin:
+        nav:
+          applications: برنامه‌ها
+          oauth2_provider: فراهم‌کنندهٔ ورود دومرحله‌ای
+      application:
+        title: درخواست اجازهٔ OAuth
+    scopes:
+      follow: پیگیری، مسدودسازی، لغو مسدودسازی، و لغو پیگیری حساب‌ها
+      push: برای حساب خود اعلان‌های لحظه‌ای دریافت کنید
+      read: خواندن اطلاعات حساب شما
+      write: انتشار مطالب از طرف شما

@@ -1,0 +1,62 @@
+---
+'no':
+  simple_form:
+    hints:
+      defaults:
+        avatar: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        digest: Kun sendt etter en lang periode med inaktivitet og bare dersom du har mottatt noen personlige meldinger mens du var borte
+        header: PNG, GIF eller JPG. Maksimalt %{size}. Vil bli nedskalert til %{dimensions}px
+        locked: Krever at du manuelt godkjenner følgere
+        setting_noindex: Påvirker din offentlige profil og statussider
+        setting_theme: Påvirker hvordan Gab Social ser ut når du er logget inn fra uansett enhet.
+      imports:
+        data: CSV-fil eksportert fra en annen Gab Social-instans
+      sessions:
+        otp: Angi tofaktorkoden fra din telefon eller bruk en av dine gjenopprettingskoder.
+    labels:
+      defaults:
+        avatar: Avatar
+        confirm_new_password: Bekreft nytt passord
+        confirm_password: Bekreft passord
+        current_password: Nåværende passord
+        data: Data
+        display_name: Visningsnavn
+        email: E-postadresse
+        expires_in: Utløper etter
+        header: Overskrift
+        locale: Språk
+        locked: Lås konto
+        max_uses: Maksimalt antall bruk
+        new_password: Nytt passord
+        note: Om meg
+        otp_attempt: Tofaktorkode
+        password: Passord
+        setting_auto_play_gif: Autoavspill animert GIF-filer
+        setting_boost_modal: Vis bekreftelse før fremheving
+        setting_default_privacy: Postintegritet
+        setting_default_sensitive: Marker alltid media som sensitivt
+        setting_delete_modal: Vis bekreftelse før du sletter en tut
+        setting_noindex: Ikke delta i søkemotorsindeksering
+        setting_reduce_motion: Reduser bevegelser i animasjoner
+        setting_system_font_ui: Bruk systemets standardfont
+        setting_theme: Sidens tema
+        setting_unfollow_modal: Vis bekreftelse før du slutter å følge noen
+        severity: Alvorlighetsgrad
+        type: Importeringstype
+        username: Brukernavn
+      interactions:
+        must_be_follower: Blokker varslinger fra ikke-følgere
+        must_be_following: Blokker varslinger fra personer du ikke følger
+        must_be_following_dm: Blokker direkte meldinger fra personer du ikke følger
+      notification_emails:
+        digest: Send sammendrag på e-post
+        favourite: Send e-post når noen setter din status som favoritt
+        follow: Send e-post når noen følger deg
+        follow_request: Send e-post når noen ber om å få følge deg
+        mention: Send e-post når noen nevner deg
+        reblog: Send e-post når noen fremhever din status
+    'no': Nei
+    required:
+      mark: "*"
+      text: obligatorisk
+    'yes': Ja

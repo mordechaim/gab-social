@@ -1,0 +1,81 @@
+- content_for :page_title do
+  = "#{display_name(@account)} (@#{@account.local_username_and_domain})"
+
+- content_for :header_tags do
+  %meta{ name: 'description', content: account_description(@account) }/
+
+  - if @account.user&.setting_noindex
+    %meta{ name: 'robots', content: 'noindex' }/
+
+  %link{ rel: 'salmon', href: api_salmon_url(@account.id) }/
+  %link{ rel: 'alternate', type: 'application/atom+xml', href: account_url(@account, format: 'atom') }/
+  %link{ rel: 'alternate', type: 'application/rss+xml', href: account_url(@account, format: 'rss') }/
+  %link{ rel: 'alternate', type: 'application/activity+json', href: ActivityPub::TagManager.instance.uri_for(@account) }/
+
+  - if @older_url
+    %link{ rel: 'next', href: @older_url }/
+  - if @newer_url
+    %link{ rel: 'prev', href: @newer_url }/
+
+  = opengraph 'og:type', 'profile'
+  = render 'og', account: @account, url: short_account_url(@account, only_path: false)
+
+
+= render 'header', account: @account, with_bio: true
+
+.grid
+  .column-0
+    .h-feed
+      %data.p-name{ value: "#{@account.username} on #{site_hostname}" }/
+
+      .account__section-headline
+        = active_link_to t('accounts.posts_tab_heading'), short_account_url(@account)
+        = active_link_to t('accounts.posts_with_replies'), short_account_with_replies_url(@account)
+        = active_link_to t('accounts.media'), short_account_media_url(@account)
+
+      - if user_signed_in? && @account.blocking?(current_account)
+        .nothing-here.nothing-here--under-tabs= t('accounts.unavailable')
+      - elsif @statuses.empty?
+        = nothing_here 'nothing-here--under-tabs'
+      - else
+        .activity-stream
+          - if params[:page].to_i.zero?
+            = render partial: 'stream_entries/status', collection: @pinned_statuses, as: :status, locals: { pinned: true }
+
+          - if @newer_url
+            .entry= link_to_more @newer_url
+
+          = render partial: 'stream_entries/status', collection: @statuses, as: :status
+
+          - if @older_url
+            .entry= link_to_more @older_url
+
+  .column-1
+    - if @account.memorial?
+      .memoriam-widget= t('in_memoriam_html')
+    - elsif @account.moved?
+      = render 'moved', account: @account
+
+    = render 'bio', account: @account
+
+    - unless @endorsed_accounts.empty?
+      .endorsements-widget
+        %h4= t 'accounts.choices_html', name: content_tag(:bdi, display_name(@account, custom_emojify: true))
+
+        - @endorsed_accounts.each do |account|
+          = account_link_to account
+
+    - @account.featured_tags.order(statuses_count: :desc).each do |featured_tag|
+      .directory__tag{ class: params[:tag] == featured_tag.name ? 'active' : nil }
+        = link_to short_account_tag_path(@account, featured_tag.tag) do
+          %h4
+            = fa_icon 'hashtag'
+            = featured_tag.name
+            %small
+              - if featured_tag.last_status_at.nil?
+                = t('accounts.nothing_here')
+              - else
+                %time{ datetime: featured_tag.last_status_at.iso8601, title: l(featured_tag.last_status_at) }= l featured_tag.last_status_at
+          .trends__item__current= number_to_human featured_tag.statuses_count, strip_insignificant_zeros: true
+
+    = render 'application/sidebar'

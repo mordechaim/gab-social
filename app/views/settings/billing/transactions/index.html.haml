@@ -1,0 +1,22 @@
+- content_for :page_title do
+  = t('settings.transactions')
+
+%p= t('billing.transactions.explanation_html')
+%p= "You are PRO and your subscription ends at " + current_account.pro_expires_at.to_s if current_account.is_pro
+
+- unless @transactions.empty?
+  %hr.spacer/
+
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('billing.transactions.id')
+          %th= t('billing.transactions.date')
+          %th= t('billing.transactions.type')
+          %th= t('billing.transactions.provider_type')
+          %th= t('billing.transactions.amount')
+          %th= t('billing.transactions.status')
+          %th
+      %tbody
+        = render partial: 'settings/billing/transactions/transaction', collection: @transactions, as: :transaction

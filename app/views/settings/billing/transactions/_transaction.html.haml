@@ -1,0 +1,8 @@
+%tr
+  %td= transaction.id
+  %td= transaction.created_at
+  %td= transaction.payment_type
+  %td= transaction.provider_type
+  %td= number_to_currency(transaction.amount / 100)
+  %td 
+    = table_link_to 'download', t('billing.transactions.download_invoice'), "test"

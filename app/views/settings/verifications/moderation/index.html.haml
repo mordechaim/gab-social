@@ -1,0 +1,15 @@
+- content_for :page_title do
+  = t('verifications.moderation.title')
+
+%hr.spacer/
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('verifications.moderation.id')
+        %th= t('verifications.moderation.date')
+        %th= t('verifications.moderation.account')
+        %th
+    %tbody
+      = render partial: 'settings/verifications/moderation/verification_request', collection: @verification_requests, as: :verification_request

@@ -1,0 +1,16 @@
+---
+ca:
+  activerecord:
+    attributes:
+      status:
+        owned_poll: Enquesta
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: només lletres, números i subratllats
+        status:
+          attributes:
+            reblog:
+              taken: de l'estat ja existeix

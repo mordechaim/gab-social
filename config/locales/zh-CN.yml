@@ -1,0 +1,761 @@
+---
+zh-CN:
+  about:
+    about_hashtag_html: 这里展示的是带有话题标签 <strong>#%{hashtag}</strong> 的公开嘟文。如果你想与他们互动，你需要在任意一个 Gab Social 实例或与其兼容的网站上拥有一个帐户。
+    about_gabsocial_html: Gab Social（长毛象）是一个建立在开放式网络协议和自由、开源软件之上的社交网络，有着类似于电子邮件的分布式设计。
+    about_this: 关于本实例
+    active_count_after: 活跃
+    active_footnote: 每月活跃用户
+    administered_by: 本实例的管理员：
+    api: API
+    apps: 移动应用
+    contact: 联系方式
+    contact_missing: 未设定
+    contact_unavailable: 未公开
+    documentation: 文档
+    extended_description_html: |
+      <h3>这里可以写一些规定</h3>
+      <p>本站尚未设置详细介绍。</p>
+    generic_description: "%{domain} 是这个庞大网络中的一台服务器"
+    hosted_on: 一个在 %{domain} 上运行的 Gab Social 实例
+    learn_more: 了解详情
+    privacy_policy: 隐私政策
+    source_code: 源代码
+    status_count_after:
+      one: 条嘟文
+      other: 条嘟文
+    status_count_before: 他们共嘟出了
+    terms: 使用条款
+    user_count_after:
+      one: 位用户
+      other: 位用户
+    user_count_before: 这里共注册有
+    what_is_gabsocial: Gab Social 是什么？
+  accounts:
+    follow: 关注
+    followers:
+      one: 关注者
+      other: 关注者
+    following: 正在关注
+    joined: 加入于 %{date}
+    media: 媒体
+    moved_html: "%{name} 已经迁移到 %{new_profile_link}："
+    network_hidden: 此信息不可用
+    nothing_here: 这里神马都没有！
+    people_followed_by: "%{name} 关注的人"
+    people_who_follow: 关注 %{name} 的人
+    posts:
+      one: 嘟文
+      other: 嘟文
+    posts_tab_heading: 嘟文
+    posts_with_replies: 嘟文和回复
+    reserved_username: 此用户名已被保留
+    roles:
+      admin: 管理员
+      bot: 机器人
+      moderator: 监察员
+    unfollow: 取消关注
+  admin:
+    account_moderation_notes:
+      create: 新建
+      created_msg: 管理备忘建立成功！
+      delete: 删除
+      destroyed_msg: 管理备忘删除成功！
+    accounts:
+      are_you_sure: 你确定吗？
+      avatar: 头像
+      by_domain: 域名
+      change_email:
+        changed_msg: 帐户电子邮件地址更改成功！
+        current_email: 当前的电子邮件地址
+        label: 更改电子邮件地址
+        new_email: 新的电子邮件地址
+        submit: 更改电子邮件地址
+        title: 为 %{username} 更改电子邮件地址
+      confirm: 确认
+      confirmed: 已确认
+      confirming: 确认
+      demote: 降任
+      disable: 停用
+      disable_two_factor_authentication: 停用双重认证
+      disabled: 已停用
+      display_name: 昵称
+      domain: 域名
+      edit: 编辑
+      email: 电子邮件地址
+      email_status: 电子邮件地址状态
+      enable: 启用
+      enabled: 已启用
+      feed_url: 订阅 URL
+      followers: 关注者
+      followers_url: 关注者（Followers）URL
+      follows: 正在关注
+      inbox_url: 收件箱（Inbox）URL
+      ip: IP 地址
+      location:
+        all: 全部
+        local: 本地
+        remote: 远程
+        title: 位置
+      login_status: 登录状态
+      media_attachments: 媒体文件
+      memorialize: 设置为追悼帐户
+      moderation:
+        all: 全部
+        silenced: 已隐藏
+        suspended: 已封禁
+        title: 帐户状态
+      moderation_notes: 管理备忘
+      most_recent_activity: 最后一次活跃的时间
+      most_recent_ip: 最后一次活跃的 IP 地址
+      not_subscribed: 未订阅
+      outbox_url: 发件箱（Outbox）URL
+      perform_full_suspension: 封禁
+      profile_url: 个人资料页面 URL
+      promote: 升任
+      protocol: 协议
+      public: 公开页面
+      push_subscription_expires: PuSH 订阅过期时间
+      redownload: 刷新个人资料
+      remove_avatar: 删除头像
+      resend_confirmation:
+        already_confirmed: 该用户已被确认
+        send: 重发确认邮件
+        success: 确认邮件发送成功！
+      reset: 重置
+      reset_password: 重置密码
+      resubscribe: 重新订阅
+      role: 用户组
+      roles:
+        admin: 管理员
+        moderator: 监察员
+        staff: 管理人员
+        user: 普通用户
+      salmon_url: 三文鱼协议网址（Salmon URL）
+      search: 搜索
+      shared_inbox_url: 公用收件箱（Shared Inbox）URL
+      show:
+        created_reports: 这个帐户提交的举报
+        targeted_reports: 针对这个帐户的举报
+      silence: 隐藏
+      statuses: 嘟文
+      subscribe: 订阅
+      title: 用户
+      unconfirmed_email: 待验证的电子邮件地址
+      undo_silenced: 解除隐藏
+      undo_suspension: 解除封禁
+      unsubscribe: 取消订阅
+      username: 用户名
+      web: 站内页面
+    action_logs:
+      actions:
+        assigned_to_self_report: "%{name} 接管了举报 %{target}"
+        change_email_user: "%{name} 更改了用户 %{target} 的电子邮件地址"
+        confirm_user: "%{name} 确认了用户 %{target} 的电子邮件地址"
+        create_custom_emoji: "%{name} 添加了新的自定义表情 %{target}"
+        create_domain_block: "%{name} 屏蔽了域名 %{target}"
+        create_email_domain_block: "%{name} 屏蔽了电子邮件域名 %{target}"
+        demote_user: "%{name} 对用户 %{target} 进行了降任操作"
+        destroy_domain_block: "%{name} 解除了对域名 %{target} 的屏蔽"
+        destroy_email_domain_block: "%{name} 解除了对电子邮件域名 %{target} 的屏蔽"
+        destroy_status: "%{name} 删除了 %{target} 的嘟文"
+        disable_2fa_user: "%{name} 停用了用户 %{target} 的双重认证"
+        disable_custom_emoji: "%{name} 停用了自定义表情 %{target}"
+        disable_user: "%{name} 将用户 %{target} 设置为禁止登录"
+        enable_custom_emoji: "%{name} 启用了自定义表情 %{target}"
+        enable_user: "%{name} 将用户 %{target} 设置为允许登录"
+        memorialize_account: "%{name} 将 %{target} 设置为追悼帐户"
+        promote_user: "%{name} 对用户 %{target} 进行了升任操作"
+        remove_avatar_user: "%{name} 删除了 %{target} 的头像"
+        reopen_report: "%{name} 重开了举报 %{target}"
+        reset_password_user: "%{name} 重置了用户 %{target} 的密码"
+        resolve_report: "%{name} 处理了举报 %{target}"
+        silence_account: "%{name} 隐藏了用户 %{target}"
+        suspend_account: "%{name} 封禁了用户 %{target}"
+        unassigned_report: "%{name} 放弃了举报 %{target} 的接管"
+        unsilence_account: "%{name} 解除了用户 %{target} 的隐藏状态"
+        unsuspend_account: "%{name} 解除了用户 %{target} 的封禁状态"
+        update_custom_emoji: "%{name} 更新了自定义表情 %{target}"
+        update_status: "%{name} 刷新了 %{target} 的嘟文"
+      deleted_status: "（嘟文已删除）"
+      title: 运营日志
+    custom_emojis:
+      by_domain: 域名
+      copied_msg: 成功将表情复制到本地
+      copy: 复制
+      copy_failed_msg: 无法将表情复制到本地
+      created_msg: 表情添加成功！
+      delete: 删除
+      destroyed_msg: 表情删除成功！
+      disable: 停用
+      disabled_msg: 表情停用成功
+      emoji: 表情
+      enable: 启用
+      enabled_msg: 表情启用成功
+      image_hint: PNG 格式，最大 50KB
+      listed: 已显示
+      new:
+        title: 添加新的自定义表情
+      overwrite: 覆盖
+      shortcode: 短代码
+      shortcode_hint: 至少 2 个字符，只能使用字母、数字和下划线
+      title: 自定义表情
+      unlisted: 已隐藏
+      update_failed_msg: 表情更新失败
+      updated_msg: 表情更新成功！
+      upload: 上传新表情
+    dashboard:
+      backlog: 未处理任务数
+      config: 服务器配置
+      feature_deletions: 帐户删除
+      feature_invites: 邀请链接
+      feature_registrations: 公开注册
+      feature_relay: 同步中继
+      features: 功能
+      hidden_service: 匿名服务连通性
+      open_reports: 待处理举报数
+      recent_users: 新用户
+      search: 全文搜索
+      single_user_mode: 单用户模式
+      software: 软件
+      space: 存储使用情况
+      title: 仪表盘
+      total_users: 总用户数
+      trends: 趋势
+      week_interactions: 本周互动数
+      week_users_active: 本周活跃用户数
+      week_users_new: 本周新用户数
+    domain_blocks:
+      add_new: 添加新屏蔽域名
+      created_msg: 正在进行域名屏蔽
+      destroyed_msg: 域名屏蔽已撤销
+      domain: 域名
+      new:
+        create: 添加屏蔽
+        hint: 域名屏蔽不会阻止该域名下的帐户进入本站的数据库，但是会对来自这个域名的帐户自动进行预先设置的管理操作。
+        severity:
+          desc_html: 选择<strong>自动隐藏</strong>会将该域名下帐户发送的嘟文设置为仅关注者可见；选择<strong>自动封禁</strong>会将该域名下帐户发送的嘟文、媒体文件以及个人资料数据从本实例上删除；如果你只是想拒绝接收来自该域名的任何媒体文件，请选择<strong>无</strong>。
+          noop: 无
+          silence: 自动隐藏
+          suspend: 自动封禁
+        title: 添加域名屏蔽
+      reject_media: 拒绝接收媒体文件
+      reject_media_hint: 删除本地已缓存的媒体文件，并且不再接收来自该域名的任何媒体文件。此选项不影响封禁
+      show:
+        affected_accounts:
+          one: 将会影响到数据库中的 1 个帐户
+          other: 将会影响到数据库中的 %{count} 个帐户
+        retroactive:
+          silence: 对此域名的所有帐户解除隐藏
+          suspend: 对此域名的所有帐户解除封禁
+        title: 撤销对 %{domain} 的域名屏蔽
+        undo: 撤销
+      undo: 撤销屏蔽域名
+    email_domain_blocks:
+      add_new: 添加新条目
+      created_msg: 电子邮件域名屏蔽添加成功
+      delete: 删除
+      destroyed_msg: 电子邮件域名屏蔽删除成功
+      domain: 域名
+      new:
+        create: 添加域名
+        title: 添加电子邮件域名屏蔽
+      title: 电子邮件域名屏蔽
+    instances:
+      title: 已知实例
+    invites:
+      deactivate_all: 撤销所有邀请链接
+      filter:
+        all: 全部
+        available: 可用
+        expired: 已失效
+        title: 筛选
+      title: 邀请用户
+    relays:
+      add_new: 添加新的中继
+      description_html: "<strong>同步中继</strong>是一种中间服务器，各实例可以通过订阅中继和向中继推送信息的方式来大量交换公开嘟文。<strong>它可以帮助中小型实例发现网络中的内容</strong>，而无需本地用户手动关注其他远程实例上的用户。"
+      enable_hint: 启用此功能后，你的实例会订阅此中继的所有公开嘟文，并同时向其推送本服务器的公开嘟文。
+      inbox_url: 中继 URL
+      pending: 等待中继确认
+      save_and_enable: 保存并启用
+      setup: 设置中继连接
+      status: 状态
+      title: 中继
+    report_notes:
+      created_msg: 举报记录建立成功！
+      destroyed_msg: 举报记录删除成功！
+    reports:
+      account:
+        note: 条记录
+        report: 条举报
+      action_taken_by: 操作执行者
+      are_you_sure: 你确定吗？
+      assign_to_self: 接管
+      assigned: 已接管的监察员
+      comment:
+        none: 没有
+      created_at: 举报时间
+      mark_as_resolved: 标记为“已处理”
+      mark_as_unresolved: 标记为“未处理”
+      notes:
+        create: 添加记录
+        create_and_resolve: 添加记录并标记为“已处理”
+        create_and_unresolve: 添加记录并重开
+        delete: 删除
+        placeholder: 描述已经执行的操作，或其他任何相关的跟进情况…
+      reopen: 重开举报
+      report: '举报 #%{id}'
+      reported_account: 举报用户
+      reported_by: 举报人
+      resolved: 已处理
+      resolved_msg: 举报处理成功！
+      status: 状态
+      title: 举报
+      unassign: 取消接管
+      unresolved: 未处理
+      updated_at: 更新时间
+    settings:
+      activity_api_enabled:
+        desc_html: 本站用户发布的嘟文数，以及本站的活跃用户数和一周内新用户数
+        title: 公开用户活跃度的统计数据
+      bootstrap_timeline_accounts:
+        desc_html: 用半角逗号分隔多个用户名。只能添加来自本站且未开启保护的帐户。如果留空，则默认关注本站所有的管理员。
+        title: 新用户默认关注
+      contact_information:
+        email: 用于联系的公开电子邮件地址
+        username: 用于联系的公开用户名
+      custom_css:
+        desc_html: 通过 CSS 代码调整所有页面的显示效果
+        title: 自定义 CSS
+      hero:
+        desc_html: 用于在首页展示。推荐分辨率 600×100px 以上。未指定的情况下将默认使用本站缩略图
+        title: 主题图片
+      peers_api_enabled:
+        desc_html: 截至目前本实例在网络中已发现的域名
+        title: 公开已知实例的列表
+      preview_sensitive_media:
+        desc_html: 始终在站外链接预览中展示缩略图，无论媒体内容是否标记为敏感
+        title: 在 OpenGraph 预览中显示敏感媒体内容
+      registrations:
+        closed_message:
+          desc_html: 本站关闭注册期间的提示信息。可以使用 HTML 标签
+          title: 关闭注册时的提示信息
+        deletion:
+          desc_html: 允许所有人删除自己的帐户
+          title: 开放删除帐户权限
+        min_invite_role:
+          disabled: 没有人
+          title: 允许发送邀请的用户组
+      show_known_fediverse_at_about_page:
+        desc_html: 启用此选项将会在预览中显示来自已知实例的嘟文，否则只会显示本站时间轴的内容.
+        title: 在时间轴预览中显示已知实例
+      show_staff_badge:
+        desc_html: 在个人资料页上显示管理人员标志
+        title: 显示管理人员标志
+      site_description:
+        desc_html: 首页上的介绍文字。 描述一下本 Gab Social 实例的特殊之处以及其他重要信息。可以使用 HTML 标签，包括 <code>&lt;a&gt;</code> 和 <code>&lt;em&gt;</code> 。
+        title: 本站简介
+      site_description_extended:
+        desc_html: 可以填写行为守则、规定、指南或其他本站特有的内容。可以使用 HTML 标签
+        title: 本站详细介绍
+      site_terms:
+        desc_html: 可以填写自己的隐私权政策、使用条款或其他法律文本。可以使用 HTML 标签
+        title: 自定义使用条款
+      site_title: 本站名称
+      thumbnail:
+        desc_html: 用于在 OpenGraph 和 API 中显示预览图。推荐分辨率 1200×630px
+        title: 本站缩略图
+      timeline_preview:
+        desc_html: 在主页显示公共时间轴
+        title: 时间轴预览
+      title: 网站设置
+    statuses:
+      back_to_account: 返回帐户信息页
+      batch:
+        delete: 删除
+        nsfw_off: 标记为非敏感内容
+        nsfw_on: 标记为敏感内容
+      failed_to_execute: 执行失败
+      media:
+        title: 媒体文件
+      no_media: 不含媒体文件
+      title: 帐户嘟文
+      with_media: 含有媒体文件
+    subscriptions:
+      callback_url: 回调 URL
+      confirmed: 已确认
+      expires_in: 失效时间
+      last_delivery: 最后一次接收数据的时间
+      title: WebSub
+      topic: Topic
+    title: 管理
+  admin_mailer:
+    new_report:
+      body: "%{reporter} 举报了用户 %{target}"
+      body_remote: 来自 %{domain} 的用户举报了用户 %{target}
+      subject: 来自 %{instance} 的用户举报（#%{id}）
+  application_mailer:
+    notification_preferences: 更改电子邮件首选项
+    salutation: "%{name},"
+    settings: 使用此链接更改你的电子邮件首选项：%{link}
+    view: 点此链接查看详情：
+    view_profile: 查看个人资料页
+    view_status: 查看嘟文
+  applications:
+    created: 应用创建成功
+    destroyed: 应用删除成功
+    invalid_url: URL 无效
+    regenerate_token: 重置访问令牌
+    token_regenerated: 访问令牌重置成功
+    warning: 一定小心，千万不要把它分享给任何人！
+    your_token: 你的访问令牌
+  auth:
+    change_password: 密码
+    confirm_email: 确认电子邮件地址
+    delete_account: 删除帐户
+    delete_account_html: 如果你想删除你的帐户，请<a href="%{path}">点击这里继续</a>。你需要确认你的操作。
+    didnt_get_confirmation: 没有收到确认邮件？
+    forgot_password: 忘记密码？
+    invalid_reset_password_token: 密码重置令牌无效或已过期。请重新发起重置密码请求。
+    login: 登录
+    logout: 登出
+    migrate_account: 迁移到另一个帐户
+    migrate_account_html: 如果你希望引导他人关注另一个帐户，请<a href="%{path}">点击这里进行设置</a>。
+    or_log_in_with: 或通过其他方式登录
+    providers:
+      cas: CAS
+      saml: SAML
+    register: 注册
+    resend_confirmation: 重新发送确认邮件
+    reset_password: 重置密码
+    security: 帐户安全
+    set_new_password: 设置新密码
+  authorize_follow:
+    already_following: 你已经在关注此用户了
+    error: 对不起，寻找这个跨站用户时出错
+    follow: 关注
+    follow_request: 关注请求已发送给：
+    following: 成功！你正在关注：
+    post_follow:
+      close: 你也可以直接关闭这个窗口。
+      return: 查看用户个人资料
+      web: 返回本站
+    title: 关注 %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}时"
+      about_x_months: "%{count}个月"
+      about_x_years: "%{count}年"
+      almost_x_years: "%{count}年"
+      half_a_minute: 刚刚
+      less_than_x_minutes: "%{count}分"
+      less_than_x_seconds: 刚刚
+      over_x_years: "%{count}年"
+      x_days: "%{count}天"
+      x_minutes: "%{count}分"
+      x_months: "%{count}个月"
+      x_seconds: "%{count}秒"
+  deletes:
+    bad_password_msg: 想得美，黑客！密码输入错误
+    confirm_password: 输入你当前的密码来验证身份
+    description_html: 继续操作将会<strong>永久地、不可撤销地</strong>删除帐户中的所有内容，然后冻结帐户。你的用户名将会被保留，以防有人冒用你的身份。
+    proceed: 删除帐户
+    success_msg: 你的帐户已经成功删除
+    warning_html: 我们只能保证本实例上的内容将会被彻底删除。对于已经被广泛传播的内容，它们在本实例以外的某些地方可能仍然可见。此外，失去连接的服务器以及停止接收订阅的服务器所存储的数据亦无法删除。
+    warning_title: 关于已传播的内容的警告
+  errors:
+    '403': 你没有访问这个页面的权限。
+    '404': 无法找到你所要访问的页面。
+    '410': 你所要访问的页面此处已不存在。
+    '422':
+      content: 无法确认登录信息。你是不是屏蔽了 Cookie？
+      title: 无法确认登录信息
+    '429': 请求被限制
+    '500':
+      content: 抱歉，我们的后台出错了。
+      title: 这个页面有问题
+    noscript_html: 使用 Gab Social 网页版应用需要启用 JavaScript。你也可以选择适用于你的平台的 <a href="%{apps_path}">Gab Social 应用</a>。
+  exports:
+    archive_takeout:
+      date: 日期
+      download: 下载你的存档
+      hint_html: 你可以请求一份帐户数据存档，其中包含你的<strong>嘟文和已上传的媒体文件</strong>。导出的数据为 ActivityPub 格式，因而可以被兼容的软件读取。每次允许请求存档的间隔至少为 7 天。
+      in_progress: 正在准备你的存档……
+      request: 请求你的存档
+      size: 大小
+    blocks: 屏蔽的用户
+    csv: CSV
+    follows: 关注的用户
+    mutes: 隐藏的用户
+    storage: 媒体文件存储
+  filters:
+    contexts:
+      home: 主页时间轴
+      notifications: 通知
+      public: 公共时间轴
+      thread: 对话
+    edit:
+      title: 编辑过滤器
+    errors:
+      invalid_irreversible: 此功能只适用于主页时间轴或通知
+    index:
+      delete: 删除
+      title: 过滤器
+    new:
+      title: 添加新的过滤器
+  generic:
+    changes_saved_msg: 更改保存成功！
+    save_changes: 保存更改
+    validation_errors:
+      one: 出错啦！检查一下下面出错的地方吧
+      other: 出错啦！检查一下下面 %{count} 处出错的地方吧
+  imports:
+    preface: 你可以在此导入你在其他实例导出的数据，比如你所关注或屏蔽的用户列表。
+    success: 数据上传成功，正在处理中
+    types:
+      blocking: 屏蔽列表
+      following: 关注列表
+      muting: 隐藏列表
+    upload: 上传
+  in_memoriam_html: 谨此悼念。
+  invites:
+    delete: 停用
+    expired: 已失效
+    expires_in:
+      '1800': 30 分钟后
+      '21600': 6 小时后
+      '3600': 1 小时后
+      '43200': 12 小时后
+      '604800': 1 周后
+      '86400': 1 天后
+    expires_in_prompt: 永不过期
+    generate: 生成邀请链接
+    invited_by: 你的邀请人是：
+    max_uses:
+      one: 1 次
+      other: "%{count} 次"
+    max_uses_prompt: 无限制
+    prompt: 生成分享链接，邀请他人在本实例注册
+    table:
+      expires_at: 失效时间
+      uses: 已使用次数
+    title: 邀请用户
+  lists:
+    errors:
+      limit: 你所建立的列表数量已经达到上限
+  media_attachments:
+    validations:
+      images_and_video: 无法在嘟文中同时插入视频和图片
+      too_many: 最多只能添加 4 张图片
+  migrations:
+    acct: 新帐户的 用户名@域名
+    currently_redirecting: 目前你的个人资料页显示的新帐户是：
+    proceed: 保存
+    updated_msg: 帐户迁移设置更新成功！
+  moderation:
+    title: 运营
+  notification_mailer:
+    digest:
+      action: 查看所有通知
+      body: 以下是自%{since}你最后一次登录以来错过的消息的摘要
+      mention: "%{name} 在嘟文中提到了你："
+      new_followers_summary:
+        one: 而且，你不在的时候，有一个人关注了你！耶！
+        other: 而且，你不在的时候，有 %{count} 个人关注了你！好棒！
+      subject: "自从你最后一次登录以来，你错过了 %{count} 条新通知 \U0001F418"
+      title: 在你不在的这段时间……
+    favourite:
+      body: 你的嘟文被 %{name} 收藏了：
+      subject: "%{name} 收藏了你的嘟文"
+      title: 新的收藏
+    follow:
+      body: "%{name} 关注了你！"
+      subject: "%{name} 关注了你"
+      title: 新的关注者
+    follow_request:
+      action: 处理关注请求
+      body: "%{name} 向你发送了关注请求"
+      subject: 来自 %{name} 的关注请求
+      title: 新的关注请求
+    mention:
+      action: 回复
+      body: "%{name} 在嘟文中提到了你："
+      subject: "%{name} 提到了你"
+      title: 新的提及
+    reblog:
+      body: 你的嘟文被 %{name} 转嘟了：
+      subject: "%{name} 转嘟了你的嘟文"
+      title: 新的转嘟
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: ''
+  pagination:
+    newer: 更新
+    next: 下一页
+    older: 更早
+    prev: 上一页
+    truncate: "&hellip;"
+  preferences:
+    languages: 语言
+    other: 其他
+    publishing: 发布
+    web: 站内
+  remote_follow:
+    acct: 请输入你的“用户名@实例域名”
+    missing_resource: 无法确定你的帐户的跳转 URL
+    no_account_html: 还没有帐号？你可以<a href='%{sign_up_path}' target='_blank'>注册一个</a>
+    proceed: 确认关注
+    prompt: 你正准备关注：
+  remote_unfollow:
+    error: 错误
+    title: 标题
+    unfollowed: 已取消关注
+  sessions:
+    activity: 最后一次活跃的时间
+    browser: 浏览器
+    browsers:
+      alipay: 支付宝
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: 未知浏览器
+      ie: Internet Explorer
+      micro_messenger: 微信
+      nokia: Nokia S40 Ovi 浏览器
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ浏览器
+      safari: Safari
+      uc_browser: UC浏览器
+      weibo: 新浪微博
+    current_session: 当前会话
+    description: "%{platform} 上的 %{browser}"
+    explanation: 你的 Gab Social 帐户目前已在这些浏览器上登录。
+    ip: IP 地址
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: 未知平台
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: 注销
+    revoke_success: 会话注销成功
+    title: 会话
+  settings:
+    authorized_apps: 已授权的应用
+    back: 返回 Gab Social
+    delete: 删除帐户
+    development: 开发
+    edit_profile: 更改个人资料
+    export: 导出
+    import: 导入
+    migrate: 帐户迁移
+    notifications: 通知
+    preferences: 首选项
+    two_factor_authentication: 双重认证
+  statuses:
+    attached:
+      description: 附加媒体：%{attached}
+      image:
+        one: "%{count} 张图片"
+        other: "%{count} 张图片"
+      video:
+        one: "%{count} 段视频"
+        other: "%{count} 段视频"
+    boosted_from_html: 转嘟自 %{acct_link}
+    content_warning: 内容警告：%{warning}
+    disallowed_hashtags:
+      one: 包含了一个禁止的话题标签：%{tags}
+      other: 包含了这些禁止的话题标签：%{tags}
+    language_detection: 自动检测语言
+    open_in_web: 在站内打开
+    over_character_limit: 超过了 %{max} 字的限制
+    pin_errors:
+      limit: 你所置顶的嘟文数量已经达到上限
+      ownership: 不能置顶他人的嘟文
+      private: 不能置顶非公开的嘟文
+      reblog: 不能置顶转嘟
+    show_more: 显示更多
+    title: "%{name}：“%{quote}”"
+    visibilities:
+      private: 仅关注者
+      private_long: 只有关注你的用户能看到
+      public: 公开
+      public_long: 所有人可见，并会出现在公共时间轴上
+      unlisted: 不公开
+      unlisted_long: 所有人可见，但不会出现在公共时间轴上
+  stream_entries:
+    pinned: 置顶嘟文
+    reblogged: 转嘟
+    sensitive_content: 敏感内容
+  terms:
+    title: "%{instance} 使用条款和隐私权政策"
+  themes:
+    contrast: Gab Social（高对比度）
+    default: Gab Social（暗色主题）
+    gabsocial-light: Gab Social（亮色主题）
+  time:
+    formats:
+      default: "%Y年%-m月%d日 %H:%M"
+  two_factor_authentication:
+    code_hint: 输入认证器生成的代码以确认操作
+    description_html: 启用<strong>双重认证</strong>后，你需要输入手机认证器生成的代码才能登录.
+    disable: 停用
+    enable: 启用
+    enabled: 双重认证已启用
+    enabled_success: 双重认证启用成功
+    generate_recovery_codes: 生成恢复代码
+    instructions_html: "<strong>请使用 Google 身份验证器或其他 TOTP 双重认证手机应用扫描此处的二维码</strong>。启用双重认证后，你需要输入该应用生成的代码来登录你的帐户。"
+    lost_recovery_codes: 如果你的手机不慎丢失，你可以使用恢复代码来重新获得对帐户的访问权。如果你遗失了恢复代码，可以在此处重新生成。之前使用的恢复代码将会失效。
+    manual_instructions: 如果你无法扫描二维码，请手动输入下列文本：
+    recovery_codes: 备份恢复代码
+    recovery_codes_regenerated: 恢复代码重新生成成功
+    recovery_instructions_html: 如果你的手机无法使用，你可以使用下列任意一个恢复代码来重新获得对帐户的访问权。<strong>请妥善保管好你的恢复代码</strong>（例如，你可以将它们打印出来，然后和其他重要的文件放在一起）。
+    setup: 设置
+    wrong_code: 输入的认证码无效！请确认服务器时间与设备时间是否正确？
+  user_mailer:
+    backup_ready:
+      explanation: 你请求了一份 Gab Social 帐户的完整备份。现在你可以下载了！
+      subject: 你的存档已经准备完毕
+      title: 存档导出
+    welcome:
+      edit_profile_action: 设置个人资料
+      edit_profile_step: 你可以自定义你的个人资料，包括上传头像、横幅图片、更改昵称等等。如果你想在新的关注者关注你之前对他们进行审核，你也可以选择为你的帐户开启保护。
+      explanation: 下面是几个小贴士，希望它们能帮到你
+      final_action: 开始嘟嘟
+      final_step: '开始嘟嘟吧！即便你现在没有关注者，其他人仍然能在本站时间轴或者话题标签等地方看到你的公开嘟文。试着用 #introductions 这个话题标签介绍一下自己吧。'
+      full_handle: 你的完整用户地址
+      full_handle_hint: 你需要把这个告诉你的朋友们，这样他们就能从另一个实例向你发送信息或者关注你。
+      review_preferences_action: 更改首选项
+      review_preferences_step: 记得调整你的偏好设置，比如你想接收什么类型的邮件，或者你想把你的嘟文可见范围默认设置为什么级别。如果你没有晕动病的话，考虑一下启用“自动播放 GIF 动画”这个选项吧。
+      subject: 欢迎来到 Gab Social
+      tip_federated_timeline: 跨站公共时间轴可以让你一窥更广阔的 Gab Social 网络。不过，由于它只显示你的邻居们所订阅的内容，所以并不是全部。
+      tip_following: 默认情况下，你会自动关注你所在实例的管理员。想结交更多有趣的人的话，记得多逛逛本站时间轴和跨站公共时间轴哦。
+      tip_local_timeline: 本站时间轴可以让你一窥 %{instance} 上的用户。他们就是离你最近的邻居！
+      tip_mobile_webapp: 如果你的移动设备浏览器允许你将 Gab Social 添加到主屏幕，你就能够接收推送消息。它就像本地应用一样好使！
+      tips: 小贴士
+      title: "%{name}，欢迎你的加入！"
+  users:
+    invalid_email: 输入的电子邮件地址无效
+    invalid_otp_token: 输入的双重认证代码无效
+    otp_lost_help_html: 如果你不慎丢失了所有的代码，请联系 %{email} 寻求帮助
+    seamless_external_login: 因为你是通过外部服务登录的，所以密码和电子邮件地址设置都不可用。
+    signed_in_as: 当前登录的帐户：

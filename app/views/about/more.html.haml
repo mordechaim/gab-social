@@ -1,0 +1,19 @@
+- content_for :page_title do
+  = site_hostname
+
+- content_for :header_tags do
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+  = render partial: 'shared/og'
+
+.content
+  .box-widget
+    .rich-formatting= @instance_presenter.site_extended_description.html_safe.presence || t('about.extended_description_html')
+
+  %br
+
+  .box-widget
+    .rich-formatting
+      %h3 Open Source
+      %p The future of online publishing and community building is decentralized and open. You get to own what you build. In the open source world, that includes the code powering the technology you use.
+      %p Originally forked from the Mastodon project, Gab Social is a fresh take on one of the Internet's most popular applications: Social networking. By releasing the full program source code of Gab Social under the GNU Affero General Public License v3, Gab is not only guaranteeing you ownership of this system but also those who carry on where you might leave off.
+      %p Gab's development team works on Gab Social as their full-time job. We welcome you to an unprecedented level of access into a commercial effort in decentralized and federated open source social networking. Thank you for taking this adventure with us.

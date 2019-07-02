@@ -1,0 +1,53 @@
+# WK<HTML>TOPDF
+
+[wkhtmltopdf](https://wkhtmltopdf.org/) is an open source (LGPLv3) command line tool to render HTML to PDF and various image formats using the Qt WebKit rendering engine. It is a required dependency that enables Gab Social to create PDF documents as downloadable invoices for purchases made during the Gab PRO upgrade and subscription process.
+
+This is not a light dependency and is potentially pulling a lot of code into your production environment.
+
+As of this writing on Ubuntu 18.04LTS, enabling subscriptions and payments requires the following additional packages to be installed:
+
+  adwaita-icon-theme amd64-microcode at-spi2-core avahi-daemon crda dconf-gsettings-backend dconf-service fontconfig geoclue-2.0 glib-networking glib-networking-common glib-networking-services
+  gsettings-desktop-schemas gstreamer1.0-plugins-base gtk-update-icon-cache hicolor-icon-theme humanity-icon-theme iio-sensor-proxy intel-microcode iucode-tool iw libatk-bridge2.0-0 libatk1.0-0 libatk1.0-data
+  libatspi2.0-0 libavahi-client3 libavahi-common-data libavahi-common3 libavahi-core7 libavahi-glib1 libbrotli1 libcairo-gobject2 libcairo2 libcdparanoia0 libcolord2 libcroco3 libcups2 libdaemon0 libdatrie1
+  libdbus-glib-1-2 libdconf1 libdouble-conversion1 libdrm-amdgpu1 libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 libegl-mesa0 libegl1 libepoxy0 libevdev2 libfontenc1 libgbm1 libgdk-pixbuf2.0-0
+  libgdk-pixbuf2.0-bin libgdk-pixbuf2.0-common libgeoclue-2-0 libgl1 libgl1-mesa-dri libgl1-mesa-glx libglapi-mesa libglvnd0 libglx-mesa0 libglx0 libgstreamer-plugins-base1.0-0 libgstreamer1.0-0 libgtk-3-0
+  libgtk-3-bin libgtk-3-common libgudev-1.0-0 libhyphen0 libice6 libinput-bin libinput10 libjson-glib-1.0-0 libjson-glib-1.0-common liblcms2-2 libllvm7 libmbim-glib4 libmbim-proxy libmm-glib0 libmtdev1
+  libnl-3-200 libnl-genl-3-200 libnss-mdns libogg0 libopus0 liborc-0.4-0 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0 libpciaccess0 libpcsclite1 libpixman-1-0 libproxy1v5 libqmi-glib5 libqmi-proxy
+  libqt5core5a libqt5dbus5 libqt5gui5 libqt5network5 libqt5positioning5 libqt5printsupport5 libqt5qml5 libqt5quick5 libqt5sensors5 libqt5svg5 libqt5webchannel5 libqt5webkit5 libqt5widgets5 librest-0.7-0
+  librsvg2-2 librsvg2-common libsm6 libsoup-gnome2.4-1 libsoup2.4-1 libthai-data libthai0 libtheora0 libvisual-0.4-0 libvorbis0a libvorbisenc2 libwacom-bin libwacom-common libwacom2 libwayland-client0
+  libwayland-cursor0 libwayland-egl1 libwayland-server0 libwoff1 libx11-xcb1 libxatracker2 libxaw7 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-present0
+  libxcb-randr0 libxcb-render-util0 libxcb-render0 libxcb-shape0 libxcb-shm0 libxcb-sync1 libxcb-util1 libxcb-xfixes0 libxcb-xinerama0 libxcb-xkb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxfont2
+  libxi6 libxinerama1 libxkbcommon-x11-0 libxkbcommon0 libxkbfile1 libxmu6 libxrandr2 libxrender1 libxshmfence1 libxss1 libxt6 libxtst6 libxv1 libxvmc1 libxxf86vm1 linux-firmware linux-generic-hwe-18.04
+  linux-headers-4.18.0-20 linux-headers-4.18.0-20-generic linux-headers-generic-hwe-18.04 linux-image-4.18.0-20-generic linux-image-generic-hwe-18.04 linux-modules-4.18.0-20-generic
+  linux-modules-extra-4.18.0-20-generic modemmanager qt5-gtk-platformtheme qttranslations5-l10n thermald ubuntu-mono usb-modeswitch usb-modeswitch-data wireless-regdb wpasupplicant x11-common x11-xkb-utils
+  xfonts-base xfonts-encodings xfonts-utils xserver-common xserver-xorg-core-hwe-18.04 xserver-xorg-hwe-18.04 xserver-xorg-input-all-hwe-18.04 xserver-xorg-input-libinput-hwe-18.04
+  xserver-xorg-input-wacom-hwe-18.04 xserver-xorg-legacy-hwe-18.04 xserver-xorg-video-all-hwe-18.04 xserver-xorg-video-amdgpu-hwe-18.04 xserver-xorg-video-ati-hwe-18.04 xserver-xorg-video-fbdev-hwe-18.04
+  xserver-xorg-video-intel-hwe-18.04 xserver-xorg-video-nouveau-hwe-18.04 xserver-xorg-video-qxl-hwe-18.04 xserver-xorg-video-radeon-hwe-18.04 xserver-xorg-video-vesa-hwe-18.04
+  xserver-xorg-video-vmware-hwe-18.04
+
+Suggested packages will be:
+
+  avahi-autoipd gvfs colord cups-common libvisual-0.4-plugins gstreamer1.0-tools liblcms2-utils avahi-autoipd | zeroconf opus-tools pcscd qt5-image-formats-plugins qtwayland5 qt5-qmltooling-plugins
+  librsvg2-bin fdutils linux-hwe-doc-4.18.0 | linux-hwe-source-4.18.0 linux-hwe-tools comgt wvdial wpagui libengine-pkcs11-openssl xfonts-100dpi | xfonts-75dpi xfonts-scalable xinput firmware-amd-graphics
+  xserver-xorg-video-r128 xserver-xorg-video-mach64 firmware-misc-nonfree
+
+And, the following NEW packages will be installed:
+
+  adwaita-icon-theme amd64-microcode at-spi2-core avahi-daemon crda dconf-gsettings-backend dconf-service fontconfig geoclue-2.0 glib-networking glib-networking-common glib-networking-services
+  gsettings-desktop-schemas gstreamer1.0-plugins-base gtk-update-icon-cache hicolor-icon-theme humanity-icon-theme iio-sensor-proxy intel-microcode iucode-tool iw libatk-bridge2.0-0 libatk1.0-0 libatk1.0-data
+  libatspi2.0-0 libavahi-client3 libavahi-common-data libavahi-common3 libavahi-core7 libavahi-glib1 libbrotli1 libcairo-gobject2 libcairo2 libcdparanoia0 libcolord2 libcroco3 libcups2 libdaemon0 libdatrie1
+  libdbus-glib-1-2 libdconf1 libdouble-conversion1 libdrm-amdgpu1 libdrm-intel1 libdrm-nouveau2 libdrm-radeon1 libegl-mesa0 libegl1 libepoxy0 libevdev2 libfontenc1 libgbm1 libgdk-pixbuf2.0-0
+  libgdk-pixbuf2.0-bin libgdk-pixbuf2.0-common libgeoclue-2-0 libgl1 libgl1-mesa-dri libgl1-mesa-glx libglapi-mesa libglvnd0 libglx-mesa0 libglx0 libgstreamer-plugins-base1.0-0 libgstreamer1.0-0 libgtk-3-0
+  libgtk-3-bin libgtk-3-common libgudev-1.0-0 libhyphen0 libice6 libinput-bin libinput10 libjson-glib-1.0-0 libjson-glib-1.0-common liblcms2-2 libllvm7 libmbim-glib4 libmbim-proxy libmm-glib0 libmtdev1
+  libnl-3-200 libnl-genl-3-200 libnss-mdns libogg0 libopus0 liborc-0.4-0 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0 libpciaccess0 libpcsclite1 libpixman-1-0 libproxy1v5 libqmi-glib5 libqmi-proxy
+  libqt5core5a libqt5dbus5 libqt5gui5 libqt5network5 libqt5positioning5 libqt5printsupport5 libqt5qml5 libqt5quick5 libqt5sensors5 libqt5svg5 libqt5webchannel5 libqt5webkit5 libqt5widgets5 librest-0.7-0
+  librsvg2-2 librsvg2-common libsm6 libsoup-gnome2.4-1 libsoup2.4-1 libthai-data libthai0 libtheora0 libvisual-0.4-0 libvorbis0a libvorbisenc2 libwacom-bin libwacom-common libwacom2 libwayland-client0
+  libwayland-cursor0 libwayland-egl1 libwayland-server0 libwoff1 libx11-xcb1 libxatracker2 libxaw7 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-icccm4 libxcb-image0 libxcb-keysyms1 libxcb-present0
+  libxcb-randr0 libxcb-render-util0 libxcb-render0 libxcb-shape0 libxcb-shm0 libxcb-sync1 libxcb-util1 libxcb-xfixes0 libxcb-xinerama0 libxcb-xkb1 libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxfont2
+  libxi6 libxinerama1 libxkbcommon-x11-0 libxkbcommon0 libxkbfile1 libxmu6 libxrandr2 libxrender1 libxshmfence1 libxss1 libxt6 libxtst6 libxv1 libxvmc1 libxxf86vm1 linux-firmware linux-generic-hwe-18.04
+  linux-headers-4.18.0-20 linux-headers-4.18.0-20-generic linux-headers-generic-hwe-18.04 linux-image-4.18.0-20-generic linux-image-generic-hwe-18.04 linux-modules-4.18.0-20-generic
+  linux-modules-extra-4.18.0-20-generic modemmanager qt5-gtk-platformtheme qttranslations5-l10n thermald ubuntu-mono usb-modeswitch usb-modeswitch-data wireless-regdb wkhtmltopdf wpasupplicant x11-common
+  x11-xkb-utils xfonts-base xfonts-encodings xfonts-utils xserver-common xserver-xorg-core-hwe-18.04 xserver-xorg-hwe-18.04 xserver-xorg-input-all-hwe-18.04 xserver-xorg-input-libinput-hwe-18.04
+  xserver-xorg-input-wacom-hwe-18.04 xserver-xorg-legacy-hwe-18.04 xserver-xorg-video-all-hwe-18.04 xserver-xorg-video-amdgpu-hwe-18.04 xserver-xorg-video-ati-hwe-18.04 xserver-xorg-video-fbdev-hwe-18.04
+  xserver-xorg-video-intel-hwe-18.04 xserver-xorg-video-nouveau-hwe-18.04 xserver-xorg-video-qxl-hwe-18.04 xserver-xorg-video-radeon-hwe-18.04 xserver-xorg-video-vesa-hwe-18.04
+  xserver-xorg-video-vmware-hwe-18.04

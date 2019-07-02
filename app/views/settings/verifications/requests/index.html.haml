@@ -1,0 +1,27 @@
+- content_for :page_title do
+  = t('verifications.requests.title')
+
+- if @current_account.is_verified?
+  .alert.alert-info
+    = t('verifications.requests.already_verified_html')
+- elsif @account_verification_request.persisted?
+  .alert.alert-success
+    = t('verifications.requests.already_requested')
+- elsif not @current_account.is_pro?
+  .alert.alert-info
+    = t('verifications.requests.only_allowed_for_pro')
+- else
+  = simple_form_for @account_verification_request, url: settings_verifications_requests_path do |f|
+    = t('verifications.requests.explanation_html')
+
+    %br
+
+    = render 'shared/error_messages', object: @account_verification_request
+
+    = f.hidden_field :account
+
+    .fields-group
+      = f.input :image, wrapper: :with_label, input_html: { accept: 'image/png' }, hint: t('verifications.requests.image_hint')
+
+    .actions
+      = f.button :button, t('verifications.requests.submit'), type: :submit

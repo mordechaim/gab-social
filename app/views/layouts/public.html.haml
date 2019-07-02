@@ -1,0 +1,38 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+
+- content_for :content do
+  .public-layout
+    .background-svg
+    - unless @hide_navbar
+      %nav.header
+        .header-container
+          .nav-left
+            = link_to root_url, class: 'brand' do
+              = image_pack_tag 'gab_logo.svg', alt: 'Gab Social'
+            = link_to t('home'), root_url, class: 'nav-link optional'
+            = link_to t('about.about_this'), about_path, class: 'nav-link'
+          .nav-center
+          .nav-right
+            - if user_signed_in?
+              = link_to t('settings.back'), root_url, class: 'nav-link nav-button webapp-btn'
+            - else
+              .hidden-sm
+                = render 'about/login'
+              .visible-sm
+                = link_to t('auth.login'), new_user_session_path, class: 'webapp-btn nav-link nav-button'
+
+    .container= yield
+
+    .footer
+      .footer-container
+        .copyright
+          %span= "2019 Gab AI Inc. All Rights Reserved."
+        %ul
+          %li= link_to t('about.investors'), about_investors_path
+          %li= link_to t('about.source_code'), about_path + "#opensource"
+          %li= mail_to 'support@gab.ai', 'Press'
+          %li= link_to t('about.terms'), about_tos_path
+          %li= link_to t('about.privacy_policy'), about_privacy_path
+
+= render template: 'layouts/application'

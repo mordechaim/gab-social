@@ -1,0 +1,19 @@
+---
+de:
+  activerecord:
+    attributes:
+      poll:
+        expires_at: Frist
+        options: Wahlen
+      status:
+        owned_poll: Umfrage
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: nur Buchstaben, Ziffern und Unterstriche
+        status:
+          attributes:
+            reblog:
+              taken: des Status existiert schon

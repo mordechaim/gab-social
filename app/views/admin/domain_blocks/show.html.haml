@@ -1,0 +1,13 @@
+- content_for :page_title do
+  = t('admin.domain_blocks.show.title', domain: @domain_block.domain)
+
+= simple_form_for @domain_block, url: admin_domain_block_path(@domain_block), method: :delete do |f|
+
+  - unless (@domain_block.noop?)
+    %p= t(".retroactive.#{@domain_block.severity}")
+    %p.hint= t(:affected_accounts,
+      scope: [:admin, :domain_blocks, :show],
+      count: @domain_block.affected_accounts_count)
+
+  .actions
+    = f.button :button, t('.undo'), type: :submit

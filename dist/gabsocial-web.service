@@ -1,0 +1,17 @@
+[Unit]
+Description=gabsocial-web
+After=network.target
+
+[Service]
+Type=simple
+User=gabsocial
+WorkingDirectory=/home/gabsocial/live
+Environment="RAILS_ENV=production"
+Environment="PORT=3000"
+ExecStart=/home/gabsocial/.rbenv/shims/bundle exec puma -C config/puma.rb
+ExecReload=/bin/kill -SIGUSR1 $MAINPID
+TimeoutSec=15
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

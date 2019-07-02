@@ -1,0 +1,18 @@
+- content_for :page_title do
+  = site_hostname
+
+- content_for :header_tags do
+  %link{ rel: 'canonical', href: about_url }/
+  = render partial: 'shared/og'
+
+.landing
+  .landing-columns
+    .landing-columns--left
+      .landing__brand
+        = link_to root_url, class: 'brand' do
+          = image_pack_tag 'gab_logo.svg', alt: 'Gab Social'
+        %span.brand__tagline=t 'about.tagline'
+
+    .landing-columns--right
+      .box-widget
+        = render 'registration'

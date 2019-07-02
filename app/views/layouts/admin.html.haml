@@ -1,0 +1,20 @@
+- content_for :header_tags do
+  = javascript_pack_tag 'public', integrity: true, crossorigin: 'anonymous'
+
+- content_for :content do
+  .admin-wrapper
+    .sidebar-wrapper
+      .sidebar
+        = link_to root_path do
+          = image_pack_tag 'logo.png', class: 'logo', alt: 'Gab Social'
+
+        = render_navigation
+    .content-wrapper
+      .content
+        %h2= yield :page_title
+
+        = render 'application/flashes'
+
+        = yield
+
+= render template: 'layouts/application'

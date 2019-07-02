@@ -1,0 +1,802 @@
+---
+es:
+  about:
+    about_hashtag_html: Estos son toots públicos etiquetados con <strong>#%{hashtag}</strong>. Puedes interactuar con ellos si tienes una cuenta en cualquier parte del fediverso.
+    about_gabsocial_html: Gab Social es un servidor de red social <em>libre y de código abierto</em>. Una alternativa <em>descentralizada</em> a plataformas comerciales, que evita el riesgo de que una única compañía monopolice tu comunicación. Cualquiera puede ejecutar Gab Social y participar sin problemas en la <em>red social</em>.
+    about_this: Acerca de esta instancia
+    administered_by: 'Administrado por:'
+    api: API
+    apps: Aplicaciones móviles
+    contact: Contacto
+    contact_missing: No especificado
+    contact_unavailable: N/A
+    documentation: Documentación
+    extended_description_html: |
+      <h3>Un buen lugar para las reglas</h3>
+      <p>La descripción extendida no se ha colocado aún.</p>
+    generic_description: "%{domain} es un servidor en la red"
+    hosted_on: Gab Social hosteado en %{domain}
+    learn_more: Aprende más
+    privacy_policy: Política de privacidad
+    source_code: Código fuente
+    status_count_after:
+      one: estado
+      other: estados
+    status_count_before: Qué han escrito
+    terms: Condiciones de servicio
+    user_count_after:
+      one: usuario
+      other: usuarios
+    user_count_before: Tenemos
+    what_is_gabsocial: "¿Qué es Gab Social?"
+  accounts:
+    choices_html: 'Elecciones de %{name}:'
+    follow: Seguir
+    followers:
+      one: Seguidor
+      other: Seguidores
+    following: Siguiendo
+    joined: Se unió el %{date}
+    last_active: última conexión
+    link_verified_on: La propiedad de este vínculo fue verificada el %{date}
+    media: Media
+    moved_html: "%{name} se ha trasladado a %{new_profile_link}:"
+    network_hidden: Esta información no está disponible
+    nothing_here: "¡No hay nada aquí!"
+    people_followed_by: Usuarios a quien %{name} sigue
+    people_who_follow: Usuarios que siguen a %{name}
+    pin_errors:
+      following: Debes estar siguiendo a la persona a la que quieres aprobar
+    posts:
+      one: Toot
+      other: Toots
+    posts_tab_heading: Toots
+    posts_with_replies: Toots con respuestas
+    reserved_username: El nombre de usuario está reservado
+    roles:
+      admin: Administrador
+      bot: Bot
+      moderator: Moderador
+    unfollow: Dejar de seguir
+  admin:
+    account_actions:
+      title: Moderar %{acct}
+    account_moderation_notes:
+      create: Crear
+      created_msg: "¡Nota de moderación creada con éxito!"
+      delete: Borrar
+      destroyed_msg: "¡Nota de moderación destruida con éxito!"
+    accounts:
+      are_you_sure: "¿Estás seguro?"
+      avatar: Avatar
+      by_domain: Dominio
+      change_email:
+        changed_msg: "¡El correo electrónico se ha actualizado correctamente!"
+        current_email: Correo electrónico actual
+        label: Cambiar el correo electrónico
+        new_email: Nuevo correo electrónico
+        submit: Cambiar el correo electrónico
+        title: Cambiar el correo electrónico de %{username}
+      confirm: Confirmar
+      confirmed: Confirmado
+      confirming: Confirmando
+      deleted: Borrado
+      demote: Degradar
+      disable: Deshabilitar
+      disable_two_factor_authentication: Desactivar autenticación de dos factores
+      disabled: Deshabilitada
+      display_name: Nombre
+      domain: Dominio
+      edit: Editar
+      email: E-mail
+      email_status: E-mail Status
+      enable: Habilitar
+      enabled: Habilitada
+      feed_url: URL de notificaciones
+      followers: Seguidores
+      followers_url: URL de los seguidores
+      follows: Sigue
+      header: Cabecera
+      inbox_url: URL de la bandeja de entrada
+      invited_by: Invitado por
+      ip: IP
+      location:
+        all: Todos
+        local: Local
+        remote: Remoto
+        title: Localización
+      login_status: Estado del login
+      media_attachments: Multimedia
+      memorialize: Convertir en memorial
+      moderation:
+        active: Activo
+        all: Todos
+        silenced: Silenciados
+        suspended: Suspendidos
+        title: Moderación
+      moderation_notes: Notas de moderación
+      most_recent_activity: Actividad más reciente
+      most_recent_ip: IP más reciente
+      no_limits_imposed: Sin límites impuestos
+      not_subscribed: No se está suscrito
+      outbox_url: URL de bandeja de salida
+      perform_full_suspension: Suspender
+      profile_url: URL del perfil
+      promote: Promocionar
+      protocol: Protocolo
+      public: Público
+      push_subscription_expires: Expiración de la suscripción PuSH
+      redownload: Refrescar avatar
+      remove_avatar: Eliminar el avatar
+      resend_confirmation:
+        already_confirmed: Este usuario ya está confirmado
+        send: Reenviar el correo electrónico de confirmación
+        success: "¡Correo electrónico de confirmación enviado con éxito!"
+      reset: Reiniciar
+      reset_password: Reiniciar contraseña
+      resubscribe: Re-suscribir
+      role: Permisos
+      roles:
+        admin: Administrador
+        moderator: Moderador
+        staff: Personal
+        user: Usuario
+      salmon_url: URL de salmón
+      search: Buscar
+      shared_inbox_url: URL de bandeja compartida
+      show:
+        created_reports: Reportes hechos por esta cuenta
+        targeted_reports: Reportes hechos sobre esta cuenta
+      silence: Silenciar
+      silenced: Silenciado
+      statuses: Estados
+      subscribe: Suscribir
+      suspended: Susependido
+      title: Cuentas
+      unconfirmed_email: Correo electrónico sin confirmar
+      undo_silenced: Des-silenciar
+      undo_suspension: Des-suspender
+      unsubscribe: Desuscribir
+      username: Nombre de usuario
+      web: Web
+    action_logs:
+      actions:
+        assigned_to_self_report: "%{name} se ha asignado la denuncia %{target} a sí mismo"
+        change_email_user: "%{name} ha cambiado la dirección de correo del usuario %{target}"
+        confirm_user: "%{name} confirmó la dirección de correo del usuario %{target}"
+        create_custom_emoji: "%{name} subió un nuevo emoji %{target}"
+        create_domain_block: "%{name} bloqueó el dominio %{target}"
+        create_email_domain_block: "%{name} puso en lista negra el dominio de correos %{target}"
+        demote_user: "%{name} degradó al usuario %{target}"
+        destroy_custom_emoji: "%{name} destruyó el emoji %{target}"
+        destroy_domain_block: "%{name} desbloqueó el dominio %{target}"
+        destroy_email_domain_block: "%{name} puso en lista blanca el dominio de correos %{target}"
+        destroy_status: "%{name} eliminó el estado de %{target}"
+        disable_2fa_user: "%{name} deshabilitó el requerimiento de dos factores para el usuario %{target}"
+        disable_custom_emoji: "%{name} deshabilitó el emoji %{target}"
+        disable_user: "%{name} deshabilitó el acceso del usuario %{target}"
+        enable_custom_emoji: "%{name} habilitó el emoji %{target}"
+        enable_user: "%{name} habilitó el acceso del usuario %{target}"
+        memorialize_account: "%{name} convirtió la cuenta de %{target} en una página de memorial"
+        promote_user: "%{name} promoción al usuario %{target}"
+        remove_avatar_user: "%{name} ha eliminado el avatar de %{target}"
+        reopen_report: "%{name} ha reabierto la denuncia %{target}"
+        reset_password_user: "%{name} restauró la contraseña del usuario %{target}"
+        resolve_report: "%{name} ha resuelto la denuncia %{target}"
+        silence_account: "%{name} silenció la cuenta de %{target}"
+        suspend_account: "%{name} suspendió la cuenta de %{target}"
+        unassigned_report: "%{name} ha desasignado la denuncia %{target}"
+        unsilence_account: "%{name} desactivó el silenciado de la cuenta de %{target}"
+        unsuspend_account: "%{name} desactivó la suspensión de la cuenta de %{target}"
+        update_custom_emoji: "%{name} actualizó el emoji %{target}"
+        update_status: "%{name} actualizó el estado de %{target}"
+      deleted_status: "(estado borrado)"
+      title: Log de auditoría
+    custom_emojis:
+      by_domain: Dominio
+      copied_msg: Copia local del emoji creada con éxito
+      copy: Copiar
+      copy_failed_msg: No se pudo realizar una copia local de ese emoji
+      created_msg: "¡Emoji creado con éxito!"
+      delete: Borrar
+      destroyed_msg: "¡Emojo destruido con éxito!"
+      disable: Deshabilitar
+      disabled_msg: Se deshabilitó con éxito ese emoji
+      emoji: Emoji
+      enable: Habilitar
+      enabled_msg: Se habilitó con éxito ese emoji
+      image_hint: PNG de hasta 50KB
+      listed: Listados
+      new:
+        title: Añadir nuevo emoji personalizado
+      overwrite: Sobrescribir
+      shortcode: Código de atajo
+      shortcode_hint: Al menos 2 caracteres, solo caracteres alfanuméricos y guiones bajos
+      title: Emojis personalizados
+      unlisted: Sin listar
+      update_failed_msg: No se pudo actualizar ese emoji
+      updated_msg: "¡Emoji actualizado con éxito!"
+      upload: Subir
+    dashboard:
+      backlog: trabajos de backlog
+      config: Configuración
+      feature_deletions: Borrados de cuenta
+      feature_invites: Enlaces de invitación
+      feature_registrations: Registros
+      feature_relay: Relés de federación
+      features: Características
+      hidden_service: Federación con servicios ocultos
+      open_reports: informes abiertos
+      recent_users: Usuarios recientes
+      search: Búsqueda por texto completo
+      single_user_mode: Modo único usuario
+      software: Software
+      space: Uso de almacenamiento
+      title: Tablero
+      total_users: usuarios en total
+      trends: Tendencias
+      week_interactions: interacciones esta semana
+      week_users_active: activo esta semana
+      week_users_new: usuarios esta semana
+    domain_blocks:
+      add_new: Añadir nuevo
+      created_msg: El bloque de dominio está siendo procesado
+      destroyed_msg: El bloque de dominio se deshizo
+      domain: Dominio
+      new:
+        create: Crear bloque
+        hint: El bloque de dominio no prevendrá la creación de entradas de cuenta en la base de datos, pero aplicará retroactiva y automáticamente métodos de moderación específica en dichas cuentas.
+        severity:
+          desc_html: "<strong>Silenciar</strong> hará los posts de la cuenta invisibles a cualquiera que no lo esté siguiendo. <strong>Suspender</strong> eliminará todo el contenido, media, y datos del perfil. Usa <strong>Ninguno</strong> si solo quieres rechazar archivos multimedia."
+          noop: Ninguno
+          silence: Silenciar
+          suspend: Suspender
+        title: Nuevo bloque de dominio
+      reject_media: Rechazar archivos multimedia
+      reject_media_hint: Remueve localmente archivos multimedia almacenados para descargar cualquiera en el futuro. Irrelevante para suspensiones
+      reject_reports: Rechazar informes
+      reject_reports_hint: Ignore todos los reportes de este dominio. Irrelevante para suspensiones
+      show:
+        affected_accounts:
+          one: Una cuenta en la base de datos afectada
+          other: "%{count} cuentas en la base de datos afectadas"
+        retroactive:
+          silence: Des-silenciar todas las cuentas existentes de este dominio
+          suspend: Des-suspender todas las cuentas existentes de este dominio
+        title: Deshacer bloque de dominio para %{domain}
+        undo: Deshacer
+      undo: Deshacer
+    email_domain_blocks:
+      add_new: Añadir nuevo
+      created_msg: Dominio de correo añadido a la lista negra con éxito
+      delete: Borrar
+      destroyed_msg: Dominio de correo borrado de la lista negra con éxito
+      domain: Dominio
+      new:
+        create: Añadir dominio
+        title: Nueva entrada en la lista negra de correo
+      title: Lista negra de correo
+    instances:
+      title: Instancias conocidas
+    invites:
+      deactivate_all: Desactivar todos
+      filter:
+        all: Todas
+        available: Disponibles
+        expired: Expiradas
+        title: Filtrar
+      title: Invitaciones
+    relays:
+      add_new: Añadir un nuevo relés
+      delete: Borrar
+      description_html: Un <strong>relés de federation</strong> es un servidor intermedio que intercambia grandes volúmenes de toots públicos entre servidores que se suscriben y publican en él. <strong>Puede ayudar a servidores pequeños y medianos a descubir contenido del fediverso</strong>, que de otra manera requeriría que los usuarios locales siguiesen manialmente a personas de servidores remotos.
+      disable: Deshabilitar
+      disabled: Deshabilitado
+      enable: Hablitar
+      enable_hint: Una vez conectado, tu servidor se suscribirá a todos los toots públicos de este relés, y comenzará a enviar los toots públicos de este servidor hacia él.
+      enabled: Habilitado
+      inbox_url: URL del relés
+      pending: Esperando la aprobación del relés
+      save_and_enable: Guardar y conectar
+      setup: Preparar una conexión de relés
+      status: Estado
+      title: Releses
+    report_notes:
+      created_msg: "¡El registro de la denuncia se ha creado correctamente!"
+      destroyed_msg: "¡El registro de la denuncia se ha borrado correctamente!"
+    reports:
+      account:
+        note: nota
+        report: denuncia
+      action_taken_by: Acción tomada por
+      are_you_sure: "¿Estás seguro?"
+      assign_to_self: Asignármela a mí
+      assigned: Moderador asignado
+      comment:
+        none: Ninguno
+      created_at: Denunciado
+      mark_as_resolved: Marcar como resuelto
+      mark_as_unresolved: Marcar como no resuelto
+      notes:
+        create: Añadir una nota
+        create_and_resolve: Resolver con una nota
+        create_and_unresolve: Reabrir con una nota
+        delete: Eliminar
+        placeholder: Especificar qué acciones se han tomado o cualquier otra novedad respecto a esta denuncia…
+      reopen: Reabrir denuncia
+      report: 'Reportar #%{id}'
+      reported_account: Cuenta reportada
+      reported_by: Reportado por
+      resolved: Resuelto
+      resolved_msg: "¡La denuncia se ha resuelto correctamente!"
+      status: Estado
+      title: Reportes
+      unassign: Desasignar
+      unresolved: No resuelto
+      updated_at: Actualizado
+    settings:
+      activity_api_enabled:
+        desc_html: Conteo de estados publicados localmente, usuarios activos, y nuevos registros en  periodos semanales
+        title: Publicar estadísticas locales acerca de actividad de usuario
+      bootstrap_timeline_accounts:
+        desc_html: Separa con comas los nombres de usuario. Solo funcionará para cuentas locales desbloqueadas. Si se deja vacío, se tomará como valor por defecto a todos los administradores locales.
+        title: Seguimientos predeterminados para usuarios nuevos
+      contact_information:
+        email: Correo de trabajo
+        username: Nombre de usuario
+      custom_css:
+        desc_html: Modificar el aspecto con CSS cargado en cada página
+        title: CSS personalizado
+      hero:
+        desc_html: Mostrado en la página principal. Recomendable al menos 600x100px. Por defecto se establece a la miniatura de la instancia
+        title: Imagen de portada
+      mascot:
+        desc_html: Mostrado en múltiples páginas. Se recomienda un tamaño mínimo de 293x205px. Cuando no se especifica, se muestra la mascota por defecto
+        title: Imagen de la mascota
+      peers_api_enabled:
+        desc_html: Nombres de dominio que esta instancia ha encontrado en el fediverso
+        title: Publicar lista de instancias descubiertas
+      preview_sensitive_media:
+        desc_html: Los enlaces de vistas previas en otras web mostrarán una miniatura incluso si el medio está marcado como contenido sensible
+        title: Mostrar contenido sensible en previews de OpenGraph
+      registrations:
+        closed_message:
+          desc_html: Se muestra en la portada cuando los registros están cerrados. Puedes usar tags HTML
+          title: Mensaje de registro cerrado
+        deletion:
+          desc_html: Permite a cualquiera a eliminar su cuenta
+          title: Eliminación de cuenta abierta
+        min_invite_role:
+          disabled: Nadie
+          title: Permitir invitaciones de
+      show_known_fediverse_at_about_page:
+        desc_html: Cuando esté activado, se mostrarán toots de todo el fediverso conocido en la vista previa. En otro caso, se mostrarán solamente toots locales.
+        title: Mostrar fediverso conocido en la vista previa de la historia
+      show_staff_badge:
+        desc_html: Mostrar un parche de staff en la página de un usuario
+        title: Mostrar parche de staff
+      site_description:
+        desc_html: Párrafo introductorio en la portada y en meta tags. Puedes usar tags HTML, en particular <code>&lt;a&gt;</code> y <code>&lt;em&gt;</code>.
+        title: Descripción de instancia
+      site_description_extended:
+        desc_html: Un buen lugar para tu código de conducta, reglas, guías y otras cosas que estén impuestas aparte en tu instancia. Puedes usar tags HTML
+        title: Información extendida personalizada
+      site_short_description:
+        desc_html: Mostrado en la barra lateral y las etiquetas de metadatos. Describe lo que es Gab Social y qué hace especial a este servidor en un solo párrafo. si está vacío, pone por defecto la descripción de la instancia.
+        title: Descripción corta de la instancia
+      site_terms:
+        desc_html: Puedes escribir tus propias políticas de privacidad, términos de servicio u otras legalidades. Puedes usar tags HTML
+        title: Términos de servicio personalizados
+      site_title: Nombre de instancia
+      thumbnail:
+        desc_html: Se usa para muestras con OpenGraph y APIs. Se recomienda 1200x630px
+        title: Portada de instancia
+      timeline_preview:
+        desc_html: Mostrar línea de tiempo pública en la portada
+        title: Previsualización
+      title: Ajustes del sitio
+    statuses:
+      back_to_account: Volver a la cuenta
+      batch:
+        delete: Eliminar
+        nsfw_off: Marcar contenido como no sensible
+        nsfw_on: Marcar contenido como sensible
+      failed_to_execute: Falló al ejecutar
+      media:
+        title: Multimedia
+      no_media: No hay multimedia
+      no_status_selected: No se cambió ningún estado al no seleccionar ninguno
+      title: Estado de las cuentas
+      with_media: Con multimedia
+    subscriptions:
+      callback_url: URL del callback
+      confirmed: Confirmado
+      expires_in: Expira en
+      last_delivery: Última entrega
+      title: WebSub
+      topic: Tópico
+    title: Administración
+  admin_mailer:
+    new_report:
+      body: "%{reporter} ha reportado a %{target}"
+      body_remote: Alguien de %{domain} a reportado a %{target}
+      subject: Nuevo reporte para la %{instance} (#%{id})
+  application_mailer:
+    notification_preferences: Cambiar preferencias de correo electrónico
+    salutation: "%{name},"
+    settings: 'Cambiar preferencias de correo: %{link}'
+    view: 'Vista:'
+    view_profile: Ver perfil
+    view_status: Ver estado
+  applications:
+    created: Aplicación creada exitosamente
+    destroyed: Apicación eliminada exitosamente
+    invalid_url: La URL proporcionada es incorrecta
+    regenerate_token: Regenerar token de acceso
+    token_regenerated: Token de acceso regenerado exitosamente
+    warning: Ten mucho cuidado con estos datos. ¡No los compartas con nadie!
+    your_token: Tu token de acceso
+  auth:
+    change_password: Contraseña
+    confirm_email: Confirmar email
+    delete_account: Borrar cuenta
+    delete_account_html: Si desea eliminar su cuenta, puede <a href="%{path}">proceder aquí</a>. Será pedido de una confirmación.
+    didnt_get_confirmation: "¿No recibió el correo de confirmación?"
+    forgot_password: "¿Olvidaste tu contraseña?"
+    invalid_reset_password_token: El token de reinicio de contraseña es inválido o expiró. Por favor pide uno nuevo.
+    login: Iniciar sesión
+    logout: Cerrar sesión
+    migrate_account: Mudarse a otra cuenta
+    migrate_account_html: Si deseas redireccionar esta cuenta a otra distinta, puedes <a href="%{path}">configurarlo aquí</a>.
+    or_log_in_with: O inicia sesión con
+    providers:
+      cas: CAS
+      saml: SAML
+    register: Registrarse
+    resend_confirmation: Volver a enviar el correo de confirmación
+    reset_password: Restablecer contraseña
+    security: Cambiar contraseña
+    set_new_password: Establecer nueva contraseña
+  authorize_follow:
+    already_following: Ya estás siguiendo a esta cuenta
+    error: Desafortunadamente, ha ocurrido un error buscando la cuenta remota
+    follow: Seguir
+    follow_request: 'Tienes una solicitud de seguimiento de:'
+    following: "¡Éxito! Ahora estás siguiendo a:"
+    post_follow:
+      close: O, puedes simplemente cerrar esta ventana.
+      return: Regresar al perfil del usuario
+      web: Ir al sitio web
+    title: Seguir a %{acct}
+  datetime:
+    distance_in_words:
+      about_x_hours: "%{count}h"
+      about_x_months: "%{count}m"
+      about_x_years: "%{count}y"
+      almost_x_years: "%{count}y"
+      half_a_minute: Justo ahora
+      less_than_x_minutes: "%{count}m"
+      less_than_x_seconds: Justo ahora
+      over_x_years: "%{count}y"
+      x_days: "%{count}d"
+      x_minutes: "%{count}m"
+      x_months: "%{count}m"
+      x_seconds: "%{count}s"
+  deletes:
+    bad_password_msg: "¡Buen intento, hackers! Contraseña incorrecta"
+    confirm_password: Ingresa tu contraseña actual para demostrar tu identidad
+    description_html: Esto removerá el contenido de tu cuenta y la desactivará <strong>permanente e irrevesiblemente</strong>. Tu nombre de usuario quedará reservado para prevenir futuros robos de identidad.
+    proceed: Eliminar cuenta
+    success_msg: Tu cuenta se eliminó con éxito
+    warning_html: Se garantiza únicamente la eliminación del contenido de esta instancia. El contenido que se haya compartido extensamente dejará sus huellas. Los servidores fuera de línea y los que se hayan desuscrito de tus actualizaciones ya no actualizarán sus bases de datos.
+    warning_title: Disponibilidad diseminada del contenido
+  errors:
+    '403': No tienes permiso para acceder a esta página.
+    '404': La página que estabas buscando no existe.
+    '410': La página que estabas buscando no existe más.
+    '422':
+      content: Verificación de seguridad fallida. ¿Estás bloqueando algunas cookies?
+      title: Verificación de seguridad fallida
+    '429': Asfixiado
+    '500':
+      content: Lo sentimos, algo ha funcionado mal por nuestra parte.
+      title: Esta página no es correcta
+    noscript_html: Para usar la aplicación web de Gab Social, por favor activa Javascript. Alternativamente, prueba alguna de las <a href="%{apps_path}">aplicaciones nativas</a> para Gab Social para tu plataforma.
+  exports:
+    archive_takeout:
+      date: Fecha
+      download: Descargar tu archivo
+      hint_html: Puedes solicitar un archivo de tus <strong>toots y materiales subidos</strong>. Los datos exportados estarán en formato ActivityPub, legibles por cualquier software compatible.
+      in_progress: Recopilando tu archivo...
+      request: Solicitar tu archivo
+      size: Tamaño
+    blocks: Personas que has bloqueado
+    csv: CSV
+    follows: Personas que sigues
+    mutes: Tienes en silencio
+    storage: Almacenamiento
+  filters:
+    contexts:
+      home: Timeline propio
+      notifications: Notificaciones
+      public: Timeline público
+      thread: Conversaciones
+    edit:
+      title: Editar filtro
+    errors:
+      invalid_context: Se suminstró un contexto inválido o vacío
+      invalid_irreversible: El filtrado irreversible solo funciona con los contextos propios o de notificaciones
+    index:
+      delete: Borrar
+      title: Filtros
+    new:
+      title: Añadir un nuevo filtro
+  footer:
+    developers: Desarrolladores
+    more: Mas…
+    resources: Recursos
+  generic:
+    changes_saved_msg: "¡Cambios guardados con éxito!"
+    copy: Copiar
+    save_changes: Guardar cambios
+    validation_errors:
+      one: "¡Algo no está bien! Por favor, revisa el error"
+      other: "¡Algo no está bien! Por favor, revise %{count} errores más abajo"
+  imports:
+    preface: Puedes importar ciertos datos, como todas las personas que estás siguiendo o bloqueando en tu cuenta en esta instancia, desde archivos exportados de otra instancia.
+    success: Sus datos se han cargado correctamente y serán procesados en brevedad
+    types:
+      blocking: Lista de bloqueados
+      following: Lista de seguidos
+      muting: Lista de silenciados
+    upload: Cargar
+  in_memoriam_html: En memoria.
+  invites:
+    delete: Desactivar
+    expired: Expiradas
+    expires_in:
+      '1800': 30 minutos
+      '21600': 6 horas
+      '3600': 1 hora
+      '43200': 12 horas
+      '604800': 1 semana
+      '86400': 1 día
+    expires_in_prompt: Nunca
+    generate: Generar
+    invited_by: 'Fuiste invitado por:'
+    max_uses:
+      one: 1 uso
+      other: "%{count} usos"
+    max_uses_prompt: Sin límite
+    prompt: Generar y compartir enlaces con otros para conceder acceso a este nodo
+    table:
+      expires_at: Expira
+      uses: Usos
+    title: Invitar a gente
+  lists:
+    errors:
+      limit: Has alcanzado la cantidad máxima de listas
+  media_attachments:
+    validations:
+      images_and_video: No se puede adjuntar un video a un estado que ya contenga imágenes
+      too_many: No se pueden adjuntar más de 4 archivos
+  migrations:
+    acct: username@domain de la nueva cuenta
+    currently_redirecting: 'Tu perfil está redireccionado a:'
+    proceed: Guardar
+    updated_msg: "¡La configuración de migración de tu cuenta  ha sido actualizada con éxito!"
+  moderation:
+    title: Moderación
+  notification_mailer:
+    digest:
+      action: Ver todas las notificaciones
+      body: Un resumen de los mensajes que perdiste en desde tu última visita, el %{since}
+      mention: "%{name} te ha mencionado en:"
+      new_followers_summary:
+        one: "¡Ademas, has adquirido un nuevo seguidor mientras no estabas! ¡Hurra!"
+        other: "¡Ademas, has adquirido %{count} nuevos seguidores mientras no estabas! ¡Genial!"
+      subject:
+        one: "1 nueva notificación desde tu última visita \U0001F418"
+        other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
+      title: En tu ausencia…
+    favourite:
+      body: 'Tu estado fue marcado como favorito por %{name}:'
+      subject: "%{name} marcó como favorito tu estado"
+      title: Nuevo favorito
+    follow:
+      body: "¡%{name} te está siguiendo!"
+      subject: "%{name} te está siguiendo"
+      title: Nuevo seguidor
+    follow_request:
+      action: Administrar solicitudes para seguir
+      body: "%{name} ha solicitado seguirte"
+      subject: 'Seguidor pendiente: %{name}'
+      title: Nueva solicitud para seguir
+    mention:
+      action: Responder
+      body: 'Fuiste mencionado por %{name} en:'
+      subject: Fuiste mencionado por %{name}
+      title: Nueva mención
+    reblog:
+      body: "%{name} ha retooteado tu estado:"
+      subject: "%{name} ha retooteado tu estado"
+      title: Nueva difusión
+  number:
+    human:
+      decimal_units:
+        format: "%n%u"
+        units:
+          billion: B
+          million: M
+          quadrillion: Q
+          thousand: K
+          trillion: T
+          unit: " "
+  pagination:
+    newer: Más nuevo
+    next: Próximo
+    older: Más antiguo
+    prev: Anterior
+    truncate: "&hellip;"
+  preferences:
+    languages: Idiomas
+    other: Otros
+    publishing: Publicación
+    web: Web
+  remote_follow:
+    acct: Ingesa tu usuario@dominio desde el que quieres seguir
+    missing_resource: No se pudo encontrar la URL de redirección requerida para tu cuenta
+    no_account_html: "¿No tienes una cuenta? Puedes <a href='%{sign_up_path}' target='_blank'>registrarte aqui</a>"
+    proceed: Proceder a seguir
+    prompt: 'Vas a seguir a:'
+  remote_unfollow:
+    error: Error
+    title: Título
+    unfollowed: Ha dejado de seguirse
+  sessions:
+    activity: Última actividad
+    browser: Navegador
+    browsers:
+      alipay: Alipay
+      blackberry: Blackberry
+      chrome: Chrome
+      edge: Microsoft Edge
+      electron: Electron
+      firefox: Firefox
+      generic: Desconocido
+      ie: Internet Explorer
+      micro_messenger: MicroMessenger
+      nokia: Nokia S40 Ovi Browser
+      opera: Opera
+      otter: Otter
+      phantom_js: PhantomJS
+      qq: QQ Browser
+      safari: Safari
+      uc_browser: UCBrowser
+      weibo: Weibo
+    current_session: Sesión actual
+    description: "%{browser} en %{platform}"
+    explanation: Estos son los navegadores web conectados actualmente en tu cuenta de Gab Social.
+    ip: IP
+    platforms:
+      adobe_air: Adobe Air
+      android: Android
+      blackberry: Blackberry
+      chrome_os: ChromeOS
+      firefox_os: Firefox OS
+      ios: iOS
+      linux: Linux
+      mac: Mac
+      other: Desconocido
+      windows: Windows
+      windows_mobile: Windows Mobile
+      windows_phone: Windows Phone
+    revoke: Revocar
+    revoke_success: Sesión revocada exitosamente
+    title: Sesiones
+  settings:
+    authorized_apps: Aplicaciones autorizadas
+    back: Volver al inicio
+    delete: Borrar cuenta
+    development: Desarrollo
+    edit_profile: Editar perfil
+    export: Exportar información
+    import: Importar
+    migrate: Migración de cuenta
+    notifications: Notificaciones
+    preferences: Preferencias
+    two_factor_authentication: Autenticación de dos factores
+  statuses:
+    attached:
+      description: 'Adjunto: %{attached}'
+      image:
+        one: "%{count} imagen"
+        other: "%{count} imágenes"
+      video:
+        one: "%{count} vídeo"
+        other: "%{count} vídeos"
+    boosted_from_html: Impulsado desde %{acct_link}
+    content_warning: 'Alerta de contenido: %{warning}'
+    disallowed_hashtags:
+      one: 'contenía un hashtag no permitido: %{tags}'
+      other: 'contenía los hashtags no permitidos: %{tags}'
+    language_detection: Detección automática de idioma
+    open_in_web: Abrir en web
+    over_character_limit: Límite de caracteres de %{max} superado
+    pin_errors:
+      limit: Ya has fijado el número máximo de publicaciones
+      ownership: El toot de alguien más no puede fijarse
+      private: Los toots no-públicos no pueden fijarse
+      reblog: Un repost no puede fijarse
+    show_more: Mostrar más
+    sign_in_to_participate: Regístrate para participar en la conversación
+    title: '%{name}: "%{quote}"'
+    visibilities:
+      private: Sólo mostrar a seguidores
+      private_long: Solo mostrar a tus seguidores
+      public: Público
+      public_long: Todos pueden ver
+      unlisted: Público, pero no mostrar en la historia federada
+      unlisted_long: Todos pueden ver, pero no está listado en las líneas de tiempo públicas
+  stream_entries:
+    pinned: Toot fijado
+    reblogged: retooteado
+    sensitive_content: Contenido sensible
+  terms:
+    title: Términos del Servicio y Políticas de Privacidad de %{instance}
+  themes:
+    contrast: Alto contraste
+    default: Gab Social
+    gabsocial-light: Gab Social (claro)
+  time:
+    formats:
+      default: "%d de %b del %Y, %H:%M"
+      month: "%b %Y"
+  two_factor_authentication:
+    code_hint: Ingresa el código generado por tu aplicación de autenticación para confirmar
+    description_html: Si habilitas la <strong>autenticación de dos factores</strong>, se requerirá estar en posesión de su teléfono, lo que generará tokens para que usted pueda iniciar sesión.
+    disable: Deshabilitar
+    enable: Habilitar
+    enabled: La autenticación de dos factores está activada
+    enabled_success: Verificación de dos factores activada exitosamente
+    generate_recovery_codes: generar códigos de recuperación
+    instructions_html: "<strong>Escanea este código QR desde Google Authenticator o una aplicación similar en su teléfono</strong>. Desde ahora, esta aplicación va a generar tokens que tienes que ingresar cuando quieras iniciar sesión."
+    lost_recovery_codes: Los códigos de recuperación te permiten obtener acceso a tu cuenta si pierdes tu teléfono. Si has perdido tus códigos de recuperación, puedes regenerarlos aquí. Tus viejos códigos de recuperación se harán inválidos.
+    manual_instructions: 'Si no puedes escanear el código QR y necesitas introducirlo manualmente, este es el secreto en texto plano:'
+    recovery_codes: Hacer copias de seguridad de tus códigos de recuperación
+    recovery_codes_regenerated: Códigos de recuperación regenerados con éxito
+    recovery_instructions_html: Si pierdes acceso a tu teléfono, puedes usar uno de los siguientes códigos de recuperación para obtener acceso a tu cuenta. <strong>Mantenlos a salvo</strong>. Por ejemplo, puedes imprimirlos y guardarlos con otros documentos importantes.
+    setup: Configurar
+    wrong_code: "¡El código ingresado es inválido! ¿El dispositivo y tiempo del servidor están correctos?"
+  user_mailer:
+    backup_ready:
+      explanation: Has solicitado una copia completa de tu cuenta de Gab Social. ¡Ya está preparada para descargar!
+      subject: Tu archivo está preparado para descargar
+      title: Descargar archivo
+    welcome:
+      edit_profile_action: Configurar el perfil
+      edit_profile_step: Puedes personalizar tu perfil subiendo un avatar, una cabecera, cambiando tu nombre de usuario y más cosas. Si quieres revisar a tus nuevos seguidores antes de que se les permita seguirte, puedes bloquear tu cuenta.
+      explanation: Aquí hay algunos consejos para empezar
+      final_action: Empezar a publicar
+      final_step: '¡Empieza a publicar! Incluso sin seguidores, tus mensajes públicos pueden ser vistos por otros, por ejemplo en la linea de tiempo local y con "hashtags". Podrías querer introducirte con el "hashtag" #introductions.'
+      full_handle: Su sobrenombre completo
+      full_handle_hint: Esto es lo que le dirías a tus amigos para que ellos puedan enviarte mensajes o seguirte desde otra instancia.
+      review_preferences_action: Cambiar preferencias
+      review_preferences_step: Asegúrate de poner tus preferencias, como que correos te gustaría recibir, o que nivel de privacidad te gustaría que tus publicaciones tengan por defecto. Si no tienes mareos, podrías elegir habilitar la reproducción automática de "GIFs".
+      subject: Bienvenido a Gab Social
+      tip_federated_timeline: La línea de tiempo federada es una vista de la red de Gab Social. Pero solo incluye gente que tus vecinos están siguiendo, así que no está completa.
+      tip_following: Sigues a tus administradores de servidor por defecto. Para encontrar más gente interesante, revisa las lineas de tiempo local y federada.
+      tip_local_timeline: La linea de tiempo local is una vista de la gente en %{instance}. Estos son tus vecinos inmediatos!
+      tip_mobile_webapp: Si el navegador de tu dispositivo móvil ofrece agregar Gab Social a tu página de inicio, puedes recibir notificaciones. Actúa como una aplicación nativa en muchas formas!
+      tips: Tips
+      title: Te damos la bienvenida a bordo, %{name}!
+  users:
+    follow_limit_reached: No puedes seguir a más de %{limit} personas
+    invalid_email: La dirección de correo es incorrecta
+    invalid_otp_token: Código de dos factores incorrecto
+    otp_lost_help_html: Si perdiste al acceso a ambos, puedes ponerte en contancto con %{email}
+    seamless_external_login: Has iniciado sesión desde un servicio externo, así que los ajustes de contraseña y correo no están disponibles.
+    signed_in_as: 'Sesión iniciada como:'
+  verification:
+    explanation_html: 'Puedes <strong> verificarte a ti mismo como el dueño de los links en los metadatos de tu perfil </strong>. Para eso, el sitio vinculado debe contener un vínculo a tu perfil de Gab Social. El vínculo en tu sitio <strong> debe </strong> tener un atributo <code> rel="me"</code>. El texto del vínculo no importa. Aquí un ejemplo:'
+    verification: Verificación

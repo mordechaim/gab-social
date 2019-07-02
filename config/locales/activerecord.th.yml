@@ -1,0 +1,13 @@
+---
+th:
+  activerecord:
+    errors:
+      models:
+        account:
+          attributes:
+            username:
+              invalid: ตัวอักษร, ตัวเลข และขีดล่างเท่านั้น
+        status:
+          attributes:
+            reblog:
+              taken: มีสถานะอยู่แล้ว
