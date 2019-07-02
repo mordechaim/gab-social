@@ -4897,7 +4897,10 @@ noscript {
 				span:first-of-type {
 					font-size: 20px !important;
 					line-height: 1.25;
+					
 					color: #ffffff;
+					body.theme-gabsocial-light & {color: $gab-active-border;}
+
 					font-weight: 600 !important;
 					overflow: hidden;
 					white-space: nowrap;
