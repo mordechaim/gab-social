@@ -4,33 +4,27 @@
 
 ////////// GAB SPECIFIC VARIABLE STACK //////////
 
+// NOTE - will eventually create a systematic approach of setting color variables to easily change instance themes
+
+// STATIC COLORS
 $gab-brand-default: #21cf7a;
 $gab-alert-red: #cc6643;
+$gab-secondary-text: #999;
+$gab-text-highlight: $gab-brand-default;
 
-// THEMES
+// THEME COLORS
 // default theme (dark)
 $gab-background-base: #333;
 $gab-background-container: #222;
-$gab-text-highlight: $gab-brand-default;
-$gab-bright-highlight: #b2f1d5;
 $gab-placeholder-accent: #666;
-
-// NOTE - needs better descriptive names since these are also used for light theme in different ways
-$gab-background-info: #999;
-$gab-active-border: #6c6c6c;
-
 
 // light theme
 $gab-background-base-light: #f2f3f6;
 $gab-background-container-light: #fff;
-$gab-text-highlight-light: $gab-brand-default;
-
-
+$gab-default-text-light: #6c6c6c;
 
 // THEME MIXINS
 @mixin light-theme-shadow() {box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);}
-
-
 
 // BREAKPOINT SETS
 
@@ -85,7 +79,7 @@ $ui-highlight-color: $classic-highlight-color !default;
 
 // Variables for texts
 $primary-text-color: $white !default;
-$darker-text-color: $gab-background-info !default;
+$darker-text-color: $gab-secondary-text !default;
 $dark-text-color: $ui-base-lighter-color !default;
 $secondary-text-color: $ui-secondary-color !default;
 $highlight-text-color: $ui-highlight-color !default;
