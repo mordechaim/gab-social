@@ -33,18 +33,34 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def avatar
+    if object.avatar_remote_url and object.avatar_remote_url.start_with? "gab://avatar/"
+      return object.avatar_remote_url.sub("gab://avatar/", "https://gab.com/media/user/") 
+    end
+
     full_asset_url(object.avatar_original_url)
   end
 
   def avatar_static
+    if object.avatar_remote_url and object.avatar_remote_url.start_with? "gab://avatar/"
+      return object.avatar_remote_url.sub("gab://avatar/", "https://gab.com/media/user/") 
+    end
+
     full_asset_url(object.avatar_static_url)
   end
 
   def header
+    if object.header_remote_url and object.header_remote_url.start_with? "gab://header/"
+      return object.header_remote_url.sub("gab://header/", "https://gab.com/media/user/") 
+    end
+
     full_asset_url(object.header_original_url)
   end
 
   def header_static
+    if object.header_remote_url and object.header_remote_url.start_with? "gab://header/"
+      return object.header_remote_url.sub("gab://header/", "https://gab.com/media/user/") 
+    end
+
     full_asset_url(object.header_static_url)
   end
 
