@@ -182,7 +182,7 @@ class SwitchingColumnsArea extends React.PureComponent {
 
     return (
       <Switch>
-        {/* <Redirect from='/' to='/home' exact /> */}
+        <Redirect from='/' to='/home' exact />
         <WrappedRoute path='/home' exact layout={LAYOUT.HOME} component={HomeTimeline} content={children} />
 
         <WrappedRoute path='/groups' component={Groups} content={children} />
@@ -444,7 +444,7 @@ class UI extends React.PureComponent {
 
   handleHotkeyBack = () => {
     if (window.history && window.history.length === 1) {
-      this.context.router.history.push('/');
+      this.context.router.history.push('/home'); // homehack
     } else {
       this.context.router.history.goBack();
     }

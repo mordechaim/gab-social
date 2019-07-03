@@ -11,7 +11,7 @@ export default class ColumnBackButton extends React.PureComponent {
 
   handleClick = () => {
     if (window.history && window.history.length === 1) {
-      this.context.router.history.push('/');
+      this.context.router.history.push('/home'); // homehack
     } else {
       this.context.router.history.goBack();
     }
