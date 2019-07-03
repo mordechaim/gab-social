@@ -47,7 +47,7 @@ export default class ActionsModal extends ImmutablePureComponent {
             </a>
           </div>
 
-          <a href={`/${status.getIn(['account', 'acct'])}`} className='status__display-name'>
+          <a href={`/${this.props.status.getIn(['account', 'acct'])}`} className='status__display-name'>
             <div className='status__avatar'>
               <Avatar account={this.props.status.get('account')} size={48} />
             </div>
