@@ -1,7 +1,12 @@
-# CODEOWNERS for gab-ai-inc/gab-social
+# CODEOWNERS for /gab/social/gab-social
 
 # Translators
 
 All previously-credited contributors to Mastodon's translations efforts have
 been removed in order to prevent confusion and unintended association with the
 Gab Social fork of Mastodon.
+
+Please visit the Mastodon project on
+[GitHub](https://github.com/tootsuite/mastodon/blob/master/AUTHORS.md) for a
+complete and up-to-date list of the original contributors to the Mastodon
+project from which Gab Social was forked.

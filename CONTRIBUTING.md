@@ -13,4 +13,4 @@ You can contribute in the following ways:
 
 ## Bug reports
 
-Bug reports and feature suggestions can be submitted to Gab Social's [GitHub Issues](https://github.com/gab-ai-inc/gab-social/issues) tracker. Please make sure that you are not submitting duplicates, and that a similar report or request has not already been resolved or rejected in the past using the search function. Please also use descriptive, concise titles.
+Bug reports and feature suggestions can be submitted to Gab Social's [GitLab Issues](https://code.gab.com/gab/social/gab-social/issues) tracker. Please make sure that you are not submitting duplicates, and that a similar report or request has not already been resolved or rejected in the past using the search function. Please also use descriptive, concise titles.

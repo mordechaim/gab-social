@@ -1,8 +1,9 @@
 Authors
 =======
 
-Gab Social is available on [GitHub](https://github.com/gab-ai-inc/gab-social).
-And, that's where we have to stop.
+Gab Social is available on our self-hosted
+[GitLab](https://code.gab.com/gab/social/gab-social). And, that's where we have
+to stop.
 
 Gab does not publicly disclose the members of our team or their contributions to
 this software. All Gab contributions should be regarded as anonymous.

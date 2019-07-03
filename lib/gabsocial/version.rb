@@ -33,11 +33,11 @@ module GabSocial
     end
 
     def repository
-      ENV.fetch('GITHUB_REPOSITORY') { 'gab-ai-inc/gab-social' }
+      ENV.fetch('GITHUB_REPOSITORY') { 'gab/social/gab-social' }
     end
 
     def source_base_url
-      ENV.fetch('SOURCE_BASE_URL') { "https://github.com/#{repository}" }
+      ENV.fetch('SOURCE_BASE_URL') { "https://code.gab.com/#{repository}" }
     end
 
     # specify git tag or commit hash here

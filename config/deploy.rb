@@ -2,7 +2,7 @@
 
 lock '3.11.0'
 
-set :repo_url, ENV.fetch('REPO', 'https://github.com/gab-ai-inc/gab-social.git')
+set :repo_url, ENV.fetch('REPO', 'https://code.gab.com/gab/social/gab-social')
 set :branch, ENV.fetch('BRANCH', 'master')
 
 set :application, 'gabsocial'

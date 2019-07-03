@@ -10,7 +10,7 @@ This document describes how to prepare a host for development, test, and product
 
 ## What is this guide?
 
-This guide is a walk through of the setup process of a [Gab Social](https://github.com/gab-ai-inc/gab-social/) instance.
+This guide is a walk through of the setup process of a [Gab Social](https://code.gab.com/gab/social/gab-social) instance.
 
 We use example.com to represent a domain or sub-domain. Example.com should be replaced with your instance domain or sub-domain.
 
@@ -139,7 +139,7 @@ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
 ```
 
 Now that [`rbenv`](https://github.com/rbenv/rbenv) and [`ruby-build`](https://github.com/rbenv/ruby-build) are installed, we will install the
-[Ruby](https://www.ruby-lang.org/en/) version which [Gab Social](https://github.com/gab-ai-inc/gab-social) uses. That version will also need to be enabled.
+[Ruby](https://www.ruby-lang.org/en/) version which [Gab Social](https://code.gab.com/gab/social/gab-social) uses. That version will also need to be enabled.
 
 To enable [Ruby](https://www.ruby-lang.org/en/), run:
 
@@ -154,7 +154,7 @@ rbenv global 2.6.1
 
 ### node.js And Ruby Dependencies
 
-Now that [Ruby](https://www.ruby-lang.org/en/) is enabled, we will clone the [Gab Social git repository](https://github.com/gab-ai-inc/gab-social/) and install the [Ruby](https://www.ruby-lang.org/en/) and [node.js](https://nodejs.org/en/) dependancies.
+Now that [Ruby](https://www.ruby-lang.org/en/) is enabled, we will clone the [Gab Social git repository](https://code.gab.com/gab/social/gab-social) and install the [Ruby](https://www.ruby-lang.org/en/) and [node.js](https://nodejs.org/en/) dependancies.
 
 Run the following to clone and install:
 
@@ -163,10 +163,10 @@ Run the following to clone and install:
 cd ~
 
 # Clone the gabsocial git repository into ~/live
-git clone https://github.com/gab-ai-inc/gab-social.git live
+git clone https://code.gab.com/gab/social/gab-social live
 
 # Or, clone the developer version (requires credentials)
-git clone git@dev.openplatform.us:/opt/git/gab-social live
+git clone https://code.gab.com/gab/social/gab-social live
 
 # Change directory to ~/live
 cd ~/live
@@ -194,7 +194,7 @@ Eventually, the Ruby On Rails dependencies are going away. This is a stop-gap so
 
 ## PostgreSQL Database Creation
 
-[Gab Social](https://github.com/gab-ai-inc/gab-social) requires access to a [PostgreSQL](https://www.postgresql.org) instance.
+[Gab Social](https://code.gab.com/gab/social/gab-social) requires access to a [PostgreSQL](https://www.postgresql.org) instance.
 
 Create a user for a [PostgreSQL](https://www.postgresql.org) instance:
 
@@ -211,7 +211,7 @@ CREATE USER gabsocial CREATEDB;
 
 ## nginx Configuration
 
-You need to configure [nginx](http://nginx.org) to serve your [Gab Social](https://github.com/gab-ai-inc/gab-social/) instance.
+You need to configure [nginx](http://nginx.org) to serve your [Gab Social](https://code.gab.com/gab/social/gab-social) instance.
 
 **Reminder: Replace all occurrences of example.com with your own instance's domain or sub-domain.**
 
@@ -407,7 +407,7 @@ For this we will switch to the `gabsocial` system user:
 sudo su - gabsocial
 ```
 
-Change directory to `~/live` and run the [Gab Social](https://github.com/gab-ai-inc/gab-social) setup wizard:
+Change directory to `~/live` and run the [Gab Social](https://code.gab.com/gab/social/gab-social) setup wizard:
 
 ```sh
 cd ~/live
@@ -431,7 +431,7 @@ We will need three [systemd](https://github.com/systemd/systemd) service files f
 
 Now switch back to the root user.
 
-For the [Gab Social](https://github.com/gab-ai-inc/gab-social/) web workers service place the following in `/etc/systemd/system/gabsocial-web.service`:
+For the [Gab Social](https://code.gab.com/gab/social/gab-social) web workers service place the following in `/etc/systemd/system/gabsocial-web.service`:
 
 ```
 [Unit]
@@ -453,7 +453,7 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-For [Gab Social](https://github.com/gab-ai-inc/gab-social/) background queue service, place the following in `/etc/systemd/system/gabsocial-sidekiq.service`:
+For [Gab Social](https://code.gab.com/gab/social/gab-social) background queue service, place the following in `/etc/systemd/system/gabsocial-sidekiq.service`:
 
 ```
 [Unit]
@@ -474,7 +474,7 @@ Restart=always
 WantedBy=multi-user.target
 ```
 
-For the [Gab Social](https://github.com/gab-ai-inc/gab-social/) streaming API service place the following in `/etc/systemd/system/gabsocial-streaming.service`:
+For the [Gab Social](https://code.gab.com/gab/social/gab-social) streaming API service place the following in `/etc/systemd/system/gabsocial-streaming.service`:
 
 ```
 [Unit]
@@ -550,13 +550,13 @@ SMTP_PASSWORD=HolySnacksAPassword
 SMTP_FROM_ADDRESS=Domain.com Gab Social Admin <notifications@gab.com>
 ```
 
-Finally, to test this, spin up a Rails console (see [the administration guide](https://github.com/gab-ai-inc/gab-social-documentation/blob/master/Running-Gab-Social/Administration-guide.md)) and run the following commands to test this out:
+Finally, to test this, spin up a Rails console (see [the administration guide](https://code.gab.com/gab/social/gab-social/blob/master/docs/server.md)) and run the following commands to test this out:
 
 ```ruby
 m = UserMailer.new.mail to:'email@address.com', subject: 'test', body: 'awoo'
 m.deliver
 ```
 
-That is all! If everything was done correctly, a [Gab Social](https://github.com/gab-ai-inc/gab-social/) instance will appear when you visit `https://example.com` in a web browser.
+That is all! If everything was done correctly, a [Gab Social](https://code.gab.com/gab/social/gab-social) instance will appear when you visit `https://example.com` in a web browser.
 
 Congratulations and welcome to Gab Social!

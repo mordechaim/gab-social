@@ -1,8 +1,8 @@
 {
   "name": "Gab Social",
   "description": "A social network that champions free speech, individual liberty and the free flow of information online.",
-  "repository": "https://github.com/gab-ai-inc/gab-social",
-  "logo": "https://github.com/tootsuite.png",
+  "repository": "https://code.gab.com/gab/social/gab-social",
+  "logo": "https://code.gab.com/gab/social/gab-social/blob/master/public/android-chrome-192x192.png",
   "env": {
     "HEROKU": {
       "description": "Leave this as true",

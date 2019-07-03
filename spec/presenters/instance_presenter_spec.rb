@@ -91,8 +91,8 @@ describe InstancePresenter do
   end
 
   describe '#source_url' do
-    it 'returns "https://github.com/gab-ai-inc/gab-social"' do
-      expect(instance_presenter.source_url).to eq('https://github.com/gab-ai-inc/gab-social')
+    it 'returns "https://code.gab.com/gab/social/gab-social"' do
+      expect(instance_presenter.source_url).to eq('https://code.gab.com/gab/social/gab-social')
     end
   end
 
