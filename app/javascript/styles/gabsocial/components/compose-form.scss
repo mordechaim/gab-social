@@ -186,7 +186,7 @@
 				transition: opacity .1s ease;
 				.icon-button {
 					flex: 0 1 auto;
-					color: $gab-background-info;
+					color: $gab-secondary-text;
 					font-size: 14px;
 					font-weight: 500;
 					padding: 10px;
@@ -212,8 +212,8 @@
 					background: rgba(0,0,0,0.3);
 					box-sizing: border-box;
 					background: transparent;
-					color: $gab-background-info;
-					border: 1px solid $gab-background-info;
+					color: $gab-secondary-text;
+					border: 1px solid $gab-secondary-text;
 					outline: none;
 					padding: 10px;
 					margin: 0;
@@ -223,7 +223,7 @@
 					font-weight: 500;
 					&:focus {color: #fff;}
 					&::placeholder {
-						color: $gab-background-info;
+						color: $gab-secondary-text;
 					}
 				}
 				&.active {opacity: 1;}
@@ -267,7 +267,7 @@
 				font-family: $font-sans-serif, sans-serif;
 				font-size: 14px;
 				font-weight: 600;
-				color: $gab-background-info;
+				color: $gab-secondary-text;
 				&.character-counter--over {color: $warning-red;}
 			}
 		}

@@ -95,7 +95,7 @@ code {
   }
 
   .hint {
-    color: $gab-background-info;
+    color: $gab-secondary-text;
 
     a {
       color: $highlight-text-color;
@@ -116,7 +116,7 @@ code {
 
   p.hint {
     margin-bottom: 15px;
-    color: $gab-background-info;
+    color: $gab-secondary-text;
 
     &.subtle-hint {
       text-align: center;
