@@ -10,7 +10,7 @@ namespace :gabsocial do
       a.account_stat.followers_count = Follow.where(target_account_id: a.id).count
       a.account_stat.statuses_count = Status.where(account_id: a.id).count
       a.account_stat.save!
-      puts(a.username)
+      # puts(a.username)
     end
   end
 end
