@@ -12,6 +12,10 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   end
 
   def url
+    if object.file_file_name and object.file_file_name.start_with? "gab://media/"
+      return object.file_file_name.sub("gab://media/", "").split("|")[1]
+    end
+
     if object.needs_redownload?
       media_proxy_url(object.id, :original)
     else
@@ -24,6 +28,10 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
   end
 
   def preview_url
+    if object.file_file_name and object.file_file_name.start_with? "gab://media/"
+      return object.file_file_name.sub("gab://media/", "").split("|")[0]
+    end
+
     if object.needs_redownload?
       media_proxy_url(object.id, :small)
     else
