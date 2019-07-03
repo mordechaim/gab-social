@@ -7,27 +7,35 @@
 // NOTE - will eventually create a systematic approach of setting color variables to easily change instance themes
 
 // STATIC COLORS
+
 $gab-brand-default: #21cf7a;
 $gab-alert-red: #cc6643;
 $gab-secondary-text: #999;
 $gab-text-highlight: $gab-brand-default;
 
+
 // THEME COLORS
+
 // default theme (dark)
 $gab-background-base: #333;
 $gab-background-container: #222;
 $gab-placeholder-accent: #666;
+
 
 // light theme
 $gab-background-base-light: #f2f3f6;
 $gab-background-container-light: #fff;
 $gab-default-text-light: #6c6c6c;
 
-// THEME MIXINS
+
+// theme mixins
 @mixin light-theme-shadow() {box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);}
 
+
 // BREAKPOINT SETS
+
 // navigation breakpoints - by default show all elements and link names along with icons
+
 // turns navigation links into icon-only buttons
 $nav-breakpoint-1: 850px;
 // search field hidden and replaced with search icon link
