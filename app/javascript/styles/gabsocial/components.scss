@@ -111,7 +111,7 @@
 .icon-button {
 	display: inline-block;
 	padding: 0;
-	color: $gab-background-info;
+	color: $gab-secondary-text;
 	border: none;
 	background: transparent;
 	cursor: pointer;
@@ -144,7 +144,7 @@
 	}
 
 	&.inverted {
-		color: $gab-background-info;
+		color: $gab-secondary-text;
 
 		&:hover,
 		&:active,
@@ -179,7 +179,7 @@
 }
 
 .text-icon-button {
-	color: $gab-background-info;
+	color: $gab-secondary-text;
 	border: none;
 	background: transparent;
 	cursor: pointer;
@@ -301,7 +301,7 @@
 .reply-indicator {
 	border-radius: 4px;
 	margin-bottom: 10px;
-	background: $ui-primary-color;
+	background: $gab-background-base-light;
 	padding: 10px;
 	min-height: 23px;
 	overflow-y: auto;
@@ -772,7 +772,7 @@
 }
 
 .reply-indicator__content {
-	color: $inverted-text-color;
+	color: $gab-default-text-light;
 	font-size: 14px;
 
 	a {
@@ -1124,7 +1124,7 @@ a.account__display-name {
 	margin: 0 10px 0 68px;
 	padding: 8px 0 0;
 	cursor: default;
-	color: $gab-background-info;
+	color: $gab-secondary-text;
 	font-size: 15px;
 	line-height: 22px;
 	position: relative;
@@ -2042,14 +2042,14 @@ a.account__display-name {
 			margin-bottom: 20px;
 
 			a {
-				color: $gab-background-info;
+				color: $gab-secondary-text;
 				text-decoration: underline;
 			}
 		}
 
 		a {
 			text-decoration: none;
-			color: $gab-background-info;
+			color: $gab-secondary-text;
 
 			&:hover,
 			&:focus,
@@ -2473,7 +2473,7 @@ a.status-card.compact:hover {
 	background: $gab-background-container;
 	body.theme-gabsocial-light & {
 		background: $gab-background-container-light;
-		color: $gab-active-border;
+		color: $gab-default-text-light;
 	}
 
 	flex: 0 0 auto;
@@ -2533,7 +2533,7 @@ a.status-card.compact:hover {
 	color: #fff;
 	background: $gab-background-container;
 	body.theme-gabsocial-light & {
-		color: $gab-active-border;
+		color: $gab-default-text-light;
 		background: $gab-background-container-light;
 	}
 	&:hover {color: lighten($darker-text-color, 7%);}
@@ -3043,7 +3043,7 @@ a.status-card.compact:hover {
 	box-shadow: 4px 4px 6px rgba($base-shadow-color, 0.4);
 	border-radius: 4px;
 	margin-top: 5px;
-	z-index: 2;
+	z-index: 20000;
 
 	.emoji-mart-scroll {
 		transition: opacity 200ms ease;
@@ -4827,7 +4827,7 @@ noscript {
 			font-size: 18px;
 			font-weight: bold;
 			line-height: 24px;
-			color: $primary-text-color;
+			color: $gab-background-base-light;
 			text-align: center;
 		}
 	}
@@ -4898,6 +4898,7 @@ noscript {
 					font-size: 20px !important;
 					line-height: 1.25;
 					color: #ffffff;
+					body.theme-gabsocial-light & {color: $gab-default-text-light;}
 					font-weight: 600 !important;
 					overflow: hidden;
 					white-space: nowrap;

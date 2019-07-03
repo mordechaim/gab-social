@@ -32,7 +32,7 @@ class UserPanel extends ImmutablePureComponent {
 
           <div className='user-panel__profile'>
             <Link to={`/${account.get('acct')}`} title={acct}>
-              <Avatar account={account} size={88} />
+              <Avatar account={account} />
             </Link>
           </div>
 

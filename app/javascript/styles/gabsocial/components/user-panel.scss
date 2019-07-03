@@ -57,7 +57,7 @@
 			font-weight: bold;
 			line-height: 24px;
 			color: #fff;
-			body.theme-gabsocial-light & {color: $gab-active-border;}
+			body.theme-gabsocial-light & {color: $gab-default-text-light;}
 		}
 
 		&:hover & {
@@ -70,7 +70,7 @@
 			display: block;
 			font-size: 14px;
 			line-height: 16px;
-			color: $gab-background-info;
+			color: $gab-secondary-text;
 			text-decoration: none !important;
 		}
 	}
@@ -102,7 +102,7 @@
 			display: block;
 			width: 100%;
 			color: #fff;
-			body.theme-gabsocial-light & {color: $gab-active-border;}
+			body.theme-gabsocial-light & {color: $gab-default-text-light;}
 			font-size: 20px;
 			font-weight: 800;
 			line-height: 24px;
@@ -111,7 +111,7 @@
 		&__label {
 			display: block;
 			width: 100%;
-			color: $gab-background-info;
+			color: $gab-secondary-text;
 			font-size: 12px;
 			line-height: 14px;
 		}
