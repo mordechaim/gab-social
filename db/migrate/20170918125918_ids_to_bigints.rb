@@ -78,8 +78,6 @@ class IdsToBigints < ActiveRecord::Migration[5.1]
     say ''
     say 'This migration has some sections that can be safely interrupted'
     say 'and restarted later, and will tell you when those are occurring.'
-    say ''
-    say 'For more information, see https://github.com/gab-ai-inc/gab-social/pull/5088'
 
     10.downto(1) do |i|
       say "Continuing in #{i} second#{i == 1 ? '' : 's'}...", true
