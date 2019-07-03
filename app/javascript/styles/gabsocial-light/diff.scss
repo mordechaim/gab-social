@@ -210,7 +210,7 @@
 }
 
 .react-toggle.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
-  background: lighten($ui-highlight-color, 10%);
+  background: lighten($gab-brand-default, 10%);
 }
 
 // Change the default color used for the text in an empty column or on the error column
@@ -275,13 +275,6 @@
     box-shadow: none;
     background: rgba($error-red, 0.5);
     text-shadow: none;
-  }
-}
-
-.status__content,
-.reply-indicator__content {
-  a {
-    color: $highlight-text-color;
   }
 }
 

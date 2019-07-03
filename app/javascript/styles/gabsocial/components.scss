@@ -377,7 +377,7 @@
 	}
 
 	a {
-		color: $secondary-text-color;
+		color: $gab-brand-default;
 		text-decoration: none;
 
 		&:hover {
@@ -439,12 +439,11 @@
 	display: block;
 	font-size: 15px;
 	line-height: 20px;
-	color: lighten($ui-highlight-color, 8%);
+	color: $gab-brand-default;
 	border: 0;
 	background: transparent;
 	padding: 0;
 	padding-top: 8px;
-
 	&:hover,
 	&:active {
 		text-decoration: underline;
@@ -1639,14 +1638,10 @@ a.account__display-name {
 		box-sizing: border-box;
 		left: -16px;
 		top: -14px;
-
-
-		// @media screen and (max-width: 970px) {
-		// 	left: 27px;
-		// 	top: 0;
-		// }
-
-
+		@media screen and (max-width: $nav-breakpoint-1) {
+			left: 27px;
+			top: 0;
+		}
 		min-width: 16px;
 		height: 16px;
 		padding: 1px 3px 0;
@@ -1881,11 +1876,11 @@ a.account__display-name {
 }
 
 .react-toggle--checked .react-toggle-track {
-	background-color: $ui-highlight-color;
+	background-color: $gab-brand-default;
 }
 
 .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
-	background-color: lighten($ui-highlight-color, 10%);
+	background-color: lighten($gab-brand-default, 10%);
 }
 
 .react-toggle-track-check {
@@ -1941,7 +1936,7 @@ a.account__display-name {
 
 .react-toggle--checked .react-toggle-thumb {
 	left: 27px;
-	border-color: $ui-highlight-color;
+	border-color: $gab-brand-default;
 }
 
 .column-link {
@@ -2576,7 +2571,7 @@ a.status-card.compact:hover {
 }
 
 .column-header__collapsible-inner {
-	background: lighten($ui-base-color, 8%);
+	background: #e6e6e6;
 	padding: 15px;
 }
 
