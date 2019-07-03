@@ -23,7 +23,8 @@ class Api::V1::Instances::ActivityController < Api::BaseController
       weeks << {
         week: week.to_time.to_i.to_s,
         statuses: Redis.current.get("activity:statuses:local:#{week_id}") || '0',
-        logins: Redis.current.pfcount("activity:logins:#{week_id}").to_s,
+        #(Rjc) 2019-07-02: Make this an instance option in Admin panel
+        # logins: 0, # Redis.current.pfcount("activity:logins:#{week_id}").to_s,
         registrations: Redis.current.get("activity:accounts:local:#{week_id}") || '0',
       }
     end
