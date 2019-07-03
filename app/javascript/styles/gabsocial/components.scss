@@ -301,7 +301,7 @@
 .reply-indicator {
 	border-radius: 4px;
 	margin-bottom: 10px;
-	background: $ui-primary-color;
+	background: $gab-background-base-light;
 	padding: 10px;
 	min-height: 23px;
 	overflow-y: auto;
@@ -772,7 +772,7 @@
 }
 
 .reply-indicator__content {
-	color: $inverted-text-color;
+	color: $gab-default-text-light;
 	font-size: 14px;
 
 	a {
@@ -4827,7 +4827,7 @@ noscript {
 			font-size: 18px;
 			font-weight: bold;
 			line-height: 24px;
-			color: $primary-text-color;
+			color: $gab-background-base-light;
 			text-align: center;
 		}
 	}

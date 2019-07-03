@@ -27,7 +27,6 @@ $gab-default-text-light: #6c6c6c;
 @mixin light-theme-shadow() {box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);}
 
 // BREAKPOINT SETS
-
 // navigation breakpoints - by default show all elements and link names along with icons
 // turns navigation links into icon-only buttons
 $nav-breakpoint-1: 850px;
