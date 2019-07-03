@@ -1,15 +1,15 @@
 version: '3'
 services:
 
-  db:
-    restart: always
-    image: postgres:9.6-alpine
-    networks:
-      - internal_network
-    healthcheck:
-      test: ["CMD", "pg_isready", "-U", "postgres"]
-    volumes:
-      - ./postgres:/var/lib/postgresql/data
+  # db:
+  #   restart: always
+  #   image: postgres:9.6-alpine
+  #   networks:
+  #     - internal_network
+  #   healthcheck:
+  #     test: ["CMD", "pg_isready", "-U", "postgres"]
+  #   volumes:
+  #     - ./postgres:/var/lib/postgresql/data
 
   redis:
     restart: always
@@ -47,7 +47,7 @@ services:
     ports:
       - "127.0.0.1:3000:3000"
     depends_on:
-      - db
+      # - db
       - redis
       # - es
     volumes:
@@ -67,7 +67,7 @@ services:
     ports:
       - "127.0.0.1:4000:4000"
     depends_on:
-      - db
+      # - db
       - redis
 
   sidekiq:
@@ -77,7 +77,7 @@ services:
     env_file: .env.production
     command: bundle exec sidekiq
     depends_on:
-      - db
+      # - db
       - redis
     networks:
       - external_network
