@@ -141,7 +141,7 @@
   "getting_started.documentation": "Құжаттама",
   "getting_started.heading": "Желіде",
   "getting_started.invite": "Адам шақыру",
-  "getting_started.open_source_notice": "Gab Social - ашық кодты құрылым. Түзету енгізу немесе ұсыныстарды GitHub арқылы жасаңыз {github}.",
+  "getting_started.open_source_notice": "Gab Social - ашық кодты құрылым. Түзету енгізу немесе ұсыныстарды GitLab арқылы жасаңыз {gitlab}.",
   "getting_started.security": "Қауіпсіздік",
   "getting_started.terms": "Қызмет көрсету шарттары",
   "getting_started.guidelines": "Guidelines",

@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentation",
   "getting_started.heading": "Első lépések",
   "getting_started.invite": "Invite people",
-  "getting_started.open_source_notice": "Gab Social egy nyílt forráskódú szoftver. Hozzájárulás vagy problémák jelentése a GitHub-on {github}.",
+  "getting_started.open_source_notice": "Gab Social egy nyílt forráskódú szoftver. Hozzájárulás vagy problémák jelentése a GitLab-on {gitlab}.",
   "getting_started.security": "Security",
   "getting_started.terms": "Terms of Service",
   "getting_started.guidelines": "Guidelines",

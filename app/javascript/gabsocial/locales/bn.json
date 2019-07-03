@@ -141,7 +141,7 @@
   "getting_started.documentation": "নথিপত্র",
   "getting_started.heading": "শুরু করা",
   "getting_started.invite": "অন্যদের আমন্ত্রণ করুন",
-  "getting_started.open_source_notice": "মাস্টাডন একটি মুক্ত সফটওয়্যার। আপনি তৈরিতে সাহায্য করতে পারেন অথবা সমস্যা রিপোর্ট করতে পারেন গিটহাবে {github}।",
+  "getting_started.open_source_notice": "মাস্টাডন একটি মুক্ত সফটওয়্যার। আপনি তৈরিতে সাহায্য করতে পারেন অথবা সমস্যা রিপোর্ট করতে পারেন গিটহাবে {gitlab}।",
   "getting_started.security": "নিরাপত্তা",
   "getting_started.terms": "ব্যবহারের নিয়মাবলী",
   "getting_started.guidelines": "Guidelines",

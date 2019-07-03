@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentation",
   "getting_started.heading": "Comezando",
   "getting_started.invite": "Convide a xente",
-  "getting_started.open_source_notice": "Gab Social é software de código aberto. Pode contribuír ou informar de fallos en GitHub en {github}.",
+  "getting_started.open_source_notice": "Gab Social é software de código aberto. Pode contribuír ou informar de fallos en GitLab en {gitlab}.",
   "getting_started.security": "Seguridade",
   "getting_started.terms": "Termos do servizo",
   "getting_started.guidelines": "Guidelines",

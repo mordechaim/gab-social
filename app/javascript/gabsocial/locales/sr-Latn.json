@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentation",
   "getting_started.heading": "Da počnete",
   "getting_started.invite": "Invite people",
-  "getting_started.open_source_notice": "Gab Socialt je softver otvorenog koda. Možete mu doprineti ili prijaviti probleme preko GitHub-a na {github}.",
+  "getting_started.open_source_notice": "Gab Socialt je softver otvorenog koda. Možete mu doprineti ili prijaviti probleme preko GitLab-a na {gitlab}.",
   "getting_started.security": "Security",
   "getting_started.terms": "Terms of Service",
   "getting_started.guidelines": "Guidelines",

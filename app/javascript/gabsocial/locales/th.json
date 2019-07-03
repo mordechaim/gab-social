@@ -141,7 +141,7 @@
   "getting_started.documentation": "เอกสารประกอบ",
   "getting_started.heading": "เริ่มต้นใช้งาน",
   "getting_started.invite": "เชิญผู้คน",
-  "getting_started.open_source_notice": "Gab Social is open source software. You can contribute or report issues on GitHub at {github}.",
+  "getting_started.open_source_notice": "Gab Social is open source software. You can contribute or report issues on GitLab at {gitlab}.",
   "getting_started.security": "ความปลอดภัย",
   "getting_started.terms": "เงื่อนไขการให้บริการ",
   "getting_started.guidelines": "Guidelines",

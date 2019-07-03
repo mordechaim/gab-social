@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentation",
   "getting_started.heading": "Mulai",
   "getting_started.invite": "Invite people",
-  "getting_started.open_source_notice": "Gab Social adalah perangkat lunak yang bersifat terbuka. Anda dapat berkontribusi atau melaporkan permasalahan/bug di Github {github}.",
+  "getting_started.open_source_notice": "Gab Social adalah perangkat lunak yang bersifat terbuka. Anda dapat berkontribusi atau melaporkan permasalahan/bug di GitLab {gitlab}.",
   "getting_started.security": "Security",
   "getting_started.terms": "Terms of Service",
   "getting_started.guidelines": "Guidelines",

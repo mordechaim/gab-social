@@ -141,7 +141,7 @@
   "getting_started.documentation": "Dokumentim",
   "getting_started.heading": "Si t’ia fillohet",
   "getting_started.invite": "Ftoni njerëz",
-  "getting_started.open_source_notice": "Gab Social-i është software me burim të hapur. Mund të jepni ndihmesë ose të njoftoni probleme në GitHub, te {github}.",
+  "getting_started.open_source_notice": "Gab Social-i është software me burim të hapur. Mund të jepni ndihmesë ose të njoftoni probleme në GitLab, te {gitlab}.",
   "getting_started.security": "Siguri",
   "getting_started.terms": "Kushte shërbimi",
   "getting_started.guidelines": "Guidelines",

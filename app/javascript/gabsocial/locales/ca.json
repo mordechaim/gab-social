@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentació",
   "getting_started.heading": "Començant",
   "getting_started.invite": "Convida gent",
-  "getting_started.open_source_notice": "Gab Social és un programari de codi obert. Pots contribuir o informar de problemes a GitHub a {github}.",
+  "getting_started.open_source_notice": "Gab Social és un programari de codi obert. Pots contribuir o informar de problemes a GitLab a {gitlab}.",
   "getting_started.security": "Seguretat",
   "getting_started.terms": "Termes del servei",
   "getting_started.guidelines": "Guidelines",

@@ -141,7 +141,7 @@
   "getting_started.documentation": "Belgeler",
   "getting_started.heading": "Başlangıç",
   "getting_started.invite": "İnsanları davet edin",
-  "getting_started.open_source_notice": "Gab Social açık kaynaklı bir yazılımdır. Github {github}. {apps} üzerinden katkıda bulunabilir, hata raporlayabilirsiniz.",
+  "getting_started.open_source_notice": "Gab Social açık kaynaklı bir yazılımdır. GitLab {gitlab}. {apps} üzerinden katkıda bulunabilir, hata raporlayabilirsiniz.",
   "getting_started.security": "Güvenlik",
   "getting_started.terms": "Hizmet koşulları",
   "getting_started.guidelines": "Guidelines",

@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentation",
   "getting_started.heading": "Kom i gang",
   "getting_started.invite": "Invite people",
-  "getting_started.open_source_notice": "Gab Social er fri programvare. Du kan bidra eller rapportere problemer på GitHub på {github}.",
+  "getting_started.open_source_notice": "Gab Social er fri programvare. Du kan bidra eller rapportere problemer på GitLab på {gitlab}.",
   "getting_started.security": "Security",
   "getting_started.terms": "Terms of Service",
   "getting_started.guidelines": "Guidelines",

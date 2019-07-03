@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentacion",
   "getting_started.heading": "Per començar",
   "getting_started.invite": "Convidar de monde",
-  "getting_started.open_source_notice": "Gab Social es un logicial liure. Podètz contribuir e mandar vòstres comentaris e rapòrt de bug via {github} sus GitHub.",
+  "getting_started.open_source_notice": "Gab Social es un logicial liure. Podètz contribuir e mandar vòstres comentaris e rapòrt de bug via {gitlab} sus GitLab.",
   "getting_started.security": "Seguretat",
   "getting_started.terms": "Condicions d’utilizacion",
   "getting_started.guidelines": "Guidelines",

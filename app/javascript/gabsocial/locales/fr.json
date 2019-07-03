@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentation",
   "getting_started.heading": "Pour commencer",
   "getting_started.invite": "Inviter des gens",
-  "getting_started.open_source_notice": "Gab Social est un logiciel libre. Vous pouvez contribuer et envoyer vos commentaires et rapports de bogues via {github} sur GitHub.",
+  "getting_started.open_source_notice": "Gab Social est un logiciel libre. Vous pouvez contribuer et envoyer vos commentaires et rapports de bogues via {gitlab} sur GitLab.",
   "getting_started.security": "Sécurité",
   "getting_started.terms": "Conditions d’utilisation",
   "getting_started.guidelines": "Guidelines",

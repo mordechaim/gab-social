@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentatie",
   "getting_started.heading": "Aan de slag",
   "getting_started.invite": "Mensen uitnodigen",
-  "getting_started.open_source_notice": "Gab Social is vrije software. Je kunt bijdragen of problemen melden op GitHub via {github}.",
+  "getting_started.open_source_notice": "Gab Social is vrije software. Je kunt bijdragen of problemen melden op GitLab via {gitlab}.",
   "getting_started.security": "Beveiliging",
   "getting_started.terms": "Voorwaarden",
   "getting_started.guidelines": "Guidelines",

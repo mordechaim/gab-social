@@ -141,7 +141,7 @@
   "getting_started.documentation": "Dogfennaeth",
   "getting_started.heading": "Dechrau",
   "getting_started.invite": "Gwahodd pobl",
-  "getting_started.open_source_notice": "Mae Gab Social yn feddalwedd côd agored. Mae modd cyfrannu neu adrodd materion ar GitHUb ar {github}.",
+  "getting_started.open_source_notice": "Mae Gab Social yn feddalwedd côd agored. Mae modd cyfrannu neu adrodd materion ar GitLab ar {gitlab}.",
   "getting_started.security": "Diogelwch",
   "getting_started.terms": "Telerau Gwasanaeth",
   "getting_started.guidelines": "Guidelines",

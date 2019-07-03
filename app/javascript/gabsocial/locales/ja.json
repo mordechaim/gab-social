@@ -141,7 +141,7 @@
   "getting_started.documentation": "ドキュメント",
   "getting_started.heading": "スタート",
   "getting_started.invite": "招待",
-  "getting_started.open_source_notice": "Gab Socialはオープンソースソフトウェアです。誰でもGitHub ( {github} ) から開発に参加したり、問題を報告したりできます。",
+  "getting_started.open_source_notice": "Gab Socialはオープンソースソフトウェアです。誰でもGitLab ( {gitlab} ) から開発に参加したり、問題を報告したりできます。",
   "getting_started.security": "セキュリティ",
   "getting_started.terms": "プライバシーポリシー",
   "getting_started.guidelines": "Guidelines",

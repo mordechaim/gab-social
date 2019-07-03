@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentation",
   "getting_started.heading": "Kom igång",
   "getting_started.invite": "Skicka inbjudningar",
-  "getting_started.open_source_notice": "Gab Social är programvara med öppen källkod. Du kan bidra eller rapportera problem via GitHub på {github}.",
+  "getting_started.open_source_notice": "Gab Social är programvara med öppen källkod. Du kan bidra eller rapportera problem via GitLab på {gitlab}.",
   "getting_started.security": "Säkerhet",
   "getting_started.terms": "Användarvillkor",
   "getting_started.guidelines": "Guidelines",
