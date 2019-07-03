@@ -1638,14 +1638,10 @@ a.account__display-name {
 		box-sizing: border-box;
 		left: -16px;
 		top: -14px;
-
-
-		// @media screen and (max-width: 970px) {
-		// 	left: 27px;
-		// 	top: 0;
-		// }
-
-
+		@media screen and (max-width: $nav-breakpoint-1) {
+			left: 27px;
+			top: 0;
+		}
 		min-width: 16px;
 		height: 16px;
 		padding: 1px 3px 0;
