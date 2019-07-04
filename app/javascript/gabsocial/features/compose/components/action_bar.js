@@ -10,7 +10,6 @@ import { meUsername } from 'gabsocial/initial_state';
 const messages = defineMessages({
   profile: { id: 'account.profile', defaultMessage: 'Profile' },
   preferences: { id: 'navigation_bar.preferences', defaultMessage: 'Preferences' },
-  lists: { id: 'navigation_bar.lists', defaultMessage: 'Lists' },
   follow_requests: { id: 'navigation_bar.follow_requests', defaultMessage: 'Follow requests' },
   blocks: { id: 'navigation_bar.blocks', defaultMessage: 'Blocked users' },
   domain_blocks: { id: 'navigation_bar.domain_blocks', defaultMessage: 'Hidden domains' },
@@ -44,7 +43,6 @@ class ActionBar extends React.PureComponent {
     let menu = [];
 
     menu.push({ text: intl.formatMessage(messages.profile), to: `/${meUsername}` });
-    menu.push({ text: intl.formatMessage(messages.lists), to: '/lists' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.follow_requests), to: '/follow_requests' });
     menu.push({ text: intl.formatMessage(messages.mutes), to: '/mutes' });
@@ -53,7 +51,7 @@ class ActionBar extends React.PureComponent {
     menu.push({ text: intl.formatMessage(messages.filters), to: '/filters' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.keyboard_shortcuts), action: this.handleHotkeyClick });
-    menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences', newTab: true });
+    menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
     menu.push({ text: intl.formatMessage(messages.logout), href: '/auth/sign_out', isLogout: true });
 
     return (

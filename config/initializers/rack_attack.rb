@@ -14,7 +14,9 @@ class Rack::Attack
     end
 
     def remote_ip
-      @remote_ip ||= (@env["action_dispatch.remote_ip"] || ip).to_s
+      # @remote_ip ||= (@env["action_dispatch.remote_ip"] || ip).to_s
+      # @env['HTTP_CF_CONNECTING_IP'] ? @env['HTTP_CF_CONNECTING_IP'] : ip
+      @remote_ip ||= (@env["HTTP_CF_CONNECTING_IP"] || ip).to_s
     end
 
     def authenticated_user_id

@@ -12,6 +12,7 @@
               = image_pack_tag 'gab_logo.svg', alt: 'Gab Social'
             = link_to t('home'), root_url, class: 'nav-link optional'
             = link_to t('about.about_this'), about_path, class: 'nav-link'
+            = link_to 'Invest', 'https://invest.gab.com', class: 'nav-link'
           .nav-center
           .nav-right
             - if user_signed_in?
@@ -30,9 +31,11 @@
           %span= "2019 Gab AI Inc. All Rights Reserved."
         %ul
           %li= link_to t('about.investors'), about_investors_path
-          %li= link_to t('about.source_code'), about_path + "#opensource"
-          %li= mail_to 'support@gab.ai', 'Press'
-          %li= link_to t('about.terms'), about_tos_path
-          %li= link_to t('about.privacy_policy'), about_privacy_path
+          %li= link_to 'Terms of Sale', about_sales_path
+          %li= link_to 'DMCA', about_dmca_path
+          %li= link_to 'Source Code', about_path + "#opensource"
+          %li= mail_to 'support@gab.com', 'Press'
+          %li= link_to 'Terms of Service', about_tos_path
+          %li= link_to 'Privacy Policy', about_privacy_path
 
 = render template: 'layouts/application'

@@ -49,12 +49,10 @@ import {
   FollowRequests,
   GenericNotFound,
   FavouritedStatuses,
-  ListTimeline,
   Blocks,
   DomainBlocks,
   Mutes,
   PinnedStatuses,
-  Lists,
   Search,
   Explore,
   Groups,
@@ -190,8 +188,8 @@ class SwitchingColumnsArea extends React.PureComponent {
 
         <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
 
-        <WrappedRoute path='/lists' layout={LAYOUT.DEFAULT} component={Lists} content={children} />
-        <WrappedRoute path='/list/:id' layout={LAYOUT.HOME} component={ListTimeline} content={children} />
+        <Redirect from='/lists' to='/home' />
+        <Redirect from='/list' to='/home' />
 
         <WrappedRoute path='/notifications' layout={LAYOUT.DEFAULT} component={Notifications} content={children} />
 
@@ -231,9 +229,6 @@ class SwitchingColumnsArea extends React.PureComponent {
 
         <Redirect     from='/@:username/posts/:statusId/reblogs' to='/:username/posts/:statusId/reblogs' />
         <WrappedRoute path='/:username/posts/:statusId/reblogs' layout={LAYOUT.STATUS} component={Reblogs} content={children} />
-
-        <Redirect     from='/@:username/posts/:statusId/favorites' to='/:username/posts/:statusId/favorites' />
-        <WrappedRoute path='/:username/posts/:statusId/favorites' layout={LAYOUT.STATUS} component={Favourites} content={children} />
 
         <WrappedRoute layout={LAYOUT.EMPTY} component={GenericNotFound} content={children} />
       </Switch>

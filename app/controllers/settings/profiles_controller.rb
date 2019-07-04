@@ -16,12 +16,18 @@ class Settings::ProfilesController < Settings::BaseController
   end
 
   def update
-    if UpdateAccountService.new.call(@account, account_params)
-      ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
-      redirect_to settings_profile_path, notice: I18n.t('generic.changes_saved_msg')
+    # if verified and display_name is different, return flash error and redirect back
+    if @account.is_verified && @account.display_name != params[:account][:display_name]
+      flash[:alert] = 'Unable to change Display name for verified account'
+      redirect_to settings_profile_path
     else
-      @account.build_fields
-      render :show
+      if UpdateAccountService.new.call(@account, account_params)
+        ActivityPub::UpdateDistributionWorker.perform_async(@account.id)
+        redirect_to settings_profile_path, notice: I18n.t('generic.changes_saved_msg')
+      else
+        @account.build_fields
+        render :show
+      end
     end
   end
 

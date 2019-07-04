@@ -131,7 +131,6 @@ Rails.application.routes.draw do
     get :player
   end
 
-  resources :tags,   only: [:show]
   resources :emojis, only: [:show]
   resources :invites, only: [:index, :create, :destroy]
   resources :filters, except: [:show]
@@ -434,7 +433,8 @@ Rails.application.routes.draw do
   get '/about/tos',  to: 'about#terms'
   get '/about/privacy',      to: 'about#privacy'
   get '/about/investors',    to: 'about#investors'
-  get '/about/guidelines',   to: 'about#guidelines'
+  get '/about/dmca',         to: 'about#dmca'
+  get '/about/sales',        to: 'about#sales'
 
   get '/(*any)', to: 'home#index', as: :web
   root 'home#index'
@@ -451,6 +451,7 @@ Rails.application.routes.draw do
   get '/:account_username/posts/:id', to: 'statuses#show', as: :short_account_status
   get '/:account_username/posts/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
 
+  resources :tags, only: [:show]
 
   match '*unmatched_route',
         via: :all,

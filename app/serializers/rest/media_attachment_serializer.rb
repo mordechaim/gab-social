@@ -11,9 +11,19 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
     object.id.to_s
   end
 
+  def clean_migrated_url
+    object
+      .file_file_name
+      .sub("gab://media/", "")
+      .gsub("https://gabfiles.blob.core.windows.net/", "https://gab.com/media/")
+      .gsub("https://files.gab.com/file/files-gab/", "https://gab.com/media/")
+      .gsub("https://f002.backblazeb2.com/file/files-gab/", "https://gab.com/media/")
+      .split("|")
+  end
+
   def url
     if object.file_file_name and object.file_file_name.start_with? "gab://media/"
-      return object.file_file_name.sub("gab://media/", "").sub("https://gabfiles.blob.core.windows.net/", "https://gab.com/media/").sub("https://files.gab.com/file/files-gab/", "https://gab.com/media/").split("|")[1]
+      return clean_migrated_url[1]
     end
 
     if object.needs_redownload?
@@ -29,7 +39,7 @@ class REST::MediaAttachmentSerializer < ActiveModel::Serializer
 
   def preview_url
     if object.file_file_name and object.file_file_name.start_with? "gab://media/"
-      return object.file_file_name.sub("gab://media/", "").sub("https://gabfiles.blob.core.windows.net/", "https://gab.com/media/").sub("https://files.gab.com/file/files-gab/", "https://gab.com/media/").split("|")[0]
+      return clean_migrated_url[0]
     end
 
     if object.needs_redownload?

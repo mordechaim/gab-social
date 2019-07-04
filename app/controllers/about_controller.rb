@@ -3,7 +3,7 @@
 class AboutController < ApplicationController
   layout 'public'
 
-  before_action :set_instance_presenter, only: [:show, :more, :terms, :privacy, :investors, :guidelines]
+  before_action :set_instance_presenter, only: [:show, :more, :terms, :privacy, :investors, :dmca, :sales]
 
   def show
     if user_signed_in?
@@ -17,6 +17,8 @@ class AboutController < ApplicationController
   def terms; end
   def privacy; end
   def investors; end
+  def dmca; end
+  def sales; end
 
   private
 

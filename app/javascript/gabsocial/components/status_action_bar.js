@@ -262,7 +262,7 @@ class StatusActionBar extends ImmutablePureComponent {
         </div>
         <div className='status__action-bar__counter'>
           <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
-          {favoriteCount !== 0 && <Link to={`/${status.getIn(['account', 'acct'])}/posts/${status.get('id')}/favorites`} className='detailed-status__link'>{favoriteCount}</Link>}
+          {favoriteCount !== 0 && <span className='detailed-status__link'>{favoriteCount}</span>}
         </div>
         {shareButton}
 

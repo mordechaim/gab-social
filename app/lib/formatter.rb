@@ -11,6 +11,7 @@ class Formatter
 
   def format(status, **options)
     raw_content    = status.text
+    raw_content    = ActionController::Base.helpers.strip_tags(raw_content) if status.id <= 11063737261633602 # #TODO: Migration fix
 
     if status.reblog?
       status         = status.proper
