@@ -3230,7 +3230,7 @@ a.status-card.compact:hover {
 	border-radius: 4px;
 	margin-left: 40px;
 	overflow: hidden;
-	z-index: 100;
+	z-index: 10000;
 
 	&.top {
 		transform-origin: 50% 100%;
