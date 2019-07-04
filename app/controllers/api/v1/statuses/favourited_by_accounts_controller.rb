@@ -10,8 +10,8 @@ class Api::V1::Statuses::FavouritedByAccountsController < Api::BaseController
   respond_to :json
 
   def index
-    @accounts = load_accounts
-    render json: @accounts, each_serializer: REST::AccountSerializer
+    # @accounts = load_accounts
+    # render json: @accounts, each_serializer: REST::AccountSerializer
   end
 
   private
