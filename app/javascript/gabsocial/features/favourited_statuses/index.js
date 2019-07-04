@@ -14,7 +14,7 @@ import MissingIndicator from 'gabsocial/components/missing_indicator';
 
 const mapStateToProps = (state, { params: { username } }) => {
   return {
-    isMyAccount: (username.toLowercase() === meUsername.toLowerCase()),
+    isMyAccount: (username.toLowerCase() === meUsername.toLowerCase()),
     statusIds: state.getIn(['status_lists', 'favourites', 'items']),
     isLoading: state.getIn(['status_lists', 'favourites', 'isLoading'], true),
     hasMore: !!state.getIn(['status_lists', 'favourites', 'next']),
