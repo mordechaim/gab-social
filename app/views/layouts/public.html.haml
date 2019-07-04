@@ -31,11 +31,11 @@
           %span= "2019 Gab AI Inc. All Rights Reserved."
         %ul
           %li= link_to t('about.investors'), about_investors_path
-          %li= link_to t('about.terms_of_sale'), about_sales_path
-          %li= link_to t('about.dmca'), about_dmca_path
-          %li= link_to t('about.source_code'), about_path + "#opensource"
+          %li= link_to 'Terms of Sale', about_sales_path
+          %li= link_to 'DMCA', about_dmca_path
+          %li= link_to 'Source Code', about_path + "#opensource"
           %li= mail_to 'support@gab.com', 'Press'
-          %li= link_to t('about.terms'), about_tos_path
-          %li= link_to t('about.privacy_policy'), about_privacy_path
+          %li= link_to 'Terms of Service', about_tos_path
+          %li= link_to 'Privacy Policy', about_privacy_path
 
 = render template: 'layouts/application'
