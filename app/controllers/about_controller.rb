@@ -7,7 +7,7 @@ class AboutController < ApplicationController
 
   def show
     if user_signed_in?
-      redirect_to "/home"
+      redirect_to "/"
     else
       @hide_navbar = false
     end
