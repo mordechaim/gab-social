@@ -327,4 +327,14 @@ class User < ApplicationRecord
   def validate_email_dns?
     email_changed? && !(Rails.env.test? || Rails.env.development?)
   end
+
+  # allow username or email address for login (Gab)
+  def self.find_for_database_authentication conditions
+    if conditions[:email].start_with? "@" or !conditions[:email].include? "@"
+      joins(:account).find_by(accounts: { domain: nil, username: conditions[:email].sub('@', '') })
+    else
+      super
+    end
+  end
+
 end
