@@ -49,12 +49,10 @@ import {
   FollowRequests,
   GenericNotFound,
   FavouritedStatuses,
-  ListTimeline,
   Blocks,
   DomainBlocks,
   Mutes,
   PinnedStatuses,
-  Lists,
   Search,
   Explore,
   Groups,
@@ -190,8 +188,8 @@ class SwitchingColumnsArea extends React.PureComponent {
 
         <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
 
-        <WrappedRoute path='/lists' layout={LAYOUT.DEFAULT} component={Lists} content={children} />
-        <WrappedRoute path='/list/:id' layout={LAYOUT.HOME} component={ListTimeline} content={children} />
+        <Redirect from='/lists' to='/home' />
+        <Redirect from='/list' to='/home' />
 
         <WrappedRoute path='/notifications' layout={LAYOUT.DEFAULT} component={Notifications} content={children} />
 
