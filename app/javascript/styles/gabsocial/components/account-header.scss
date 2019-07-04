@@ -108,7 +108,7 @@
 				padding: 16px 22px;
 				text-align: center;
 				@media screen and (max-width:1190px) {padding: 16px;}
-				span {
+				> span {
 					display: block;
 					&:first-of-type {
 						color: $primary-text-color;
