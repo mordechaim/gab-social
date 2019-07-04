@@ -141,7 +141,7 @@
   "getting_started.documentation": "Τεκμηρίωση",
   "getting_started.heading": "Αφετηρία",
   "getting_started.invite": "Προσκάλεσε κόσμο",
-  "getting_started.open_source_notice": "Το Gab Social είναι ελεύθερο λογισμικό. Μπορείς να συνεισφέρεις ή να αναφέρεις ζητήματα στο GitHub στο {github}.",
+  "getting_started.open_source_notice": "Το Gab Social είναι ελεύθερο λογισμικό. Μπορείς να συνεισφέρεις ή να αναφέρεις ζητήματα στο GitLab στο {gitlab}.",
   "getting_started.security": "Ασφάλεια",
   "getting_started.terms": "Όροι χρήσης",
   "getting_started.guidelines": "Guidelines",

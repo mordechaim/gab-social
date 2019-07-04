@@ -67,7 +67,7 @@ services:
     ports:
       - "127.0.0.1:4000:4000"
     depends_on:
-      - db
+      # - db
       - redis
 
   sidekiq:
@@ -77,7 +77,7 @@ services:
     env_file: .env.production
     command: bundle exec sidekiq
     depends_on:
-      - db
+      # - db
       - redis
     networks:
       - external_network

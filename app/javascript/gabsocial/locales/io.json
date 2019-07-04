@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentation",
   "getting_started.heading": "Debuto",
   "getting_started.invite": "Invite people",
-  "getting_started.open_source_notice": "Gab Social esas programaro kun apertita kodexo. Tu povas kontributar o signalar problemi en GitHub ye {github}.",
+  "getting_started.open_source_notice": "Gab Social esas programaro kun apertita kodexo. Tu povas kontributar o signalar problemi en GitLab ye {gitlab}.",
   "getting_started.security": "Security",
   "getting_started.terms": "Terms of Service",
   "getting_started.guidelines": "Guidelines",

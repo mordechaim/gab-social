@@ -141,7 +141,7 @@
   "getting_started.documentation": "Документация",
   "getting_started.heading": "Добро пожаловать",
   "getting_started.invite": "Пригласить людей",
-  "getting_started.open_source_notice": "Gab Social - сервис с открытым исходным кодом. Вы можете помочь проекту или сообщить о проблемах на GitHub по адресу {github}.",
+  "getting_started.open_source_notice": "Gab Social - сервис с открытым исходным кодом. Вы можете помочь проекту или сообщить о проблемах на GitLab по адресу {gitlab}.",
   "getting_started.security": "Безопасность",
   "getting_started.terms": "Условия использования",
   "getting_started.guidelines": "Guidelines",

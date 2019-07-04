@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentație",
   "getting_started.heading": "Începe",
   "getting_started.invite": "Invită prieteni",
-  "getting_started.open_source_notice": "Gab Social este o rețea de socializare de tip open source. Puteți contribuii la dezvoltarea ei sau să semnalați erorile pe GitHub la {github}.",
+  "getting_started.open_source_notice": "Gab Social este o rețea de socializare de tip open source. Puteți contribuii la dezvoltarea ei sau să semnalați erorile pe GitLab la {gitlab}.",
   "getting_started.security": "Securitate",
   "getting_started.terms": "Termeni de Utilizare",
   "getting_started.guidelines": "Guidelines",

@@ -141,7 +141,7 @@
   "getting_started.documentation": "문서",
   "getting_started.heading": "시작",
   "getting_started.invite": "초대",
-  "getting_started.open_source_notice": "Gab Social은 오픈 소스 소프트웨어입니다. 누구나 GitHub({github})에서 개발에 참여하거나, 문제를 보고할 수 있습니다.",
+  "getting_started.open_source_notice": "Gab Social은 오픈 소스 소프트웨어입니다. 누구나 GitLab({gitlab})에서 개발에 참여하거나, 문제를 보고할 수 있습니다.",
   "getting_started.security": "보안",
   "getting_started.terms": "이용 약관",
   "getting_started.guidelines": "Guidelines",

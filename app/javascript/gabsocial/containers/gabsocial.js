@@ -44,11 +44,12 @@ class GabSocialMount extends React.PureComponent {
   };
 
   render () {
-    const { showIntroduction } = this.props;
-
-    if (showIntroduction) {
-      return <Introduction />;
-    }
+    // Disabling introduction for launch
+    // const { showIntroduction } = this.props;
+    //
+    // if (showIntroduction) {
+    //   return <Introduction />;
+    // }
 
     return (
       <BrowserRouter>

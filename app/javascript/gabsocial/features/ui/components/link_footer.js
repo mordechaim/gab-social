@@ -33,8 +33,8 @@ const LinkFooter = ({ onOpenHotkeys, account }) => (
     <p>
       <FormattedMessage
         id='getting_started.open_source_notice'
-        defaultMessage='Gab Social is open source software. You can contribute or report issues on GitHub at {github}.'
-        values={{ github: <span><a href={source_url} rel='noopener' target='_blank'>{repository}</a> (v{version})</span> }}
+        defaultMessage='Gab Social is open source software. You can contribute or report issues on our self-hosted GitLab at {gitlab}.'
+        values={{ gitlab: <span><a href={source_url} rel='noopener' target='_blank'>{repository}</a> (v{version})</span> }}
       />
     </p>
     <p>© 2019 Gab AI Inc.</p>

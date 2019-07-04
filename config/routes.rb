@@ -24,7 +24,6 @@ Rails.application.routes.draw do
   get '.well-known/change-password', to: redirect('/auth/edit')
   get '.well-known/keybase-proof-config', to: 'well_known/keybase_proof_config#show'
 
-  get '/src/gab-social.zip', to: 'downloads#source'
   get 'manifest', to: 'manifests#show', defaults: { format: 'json' }
   get 'intent', to: 'intents#show'
   get 'custom.css', to: 'custom_css#show', as: :custom_css
@@ -138,7 +137,7 @@ Rails.application.routes.draw do
   resources :filters, except: [:show]
   resource :relationships, only: [:show, :update]
 
-  get '/public', to: redirect('/'), as: :public_timeline
+  get '/public', to: redirect('/home'), as: :public_timeline # homehack
   get '/media_proxy/:id/(*any)', to: 'media_proxy#show', as: :media_proxy
 
   # Remote follow

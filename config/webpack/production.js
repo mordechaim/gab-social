@@ -95,13 +95,13 @@ module.exports = merge(sharedConfig, {
         '**/*-webfont-*.svg',
         '**/*.woff',
       ],
-      ServiceWorker: {
-        entry: `imports-loader?ATTACHMENT_HOST=>${encodeURIComponent(JSON.stringify(attachmentHost))}!${encodeURI(path.join(__dirname, '../../app/javascript/gabsocial/service_worker/entry.js'))}`,
-        cacheName: 'gabsocial',
-        output: '../assets/sw.js',
-        publicPath: '/sw.js',
-        minify: true,
-      },
+      // ServiceWorker: {
+      //   entry: `imports-loader?ATTACHMENT_HOST=>${encodeURIComponent(JSON.stringify(attachmentHost))}!${encodeURI(path.join(__dirname, '../../app/javascript/gabsocial/service_worker/entry.js'))}`,
+      //   cacheName: 'gabsocial',
+      //   output: '../assets/sw.js',
+      //   publicPath: '/sw.js',
+      //   minify: true,
+      // },
     }),
   ],
 });

@@ -141,7 +141,7 @@
   "getting_started.documentation": "Dokumentazioa",
   "getting_started.heading": "Menua",
   "getting_started.invite": "Gonbidatu jendea",
-  "getting_started.open_source_notice": "Gab Social software librea da. Ekarpenak egin ditzakezu edo akatsen berri eman GitHub bidez: {github}.",
+  "getting_started.open_source_notice": "Gab Social software librea da. Ekarpenak egin ditzakezu edo akatsen berri eman GitLab bidez: {gitlab}.",
   "getting_started.security": "Segurtasuna",
   "getting_started.terms": "Erabilera baldintzak",
   "getting_started.guidelines": "Guidelines",

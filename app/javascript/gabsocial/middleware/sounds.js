@@ -21,7 +21,7 @@ const play = audio => {
     }
   }
 
-  audio.play();
+  // audio.play();
 };
 
 export default function soundsMiddleware() {

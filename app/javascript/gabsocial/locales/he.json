@@ -141,7 +141,7 @@
   "getting_started.documentation": "Documentation",
   "getting_started.heading": "בואו נתחיל",
   "getting_started.invite": "Invite people",
-  "getting_started.open_source_notice": "מסטודון היא תוכנה חופשית (בקוד פתוח). ניתן לתרום או לדווח על בעיות בגיטהאב: {github}.",
+  "getting_started.open_source_notice": "מסטודון היא תוכנה חופשית (בקוד פתוח). ניתן לתרום או לדווח על בעיות בגיטהאב: {gitlab}.",
   "getting_started.security": "Security",
   "getting_started.terms": "Terms of Service",
   "getting_started.guidelines": "Guidelines",
