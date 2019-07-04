@@ -53,7 +53,7 @@ class ActionBar extends React.PureComponent {
     menu.push({ text: intl.formatMessage(messages.filters), to: '/filters' });
     menu.push(null);
     menu.push({ text: intl.formatMessage(messages.keyboard_shortcuts), action: this.handleHotkeyClick });
-    menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences', newTab: true });
+    menu.push({ text: intl.formatMessage(messages.preferences), href: '/settings/preferences' });
     menu.push({ text: intl.formatMessage(messages.logout), href: '/auth/sign_out', isLogout: true });
 
     return (
