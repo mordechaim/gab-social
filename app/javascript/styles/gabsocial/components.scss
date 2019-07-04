@@ -2571,7 +2571,8 @@ a.status-card.compact:hover {
 }
 
 .column-header__collapsible-inner {
-	background: #e6e6e6;
+	background: #3f3f3f;
+	body.theme-gabsocial-light & {background: #e6e6e6;}
 	padding: 15px;
 }
 

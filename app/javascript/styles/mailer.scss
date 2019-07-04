@@ -180,7 +180,7 @@ p {
 p {
   font-size: 15px;
   line-height: 23px;
-  color: $ui-primary-color;
+  color: #fff;
   mso-line-height-rule: exactly;
   text-rendering: optimizelegibility;
 }
@@ -514,7 +514,7 @@ ul {
     color: lighten($ui-base-color, 26%);
 
     span {
-      color: $ui-primary-color;
+      color: #fff;
     }
   }
 }
