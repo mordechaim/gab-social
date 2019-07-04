@@ -23,9 +23,10 @@ const LinkFooter = ({ onOpenHotkeys, account }) => (
       {account && <li><a href='#' onClick={onOpenHotkeys}><FormattedMessage id='navigation_bar.keyboard_shortcuts' defaultMessage='Hotkeys' /></a> · </li>}
       {account && <li><a href='/auth/edit'><FormattedMessage id='getting_started.security' defaultMessage='Security' /></a> · </li>}
       <li><a href='/about'><FormattedMessage id='navigation_bar.info' defaultMessage='About' /></a> · </li>
-      <li><a href='/settings/applications' target='_blank'><FormattedMessage id='getting_started.developers' defaultMessage='Developers' /></a> · </li>
-      <li><a href='/about/guidelines'><FormattedMessage id='getting_started.guidelines' defaultMessage='Guidelines' /></a> · </li>
+      <li><a href='/settings/applications'><FormattedMessage id='getting_started.developers' defaultMessage='Developers' /></a> · </li>
       <li><a href='/about/tos'><FormattedMessage id='getting_started.terms' defaultMessage='Terms of Service' /></a> · </li>
+      <li><a href='/about/dmca'><FormattedMessage id='getting_started.dmca' defaultMessage='DMCA' /></a> · </li>
+      <li><a href='/about/sales'><FormattedMessage id='getting_started.terms_of_sale' defaultMessage='Terms of Sale' /></a> · </li>
       <li><a href='/about/privacy'><FormattedMessage id='getting_started.privacy' defaultMessage='Privacy Policy' /></a></li>
       {account && <li> · <a href='/auth/sign_out' data-method='delete'><FormattedMessage id='navigation_bar.logout' defaultMessage='Logout' /></a></li>}
     </ul>
