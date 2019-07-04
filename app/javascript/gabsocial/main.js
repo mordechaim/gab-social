@@ -11,13 +11,14 @@ const perf = require('./performance');
 function main() {
   perf.start('main()');
 
-  if (window.history && history.replaceState) {
-    const { pathname, search, hash } = window.location;
-    const path = pathname + search + hash;
-    if (!(/^\/[$/]/).test(path)) {
-      history.replaceState(null, document.title, `${path}`);
-    }
-  }
+  // if (window.history && history.replaceState) {
+  //   const { pathname, search, hash } = window.location;
+  //   const path = pathname + search + hash;
+  //   if (!(/^\/[$/]/).test(path)) {
+  //     console.log('redirecting you to hell');
+  //     history.replaceState(null, document.title, `${path}`);
+  //   }
+  // }
 
   ready(() => {
     const mountNode = document.getElementById('gabsocial');
