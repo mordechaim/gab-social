@@ -53,43 +53,43 @@ class Rack::Attack
     req.remote_ip == '127.0.0.1' || req.remote_ip == '::1'
   end
 
-  throttle('throttle_authenticated_api', limit: 300, period: 5.minutes) do |req|
+  throttle('throttle_authenticated_api', limit: 250000, period: 5.minutes) do |req|
     req.authenticated_user_id if req.api_request?
   end
 
-  throttle('throttle_unauthenticated_api', limit: 300, period: 5.minutes) do |req|
+  throttle('throttle_unauthenticated_api', limit: 250000, period: 5.minutes) do |req|
     req.remote_ip if req.api_request? && req.unauthenticated?
   end
 
-  throttle('throttle_api_media', limit: 30, period: 30.minutes) do |req|
+  throttle('throttle_api_media', limit: 250000, period: 5.minutes) do |req|
     req.authenticated_user_id if req.post? && req.path.start_with?('/api/v1/media')
   end
 
-  throttle('throttle_media_proxy', limit: 30, period: 30.minutes) do |req|
+  throttle('throttle_media_proxy', limit: 250000, period: 5.minutes) do |req|
     req.remote_ip if req.path.start_with?('/media_proxy')
   end
 
-  throttle('throttle_api_sign_up', limit: 5, period: 30.minutes) do |req|
+  throttle('throttle_api_sign_up', limit: 250000, period: 5.minutes) do |req|
     req.remote_ip if req.post? && req.path == '/api/v1/accounts'
   end
 
   # Throttle paging, as it is mainly used for public pages and AP collections
-  throttle('throttle_authenticated_paging', limit: 300, period: 15.minutes) do |req|
+  throttle('throttle_authenticated_paging', limit: 250000, period: 5.minutes) do |req|
     req.authenticated_user_id if req.paging_request?
   end
 
-  throttle('throttle_unauthenticated_paging', limit: 300, period: 15.minutes) do |req|
+  throttle('throttle_unauthenticated_paging', limit: 250000, period: 5.minutes) do |req|
     req.remote_ip if req.paging_request? && req.unauthenticated?
   end
 
   API_DELETE_REBLOG_REGEX = /\A\/api\/v1\/statuses\/[\d]+\/unreblog/.freeze
   API_DELETE_STATUS_REGEX = /\A\/api\/v1\/statuses\/[\d]+/.freeze
 
-  throttle('throttle_api_delete', limit: 30, period: 30.minutes) do |req|
+  throttle('throttle_api_delete', limit: 250000, period: 5.minutes) do |req|
     req.authenticated_user_id if (req.post? && req.path =~ API_DELETE_REBLOG_REGEX) || (req.delete? && req.path =~ API_DELETE_STATUS_REGEX)
   end
 
-  throttle('protected_paths', limit: 25, period: 5.minutes) do |req|
+  throttle('protected_paths', limit: 250000, period: 5.minutes) do |req|
     req.remote_ip if req.post? && req.path =~ PROTECTED_PATHS_REGEX
   end
 
