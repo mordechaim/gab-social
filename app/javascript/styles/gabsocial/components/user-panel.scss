@@ -14,6 +14,10 @@
 		display: block;
 		height: 112px;
 		width: 100%;
+		background: lighten($gab-background-container, 4%);
+		body.theme-gabsocial-light & {
+			background: darken($gab-background-container-light, 4%);
+		}
 
 		img {
 			display: block;
@@ -36,7 +40,7 @@
 			height: 82px;
 			border: 6px solid $gab-background-base;
 			body.theme-gabsocial-light & {border: 6px solid $gab-background-base-light;}
-			background-size: 82px 82px;
+			background-size: cover;
 		}
 	}
 
