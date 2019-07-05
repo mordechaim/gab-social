@@ -8,7 +8,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import Hashtag from '../../../components/hashtag';
 import Icon from 'gabsocial/components/icon';
 import WhoToFollowPanel from '../../ui/components/who_to_follow_panel';
-import TrendsPanel from '../../ui/components/trends_panel';
+// import TrendsPanel from '../../ui/components/trends_panel';
 
 export default @injectIntl
 class SearchResults extends ImmutablePureComponent {
@@ -30,7 +30,7 @@ class SearchResults extends ImmutablePureComponent {
       return (
         <div className='search-results'>
           <WhoToFollowPanel />
-          <TrendsPanel />
+          {/* <TrendsPanel /> */}
         </div>
       );
     }

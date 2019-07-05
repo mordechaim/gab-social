@@ -21,7 +21,7 @@ import { openModal } from '../../actions/modal';
 import { WrappedSwitch, WrappedRoute } from './util/react_router_helpers';
 import UploadArea from './components/upload_area';
 import TabsBar from './components/tabs_bar';
-import TrendsPanel from './components/trends_panel';
+// import TrendsPanel from './components/trends_panel';
 import WhoToFollowPanel from './components/who_to_follow_panel';
 import LinkFooter from './components/link_footer';
 import ProfileInfoPanel from './components/profile_info_panel';
@@ -117,7 +117,7 @@ const LAYOUT = {
       <LinkFooter />,
     ],
     RIGHT: [
-      <TrendsPanel />,
+      // <TrendsPanel />,
       <WhoToFollowPanel />,
     ],
   },
@@ -127,7 +127,7 @@ const LAYOUT = {
       <LinkFooter />,
     ],
     RIGHT: [
-      <TrendsPanel />,
+      // <TrendsPanel />,
     ],
   },
   STATUS: {
@@ -135,7 +135,7 @@ const LAYOUT = {
     LEFT: null,
     RIGHT: [
       <WhoToFollowPanel />,
-      <TrendsPanel />,
+      // <TrendsPanel />,
       <LinkFooter />,
     ],
   },

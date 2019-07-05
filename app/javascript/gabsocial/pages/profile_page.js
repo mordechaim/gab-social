@@ -8,7 +8,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import HeaderContainer from '../features/account_timeline/containers/header_container';
 import { NavLink } from 'react-router-dom';
 import WhoToFollowPanel from '../features/ui/components/who_to_follow_panel';
-import TrendsPanel from '../features/ui/components/trends_panel';
+// import TrendsPanel from '../features/ui/components/trends_panel';
 import LinkFooter from '../features/ui/components/link_footer';
 import SignUpPanel from '../features/ui/components/sign_up_panel';
 import ProfileInfoPanel from '../features/ui/components/profile_info_panel';
@@ -75,7 +75,7 @@ class ProfilePage extends ImmutablePureComponent {
               <div className='columns-area__panels__pane__inner'>
                 <SignUpPanel />
                 <WhoToFollowPanel />
-                <TrendsPanel />
+                {/* <TrendsPanel /> */}
                 <LinkFooter />
               </div>
             </div>
