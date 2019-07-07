@@ -9,14 +9,17 @@ services:
     image: redis:5.0-alpine
     networks:
       - internal_network
+      - external_network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
+    ports:
+      - "0.0.0.0:6379:6379"
     volumes:
       - ./redis:/data
 
   web:
     build: .
-    image: gab/social
+    image: gab/social/web
     restart: always
     env_file: .env.production
     command: bash -c "rm -f /gabsocial/tmp/pids/server.pid; bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -36,7 +39,7 @@ services:
 
   streaming:
     build: .
-    image: gab/social
+    image: gab/social/streaming
     restart: always
     env_file: .env.production
     command: yarn start
@@ -53,12 +56,12 @@ services:
 
   sidekiq-default:
     build: .
-    image: gab/social
+    image: gab/social/sidekick-default
     restart: always
     env_file: .env.production
     environment:
       - DB_POOL=15
-    command: bundle exec sidekiq -q default -c 3
+    command: bundle exec sidekiq -q default -c 15
     user: gabsocial
     depends_on:
       - redis
@@ -70,12 +73,12 @@ services:
 
   sidekiq-mailers:
     build: .
-    image: gab/social
+    image: gab/social/sidekiq-mailers
     restart: always
     env_file: .env.production
     environment:
       - DB_POOL=5
-    command: bundle exec sidekiq -q mailers -c 3
+    command: bundle exec sidekiq -q mailers -c 5
     user: gabsocial
     depends_on:
       - redis
@@ -87,12 +90,12 @@ services:
 
   sidekiq-push:
     build: .
-    image: gab/social
+    image: gab/social/sidekiq-push
     restart: always
     env_file: .env.production
     environment:
       - DB_POOL=10
-    command: bundle exec sidekiq -q push -c 3
+    command: bundle exec sidekiq -q push -c 10
     user: gabsocial
     depends_on:
       - redis
@@ -104,12 +107,12 @@ services:
 
   sidekiq-pull:
     build: .
-    image: gab/social
+    image: gab/social/sidekiq-pull
     restart: always
     env_file: .env.production
     environment:
       - DB_POOL=10
-    command: bundle exec sidekiq -q pull -c 3
+    command: bundle exec sidekiq -q pull -c 10
     user: gabsocial
     depends_on:
       - redis

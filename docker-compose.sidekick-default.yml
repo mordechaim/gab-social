@@ -6,15 +6,13 @@ services:
 
   sidekiq-default:
     build: .
-    image: gab/social
+    image: gab/social/sidekick-default
     restart: always
     env_file: .env.production
     environment:
-      - DB_POOL=15
-    command: bundle exec sidekiq -q default -c 3
+      - DB_POOL=5
+    command: bundle exec sidekiq -q default -c 5
     user: gabsocial
-    extra_hosts:
-      - "outside:185.255.112.10"
     networks:
       - external_network
       - internal_network
