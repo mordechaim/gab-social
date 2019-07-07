@@ -345,7 +345,7 @@ class OStatus::AtomSerializer
     parent['xmlns:poco']     = OStatus::TagManager::POCO_XMLNS
     parent['xmlns:media']    = OStatus::TagManager::MEDIA_XMLNS
     parent['xmlns:ostatus']  = OStatus::TagManager::OS_XMLNS
-    parent['xmlns:gabsocial'] = OStatus::TagManager::GABSCL_XMLNS
+    parent['xmlns:gabsocial'] = OStatus::TagManager::MTDN_XMLNS
   end
 
   def serialize_status_attributes(entry, status)

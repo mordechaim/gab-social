@@ -92,7 +92,7 @@ RSpec.describe RemoteProfile do
     it 'calls author.at_xpath.content' do
       expect(author).to receive_message_chain(:at_xpath, :content).with(
         './gabsocial:scope',
-        gabsocial: OStatus::TagManager::GABSCL_XMLNS
+        gabsocial: OStatus::TagManager::MTDN_XMLNS
       ).with(no_args)
 
       remote_profile.scope

@@ -30,7 +30,7 @@ class RemoteProfile
   end
 
   def scope
-    @scope ||= author.at_xpath('./gabsocial:scope', gabsocial: OStatus::TagManager::GABSCL_XMLNS)&.content
+    @scope ||= author.at_xpath('./gabsocial:scope', gabsocial: OStatus::TagManager::MTDN_XMLNS)&.content
   end
 
   def avatar

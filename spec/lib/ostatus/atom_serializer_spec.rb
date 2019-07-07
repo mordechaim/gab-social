@@ -50,7 +50,7 @@ RSpec.describe OStatus::AtomSerializer do
       expect(element['xmlns:poco']).to eq OStatus::TagManager::POCO_XMLNS
       expect(element['xmlns:media']).to eq OStatus::TagManager::MEDIA_XMLNS
       expect(element['xmlns:ostatus']).to eq OStatus::TagManager::OS_XMLNS
-      expect(element['xmlns:gabsocial']).to eq OStatus::TagManager::GABSCL_XMLNS
+      expect(element['xmlns:gabsocial']).to eq OStatus::TagManager::MTDN_XMLNS
     end
   end
 
