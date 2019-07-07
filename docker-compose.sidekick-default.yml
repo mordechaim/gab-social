@@ -1,0 +1,27 @@
+# docker-compose.sidekick-default.yml
+# docker-compose -f docker-compose.sidekick-default.yml build
+
+version: '3'
+services:
+
+  sidekiq-default:
+    build: .
+    image: gab/social
+    restart: always
+    env_file: .env.production
+    environment:
+      - DB_POOL=15
+    command: bundle exec sidekiq -q default -c 3
+    user: gabsocial
+    extra_hosts:
+      - "outside:185.255.112.10"
+    networks:
+      - external_network
+      - internal_network
+    volumes:
+      - /mnt/nfs/assets:/gabsocial/public/system:Z
+
+networks:
+  external_network:
+  internal_network:
+    internal: true
