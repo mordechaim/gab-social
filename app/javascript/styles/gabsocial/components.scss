@@ -306,6 +306,9 @@
 	min-height: 23px;
 	overflow-y: auto;
 	flex: 0 2 auto;
+	max-height: 500px;
+	@media screen and (max-width: $nav-breakpoint-3) {max-height: 220px;}
+	@media screen and (max-width: $nav-breakpoint-4) {max-height: 130px;}
 }
 
 .reply-indicator__header {
