@@ -17,7 +17,7 @@ class Settings::ProfilesController < Settings::BaseController
 
   def update
     # if verified and display_name is different, return flash error and redirect back
-    if @account.is_verified && @account.display_name != params[:account][:display_name]
+    if @account.is_verified && params[:account][:display_name] && @account.display_name != params[:account][:display_name]
       flash[:alert] = 'Unable to change Display name for verified account'
       redirect_to settings_profile_path
     else
