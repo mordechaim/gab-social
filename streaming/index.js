@@ -660,19 +660,20 @@ const startWorker = (workerId) => {
         streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));
       });
       break;
+
     case 'group':
-        const groupId = location.query.group;
-  
-        authorizeGroupAccess(groupId, req, authorized => {
-          if (!authorized) {
-            ws.close();
-            return;
-          }
-  
-          channel = `timeline:group:${groupId}`;
-          streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));
-        });
-          break;
+      const groupId = location.query.group;
+
+      authorizeGroupAccess(groupId, req, authorized => {
+        if (!authorized) {
+          ws.close();
+          return;
+        }
+
+        channel = `timeline:group:${groupId}`;
+        streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));
+      });
+      break;
     default:
       ws.close();
     }
