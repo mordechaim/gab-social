@@ -24,9 +24,6 @@ import TabsBar from './components/tabs_bar';
 // import TrendsPanel from './components/trends_panel';
 import WhoToFollowPanel from './components/who_to_follow_panel';
 import LinkFooter from './components/link_footer';
-import ProfileInfoPanel from './components/profile_info_panel';
-import UserPanel from './components/user_panel';
-import PromoPanel from './components/promo_panel';
 import ProfilePage from 'gabsocial/pages/profile_page';
 import SearchPage from 'gabsocial/pages/search_page';
 import HomePage from 'gabsocial/pages/home_page';
@@ -35,7 +32,6 @@ import {
   Compose,
   Status,
   GettingStarted,
-  PublicTimeline,
   CommunityTimeline,
   AccountTimeline,
   AccountGallery,
