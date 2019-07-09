@@ -4,13 +4,9 @@ import { expandHomeTimeline } from '../../actions/timelines';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { Link } from 'react-router-dom';
-import { me } from '../../initial_state';
-import ComposeFormContainer from '../compose/containers/compose_form_container';
-import Avatar from '../../components/avatar';
+import HomeColumnHeader from '../../components/home_column_header';
 
 const messages = defineMessages({
   title: { id: 'column.home', defaultMessage: 'Home' },
@@ -19,7 +15,6 @@ const messages = defineMessages({
 const mapStateToProps = state => ({
   hasUnread: state.getIn(['timelines', 'home', 'unread']) > 0,
   isPartial: state.getIn(['timelines', 'home', 'isPartial']),
-  account: state.getIn(['accounts', me]),
 });
 
 export default @connect(mapStateToProps)
@@ -72,22 +67,16 @@ class HomeTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, columnId, account } = this.props;
+    const { intl, hasUnread, columnId } = this.props;
 
     return (
       <Column label={intl.formatMessage(messages.title)}>
-
-        <div className='timeline-compose-block'>
-          <div className='timeline-compose-block__avatar'>
-            <Avatar account={account} size={46} />
-          </div>
-          <ComposeFormContainer shouldCondense={true} autoFocus={false}/>
-        </div>
-
-        <ColumnHeader icon='home' active={hasUnread} title={intl.formatMessage(messages.title)}>
+        <HomeColumnHeader
+          activeItem='home'
+          active={hasUnread}
+        >
           <ColumnSettingsContainer />
-        </ColumnHeader>
-
+        </HomeColumnHeader>
         <StatusListContainer
           scrollKey={`home_timeline-${columnId}`}
           onLoadMore={this.handleLoadMore}

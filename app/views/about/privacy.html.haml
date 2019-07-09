@@ -96,13 +96,20 @@
         %li With your consent.
         %li We may also disclose your personal information:
         %li To comply with any court order, law, or legal process, including to respond to any government or regulatory request.
-        %li To enforce or apply our terms of use and sale and other agreements, including for billing and collection purposes.
+        %li
+          To enforce or apply our
+          = link_to 'terms of use', about_tos_path
+          and
+          = link_to 'sale', about_sales_path
+          and other agreements, including for billing and collection purposes.
         %li If we believe disclosure is necessary or appropriate to protect the rights, property, or safety of Gab AI Inc, our employees, our customers, or any other person.
 
       %h3 Accessing, Correcting and Deleting Your Information
       %p You can review and change your personal information by logging into the Website and visiting your account profile page.
       %p You may also send us an email at support [at] gab [dot] com to request access to, correct or delete any personal information that you have provided to us. We cannot delete your personal information except by also deleting your user account. We may not accommodate a request to change information if we believe the change would violate any law or legal requirement or cause the information to be incorrect.
-      %p If you delete your User Contributions from the Website, copies of your User Contributions may remain viewable in cached and archived pages, or might have been copied or stored by other Website users. Proper access and use of information provided on the Website, including User Contributions, is governed by our Terms of Use.
+      %p
+        If you delete your User Contributions from the Website, copies of your User Contributions may remain viewable in cached and archived pages, or might have been copied or stored by other Website users. Proper access and use of information provided on the Website, including User Contributions, is governed by our
+        = link_to 'Terms of Use.', about_tos_path
 
       %h3 Data Security
       %p We have implemented measures designed to secure your personal information from accidental loss and from unauthorized access, use, alteration, and disclosure. All information you provide to us is stored on our secure servers behind firewalls. Any payment transactions will be encrypted using SSL.

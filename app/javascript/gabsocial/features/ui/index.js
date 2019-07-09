@@ -24,17 +24,14 @@ import TabsBar from './components/tabs_bar';
 // import TrendsPanel from './components/trends_panel';
 import WhoToFollowPanel from './components/who_to_follow_panel';
 import LinkFooter from './components/link_footer';
-import ProfileInfoPanel from './components/profile_info_panel';
-import UserPanel from './components/user_panel';
-import PromoPanel from './components/promo_panel';
 import ProfilePage from 'gabsocial/pages/profile_page';
 import SearchPage from 'gabsocial/pages/search_page';
+import HomePage from 'gabsocial/pages/home_page';
 
 import {
   Compose,
   Status,
   GettingStarted,
-  PublicTimeline,
   CommunityTimeline,
   AccountTimeline,
   AccountGallery,
@@ -110,17 +107,6 @@ const LAYOUT = {
     LEFT: null,
     RIGHT: null,
   },
-  HOME: {
-    LEFT: [
-      <UserPanel />,
-      <PromoPanel />,
-      <LinkFooter />,
-    ],
-    RIGHT: [
-      // <TrendsPanel />,
-      <WhoToFollowPanel />,
-    ],
-  },
   DEFAULT: {
     LEFT: [
       <WhoToFollowPanel />,
@@ -181,7 +167,8 @@ class SwitchingColumnsArea extends React.PureComponent {
     return (
       <Switch>
         <Redirect from='/' to='/home' exact />
-        <WrappedRoute path='/home' exact layout={LAYOUT.HOME} component={HomeTimeline} content={children} />
+        <WrappedRoute path='/home' exact page={HomePage} component={HomeTimeline} content={children} />
+        <WrappedRoute path='/timeline/all' exact page={HomePage} component={CommunityTimeline} content={children} />
 
         <WrappedRoute path='/groups' component={Groups} content={children} />
         <WrappedRoute path='/groups/:id' component={GroupTimeline} content={children} />

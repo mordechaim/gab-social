@@ -64,6 +64,10 @@ class Notifications extends React.PureComponent {
     this.props.dispatch(scrollTopNotifications(false));
   }
 
+  componentDidMount() {
+    this.props.dispatch(scrollTopNotifications(true));
+  }
+
   handleLoadGap = (maxId) => {
     this.props.dispatch(expandNotifications({ maxId }));
   };
