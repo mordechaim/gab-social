@@ -18,7 +18,7 @@
   "account.link_verified_on": "Vlastníctvo tohto odkazu bolo skontrolované {date}",
   "account.locked_info": "Stav súkromia pre tento účet je nastavený na zamknutý. Jeho vlastník sám prehodnocuje, kto ho môže sledovať.",
   "account.media": "Médiá",
-  "account.mention": "Spomeň @{name}",
+  "account.mention": "Spomeň",
   "account.moved_to": "{name} sa presunul/a na:",
   "account.mute": "Ignorovať @{name}",
   "account.mute_notifications": "Stĺm oboznámenia od @{name}",

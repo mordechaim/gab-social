@@ -18,7 +18,7 @@
   "account.link_verified_on": "Deținerea acestui link a fost verificată la {date}",
   "account.locked_info": "Acest profil este privat. Această persoană gestioneaz manual cine o urmărește.",
   "account.media": "Media",
-  "account.mention": "Menționează @{name}",
+  "account.mention": "Menționează",
   "account.moved_to": "{name} a fost mutat la:",
   "account.mute": "Oprește @{name}",
   "account.mute_notifications": "Oprește notificările de la @{name}",

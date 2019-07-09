@@ -18,7 +18,7 @@
   "account.link_verified_on": "A posse deste link foi verificada em {date}",
   "account.locked_info": "O estatuto de privacidade desta conta é fechado. O dono revê manualmente que a pode seguir.",
   "account.media": "Media",
-  "account.mention": "Mencionar @{name}",
+  "account.mention": "Mencionar",
   "account.moved_to": "{name} mudou a sua conta para:",
   "account.mute": "Silenciar @{name}",
   "account.mute_notifications": "Silenciar notificações de @{name}",
