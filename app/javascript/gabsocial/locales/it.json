@@ -18,7 +18,7 @@
   "account.link_verified_on": "La proprietà di questo link è stata controllata il {date}",
   "account.locked_info": "Il livello di privacy di questo account è impostato a \"bloccato\". Il proprietario esamina manualmente le richieste di seguirlo.",
   "account.media": "Media",
-  "account.mention": "Menziona @{name}",
+  "account.mention": "Menziona",
   "account.moved_to": "{name} si è trasferito su:",
   "account.mute": "Silenzia @{name}",
   "account.mute_notifications": "Silenzia notifiche da @{name}",

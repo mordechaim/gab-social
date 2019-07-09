@@ -18,7 +18,7 @@
   "account.link_verified_on": "A prupietà di stu ligame hè stata verificata u {date}",
   "account.locked_info": "U statutu di vita privata di u contu hè chjosu. U pruprietariu esamina manualmente e dumande d'abbunamentu.",
   "account.media": "Media",
-  "account.mention": "Mintuvà @{name}",
+  "account.mention": "Mintuvà",
   "account.moved_to": "{name} hè partutu nant'à:",
   "account.mute": "Piattà @{name}",
   "account.mute_notifications": "Piattà nutificazione da @{name}",

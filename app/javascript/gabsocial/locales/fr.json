@@ -18,7 +18,7 @@
   "account.link_verified_on": "La propriété de ce lien a été vérifiée le {date}",
   "account.locked_info": "Ce compte est verrouillé. Son propriétaire approuve manuellement qui peut le ou la suivre.",
   "account.media": "Média",
-  "account.mention": "Mentionner @{name}",
+  "account.mention": "Mentionner",
   "account.moved_to": "{name} a déménagé vers :",
   "account.mute": "Masquer @{name}",
   "account.mute_notifications": "Ignorer les notifications de @{name}",
