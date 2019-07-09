@@ -246,7 +246,7 @@
 	align-items: flex-start;
 	padding: 20px;
 	border-radius: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	background: $gab-background-container;
 	body.theme-gabsocial-light & {
 		@include light-theme-shadow();
