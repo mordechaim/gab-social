@@ -2445,6 +2445,9 @@ a.status-card.compact:hover {
 .column-header__wrapper {
 	position: relative;
 	flex: 0 0 auto;
+	border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  overflow: hidden;
 
 	&.active {
 		&::before {
