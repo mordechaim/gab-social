@@ -29,6 +29,7 @@ import UserPanel from './components/user_panel';
 import PromoPanel from './components/promo_panel';
 import ProfilePage from 'gabsocial/pages/profile_page';
 import SearchPage from 'gabsocial/pages/search_page';
+import HomePage from 'gabsocial/pages/home_page';
 
 import {
   Compose,
@@ -181,7 +182,7 @@ class SwitchingColumnsArea extends React.PureComponent {
     return (
       <Switch>
         <Redirect from='/' to='/home' exact />
-        <WrappedRoute path='/home' exact layout={LAYOUT.HOME} component={HomeTimeline} content={children} />
+        <WrappedRoute path='/home' exact page={HomePage} component={HomeTimeline} content={children} />
 
         <WrappedRoute path='/groups' component={Groups} content={children} />
         <WrappedRoute path='/groups/:id' component={GroupTimeline} content={children} />
