@@ -4,10 +4,10 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
-import ColumnHeader from '../../components/column_header';
 import { expandCommunityTimeline } from '../../actions/timelines';
 import ColumnSettingsContainer from './containers/column_settings_container';
 import { connectCommunityStream } from '../../actions/streaming';
+import HomeColumnHeader from '../../components/home_column_header';
 
 const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
@@ -79,14 +79,12 @@ class CommunityTimeline extends React.PureComponent {
 
     return (
       <Column label={intl.formatMessage(messages.title)}>
-        <ColumnHeader
-          icon='users'
+        <HomeColumnHeader
+          activeItem='all'
           active={hasUnread}
-          title={intl.formatMessage(messages.title)}
         >
-          <ColumnSettingsContainer columnId={columnId} />
-        </ColumnHeader>
-
+          <ColumnSettingsContainer />
+        </HomeColumnHeader>
         <StatusListContainer
           scrollKey={`community_timeline-${columnId}`}
           timelineId={`community${onlyMedia ? ':media' : ''}`}
