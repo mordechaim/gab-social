@@ -111,17 +111,6 @@ const LAYOUT = {
     LEFT: null,
     RIGHT: null,
   },
-  HOME: {
-    LEFT: [
-      <UserPanel />,
-      <PromoPanel />,
-      <LinkFooter />,
-    ],
-    RIGHT: [
-      // <TrendsPanel />,
-      <WhoToFollowPanel />,
-    ],
-  },
   DEFAULT: {
     LEFT: [
       <WhoToFollowPanel />,
