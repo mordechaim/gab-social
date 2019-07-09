@@ -2481,7 +2481,8 @@ a.status-card.compact:hover {
 	outline: 0;
 	overflow: hidden;
 
-	& > button {
+	& > button,
+	& > .btn {
 		margin: 0;
 		border: none;
 		padding: 15px 0 15px 15px;
@@ -2490,9 +2491,19 @@ a.status-card.compact:hover {
 		font: inherit;
 		text-align: left;
 		text-overflow: ellipsis;
+		text-decoration: none;
 		overflow: hidden;
 		white-space: nowrap;
-		flex: 1;
+
+		&.grouped {
+			margin: 6px;
+		}
+
+		&.active {
+			color: $primary-text-color;
+			border-radius: 10px;
+			background-color: rgba($highlight-text-color, .1);
+		}
 	}
 
 	& > .column-header__back-button {
@@ -2517,6 +2528,7 @@ a.status-card.compact:hover {
 .column-header__buttons {
 	height: 48px;
 	display: flex;
+	margin-left: auto;
 }
 
 .column-header__links .text-btn {
