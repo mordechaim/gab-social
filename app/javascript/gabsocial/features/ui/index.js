@@ -172,6 +172,7 @@ class SwitchingColumnsArea extends React.PureComponent {
       <Switch>
         <Redirect from='/' to='/home' exact />
         <WrappedRoute path='/home' exact page={HomePage} component={HomeTimeline} content={children} />
+        <WrappedRoute path='/timeline/all' exact page={HomePage} component={CommunityTimeline} content={children} />
 
         <WrappedRoute path='/groups' component={Groups} content={children} />
         <WrappedRoute path='/groups/:id' component={GroupTimeline} content={children} />
