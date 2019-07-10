@@ -47,7 +47,6 @@ export default @connect(mapStateToProps)
 class Notifications extends React.PureComponent {
 
   static propTypes = {
-    columnId: PropTypes.string,
     notifications: ImmutablePropTypes.list.isRequired,
     showFilterBar: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired,
@@ -150,7 +149,7 @@ class Notifications extends React.PureComponent {
 
     const scrollContainer = (
       <ScrollableList
-        scrollKey={`notifications-${columnId}`}
+        scrollKey='notifications'
         isLoading={isLoading}
         showLoading={isLoading && notifications.size === 0}
         hasMore={hasMore}

@@ -29,7 +29,6 @@ class Favourites extends ImmutablePureComponent {
     dispatch: PropTypes.func.isRequired,
     statusIds: ImmutablePropTypes.list.isRequired,
     intl: PropTypes.object.isRequired,
-    columnId: PropTypes.string,
     hasMore: PropTypes.bool,
     isLoading: PropTypes.bool,
     isMyAccount: PropTypes.bool.isRequired,
@@ -44,7 +43,7 @@ class Favourites extends ImmutablePureComponent {
   }, 300, { leading: true })
 
   render () {
-    const { intl, statusIds, columnId, hasMore, isLoading, isMyAccount } = this.props;
+    const { intl, statusIds, hasMore, isLoading, isMyAccount } = this.props;
 
     if (!isMyAccount) {
       return (
@@ -60,7 +59,7 @@ class Favourites extends ImmutablePureComponent {
       <Column>
         <StatusList
           statusIds={statusIds}
-          scrollKey={`favourited_statuses-${columnId}`}
+          scrollKey='favourited_statuses'
           hasMore={hasMore}
           isLoading={isLoading}
           onLoadMore={this.handleLoadMore}

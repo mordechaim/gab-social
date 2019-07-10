@@ -11,7 +11,6 @@ class ColumnSettings extends React.PureComponent {
     settings: ImmutablePropTypes.map.isRequired,
     onChange: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    columnId: PropTypes.string,
   };
 
   render () {

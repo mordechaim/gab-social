@@ -18,7 +18,6 @@ class DirectTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    columnId: PropTypes.string,
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
   };
@@ -45,14 +44,14 @@ class DirectTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, columnId } = this.props;
+    const { intl, hasUnread } = this.props;
 
     return (
       <Column label={intl.formatMessage(messages.title)}>
         <ColumnHeader icon='envelope' active={hasUnread} title={intl.formatMessage(messages.title)} />
 
         <ConversationsListContainer
-          scrollKey={`direct_timeline-${columnId}`}
+          scrollKey='direct_timeline'
           timelineId='direct'
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.direct' defaultMessage="You don't have any direct messages yet. When you send or receive one, it will show up here." />}

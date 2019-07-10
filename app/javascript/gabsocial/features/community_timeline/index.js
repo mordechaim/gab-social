@@ -13,16 +13,10 @@ const messages = defineMessages({
   title: { id: 'column.community', defaultMessage: 'Local timeline' },
 });
 
-const mapStateToProps = (state, { onlyMedia, columnId }) => {
-  const uuid = columnId;
-  const columns = state.getIn(['settings', 'columns']);
-  const index = columns.findIndex(c => c.get('uuid') === uuid);
-
-  return {
-    hasUnread: state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
-    onlyMedia: (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'community', 'other', 'onlyMedia']),
-  };
-};
+const mapStateToProps = (state, { onlyMedia }) => ({
+  hasUnread: state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
+  onlyMedia: state.getIn(['settings', 'community', 'other', 'onlyMedia']),
+});
 
 export default @connect(mapStateToProps)
 @injectIntl
@@ -38,7 +32,6 @@ class CommunityTimeline extends React.PureComponent {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    columnId: PropTypes.string,
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
     onlyMedia: PropTypes.bool,
@@ -75,7 +68,7 @@ class CommunityTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, columnId, onlyMedia } = this.props;
+    const { intl, hasUnread, onlyMedia } = this.props;
 
     return (
       <Column label={intl.formatMessage(messages.title)}>
@@ -86,7 +79,7 @@ class CommunityTimeline extends React.PureComponent {
           <ColumnSettingsContainer />
         </HomeColumnHeader>
         <StatusListContainer
-          scrollKey={`community_timeline-${columnId}`}
+          scrollKey='community_timeline'
           timelineId={`community${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
