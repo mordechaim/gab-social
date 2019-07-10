@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import ColumnSettingsContainer from './containers/column_settings_container';
 import { expandHashtagTimeline, clearTimeline } from '../../actions/timelines';
 import { FormattedMessage } from 'react-intl';
 import { connectHashtagStream } from '../../actions/streaming';
