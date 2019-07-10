@@ -18,7 +18,7 @@
   "account.link_verified_on": "Vlastnictví tohoto odkazu bylo zkontrolováno {date}",
   "account.locked_info": "Stav soukromí tohoto účtu je nastaven na zamčeno. Jeho vlastník ručně posuzuje, kdo ho může sledovat.",
   "account.media": "Média",
-  "account.mention": "Zmínit uživatele @{name}",
+  "account.mention": "Zmínit uživatele",
   "account.moved_to": "{name} se přesunul/a na:",
   "account.mute": "Skrýt uživatele @{name}",
   "account.mute_notifications": "Skrýt oznámení od uživatele @{name}",

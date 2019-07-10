@@ -18,7 +18,7 @@
   "account.link_verified_on": "La posedanto de tiu ligilo estis kontrolita je {date}",
   "account.locked_info": "La privateco de tiu konto estas elektita kiel fermita. La posedanto povas mane akcepti tiun, kiu povas sekvi rin.",
   "account.media": "Aŭdovidaĵoj",
-  "account.mention": "Mencii @{name}",
+  "account.mention": "Mencii",
   "account.moved_to": "{name} moviĝis al:",
   "account.mute": "Silentigi @{name}",
   "account.mute_notifications": "Silentigi sciigojn el @{name}",

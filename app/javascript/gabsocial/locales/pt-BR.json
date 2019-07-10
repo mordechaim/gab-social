@@ -18,7 +18,7 @@
   "account.link_verified_on": "A posse desse link foi verificada em {date}",
   "account.locked_info": "Essa conta está trancada. Se você a seguir sua solicitação será revisada manualmente.",
   "account.media": "Mídia",
-  "account.mention": "Mencionar @{name}",
+  "account.mention": "Mencionar",
   "account.moved_to": "{name} se mudou para:",
   "account.mute": "Silenciar @{name}",
   "account.mute_notifications": "Silenciar notificações de @{name}",

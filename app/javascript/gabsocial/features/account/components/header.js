@@ -24,7 +24,7 @@ const messages = defineMessages({
   edit_profile: { id: 'account.edit_profile', defaultMessage: 'Edit profile' },
   linkVerifiedOn: { id: 'account.link_verified_on', defaultMessage: 'Ownership of this link was checked on {date}' },
   account_locked: { id: 'account.locked_info', defaultMessage: 'This account privacy status is set to locked. The owner manually reviews who can follow them.' },
-  mention: { id: 'account.mention', defaultMessage: 'Mention @{name}' },
+  mention: { id: 'account.mention', defaultMessage: 'Mention' },
   unmute: { id: 'account.unmute', defaultMessage: 'Unmute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
@@ -311,7 +311,7 @@ class Header extends ImmutablePureComponent {
                 {actionBtn}
                 {account.get('id') !== me &&
                   <Button className='button button-alternative-2' onClick={this.props.onMention}>
-                    <FormattedMessage id='account.mention' defaultMessage='Mention @{name}' values={{
+                    <FormattedMessage id='account.mention' defaultMessage='Mention' values={{
                       name: account.get('acct')
                     }} />
                   </Button>

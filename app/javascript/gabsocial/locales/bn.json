@@ -18,7 +18,7 @@
   "account.link_verified_on": "এই লিংকের মালিকানা চেক করা হয়েছে {date} তারিকে",
   "account.locked_info": "এই নিবন্ধনের গোপনীয়তার ক্ষেত্র তালা দেওয়া আছে। নিবন্ধনকারী অনুসরণ করার অনুমতি যাদেরকে দেবেন, শুধু তারাই অনুসরণ করতে পারবেন।",
   "account.media": "ছবি বা ভিডিও",
-  "account.mention": "@{name} কে উল্লেখ করুন",
+  "account.mention": "কে উল্লেখ করুন",
   "account.moved_to": "{name} চলে গেছে এখানে:",
   "account.mute": "@{name}র কার্যক্রম সরিয়ে ফেলুন",
   "account.mute_notifications": "@{name}র প্রজ্ঞাপন আপনার কাছ থেকে সরিয়ে ফেলুন",

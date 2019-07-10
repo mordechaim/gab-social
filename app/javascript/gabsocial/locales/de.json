@@ -18,7 +18,7 @@
   "account.link_verified_on": "Besitz dieses Links wurde geprüft am {date}",
   "account.locked_info": "Der Privatsphärenstatus dieses Accounts wurde auf gesperrt gesetzt. Die Person bestimmt manuell wer ihm/ihr folgen darf.",
   "account.media": "Medien",
-  "account.mention": "@{name} erwähnen",
+  "account.mention": "erwähnen",
   "account.moved_to": "{name} ist umgezogen auf:",
   "account.mute": "@{name} stummschalten",
   "account.mute_notifications": "Benachrichtigungen von @{name} verbergen",

@@ -18,7 +18,7 @@
   "account.link_verified_on": "تم التحقق مِن مِلْكية هذا الرابط بتاريخ {date}",
   "account.locked_info": "تم تأمين خصوصية هذا الحساب عبر قفل. صاحب الحساب يُراجِع يدويا طلبات المتابَعة و الاشتراك بحسابه.",
   "account.media": "وسائط",
-  "account.mention": "أُذكُر/ي @{name}",
+  "account.mention": "أُذكُر/ي",
   "account.moved_to": "{name} إنتقل إلى :",
   "account.mute": "كتم @{name}",
   "account.mute_notifications": "كتم الإخطارات من @{name}",

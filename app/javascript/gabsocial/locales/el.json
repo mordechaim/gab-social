@@ -18,7 +18,7 @@
   "account.link_verified_on": "Η ιδιοκτησία αυτού του συνδέσμου εκλέχθηκε την {date}",
   "account.locked_info": "Η κατάσταση απορρήτου αυτού του λογαριασμού είναι κλειδωμένη. Ο ιδιοκτήτης επιβεβαιώνει χειροκίνητα ποιος μπορεί να τον ακολουθήσει.",
   "account.media": "Πολυμέσα",
-  "account.mention": "Ανάφερε @{name}",
+  "account.mention": "Ανάφερε",
   "account.moved_to": "{name} μεταφέρθηκε στο:",
   "account.mute": "Σώπασε τον/την @{name}",
   "account.mute_notifications": "Σώπασε τις ειδοποιήσεις από τον/την @{name}",
