@@ -69,10 +69,10 @@ class Notifications extends React.PureComponent {
     this.handleScrollToTop.cancel();
     this.handleScroll.cancel();
     this.props.dispatch(scrollTopNotifications(false));
-    this.handleDequeueNotifications();
   }
 
   componentDidMount() {
+    this.handleDequeueNotifications();
     this.props.dispatch(scrollTopNotifications(true));
   }
 

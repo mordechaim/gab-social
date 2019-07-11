@@ -27,7 +27,7 @@ export default class StatusList extends ImmutablePureComponent {
     onDequeueTimeline: PropTypes.func,
   };
 
-  componentWillUnmount() {
+  componentDidMount() {
     this.handleDequeueTimeline();
   };
 
@@ -73,6 +73,7 @@ export default class StatusList extends ImmutablePureComponent {
 
   handleDequeueTimeline = () => {
     const { onDequeueTimeline, timelineId } = this.props;
+    if (!onDequeueTimeline || !timelineId) return;
     onDequeueTimeline(timelineId);
   }
 
