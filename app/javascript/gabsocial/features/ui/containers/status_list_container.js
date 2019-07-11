@@ -4,6 +4,7 @@ import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
 import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
 import { me } from '../../../initial_state';
+import { dequeueTimeline } from 'gabsocial/actions/timelines';
 
 const makeGetStatusIds = () => createSelector([
   (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
@@ -28,17 +29,22 @@ const makeGetStatusIds = () => createSelector([
   });
 });
 
-const makeMapStateToProps = () => {
+const mapStateToProps = (state, {timelineId}) => {
   const getStatusIds = makeGetStatusIds();
 
-  const mapStateToProps = (state, { timelineId }) => ({
+  return {
     statusIds: getStatusIds(state, { type: timelineId }),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
     hasMore:   state.getIn(['timelines', timelineId, 'hasMore']),
-  });
-
-  return mapStateToProps;
+    totalQueuedItemsCount: state.getIn(['timelines', timelineId, 'totalQueuedItemsCount']),
+  };
 };
 
-export default connect(makeMapStateToProps)(StatusList);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onDequeueTimeline(timelineId) {
+    dispatch(dequeueTimeline(timelineId, ownProps.onLoadMore));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(StatusList);
