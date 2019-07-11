@@ -6,7 +6,7 @@ import {
   connectTimeline,
   disconnectTimeline,
 } from './timelines';
-import { updateNotifications, expandNotifications } from './notifications';
+import { updateNotificationsQueue, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
 import { fetchFilters } from './filters';
 import { getLocale } from '../locales';
@@ -36,7 +36,7 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null, 
           dispatch(deleteFromTimelines(data.payload));
           break;
         case 'notification':
-          dispatch(updateNotifications(JSON.parse(data.payload), messages, locale));
+          dispatch(updateNotificationsQueue(JSON.parse(data.payload), messages, locale, window.location.pathname));
           break;
         case 'conversation':
           dispatch(updateConversations(JSON.parse(data.payload)));

@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import { expandNotifications, scrollTopNotifications } from '../../actions/notifications';
+import {
+  expandNotifications,
+  scrollTopNotifications,
+  dequeueNotifications,
+} from '../../actions/notifications';
 import NotificationContainer from './containers/notification_container';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ColumnSettingsContainer from './containers/column_settings_container';
@@ -14,6 +18,7 @@ import { List as ImmutableList } from 'immutable';
 import { debounce } from 'lodash';
 import ScrollableList from '../../components/scrollable_list';
 import LoadGap from '../../components/load_gap';
+import TimelineQueueButtonHeader from  '../../components/timeline_queue_button_header';
 
 const messages = defineMessages({
   title: { id: 'column.notifications', defaultMessage: 'Notifications' },
@@ -40,6 +45,7 @@ const mapStateToProps = state => ({
   isLoading: state.getIn(['notifications', 'isLoading'], true),
   isUnread: state.getIn(['notifications', 'unread']) > 0,
   hasMore: state.getIn(['notifications', 'hasMore']),
+  totalQueuedNotificationsCount: state.getIn(['notifications', 'totalQueuedNotificationsCount'], 0),
 });
 
 export default @connect(mapStateToProps)
@@ -54,6 +60,8 @@ class Notifications extends React.PureComponent {
     isLoading: PropTypes.bool,
     isUnread: PropTypes.bool,
     hasMore: PropTypes.bool,
+    dequeueNotifications: PropTypes.func,
+    totalQueuedNotificationsCount: PropTypes.number,
   };
 
   componentWillUnmount () {
@@ -61,6 +69,7 @@ class Notifications extends React.PureComponent {
     this.handleScrollToTop.cancel();
     this.handleScroll.cancel();
     this.props.dispatch(scrollTopNotifications(false));
+    this.handleDequeueNotifications();
   }
 
   componentDidMount() {
@@ -112,8 +121,12 @@ class Notifications extends React.PureComponent {
     }
   }
 
+  handleDequeueNotifications = () => {
+    this.props.dispatch(dequeueNotifications());
+  };
+
   render () {
-    const { intl, notifications, isLoading, isUnread, columnId, hasMore, showFilterBar } = this.props;
+    const { intl, notifications, isLoading, isUnread, hasMore, showFilterBar, totalQueuedNotificationsCount } = this.props;
     const emptyMessage = <FormattedMessage id='empty_column.notifications' defaultMessage="You don't have any notifications yet. Interact with others to start the conversation." />;
 
     let scrollableContent = null;
@@ -168,6 +181,7 @@ class Notifications extends React.PureComponent {
           <ColumnSettingsContainer />
         </ColumnHeader>
         {filterBarContainer}
+        <TimelineQueueButtonHeader onClick={this.handleDequeueNotifications} count={totalQueuedNotificationsCount} itemType='notification' />
         {scrollContainer}
       </Column>
     );
