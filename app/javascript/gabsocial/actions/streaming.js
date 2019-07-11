@@ -1,10 +1,10 @@
 import { connectStream } from '../stream';
 import {
-  updateTimeline,
   deleteFromTimelines,
   expandHomeTimeline,
   connectTimeline,
   disconnectTimeline,
+  updateTimelineQueue,
 } from './timelines';
 import { updateNotificationsQueue, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
@@ -30,7 +30,7 @@ export function connectTimelineStream (timelineId, path, pollingRefresh = null, 
       onReceive (data) {
         switch(data.event) {
         case 'update':
-          dispatch(updateTimeline(timelineId, JSON.parse(data.payload), accept));
+          dispatch(updateTimelineQueue(timelineId, JSON.parse(data.payload), accept));
           break;
         case 'delete':
           dispatch(deleteFromTimelines(data.payload));
