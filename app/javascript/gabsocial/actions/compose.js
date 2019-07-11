@@ -6,7 +6,7 @@ import { tagHistory } from '../settings';
 import { useEmoji } from './emojis';
 import resizeImage from '../utils/resize_image';
 import { importFetchedAccounts } from './importer';
-import { updateTimeline } from './timelines';
+import { updateTimeline, dequeueTimeline } from './timelines';
 import { showAlertForError } from './alerts';
 import { showAlert } from './alerts';
 import { defineMessages } from 'react-intl';
@@ -168,6 +168,10 @@ export function submitCompose(routerHistory) {
         const timeline = getState().getIn(['timelines', timelineId]);
 
         if (timeline && timeline.get('items').size > 0 && timeline.getIn(['items', 0]) !== null && timeline.get('online')) {
+          let dequeueArgs = {};
+          if (timelineId === 'community') dequeueArgs.onlyMedia = getState().getIn(['settings', 'community', 'other', 'onlyMedia']),
+
+          dispatch(dequeueTimeline(timelineId, null, dequeueArgs));
           dispatch(updateTimeline(timelineId, { ...response.data }));
         }
       };

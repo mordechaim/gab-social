@@ -6,6 +6,9 @@ import {
   NOTIFICATIONS_FILTER_SET,
   NOTIFICATIONS_CLEAR,
   NOTIFICATIONS_SCROLL_TOP,
+  NOTIFICATIONS_UPDATE_QUEUE,
+  NOTIFICATIONS_DEQUEUE,
+  MAX_QUEUED_NOTIFICATIONS,
 } from '../actions/notifications';
 import {
   ACCOUNT_BLOCK_SUCCESS,
@@ -21,6 +24,8 @@ const initialState = ImmutableMap({
   top: false,
   unread: 0,
   isLoading: false,
+  queuedNotifications: ImmutableList(), //max = MAX_QUEUED_NOTIFICATIONS
+  totalQueuedNotificationsCount: 0, //used for queuedItems overflow for MAX_QUEUED_NOTIFICATIONS+
 });
 
 const notificationToMap = notification => ImmutableMap({
@@ -93,6 +98,32 @@ const deleteByStatus = (state, statusId) => {
   return state.update('items', list => list.filterNot(item => item !== null && item.get('status') === statusId));
 };
 
+const updateNotificationsQueue = (state, notification, intlMessages, intlLocale) => {
+  const queuedNotifications = state.getIn(['queuedNotifications'], ImmutableList());
+  const listedNotifications = state.getIn(['items'], ImmutableList());
+  const totalQueuedNotificationsCount = state.getIn(['totalQueuedNotificationsCount'], 0);
+
+  let alreadyExists = queuedNotifications.find(existingQueuedNotification => existingQueuedNotification.id === notification.id);
+  if (!alreadyExists) alreadyExists = listedNotifications.find(existingListedNotification => existingListedNotification.get('id') === notification.id);
+
+  if (alreadyExists) {
+    return state;
+  }
+
+  let newQueuedNotifications = queuedNotifications;
+
+  return state.withMutations(mutable => {
+    if (totalQueuedNotificationsCount <= MAX_QUEUED_NOTIFICATIONS) {
+      mutable.set('queuedNotifications', newQueuedNotifications.push({
+        notification,
+        intlMessages,
+        intlLocale,
+      }));
+    }
+    mutable.set('totalQueuedNotificationsCount', totalQueuedNotificationsCount + 1);
+  });
+};
+
 export default function notifications(state = initialState, action) {
   switch(action.type) {
   case NOTIFICATIONS_EXPAND_REQUEST:
@@ -105,6 +136,13 @@ export default function notifications(state = initialState, action) {
     return updateTop(state, action.top);
   case NOTIFICATIONS_UPDATE:
     return normalizeNotification(state, action.notification);
+  case NOTIFICATIONS_UPDATE_QUEUE:
+    return updateNotificationsQueue(state, action.notification, action.intlMessages, action.intlLocale);
+  case NOTIFICATIONS_DEQUEUE:
+    return state.withMutations(mutable => {
+      mutable.set('queuedNotifications', ImmutableList())
+      mutable.set('totalQueuedNotificationsCount', 0)
+    });
   case NOTIFICATIONS_EXPAND_SUCCESS:
     return expandNormalizedNotifications(state, action.notifications, action.next);
   case ACCOUNT_BLOCK_SUCCESS:

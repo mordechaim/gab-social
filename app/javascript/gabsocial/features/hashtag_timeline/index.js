@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
 import ColumnHeader from '../../components/column_header';
-import ColumnSettingsContainer from './containers/column_settings_container';
 import { expandHashtagTimeline, clearTimeline } from '../../actions/timelines';
 import { FormattedMessage } from 'react-intl';
 import { connectHashtagStream } from '../../actions/streaming';
@@ -21,7 +20,6 @@ class HashtagTimeline extends React.PureComponent {
 
   static propTypes = {
     params: PropTypes.object.isRequired,
-    columnId: PropTypes.string,
     dispatch: PropTypes.func.isRequired,
     hasUnread: PropTypes.bool,
   };
@@ -104,17 +102,14 @@ class HashtagTimeline extends React.PureComponent {
   }
 
   render () {
-    const { hasUnread, columnId } = this.props;
+    const { hasUnread } = this.props;
     const { id } = this.props.params;
 
     return (
       <Column label={`#${id}`}>
-        <ColumnHeader icon='hashtag' active={hasUnread} title={this.title()}>
-          {columnId && <ColumnSettingsContainer columnId={columnId} />}
-        </ColumnHeader>
-
+        <ColumnHeader icon='hashtag' active={hasUnread} title={this.title()} />
         <StatusListContainer
-          scrollKey={`hashtag_timeline-${columnId}`}
+          scrollKey='hashtag_timeline'
           timelineId={`hashtag:${id}`}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.hashtag' defaultMessage='There is nothing in this hashtag yet.' />}

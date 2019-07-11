@@ -13,14 +13,12 @@ const messages = defineMessages({
   title: { id: 'column.public', defaultMessage: 'Federated timeline' },
 });
 
-const mapStateToProps = (state, { onlyMedia, columnId }) => {
-  const uuid = columnId;
+const mapStateToProps = (state, { onlyMedia }) => {
   const columns = state.getIn(['settings', 'columns']);
-  const index = columns.findIndex(c => c.get('uuid') === uuid);
 
   return {
     hasUnread: state.getIn(['timelines', `public${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
-    onlyMedia: (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'public', 'other', 'onlyMedia']),
+    onlyMedia: state.getIn(['settings', 'public', 'other', 'onlyMedia']),
   };
 };
 
@@ -39,7 +37,6 @@ class PublicTimeline extends React.PureComponent {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    columnId: PropTypes.string,
     hasUnread: PropTypes.bool,
     onlyMedia: PropTypes.bool,
   };
@@ -80,13 +77,13 @@ class PublicTimeline extends React.PureComponent {
     return (
       <Column label={intl.formatMessage(messages.title)}>
         <ColumnHeader icon='globe' active={hasUnread} title={intl.formatMessage(messages.title)}>
-          <ColumnSettingsContainer columnId={columnId} />
+          <ColumnSettingsContainer/>
         </ColumnHeader>
 
         <StatusListContainer
           timelineId={`public${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
-          scrollKey={`public_timeline-${columnId}`}
+          scrollKey='public_timeline'
           emptyMessage={<FormattedMessage id='empty_column.public' defaultMessage='There is nothing here! Write something publicly, or manually follow users from other servers to fill it up' />}
         />
       </Column>

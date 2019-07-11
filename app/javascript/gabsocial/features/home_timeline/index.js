@@ -26,7 +26,6 @@ class HomeTimeline extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
     isPartial: PropTypes.bool,
-    columnId: PropTypes.string,
   };
 
   handleLoadMore = maxId => {
@@ -67,7 +66,7 @@ class HomeTimeline extends React.PureComponent {
   }
 
   render () {
-    const { intl, hasUnread, columnId } = this.props;
+    const { intl, hasUnread } = this.props;
 
     return (
       <Column label={intl.formatMessage(messages.title)}>
@@ -78,7 +77,7 @@ class HomeTimeline extends React.PureComponent {
           <ColumnSettingsContainer />
         </HomeColumnHeader>
         <StatusListContainer
-          scrollKey={`home_timeline-${columnId}`}
+          scrollKey='home_timeline'
           onLoadMore={this.handleLoadMore}
           timelineId='home'
           emptyMessage={<FormattedMessage id='empty_column.home' defaultMessage='Your home timeline is empty. Start following other users to recieve their content here.'/>}
