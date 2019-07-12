@@ -508,7 +508,7 @@ gl:
   auth:
     apply_for_account: Solicite un convite
     change_password: Contrasinal
-    checkbox_agreement_html: Acepto as <a href="%{rules_path}" target="_blank">regras do servidor</a> e os <a href="%{about_tos_path}" target="_blank">termos do servizo</a>
+    checkbox_agreement_html: Acepto as <a href="%{about_tos_path}" target="_blank">termos do servizo</a>
     confirm_email: Confirmar correo-e
     delete_account: Eliminar conta
     delete_account_html: Se desexa eliminar a súa conta, pode <a href="%{path}">facelo aquí</a>. Pediráselle confirmación.
