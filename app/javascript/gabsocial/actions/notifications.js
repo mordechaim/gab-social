@@ -16,6 +16,8 @@ import { me } from 'gabsocial/initial_state';
 
 export const NOTIFICATIONS_UPDATE      = 'NOTIFICATIONS_UPDATE';
 export const NOTIFICATIONS_UPDATE_NOOP = 'NOTIFICATIONS_UPDATE_NOOP';
+export const NOTIFICATIONS_UPDATE_QUEUE = 'NOTIFICATIONS_UPDATE_QUEUE';
+export const NOTIFICATIONS_DEQUEUE      = 'NOTIFICATIONS_DEQUEUE';
 
 export const NOTIFICATIONS_EXPAND_REQUEST = 'NOTIFICATIONS_EXPAND_REQUEST';
 export const NOTIFICATIONS_EXPAND_SUCCESS = 'NOTIFICATIONS_EXPAND_SUCCESS';
@@ -25,6 +27,8 @@ export const NOTIFICATIONS_FILTER_SET = 'NOTIFICATIONS_FILTER_SET';
 
 export const NOTIFICATIONS_CLEAR      = 'NOTIFICATIONS_CLEAR';
 export const NOTIFICATIONS_SCROLL_TOP = 'NOTIFICATIONS_SCROLL_TOP';
+
+export const MAX_QUEUED_NOTIFICATIONS = 40;
 
 defineMessages({
   mention: { id: 'notification.mention', defaultMessage: '{name} mentioned you' },
@@ -42,18 +46,6 @@ const fetchRelatedRelationships = (dispatch, notifications) => {
 export function updateNotifications(notification, intlMessages, intlLocale) {
   return (dispatch, getState) => {
     const showInColumn = getState().getIn(['settings', 'notifications', 'shows', notification.type], true);
-    const showAlert    = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
-    const playSound    = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
-    const filters      = getFilters(getState(), { contextType: 'notifications' });
-
-    let filtered = false;
-
-    if (notification.type === 'mention') {
-      const regex       = regexFromFilters(filters);
-      const searchIndex = notification.status.spoiler_text + '\n' + unescapeHTML(notification.status.content);
-
-      filtered = regex && regex.test(searchIndex);
-    }
 
     if (showInColumn) {
       dispatch(importFetchedAccount(notification.account));
@@ -65,21 +57,33 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
       dispatch({
         type: NOTIFICATIONS_UPDATE,
         notification,
-        meta: (playSound && !filtered) ? { sound: 'ribbit' } : undefined,
       });
 
       fetchRelatedRelationships(dispatch, [notification]);
-    } else if (playSound && !filtered) {
-      dispatch({
-        type: NOTIFICATIONS_UPDATE_NOOP,
-        meta: { sound: 'ribbit' },
-      });
+    }
+  };
+};
+
+export function updateNotificationsQueue(notification, intlMessages, intlLocale, curPath) {
+  return (dispatch, getState) => {
+    const showAlert = getState().getIn(['settings', 'notifications', 'alerts', notification.type], true);
+    const filters = getFilters(getState(), { contextType: 'notifications' });
+    const playSound = getState().getIn(['settings', 'notifications', 'sounds', notification.type], true);
+
+    let filtered = false;
+
+    const isOnNotificationsPage = curPath === '/notifications';
+
+    if (notification.type === 'mention') {
+      const regex = regexFromFilters(filters);
+      const searchIndex = notification.status.spoiler_text + '\n' + unescapeHTML(notification.status.content);
+      filtered = regex && regex.test(searchIndex);
     }
 
     // Desktop notifications
     if (typeof window.Notification !== 'undefined' && showAlert && !filtered) {
       const title = new IntlMessageFormat(intlMessages[`notification.${notification.type}`], intlLocale).format({ name: notification.account.display_name.length > 0 ? notification.account.display_name : notification.account.username });
-      const body  = (notification.status && notification.status.spoiler_text.length > 0) ? notification.status.spoiler_text : unescapeHTML(notification.status ? notification.status.content : '');
+      const body = (notification.status && notification.status.spoiler_text.length > 0) ? notification.status.spoiler_text : unescapeHTML(notification.status ? notification.status.content : '');
 
       const notify = new Notification(title, { body, icon: notification.account.avatar, tag: notification.id });
 
@@ -88,7 +92,49 @@ export function updateNotifications(notification, intlMessages, intlLocale) {
         notify.close();
       });
     }
-  };
+
+    if (playSound && !filtered) {
+      dispatch({
+        type: NOTIFICATIONS_UPDATE_NOOP,
+        meta: { sound: 'ribbit' },
+      });
+    }
+
+    if (isOnNotificationsPage) {
+      dispatch({
+        type: NOTIFICATIONS_UPDATE_QUEUE,
+        notification,
+        intlMessages,
+        intlLocale,
+      });
+    }
+    else {
+      dispatch(updateNotifications(notification, intlMessages, intlLocale));
+    }
+  }
+};
+
+export function dequeueNotifications() {
+  return (dispatch, getState) => {
+    const queuedNotifications = getState().getIn(['notifications', 'queuedNotifications'], ImmutableList());
+    const totalQueuedNotificationsCount = getState().getIn(['notifications', 'totalQueuedNotificationsCount'], 0);
+
+    if (totalQueuedNotificationsCount == 0) {
+      return;
+    }
+    else if (totalQueuedNotificationsCount > 0 && totalQueuedNotificationsCount <= MAX_QUEUED_NOTIFICATIONS) {
+      queuedNotifications.forEach(block => {
+        dispatch(updateNotifications(block.notification, block.intlMessages, block.intlLocale));
+      });
+    }
+    else {
+      dispatch(expandNotifications());
+    }
+
+    dispatch({
+      type: NOTIFICATIONS_DEQUEUE,
+    });
+  }
 };
 
 const excludeTypesFromSettings = state => state.getIn(['settings', 'notifications', 'shows']).filter(enabled => !enabled).keySeq().toJS();
@@ -169,7 +215,7 @@ export function expandNotificationsFail(error, isLoadingMore) {
 export function clearNotifications() {
   return (dispatch, getState) => {
     if (!me) return;
-    
+
     dispatch({
       type: NOTIFICATIONS_CLEAR,
     });

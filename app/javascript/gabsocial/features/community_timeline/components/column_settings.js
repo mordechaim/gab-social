@@ -11,7 +11,6 @@ class ColumnSettings extends React.PureComponent {
     settings: ImmutablePropTypes.map.isRequired,
     onChange: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
-    columnId: PropTypes.string,
   };
 
   render () {
@@ -21,6 +20,7 @@ class ColumnSettings extends React.PureComponent {
       <div>
         <div className='column-settings__row'>
           <SettingToggle settings={settings} settingPath={['other', 'onlyMedia']} onChange={onChange} label={<FormattedMessage id='community.column_settings.media_only' defaultMessage='Media Only' />} />
+          <SettingToggle settings={settings} settingPath={['other', 'allFediverse']} onChange={onChange} label={<FormattedMessage id='community.column_settings.all_fediverse' defaultMessage='All Fediverse' />} />
         </div>
       </div>
     );

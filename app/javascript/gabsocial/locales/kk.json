@@ -18,7 +18,7 @@
   "account.link_verified_on": "Сілтеме меншігі расталған күн {date}",
   "account.locked_info": "Бұл қолданушы өзі туралы мәліметтерді жасырған. Тек жазылғандар ғана көре алады.",
   "account.media": "Медиа",
-  "account.mention": "Аталым @{name}",
+  "account.mention": "Аталым",
   "account.moved_to": "{name} көшіп кетті:",
   "account.mute": "Үнсіз қылу @{name}",
   "account.mute_notifications": "@{name} туралы ескертпелерді жасыру",

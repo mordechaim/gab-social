@@ -15,11 +15,8 @@
     height: 100%;
     display: inline-block;
     border-radius: 4px;
-    background: darken($ui-primary-color, 14%);
-
-    &.leading {
-      background: $ui-highlight-color;
-    }
+    background: rgba($gab-placeholder-accent, .3);
+    &.leading {background: rgba($gab-placeholder-accent, .6);}
   }
 
   &__text {
@@ -31,7 +28,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-
+    color: #fff;
     input[type=radio],
     input[type=checkbox] {
       display: none;

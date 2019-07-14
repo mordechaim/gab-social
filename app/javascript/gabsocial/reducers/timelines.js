@@ -7,6 +7,9 @@ import {
   TIMELINE_EXPAND_FAIL,
   TIMELINE_CONNECT,
   TIMELINE_DISCONNECT,
+  TIMELINE_UPDATE_QUEUE,
+  TIMELINE_DEQUEUE,
+  MAX_QUEUED_ITEMS,
 } from '../actions/timelines';
 import {
   ACCOUNT_BLOCK_SUCCESS,
@@ -25,6 +28,8 @@ const initialTimeline = ImmutableMap({
   isLoading: false,
   hasMore: true,
   items: ImmutableList(),
+  queuedItems: ImmutableList(), //max= MAX_QUEUED_ITEMS
+  totalQueuedItemsCount: 0, //used for queuedItems overflow for MAX_QUEUED_ITEMS+
 });
 
 const expandNormalizedTimeline = (state, timeline, statuses, next, isPartial, isLoadingRecent) => {
@@ -77,6 +82,28 @@ const updateTimeline = (state, timeline, status) => {
   }));
 };
 
+const updateTimelineQueue = (state, timeline, status) => {
+  const queuedStatuses = state.getIn([timeline, 'queuedItems'], ImmutableList());
+  const listedStatuses = state.getIn([timeline, 'items'], ImmutableList());
+  const totalQueuedItemsCount = state.getIn([timeline, 'totalQueuedItemsCount'], 0);
+
+  let alreadyExists = queuedStatuses.find(existingQueuedStatus => existingQueuedStatus.get('id') === status.get('id'));
+  if (!alreadyExists) alreadyExists = listedStatuses.find(existingListedStatusId => existingListedStatusId === status.get('id'));
+
+  if (alreadyExists) {
+    return state;
+  }
+
+  let newQueuedStatuses = queuedStatuses;
+
+  return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
+    if (totalQueuedItemsCount <= MAX_QUEUED_ITEMS) {
+      mMap.set('queuedItems', newQueuedStatuses.push(status));
+    }
+    mMap.set('totalQueuedItemsCount', totalQueuedItemsCount + 1);
+  }));
+};
+
 const deleteStatus = (state, id, accountId, references, exclude_account = null) => {
   state.keySeq().forEach(timeline => {
     if (exclude_account === null || (timeline !== `account:${exclude_account}` && !timeline.startsWith(`account:${exclude_account}:`)))
@@ -126,6 +153,13 @@ export default function timelines(state = initialState, action) {
     return expandNormalizedTimeline(state, action.timeline, fromJS(action.statuses), action.next, action.partial, action.isLoadingRecent);
   case TIMELINE_UPDATE:
     return updateTimeline(state, action.timeline, fromJS(action.status));
+  case TIMELINE_UPDATE_QUEUE:
+    return updateTimelineQueue(state, action.timeline, fromJS(action.status));
+  case TIMELINE_DEQUEUE:
+    return state.update(action.timeline, initialTimeline, map => map.withMutations(mMap => {
+      mMap.set('queuedItems', ImmutableList())
+      mMap.set('totalQueuedItemsCount', 0)
+    }));
   case TIMELINE_DELETE:
     return deleteStatus(state, action.id, action.accountId, action.references, action.reblogOf);
   case TIMELINE_CLEAR:

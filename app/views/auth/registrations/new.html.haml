@@ -33,7 +33,7 @@
   = f.input :invite_code, as: :hidden
 
   .fields-group
-    = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.checkbox_agreement_html', rules_path: about_privacy_path, about_tos_path: about_tos_path)
+    = f.input :agreement, as: :boolean, wrapper: :with_label, label: t('auth.checkbox_agreement_html', about_tos_path: about_tos_path)
 
   .actions
     = f.button :button, @invite.present? ? t('auth.register') : sign_up_message, type: :submit

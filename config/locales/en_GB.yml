@@ -508,7 +508,7 @@ en_GB:
   auth:
     apply_for_account: Request an invite
     change_password: Password
-    checkbox_agreement_html: I agree to the <a href="%{about_tos_path}" target="_blank">Terms of Service</a>
+    checkbox_agreement_html: I agree to the <a href="%{about_tos_path}" target="_blank">Terms of Service</a>.
     confirm_email: Confirm email
     delete_account: Delete account
     delete_account_html: If you wish to delete your account, you can <a href="%{path}">proceed here</a>. You will be asked for confirmation.

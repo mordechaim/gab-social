@@ -93,7 +93,7 @@ class AccountTimeline extends ImmutablePureComponent {
         this.props.dispatch(expandAccountFeaturedTimeline(nextProps.accountId));
       }
 
-      this.props.dispatch(expandAccountTimeline(nextProps.accountId, { withReplies: nextProps.params.withReplies }));
+      this.props.dispatch(expandAccountTimeline(nextProps.accountId, { withReplies: nextProps.withReplies }));
     }
   }
 

@@ -18,7 +18,7 @@
   "account.link_verified_on": "Tämän linkin omistaja tarkistettiin {date}",
   "account.locked_info": "Tämän tili on yksityinen. Käyttäjä vahvistaa itse kuka voi seurata häntä.",
   "account.media": "Media",
-  "account.mention": "Mainitse @{name}",
+  "account.mention": "Mainitse",
   "account.moved_to": "{name} on muuttanut instanssiin:",
   "account.mute": "Mykistä @{name}",
   "account.mute_notifications": "Mykistä ilmoitukset käyttäjältä @{name}",

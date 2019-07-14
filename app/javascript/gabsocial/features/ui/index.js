@@ -29,7 +29,6 @@ import SearchPage from 'gabsocial/pages/search_page';
 import HomePage from 'gabsocial/pages/home_page';
 
 import {
-  Compose,
   Status,
   GettingStarted,
   CommunityTimeline,

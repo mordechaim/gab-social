@@ -30,7 +30,6 @@ class GroupTimeline extends React.PureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    columnId: PropTypes.string,
     hasUnread: PropTypes.bool,
     group: PropTypes.oneOfType([ImmutablePropTypes.map, PropTypes.bool]),
     intl: PropTypes.object.isRequired,
@@ -59,7 +58,7 @@ class GroupTimeline extends React.PureComponent {
   }
 
   render () {
-    const { hasUnread, columnId, group } = this.props;
+    const { hasUnread, group } = this.props;
     const { id } = this.props.params;
     const title  = group ? group.get('title') : id;
 
@@ -93,7 +92,7 @@ class GroupTimeline extends React.PureComponent {
         <StatusListContainer
           prepend={<HeaderContainer groupId={id} />}
           alwaysPrepend
-          scrollKey={`group_timeline-${columnId}`}
+          scrollKey='group_timeline'
           timelineId={`group:${id}`}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.group' defaultMessage='There is nothing in this group yet. When members of this group post new statuses, they will appear here.' />}

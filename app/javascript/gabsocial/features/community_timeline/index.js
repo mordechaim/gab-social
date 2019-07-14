@@ -4,23 +4,32 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import PropTypes from 'prop-types';
 import StatusListContainer from '../ui/containers/status_list_container';
 import Column from '../../components/column';
-import { expandCommunityTimeline } from '../../actions/timelines';
 import ColumnSettingsContainer from './containers/column_settings_container';
-import { connectCommunityStream } from '../../actions/streaming';
 import HomeColumnHeader from '../../components/home_column_header';
+import {
+  expandCommunityTimeline,
+  expandPublicTimeline,
+} from '../../actions/timelines';
+import {
+  connectCommunityStream,
+  connectPublicStream,
+} from '../../actions/streaming';
 
 const messages = defineMessages({
-  title: { id: 'column.community', defaultMessage: 'Local timeline' },
+  title: { id: 'column.community', defaultMessage: 'Community timeline' },
 });
 
-const mapStateToProps = (state, { onlyMedia, columnId }) => {
-  const uuid = columnId;
-  const columns = state.getIn(['settings', 'columns']);
-  const index = columns.findIndex(c => c.get('uuid') === uuid);
+const mapStateToProps = state => {
+  const allFediverse = state.getIn(['settings', 'community', 'other', 'allFediverse']);
+  const onlyMedia = state.getIn(['settings', 'community', 'other', 'onlyMedia']);
+
+  const timelineId = allFediverse ? 'public' : 'community';
 
   return {
-    hasUnread: state.getIn(['timelines', `community${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
-    onlyMedia: (columnId && index >= 0) ? columns.get(index).getIn(['params', 'other', 'onlyMedia']) : state.getIn(['settings', 'community', 'other', 'onlyMedia']),
+    timelineId,
+    allFediverse,
+    onlyMedia,
+    hasUnread: state.getIn(['timelines', `${timelineId}${onlyMedia ? ':media' : ''}`, 'unread']) > 0,
   };
 };
 
@@ -34,30 +43,45 @@ class CommunityTimeline extends React.PureComponent {
 
   static defaultProps = {
     onlyMedia: false,
+    allFediverse: false,
   };
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    columnId: PropTypes.string,
     intl: PropTypes.object.isRequired,
     hasUnread: PropTypes.bool,
     onlyMedia: PropTypes.bool,
+    allFediverse: PropTypes.bool,
+    timelineId: PropTypes.string,
   };
 
   componentDidMount () {
-    const { dispatch, onlyMedia } = this.props;
+    const { dispatch, onlyMedia, allFediverse } = this.props;
 
-    dispatch(expandCommunityTimeline({ onlyMedia }));
-    this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+    if (allFediverse) {
+      dispatch(expandPublicTimeline({ onlyMedia }));
+      this.disconnect = dispatch(connectPublicStream({ onlyMedia }));
+    }
+    else {
+      dispatch(expandCommunityTimeline({ onlyMedia }));
+      this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+    }
   }
 
   componentDidUpdate (prevProps) {
-    if (prevProps.onlyMedia !== this.props.onlyMedia) {
-      const { dispatch, onlyMedia } = this.props;
+    if (prevProps.onlyMedia !== this.props.onlyMedia || prevProps.allFediverse !== this.props.allFediverse) {
+      const { dispatch, onlyMedia, allFediverse } = this.props;
 
       this.disconnect();
-      dispatch(expandCommunityTimeline({ onlyMedia }));
-      this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+
+      if (allFediverse) {
+        dispatch(expandPublicTimeline({ onlyMedia }));
+        this.disconnect = dispatch(connectPublicStream({ onlyMedia }));
+      }
+      else {
+        dispatch(expandCommunityTimeline({ onlyMedia }));
+        this.disconnect = dispatch(connectCommunityStream({ onlyMedia }));
+      }
     }
   }
 
@@ -69,27 +93,29 @@ class CommunityTimeline extends React.PureComponent {
   }
 
   handleLoadMore = maxId => {
-    const { dispatch, onlyMedia } = this.props;
+    const { dispatch, onlyMedia, allFediverse } = this.props;
 
-    dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
+    if (allFediverse) {
+      dispatch(expandPublicTimeline({ maxId, onlyMedia }));
+    }
+    else {
+      dispatch(expandCommunityTimeline({ maxId, onlyMedia }));
+    }
   }
 
   render () {
-    const { intl, hasUnread, columnId, onlyMedia } = this.props;
+    const { intl, hasUnread, onlyMedia, timelineId, allFediverse } = this.props;
 
     return (
       <Column label={intl.formatMessage(messages.title)}>
-        <HomeColumnHeader
-          activeItem='all'
-          active={hasUnread}
-        >
+        <HomeColumnHeader activeItem='all' active={hasUnread} >
           <ColumnSettingsContainer />
         </HomeColumnHeader>
         <StatusListContainer
-          scrollKey={`community_timeline-${columnId}`}
-          timelineId={`community${onlyMedia ? ':media' : ''}`}
+          scrollKey={`${timelineId}_timeline`}
+          timelineId={`${timelineId}${onlyMedia ? ':media' : ''}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The local timeline is empty. Write something publicly to get the ball rolling!' />}
+          emptyMessage={<FormattedMessage id='empty_column.community' defaultMessage='The community timeline is empty. Write something publicly to get the ball rolling!' />}
         />
       </Column>
     );
