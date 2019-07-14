@@ -5,7 +5,7 @@ class IntentsController < ApplicationController
   rescue_from Addressable::URI::InvalidURIError, with: :handle_invalid_uri
 
   def show
-    if uri.scheme == 'web+gabsocial'
+    if uri.scheme == 'web+mastodon'
       case uri.host
       when 'follow'
         return redirect_to authorize_interaction_path(uri: uri.query_values['uri'].gsub(/\Aacct:/, ''))
