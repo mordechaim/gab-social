@@ -90,7 +90,7 @@ class OStatus::Activity::Creation < OStatus::Activity::Base
   end
 
   def visibility_scope
-    @xml.at_xpath('./gabsocial:scope', gabsocial: OStatus::TagManager::MTDN_XMLNS)&.content&.to_sym || :public
+    @xml.at_xpath('./mastodon:scope', mastodon: OStatus::TagManager::MTDN_XMLNS)&.content&.to_sym || :public
   end
 
   def published
