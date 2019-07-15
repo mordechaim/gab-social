@@ -29,7 +29,7 @@ class Api::V1::Timelines::GroupController < Api::BaseController
   end
 
   def group_statuses
-    statuses = group_timeline_statuses.paginate_by_id(
+    statuses = group_timeline_statuses.without_replies.paginate_by_id(
       limit_param(DEFAULT_STATUSES_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
     )
