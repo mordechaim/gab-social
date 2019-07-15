@@ -88,13 +88,15 @@ class GroupTimeline extends React.PureComponent {
 					</div>
 				)}
 
-				<StatusListContainer
-					alwaysPrepend
-					scrollKey={`group_timeline-${columnId}`}
-					timelineId={`group:${id}`}
-					onLoadMore={this.handleLoadMore}
-					emptyMessage={<FormattedMessage id='empty_column.group' defaultMessage='There is nothing in this group yet. When members of this group post new statuses, they will appear here.' />}
-				/>
+        <div className='group__feed'>
+          <StatusListContainer
+            alwaysPrepend
+            scrollKey={`group_timeline-${columnId}`}
+            timelineId={`group:${id}`}
+            onLoadMore={this.handleLoadMore}
+            emptyMessage={<FormattedMessage id='empty_column.group' defaultMessage='There is nothing in this group yet. When members of this group post new statuses, they will appear here.' />}
+          />
+        </div>
 			</div>
 		);
 	}
