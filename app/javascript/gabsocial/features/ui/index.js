@@ -25,6 +25,8 @@ import TabsBar from './components/tabs_bar';
 import WhoToFollowPanel from './components/who_to_follow_panel';
 import LinkFooter from './components/link_footer';
 import ProfilePage from 'gabsocial/pages/profile_page';
+import GroupsPage from 'gabsocial/pages/groups_page';
+import GroupPage from 'gabsocial/pages/group_page';
 import SearchPage from 'gabsocial/pages/search_page';
 import HomePage from 'gabsocial/pages/home_page';
 
@@ -54,6 +56,7 @@ import {
   Explore,
   Groups,
   GroupTimeline,
+  GroupMembers,
 } from './util/async-components';
 import { me, meUsername } from '../../initial_state';
 import { previewState as previewMediaState } from './components/media_modal';
@@ -170,8 +173,11 @@ class SwitchingColumnsArea extends React.PureComponent {
         <WrappedRoute path='/home' exact page={HomePage} component={HomeTimeline} content={children} />
         <WrappedRoute path='/timeline/all' exact page={HomePage} component={CommunityTimeline} content={children} />
 
-        <WrappedRoute path='/groups' component={Groups} content={children} />
-        <WrappedRoute path='/groups/:id' component={GroupTimeline} content={children} />
+        <WrappedRoute path='/groups' exact page={GroupsPage} component={Groups} content={children} componentParams={{ activeTab: 'featured' }} />
+        <WrappedRoute path='/groups/browse/member' page={GroupsPage} component={Groups} content={children} componentParams={{ activeTab: 'member' }} />
+        <WrappedRoute path='/groups/browse/admin' page={GroupsPage} component={Groups} content={children} componentParams={{ activeTab: 'admin' }} />
+        <WrappedRoute path='/groups/:id/members' page={GroupPage} component={GroupMembers} content={children} />
+        <WrappedRoute path='/groups/:id' page={GroupPage} component={GroupTimeline} content={children} />
 
         <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
 

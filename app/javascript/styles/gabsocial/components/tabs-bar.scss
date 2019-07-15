@@ -147,6 +147,7 @@
 	&.explore,
 	&.notifications,
 	&.messages,
+	&.groups,
 	&.optional {
 		padding: 16px 0 0 23px;
 		background-size: 14px 114px;
@@ -161,6 +162,7 @@
 	&.notifications {background-image: url('../images/gab-icons/icon-notifications-sprite.svg');}
 	&.messages {background-image: url('../images/gab-icons/icon-messages-sprite.svg');}
 	&.optional {background-image: url('../images/gab-icons/icon-search-sprite.svg');}
+	&.groups {background-image: url('../images/gab-icons/icon-explore-sprite.svg');}
 
 
 	&.optional {

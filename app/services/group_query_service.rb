@@ -2,7 +2,6 @@
 
 class GroupQueryService < BaseService
   def call(group)
-    Status.distinct
-          .as_group_timeline(group)
+    Status.as_group_timeline(group)
   end
 end

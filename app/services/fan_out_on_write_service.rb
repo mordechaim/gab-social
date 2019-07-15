@@ -61,7 +61,7 @@ class FanOutOnWriteService < BaseService
 
     Rails.logger.debug "Delivering status #{status.id} to group"
 
-    # Redis.current.publish("timeline:group:#{status.group_id}", @payload)
+    Redis.current.publish("timeline:group:#{status.group_id}", @payload)
   end
 
   def deliver_to_mentioned_followers(status)

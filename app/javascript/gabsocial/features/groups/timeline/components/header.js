@@ -1,44 +1,62 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import InnerHeader from './inner_header';
+import Button from 'gabsocial/components/button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
 
-export default class Header extends ImmutablePureComponent {
+const messages = defineMessages({
+	join: { id: 'groups.join', defaultMessage: 'Join group' },
+	leave: { id: 'groups.leave', defaultMessage: 'Leave group' },
+});
 
-  static propTypes = {
-    group: ImmutablePropTypes.map,
-    relationships: ImmutablePropTypes.map,
-    toggleMembership: PropTypes.func.isRequired,
-  };
+export default @injectIntl
+class Header extends ImmutablePureComponent {
+	static propTypes = {
+		group: ImmutablePropTypes.map,
+		relationships: ImmutablePropTypes.map,
+		toggleMembership: PropTypes.func.isRequired,
+	};
 
-  static contextTypes = {
-    router: PropTypes.object,
-  };
+	static contextTypes = {
+		router: PropTypes.object,
+	};
 
-  render () {
-    const { group, relationships, toggleMembership } = this.props;
+	getActionButton() {
+		const { group, relationships, toggleMembership, intl } = this.props;
+		const toggle = () => toggleMembership(group, relationships);
 
-    if (group === null) {
-      return null;
-    }
+		if (!relationships) {
+			return '';
+		} else if (!relationships.get('member')) {
+			return <Button className='logo-button' text={intl.formatMessage(messages.join)} onClick={toggle} />;
+		} else if (relationships.get('member')) {
+			return <Button className='logo-button' text={intl.formatMessage(messages.leave, { name: group.get('title') })} onClick={toggle} />;
+		}
+	}
 
-    return (
-      <div className='account-timeline__header'>
-        <InnerHeader
-          group={group}
-          relationships={relationships}
-          toggleMembership={toggleMembership}
-        />
+	render () {
+		const { group, relationships } = this.props;
 
-        <div className='account__section-headline'>
-            <NavLink exact to={`/groups/${group.get('id')}`}><FormattedMessage id='groups.posts' defaultMessage='Posts' /></NavLink>
-            <NavLink exact to={`/groups/${group.get('id')}/accounts`}><FormattedMessage id='group.accounts' defaultMessage='Members' /></NavLink>
-        </div>
-      </div>
-    );
-  }
+		if (!group || !relationships) {
+			return null;
+		}
 
+		return (
+			<div className='group__header-container'>
+				<div className="group__header">
+					<div className='group__cover'>
+						<img src={group.get('cover_image_url')} alt='' className='parallax' />
+					</div>
+					
+					<div className='group__tabs'>
+						<NavLink exact className='group__tabs__tab' activeClassName='group__tabs__tab--active' to={`/groups/${group.get('id')}`}>Posts</NavLink>
+						<NavLink exact className='group__tabs__tab' activeClassName='group__tabs__tab--active' to={`/groups/${group.get('id')}/members`}>Members</NavLink>
+						{this.getActionButton()}
+					</div>
+				</div>
+			</div>
+		);
+	}
 }

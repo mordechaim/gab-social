@@ -21,6 +21,10 @@ import {
   MUTES_EXPAND_SUCCESS,
 } from '../actions/mutes';
 import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import { 
+  GROUP_MEMBERS_FETCH_SUCCESS,
+  GROUP_MEMBERS_EXPAND_SUCCESS,
+} from '../actions/groups';
 
 const initialState = ImmutableMap({
   followers: ImmutableMap(),
@@ -30,6 +34,7 @@ const initialState = ImmutableMap({
   follow_requests: ImmutableMap(),
   blocks: ImmutableMap(),
   mutes: ImmutableMap(),
+  groups: ImmutableMap(),
 });
 
 const normalizeList = (state, type, id, accounts, next) => {
@@ -74,6 +79,10 @@ export default function userLists(state = initialState, action) {
     return state.setIn(['mutes', 'items'], ImmutableList(action.accounts.map(item => item.id))).setIn(['mutes', 'next'], action.next);
   case MUTES_EXPAND_SUCCESS:
     return state.updateIn(['mutes', 'items'], list => list.concat(action.accounts.map(item => item.id))).setIn(['mutes', 'next'], action.next);
+  case GROUP_MEMBERS_FETCH_SUCCESS:
+    return normalizeList(state, 'groups', action.id, action.accounts, action.next);
+  case GROUP_MEMBERS_EXPAND_SUCCESS:
+    return appendToList(state, 'groups', action.id, action.accounts, action.next);
   default:
     return state;
   }

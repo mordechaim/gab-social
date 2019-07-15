@@ -10,8 +10,22 @@ class Api::V1::GroupsController < Api::BaseController
   before_action :set_group, except: [:index, :create]
 
   def index
-    @groups = Group.joins(:group_accounts).where(is_archived: false, group_accounts: { account: current_account }).all
+    case current_tab
+      when 'featured'
+        @groups = Group.where(is_featured: true).limit(25).all
+      when 'member'
+        @groups = Group.joins(:group_accounts).where(is_archived: false, group_accounts: { account: current_account }).all
+      when 'admin'
+        @groups = Group.joins(:group_accounts).where(is_archived: false, group_accounts: { account: current_account, write_permissions: true }).all
+    end
+
     render json: @groups, each_serializer: REST::GroupSerializer
+  end
+
+  def current_tab 
+    tab = 'featured'
+    tab = params[:tab] if ['featured', 'member', 'admin'].include? params[:tab]
+    return tab
   end
 
   def show

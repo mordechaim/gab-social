@@ -9,7 +9,7 @@ class Api::V1::Groups::AccountsController < Api::BaseController
   before_action :require_user!
   before_action :set_group
 
-  after_action :insert_pagination_headers, only: :index
+  after_action :insert_pagination_headers, only: :show
 
   def show
     @accounts = load_accounts

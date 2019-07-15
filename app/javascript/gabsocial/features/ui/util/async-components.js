@@ -38,6 +38,10 @@ export function GroupTimeline () {
   return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/timeline');
 }
 
+export function GroupMembers () {
+  return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/members');
+}
+
 export function Groups () {
   return import(/* webpackChunkName: "features/groups/index" */'../../groups/index');
 }
