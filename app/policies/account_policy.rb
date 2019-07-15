@@ -61,6 +61,10 @@ class AccountPolicy < ApplicationPolicy
     staff?
   end
 
+  def edit_pro?
+    staff?
+  end
+
   def update_badges?
     staff?
   end
