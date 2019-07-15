@@ -29,7 +29,7 @@ class GroupRelationshipsPresenter
       @uncached_group_ids = []
       
       @group_ids.each do |group_id|
-        maps_for_group = Rails.cache.read("relationship:#{@current_account_id}:#{group_id}")
+        maps_for_group = Rails.cache.read("relationship:#{@current_account_id}:group#{group_id}")
   
         if maps_for_group.is_a?(Hash)
           @cached.deep_merge!(maps_for_group)
@@ -48,7 +48,7 @@ class GroupRelationshipsPresenter
           admin:      { group_id => admin[group_id] },
         }
   
-        Rails.cache.write("relationship:#{@current_account_id}:#{group_id}", maps_for_account, expires_in: 1.day)
+        Rails.cache.write("relationship:#{@current_account_id}:group#{group_id}", maps_for_account, expires_in: 1.day)
       end
     end
   end

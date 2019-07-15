@@ -18,4 +18,12 @@ class GroupAccount < ApplicationRecord
   belongs_to :account
 
   validates :account_id, uniqueness: { scope: :group_id }
+
+  after_commit :remove_relationship_cache
+
+  private
+
+  def remove_relationship_cache
+    Rails.cache.delete("relationship:#{account_id}:group#{group_id}")
+  end
 end
