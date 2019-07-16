@@ -29,6 +29,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     color: #fff;
+    body.theme-gabsocial-light & {color: $gab-default-text-light;}
     input[type=radio],
     input[type=checkbox] {
       display: none;
