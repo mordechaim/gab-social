@@ -47,6 +47,10 @@ export const GROUP_REMOVED_ACCOUNTS_CREATE_REQUEST = 'GROUP_REMOVED_ACCOUNTS_CRE
 export const GROUP_REMOVED_ACCOUNTS_CREATE_SUCCESS = 'GROUP_REMOVED_ACCOUNTS_CREATE_SUCCESS';
 export const GROUP_REMOVED_ACCOUNTS_CREATE_FAIL    = 'GROUP_REMOVED_ACCOUNTS_CREATE_FAIL';
 
+export const GROUP_REMOVE_STATUS_REQUEST = 'GROUP_REMOVE_STATUS_REQUEST';
+export const GROUP_REMOVE_STATUS_SUCCESS = 'GROUP_REMOVE_STATUS_SUCCESS';
+export const GROUP_REMOVE_STATUS_FAIL    = 'GROUP_REMOVE_STATUS_FAIL';
+
 export const fetchGroup = id => (dispatch, getState) => {
   if (!me) return;
 
@@ -474,6 +478,45 @@ export function createRemovedAccountSuccess(groupId, id) {
 export function createRemovedAccountFail(groupId, id, error) {
   return {
     type: GROUP_REMOVED_ACCOUNTS_CREATE_FAIL,
+    groupId,
+    id,
+    error,
+  };
+};
+
+export function groupRemoveStatus(groupId, id) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    dispatch(groupRemoveStatusRequest(groupId, id));
+
+    api(getState).delete(`/api/v1/groups/${groupId}/statuses/${id}`).then(response => {
+      dispatch(groupRemoveStatusSuccess(groupId, id));
+    }).catch(error => {
+      dispatch(groupRemoveStatusFail(groupId, id, error));
+    });
+  };
+};
+
+export function groupRemoveStatusRequest(groupId, id) {
+  return {
+    type: GROUP_REMOVE_STATUS_REQUEST,
+    groupId,
+    id,
+  };
+};
+
+export function groupRemoveStatusSuccess(groupId, id) {
+  return {
+    type: GROUP_REMOVE_STATUS_SUCCESS,
+    groupId,
+    id,
+  };
+};
+
+export function groupRemoveStatusFail(groupId, id, error) {
+  return {
+    type: GROUP_REMOVE_STATUS_FAIL,
     groupId,
     id,
     error,

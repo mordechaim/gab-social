@@ -18,6 +18,7 @@ import {
 } from '../actions/accounts';
 import { Map as ImmutableMap, List as ImmutableList, fromJS } from 'immutable';
 import compareId from '../compare_id';
+import { GROUP_REMOVE_STATUS_SUCCESS } from '../actions/groups';
 
 const initialState = ImmutableMap();
 
@@ -143,6 +144,10 @@ const filterTimeline = (timeline, state, relationship, statuses) =>
       statuses.getIn([statusId, 'account']) === relationship.id
     ));
 
+const removeStatusFromGroup = (state, groupId, statusId) => {
+  return state.updateIn([`group:${groupId}`, 'items'], list => list.filterNot(item => item === statusId));
+};
+
 export default function timelines(state = initialState, action) {
   switch(action.type) {
   case TIMELINE_EXPAND_REQUEST:
@@ -177,6 +182,8 @@ export default function timelines(state = initialState, action) {
       initialTimeline,
       map => map.set('online', false).update('items', items => items.first() ? items.unshift(null) : items)
     );
+  case GROUP_REMOVE_STATUS_SUCCESS:
+    return removeStatusFromGroup(state, action.groupId, action.id)
   default:
     return state;
   }

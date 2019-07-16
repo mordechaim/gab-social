@@ -63,7 +63,7 @@ class GroupTimeline extends React.PureComponent {
 		const { columnId, group, relationships, account } = this.props;
 		const { id } = this.props.params;
 
-		if (typeof group === 'undefined') {
+		if (typeof group === 'undefined' || !relationships) {
 			return (
 				<Column>
 					<LoadingIndicator />
@@ -79,7 +79,7 @@ class GroupTimeline extends React.PureComponent {
 
 		return (
 			<div>
-				{relationships && relationships.get('member') && (
+				{relationships.get('member') && (
 					<div className='timeline-compose-block'>
 						<div className='timeline-compose-block__avatar'>
 							<Avatar account={account} size={46} />

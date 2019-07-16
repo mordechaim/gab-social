@@ -38,6 +38,7 @@ const messages = defineMessages({
   admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
   copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
   group_remove_account: { id: 'status.remove_account_from_group', defaultMessage: 'Remove account from group' },
+  group_remove_post: { id: 'status.remove_post_from_group', defaultMessage: 'Remove status from group' },
 });
 
 class StatusActionBar extends ImmutablePureComponent {
@@ -174,6 +175,12 @@ class StatusActionBar extends ImmutablePureComponent {
     this.props.onGroupRemoveAccount(status.get('group_id'), status.getIn(['account', 'id']));
   }
 
+  handleGroupRemovePost = () => {
+    const { status } = this.props;
+
+    this.props.onGroupRemoveStatus(status.get('group_id'), status.get('id'));
+  }
+
   _makeMenu = (publicStatus) => {
     const { status, intl, withDismiss, withGroupAdmin } = this.props;
     const mutingConversation = status.get('muted');
@@ -226,6 +233,7 @@ class StatusActionBar extends ImmutablePureComponent {
       if (withGroupAdmin) {
         menu.push(null);
         menu.push({ text: intl.formatMessage(messages.group_remove_account), action: this.handleGroupRemoveAccount });
+        menu.push({ text: intl.formatMessage(messages.group_remove_post), action: this.handleGroupRemovePost });
       }
     }
 
