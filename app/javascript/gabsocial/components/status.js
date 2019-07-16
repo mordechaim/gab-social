@@ -179,7 +179,11 @@ class Status extends ImmutablePureComponent {
       }
 
       const { status } = this.props;
-      this.context.router.history.push(`/${status.getIn(['account', 'acct'])}/posts/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+
+      const isReblog = !!status.getIn(['reblog', 'id']);
+      const originalPosterUsername = isReblog ? status.getIn(['reblog', 'account', 'acct']) : status.getIn(['account', 'acct']);
+
+      this.context.router.history.push(`/${originalPosterUsername}/posts/${status.getIn(['reblog', 'id'], status.get('id'))}`);
     }
   }
 

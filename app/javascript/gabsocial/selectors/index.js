@@ -70,11 +70,18 @@ export const makeGetStatus = () => {
       (state, { id }) => state.getIn(['statuses', state.getIn(['statuses', id, 'reblog'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', id, 'account'])]),
       (state, { id }) => state.getIn(['accounts', state.getIn(['statuses', state.getIn(['statuses', id, 'reblog']), 'account'])]),
+      (state, { username }) => username,
       getFilters,
     ],
 
-    (statusBase, statusReblog, accountBase, accountReblog, filters) => {
+    (statusBase, statusReblog, accountBase, accountReblog, username, filters) => {
       if (!statusBase) {
+        return null;
+      }
+
+      const accountUsername = accountBase.get('acct');
+      //Must be owner of status if username exists
+      if (accountUsername !== username && username !== undefined) {
         return null;
       }
 
