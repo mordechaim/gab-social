@@ -28,6 +28,9 @@ class Group < ApplicationRecord
   has_many :group_accounts, inverse_of: :group, dependent: :destroy
   has_many :accounts, through: :group_accounts
 
+  has_many :group_removed_accounts, inverse_of: :group, dependent: :destroy
+  has_many :removed_accounts, source: :account, through: :group_removed_accounts
+
   validates :title, presence: true
   validates :description, presence: true
 
