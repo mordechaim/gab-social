@@ -1380,6 +1380,7 @@ a.account__display-name {
 .ui {
 	display: block;
 	width: 100%;
+	padding: 0 0 100px 0;
 
 	.page {
 	display: flex;
@@ -5101,5 +5102,27 @@ noscript {
 		&__type-filters-tabs {
 			max-width: 900px;
 		}
+	}
+}
+
+.timeline-queue-header {
+	display: block;
+	width: 100%;
+	height: 52px;
+	position: relative;
+	background-color: darken($ui-base-color, 8%);
+	border-bottom: 1px solid;
+	border-top: 1px solid;
+	border-color: darken($ui-base-color, 4%);
+
+	&__btn {
+		display: block;
+		width: 100%;
+		height: 100%;
+		text-align: center;
+		line-height: 52px;
+		font-size: 14px;
+		cursor: pointer;
+		color: $secondary-text-color;
 	}
 }

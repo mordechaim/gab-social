@@ -69,6 +69,7 @@ class ComposeForm extends ImmutablePureComponent {
     shouldCondense: PropTypes.bool,
     autoFocus: PropTypes.bool,
     group: ImmutablePropTypes.map,
+    isModalOpen: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -151,6 +152,8 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   componentDidUpdate (prevProps) {
+    if (!this.autosuggestTextarea) return;
+
     // This statement does several things:
     // - If we're beginning a reply, and,
     //     - Replying to zero or one users, places the cursor at the end of the textbox.
@@ -204,7 +207,7 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, onPaste, showSearch, anyMedia, shouldCondense, autoFocus } = this.props;
+    const { intl, onPaste, showSearch, anyMedia, shouldCondense, autoFocus, isModalOpen } = this.props;
     const condensed = shouldCondense && !this.props.text && !this.state.composeFocused;
     const disabled = this.props.isSubmitting;
     const text     = [this.props.spoilerText, countableText(this.props.text)].join('');
@@ -253,7 +256,7 @@ class ComposeForm extends ImmutablePureComponent {
         </div>
 
         <AutosuggestTextarea
-          ref={this.setAutosuggestTextarea}
+          ref={(isModalOpen && shouldCondense) ? null : this.setAutosuggestTextarea}
           placeholder={intl.formatMessage(messages.placeholder)}
           disabled={disabled}
           value={this.props.text}

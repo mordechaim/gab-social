@@ -14,10 +14,6 @@ export function HomeTimeline () {
   return import(/* webpackChunkName: "features/home_timeline" */'../../home_timeline');
 }
 
-export function PublicTimeline () {
-  return import(/* webpackChunkName: "features/public_timeline" */'../../public_timeline');
-}
-
 export function CommunityTimeline () {
   return import(/* webpackChunkName: "features/community_timeline" */'../../community_timeline');
 }

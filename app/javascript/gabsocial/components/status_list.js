@@ -7,6 +7,7 @@ import StatusContainer from '../containers/status_container';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import LoadGap from './load_gap';
 import ScrollableList from './scrollable_list';
+import TimelineQueueButtonHeader from './timeline_queue_button_header';
 
 export default class StatusList extends ImmutablePureComponent {
 
@@ -22,6 +23,12 @@ export default class StatusList extends ImmutablePureComponent {
     emptyMessage: PropTypes.node,
     alwaysPrepend: PropTypes.bool,
     timelineId: PropTypes.string,
+    queuedItemSize: PropTypes.number,
+    onDequeueTimeline: PropTypes.func,
+  };
+
+  componentDidMount() {
+    this.handleDequeueTimeline();
   };
 
   getFeaturedStatusCount = () => {
@@ -64,13 +71,18 @@ export default class StatusList extends ImmutablePureComponent {
     }
   }
 
+  handleDequeueTimeline = () => {
+    const { onDequeueTimeline, timelineId } = this.props;
+    if (!onDequeueTimeline || !timelineId) return;
+    onDequeueTimeline(timelineId);
+  }
+
   setRef = c => {
     this.node = c;
   }
 
   render () {
-    const { statusIds, featuredStatusIds, onLoadMore, timelineId, ...other }  = this.props;
-    const { isLoading, isPartial } = other;
+    const { statusIds, featuredStatusIds, onLoadMore, timelineId, totalQueuedItemsCount, isLoading, isPartial, ...other }  = this.props;
 
     if (isPartial) {
       return (
@@ -119,11 +131,12 @@ export default class StatusList extends ImmutablePureComponent {
       )).concat(scrollableContent);
     }
 
-    return (
-      <ScrollableList {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
+    return [
+      <TimelineQueueButtonHeader key='timeline-queue-button-header' onClick={this.handleDequeueTimeline} count={totalQueuedItemsCount} itemType='gab' />,
+      <ScrollableList key='scrollable-list' {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
         {scrollableContent}
       </ScrollableList>
-    );
+    ];
   }
 
 }

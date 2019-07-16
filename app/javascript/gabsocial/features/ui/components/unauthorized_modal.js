@@ -6,7 +6,6 @@ import { me } from '../../../initial_state';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Avatar from '../../../components/avatar';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import ComposeFormContainer from '../../compose/containers/compose_form_container';
 import IconButton from 'gabsocial/components/icon_button';
 
 const messages = defineMessages({

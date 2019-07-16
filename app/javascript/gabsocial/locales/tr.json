@@ -18,7 +18,7 @@
   "account.link_verified_on": "Bu bağlantının mülkiyeti {date} tarihinde kontrol edildi",
   "account.locked_info": "Bu hesabın gizlilik durumu kilitli olarak ayarlanmış. Sahibi, onu kimin takip edebileceğini elle inceler.",
   "account.media": "Medya",
-  "account.mention": "@{name} kullanıcısından bahset",
+  "account.mention": "kullanıcısından bahset",
   "account.moved_to": "{name} şuraya taşındı:",
   "account.mute": "@{name} kullanıcısını sessize al",
   "account.mute_notifications": "@{name} kullanıcısının bildirimlerini kapat",

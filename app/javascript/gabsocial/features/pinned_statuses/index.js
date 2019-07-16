@@ -5,7 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { fetchPinnedStatuses } from '../../actions/pin_statuses';
 import Column from '../ui/components/column';
 import StatusList from '../../components/status_list';
-import { injectIntl } from 'react-intl';
+import { injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { meUsername } from 'gabsocial/initial_state';
 import MissingIndicator from 'gabsocial/components/missing_indicator';
@@ -51,6 +51,7 @@ class PinnedStatuses extends ImmutablePureComponent {
           statusIds={statusIds}
           scrollKey='pinned_statuses'
           hasMore={hasMore}
+          emptyMessage={<FormattedMessage id='pinned_statuses.none' defaultMessage='No pins to show.'/>}
         />
       </Column>
     );

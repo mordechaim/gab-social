@@ -36,7 +36,6 @@ class ListTimeline extends React.PureComponent {
   static propTypes = {
     params: PropTypes.object.isRequired,
     dispatch: PropTypes.func.isRequired,
-    columnId: PropTypes.string,
     hasUnread: PropTypes.bool,
     list: PropTypes.oneOfType([ImmutablePropTypes.map, PropTypes.bool]),
     intl: PropTypes.object.isRequired,
@@ -69,7 +68,7 @@ class ListTimeline extends React.PureComponent {
   }
 
   handleDeleteClick = () => {
-    const { dispatch, columnId, intl } = this.props;
+    const { dispatch, intl } = this.props;
     const { id } = this.props.params;
 
     dispatch(openModal('CONFIRM', {
@@ -77,18 +76,13 @@ class ListTimeline extends React.PureComponent {
       confirm: intl.formatMessage(messages.deleteConfirm),
       onConfirm: () => {
         dispatch(deleteList(id));
-
-        if (!!columnId) {
-          //
-        } else {
-          this.context.router.history.push('/lists');
-        }
+        this.context.router.history.push('/lists');
       },
     }));
   }
 
   render () {
-    const { hasUnread, columnId, list } = this.props;
+    const { hasUnread, list } = this.props;
     const { id } = this.props.params;
     const title  = list ? list.get('title') : id;
 
@@ -126,7 +120,7 @@ class ListTimeline extends React.PureComponent {
         </ColumnHeader>
 
         <StatusListContainer
-          scrollKey={`list_timeline-${columnId}`}
+          scrollKey='list_timeline'
           timelineId={`list:${id}`}
           onLoadMore={this.handleLoadMore}
           emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />}

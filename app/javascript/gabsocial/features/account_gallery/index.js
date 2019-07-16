@@ -212,6 +212,13 @@ class AccountGallery extends ImmutablePureComponent {
                 <MediaItem key={attachment.get('id')} attachment={attachment} displayWidth={width} onOpenMedia={this.handleOpenMedia} />
               ))}
 
+              {
+                attachments.size == 0 &&
+                <div className='empty-column-indicator'>
+                  <FormattedMessage id='account_gallery.none' defaultMessage='No media to show.'/>
+                </div>
+              }
+
               {loadOlder}
             </div>
 

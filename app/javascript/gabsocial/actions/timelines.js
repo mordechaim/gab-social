@@ -1,10 +1,12 @@
 import { importFetchedStatus, importFetchedStatuses } from './importer';
 import api, { getLinks } from '../api';
-import { Map as ImmutableMap, List as ImmutableList } from 'immutable';
+import { Map as ImmutableMap, List as ImmutableList, toJS } from 'immutable';
 
 export const TIMELINE_UPDATE  = 'TIMELINE_UPDATE';
 export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
 export const TIMELINE_CLEAR   = 'TIMELINE_CLEAR';
+export const TIMELINE_UPDATE_QUEUE = 'TIMELINE_UPDATE_QUEUE';
+export const TIMELINE_DEQUEUE = 'TIMELINE_DEQUEUE';
 
 export const TIMELINE_EXPAND_REQUEST = 'TIMELINE_EXPAND_REQUEST';
 export const TIMELINE_EXPAND_SUCCESS = 'TIMELINE_EXPAND_SUCCESS';
@@ -12,6 +14,8 @@ export const TIMELINE_EXPAND_FAIL    = 'TIMELINE_EXPAND_FAIL';
 
 export const TIMELINE_CONNECT    = 'TIMELINE_CONNECT';
 export const TIMELINE_DISCONNECT = 'TIMELINE_DISCONNECT';
+
+export const MAX_QUEUED_ITEMS = 40;
 
 export function updateTimeline(timeline, status, accept) {
   return dispatch => {
@@ -27,6 +31,64 @@ export function updateTimeline(timeline, status, accept) {
       status,
     });
   };
+};
+
+export function updateTimelineQueue(timeline, status, accept) {
+  return dispatch => {
+    if (typeof accept === 'function' && !accept(status)) {
+      return;
+    }
+
+    dispatch({
+      type: TIMELINE_UPDATE_QUEUE,
+      timeline,
+      status,
+    });
+  }
+};
+
+export function dequeueTimeline(timeline, expandFunc, optionalExpandArgs) {
+  return (dispatch, getState) => {
+    const queuedItems = getState().getIn(['timelines', timeline, 'queuedItems'], ImmutableList());
+    const totalQueuedItemsCount = getState().getIn(['timelines', timeline, 'totalQueuedItemsCount'], 0);
+
+    let shouldDispatchDequeue = true;
+
+    if (totalQueuedItemsCount == 0) {
+      return;
+    }
+    else if (totalQueuedItemsCount > 0 && totalQueuedItemsCount <= MAX_QUEUED_ITEMS) {
+      queuedItems.forEach(status => {
+        dispatch(updateTimeline(timeline, status.toJS(), null));
+      });
+    }
+    else {
+      if (typeof expandFunc === 'function') {
+        dispatch(clearTimeline(timeline));
+        expandFunc();
+      }
+      else {
+        if (timeline === 'home') {
+          dispatch(clearTimeline(timeline));
+          dispatch(expandHomeTimeline(optionalExpandArgs));
+        }
+        else if (timeline === 'community') {
+          dispatch(clearTimeline(timeline));
+          dispatch(expandCommunityTimeline(optionalExpandArgs));
+        }
+        else {
+          shouldDispatchDequeue = false;
+        }
+      }
+    }
+
+    if (!shouldDispatchDequeue) return;
+
+    dispatch({
+      type: TIMELINE_DEQUEUE,
+      timeline,
+    });
+  }
 };
 
 export function deleteFromTimelines(id) {

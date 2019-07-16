@@ -18,7 +18,7 @@
   "account.link_verified_on": "Eigendom van deze link is gecontroleerd op {date}",
   "account.locked_info": "De privacystatus van dit account is op besloten gezet. De eigenaar bepaalt handmatig wie hen kan volgen.",
   "account.media": "Media",
-  "account.mention": "Vermeld @{name}",
+  "account.mention": "Vermeld",
   "account.moved_to": "{name} is verhuisd naar:",
   "account.mute": "Negeer @{name}",
   "account.mute_notifications": "Negeer meldingen van @{name}",

@@ -18,7 +18,7 @@
   "account.link_verified_on": "A propiedade de esta ligazón foi comprobada en {date}",
   "account.locked_info": "O estado da intimidade de esta conta estableceuse en pechado. A persoa dona da conta revisa quen pode seguila.",
   "account.media": "Medios",
-  "account.mention": "Mencionar @{name}",
+  "account.mention": "Mencionar",
   "account.moved_to": "{name} marchou a:",
   "account.mute": "Acalar @{name}",
   "account.mute_notifications": "Acalar as notificacións de @{name}",

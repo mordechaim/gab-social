@@ -18,7 +18,7 @@
   "account.link_verified_on": "Własność tego odnośnika została potwierdzona {date}",
   "account.locked_info": "To konto jest prywatne. Właściciel ręcznie wybiera kto może go śledzić.",
   "account.media": "Zawartość multimedialna",
-  "account.mention": "Wspomnij o @{name}",
+  "account.mention": "Wspomnij",
   "account.moved_to": "{name} przeniósł(-osła) się do:",
   "account.mute": "Wycisz @{name}",
   "account.mute_notifications": "Wycisz powiadomienia o @{name}",

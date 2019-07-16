@@ -18,7 +18,7 @@
   "account.link_verified_on": "مالکیت این نشانی در تایخ {date} بررسی شد",
   "account.locked_info": "این حساب خصوصی است. صاحب این حساب تصمیم می‌گیرد که چه کسی می‌تواند پیگیرش باشد.",
   "account.media": "عکس و ویدیو",
-  "account.mention": "نام‌بردن از @{name}",
+  "account.mention": "نام‌بردن از",
   "account.moved_to": "{name} منتقل شده است به:",
   "account.mute": "بی‌صدا کردن @{name}",
   "account.mute_notifications": "بی‌صداکردن اعلان‌ها از طرف @{name}",

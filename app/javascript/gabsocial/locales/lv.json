@@ -18,7 +18,7 @@
   "account.link_verified_on": "Šīs saites piederība ir pārbaudīta {date}",
   "account.locked_info": "Šī konta privātuma status ir iestatīts slēgts. Īpašnieks izskatīs un izvēlēsies kas viņam drīkst sekot.",
   "account.media": "Mēdiji",
-  "account.mention": "Piemin @{name}",
+  "account.mention": "Piemin",
   "account.moved_to": "{name} ir pārvācies uz:",
   "account.mute": "Apklusināt @{name}",
   "account.mute_notifications": "Nerādīt paziņojumus no @{name}",
