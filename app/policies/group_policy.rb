@@ -42,6 +42,18 @@ class GroupPolicy < ApplicationPolicy
     is_group_admin?
   end
 
+  def show_removed_accounts?
+    is_group_admin?
+  end
+  
+  def create_removed_account?
+    is_group_admin?
+  end
+
+  def destroy_removed_account?
+    is_group_admin?
+  end
+
   private
 
   def is_member?

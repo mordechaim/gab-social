@@ -402,6 +402,7 @@ Rails.application.routes.draw do
 
         resources :relationships, only: :index, controller: 'groups/relationships'
         resource :accounts, only: [:show, :create, :update, :destroy], controller: 'groups/accounts'
+        resource :removed_accounts, only: [:show, :create, :destroy], controller: 'groups/removed_accounts'
       end
 
       resources :polls, only: [:create, :show] do
