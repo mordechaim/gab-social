@@ -8,11 +8,17 @@ import LoadingIndicator from '../../../components/loading_indicator';
 import {
 	fetchRemovedAccounts,
 	expandRemovedAccounts,
+	removeRemovedAccount,
 } from '../../../actions/groups';
 import { FormattedMessage } from 'react-intl';
 import AccountContainer from '../../../containers/account_container';
 import Column from '../../ui/components/column';
 import ScrollableList from '../../../components/scrollable_list';
+import { defineMessages, injectIntl } from 'react-intl';
+
+const messages = defineMessages({
+	remove: { id: 'groups.removed_accounts', defaultMessage: 'Allow joining' },
+});
 
 const mapStateToProps = (state, { params: { id } }) => ({
 	group: state.getIn(['groups', id]),
@@ -21,6 +27,7 @@ const mapStateToProps = (state, { params: { id } }) => ({
 });
 
 export default @connect(mapStateToProps)
+@injectIntl
 class GroupRemovedAccounts extends ImmutablePureComponent {
 
 	static propTypes = {
@@ -47,7 +54,7 @@ class GroupRemovedAccounts extends ImmutablePureComponent {
 	}, 300, { leading: true });
 
 	render () {
-		const { accountIds, hasMore, group } = this.props;
+		const { accountIds, hasMore, group, intl } = this.props;
 
 		if (!group || !accountIds) {
 			return (
@@ -65,7 +72,13 @@ class GroupRemovedAccounts extends ImmutablePureComponent {
 					onLoadMore={this.handleLoadMore}
 					emptyMessage={<FormattedMessage id='group.removed_accounts.empty' defaultMessage='This group does not has any removed accounts.' />}
 				>
-					{accountIds.map(id => <AccountContainer key={id} id={id} withNote={false} />)}
+					{accountIds.map(id => <AccountContainer 
+						key={id}
+						id={id}
+						actionIcon="remove"
+						onActionClick={() => this.props.dispatch(removeRemovedAccount(group.get('id'), id))}
+						actionTitle={intl.formatMessage(messages.remove)}
+					/>)}
 				</ScrollableList>
 			</Column>
 		);

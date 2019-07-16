@@ -26,6 +26,7 @@ import {
   GROUP_MEMBERS_EXPAND_SUCCESS,
   GROUP_REMOVED_ACCOUNTS_FETCH_SUCCESS,
   GROUP_REMOVED_ACCOUNTS_EXPAND_SUCCESS,
+  GROUP_REMOVED_ACCOUNTS_REMOVE_SUCCESS,
 } from '../actions/groups';
 
 const initialState = ImmutableMap({
@@ -90,6 +91,8 @@ export default function userLists(state = initialState, action) {
     return normalizeList(state, 'groups_removed_accounts', action.id, action.accounts, action.next);
   case GROUP_REMOVED_ACCOUNTS_EXPAND_SUCCESS:
     return appendToList(state, 'groups_removed_accounts', action.id, action.accounts, action.next);
+  case GROUP_REMOVED_ACCOUNTS_REMOVE_SUCCESS:
+    return state.updateIn(['groups_removed_accounts', action.groupId, 'items'], list => list.filterNot(item => item === action.id));
   default:
     return state;
   }
