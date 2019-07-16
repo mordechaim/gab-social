@@ -29,6 +29,7 @@ import { openModal } from '../actions/modal';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import { boostModal, deleteModal } from '../initial_state';
 import { showAlertForError } from '../actions/alerts';
+import { createRemovedAccount } from '../actions/groups';
 
 const messages = defineMessages({
   deleteConfirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
@@ -171,6 +172,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     } else {
       dispatch(hideStatus(status.get('id')));
     }
+  },
+
+  onGroupRemoveAccount(groupId, accountId) {
+    dispatch(createRemovedAccount(groupId, accountId));
   },
 
 });

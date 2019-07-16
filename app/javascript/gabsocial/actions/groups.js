@@ -43,6 +43,10 @@ export const GROUP_REMOVED_ACCOUNTS_REMOVE_REQUEST = 'GROUP_REMOVED_ACCOUNTS_REM
 export const GROUP_REMOVED_ACCOUNTS_REMOVE_SUCCESS = 'GROUP_REMOVED_ACCOUNTS_REMOVE_SUCCESS';
 export const GROUP_REMOVED_ACCOUNTS_REMOVE_FAIL    = 'GROUP_REMOVED_ACCOUNTS_REMOVE_FAIL';
 
+export const GROUP_REMOVED_ACCOUNTS_CREATE_REQUEST = 'GROUP_REMOVED_ACCOUNTS_CREATE_REQUEST';
+export const GROUP_REMOVED_ACCOUNTS_CREATE_SUCCESS = 'GROUP_REMOVED_ACCOUNTS_CREATE_SUCCESS';
+export const GROUP_REMOVED_ACCOUNTS_CREATE_FAIL    = 'GROUP_REMOVED_ACCOUNTS_CREATE_FAIL';
+
 export const fetchGroup = id => (dispatch, getState) => {
   if (!me) return;
 
@@ -431,6 +435,45 @@ export function removeRemovedAccountSuccess(groupId, id) {
 export function removeRemovedAccountFail(groupId, id, error) {
   return {
     type: GROUP_REMOVED_ACCOUNTS_REMOVE_FAIL,
+    groupId,
+    id,
+    error,
+  };
+};
+
+export function createRemovedAccount(groupId, id) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    dispatch(createRemovedAccountRequest(groupId, id));
+
+    api(getState).post(`/api/v1/groups/${groupId}/removed_accounts?account_id=${id}`).then(response => {
+      dispatch(createRemovedAccountSuccess(groupId, id));
+    }).catch(error => {
+      dispatch(createRemovedAccountFail(groupId, id, error));
+    });
+  };
+};
+
+export function createRemovedAccountRequest(groupId, id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_CREATE_REQUEST,
+    groupId,
+    id,
+  };
+};
+
+export function createRemovedAccountSuccess(groupId, id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_CREATE_SUCCESS,
+    groupId,
+    id,
+  };
+};
+
+export function createRemovedAccountFail(groupId, id, error) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_CREATE_FAIL,
     groupId,
     id,
     error,

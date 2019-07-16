@@ -94,6 +94,7 @@ class GroupTimeline extends React.PureComponent {
 						scrollKey={`group_timeline-${columnId}`}
 						timelineId={`group:${id}`}
 						onLoadMore={this.handleLoadMore}
+						withGroupAdmin={relationships && relationships.get('admin')}
 						emptyMessage={<FormattedMessage id='empty_column.group' defaultMessage='There is nothing in this group yet. When members of this group post new statuses, they will appear here.' />}
 					/>
 				</div>
