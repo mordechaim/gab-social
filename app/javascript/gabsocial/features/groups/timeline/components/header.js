@@ -5,10 +5,12 @@ import Button from 'gabsocial/components/button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { defineMessages, injectIntl } from 'react-intl';
 import { NavLink } from 'react-router-dom';
+import DropdownMenuContainer from '../../../../containers/dropdown_menu_container';
 
 const messages = defineMessages({
 	join: { id: 'groups.join', defaultMessage: 'Join group' },
 	leave: { id: 'groups.leave', defaultMessage: 'Leave group' },
+	removed_accounts: { id: 'groups.removed_accounts', defaultMessage: 'Removed Accounts' }
 });
 
 export default @injectIntl
@@ -36,6 +38,16 @@ class Header extends ImmutablePureComponent {
 		}
 	}
 
+	getAdminMenu() {
+		const { group, intl } = this.props;
+
+		const menu = [
+			{ text: intl.formatMessage(messages.removed_accounts), to: `/groups/${group.get('id')}/removed_accounts` },
+		];
+
+		return <DropdownMenuContainer items={menu} icon='ellipsis-v' size={24} direction='right' />;
+	}
+
 	render () {
 		const { group, relationships } = this.props;
 
@@ -54,6 +66,7 @@ class Header extends ImmutablePureComponent {
 						<NavLink exact className='group__tabs__tab' activeClassName='group__tabs__tab--active' to={`/groups/${group.get('id')}`}>Posts</NavLink>
 						<NavLink exact className='group__tabs__tab' activeClassName='group__tabs__tab--active' to={`/groups/${group.get('id')}/members`}>Members</NavLink>
 						{this.getActionButton()}
+						{relationships.get('admin') && this.getAdminMenu()}
 					</div>
 				</div>
 			</div>

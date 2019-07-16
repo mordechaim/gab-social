@@ -38,6 +38,10 @@ export function GroupMembers () {
   return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/members');
 }
 
+export function GroupRemovedAccounts () {
+  return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/removed_accounts');
+}
+
 export function Groups () {
   return import(/* webpackChunkName: "features/groups/index" */'../../groups/index');
 }

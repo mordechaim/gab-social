@@ -31,6 +31,14 @@ export const GROUP_MEMBERS_EXPAND_REQUEST = 'GROUP_MEMBERS_EXPAND_REQUEST';
 export const GROUP_MEMBERS_EXPAND_SUCCESS = 'GROUP_MEMBERS_EXPAND_SUCCESS';
 export const GROUP_MEMBERS_EXPAND_FAIL    = 'GROUP_MEMBERS_EXPAND_FAIL';
 
+export const GROUP_REMOVED_ACCOUNTS_FETCH_REQUEST = 'GROUP_REMOVED_ACCOUNTS_FETCH_REQUEST';
+export const GROUP_REMOVED_ACCOUNTS_FETCH_SUCCESS = 'GROUP_REMOVED_ACCOUNTS_FETCH_SUCCESS';
+export const GROUP_REMOVED_ACCOUNTS_FETCH_FAIL    = 'GROUP_REMOVED_ACCOUNTS_FETCH_FAIL';
+
+export const GROUP_REMOVED_ACCOUNTS_EXPAND_REQUEST = 'GROUP_REMOVED_ACCOUNTS_EXPAND_REQUEST';
+export const GROUP_REMOVED_ACCOUNTS_EXPAND_SUCCESS = 'GROUP_REMOVED_ACCOUNTS_EXPAND_SUCCESS';
+export const GROUP_REMOVED_ACCOUNTS_EXPAND_FAIL    = 'GROUP_REMOVED_ACCOUNTS_EXPAND_FAIL';
+
 export const fetchGroup = id => (dispatch, getState) => {
   if (!me) return;
 
@@ -291,6 +299,96 @@ export function expandMembersSuccess(id, accounts, next) {
 export function expandMembersFail(id, error) {
   return {
     type: GROUP_MEMBERS_EXPAND_FAIL,
+    id,
+    error,
+  };
+};
+
+export function fetchRemovedAccounts(id) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    dispatch(fetchRemovedAccountsRequest(id));
+
+    api(getState).get(`/api/v1/groups/${id}/removed_accounts`).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(fetchRemovedAccountsSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => {
+      dispatch(fetchRemovedAccountsFail(id, error));
+    });
+  };
+};
+
+export function fetchRemovedAccountsRequest(id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_FETCH_REQUEST,
+    id,
+  };
+};
+
+export function fetchRemovedAccountsSuccess(id, accounts, next) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_FETCH_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+};
+
+export function fetchRemovedAccountsFail(id, error) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_FETCH_FAIL,
+    id,
+    error,
+  };
+};
+
+export function expandRemovedAccounts(id) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    const url = getState().getIn(['user_lists', 'groups_removed_accounts', id, 'next']);
+
+    if (url === null) {
+      return;
+    }
+
+    dispatch(expandRemovedAccountsRequest(id));
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(expandRemovedAccountsSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => {
+      dispatch(expandRemovedAccountsFail(id, error));
+    });
+  };
+};
+
+export function expandRemovedAccountsRequest(id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_EXPAND_REQUEST,
+    id,
+  };
+};
+
+export function expandRemovedAccountsSuccess(id, accounts, next) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_EXPAND_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+};
+
+export function expandRemovedAccountsFail(id, error) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_EXPAND_FAIL,
     id,
     error,
   };

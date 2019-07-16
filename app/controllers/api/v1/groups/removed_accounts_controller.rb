@@ -56,7 +56,7 @@ class Api::V1::Groups::RemovedAccountsController < Api::BaseController
     return if unlimited?
 
     if records_continue?
-      api_v1_group_accounts_url pagination_params(max_id: pagination_max_id)
+      api_v1_group_removed_accounts_url pagination_params(max_id: pagination_max_id)
     end
   end
 
@@ -64,7 +64,7 @@ class Api::V1::Groups::RemovedAccountsController < Api::BaseController
     return if unlimited?
 
     unless @accounts.empty?
-      api_v1_group_accounts_url pagination_params(since_id: pagination_since_id)
+      api_v1_group_removed_accounts_url pagination_params(since_id: pagination_since_id)
     end
   end
 
