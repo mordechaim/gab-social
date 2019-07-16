@@ -16,7 +16,7 @@ class Api::V1::GroupsController < Api::BaseController
       when 'member'
         @groups = Group.joins(:group_accounts).where(is_archived: false, group_accounts: { account: current_account }).all
       when 'admin'
-        @groups = Group.joins(:group_accounts).where(is_archived: false, group_accounts: { account: current_account, write_permissions: true }).all
+        @groups = Group.joins(:group_accounts).where(is_archived: false, group_accounts: { account: current_account, role: :admin }).all
     end
 
     render json: @groups, each_serializer: REST::GroupSerializer
