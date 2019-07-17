@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import { shortNumberFormat } from '../utils/numbers';
+import classNames from 'classnames';
 
 export default class TimelineQueueButtonHeader extends React.PureComponent {
   static propTypes = {
@@ -18,19 +19,21 @@ export default class TimelineQueueButtonHeader extends React.PureComponent {
   render () {
     const { count, itemType, onClick } = this.props;
 
-    if (count <= 0) return null;
+    const classes = classNames('timeline-queue-header', {
+      'hidden': (count <= 0)
+    });
 
     return (
-      <div className='timeline-queue-header'>
+      <div className={classes}>
         <a className='timeline-queue-header__btn' onClick={onClick}>
-          <FormattedMessage
+          {(count > 0) && <FormattedMessage
             id='timeline_queue.label'
             defaultMessage='Click to see {count} new {type}'
             values={{
               count: shortNumberFormat(count),
               type: count == 1 ? itemType : `${itemType}s`,
             }}
-          />
+          />}
         </a>
       </div>
     );
