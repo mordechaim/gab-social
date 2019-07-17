@@ -33,7 +33,6 @@ import {
 import { initMuteModal } from '../../actions/mutes';
 import { initReport } from '../../actions/reports';
 import { makeGetStatus } from '../../selectors';
-import { ScrollContainer } from 'react-router-scroll-4';
 import ColumnHeader from '../../components/column_header';
 import StatusContainer from '../../containers/status_container';
 import { openModal } from '../../actions/modal';
@@ -471,43 +470,41 @@ class Status extends ImmutablePureComponent {
           />
         }
 
-        <ScrollContainer scrollKey='thread'>
-          <div ref={this.setRef}>
-            {ancestors}
+        <div ref={this.setRef}>
+          {ancestors}
 
-            <HotKeys handlers={handlers}>
-              <div className={classNames('focusable', 'detailed-status__wrapper')} tabIndex='0' aria-label={textForScreenReader(intl, status, false)}>
-                <DetailedStatus
-                  status={status}
-                  onOpenVideo={this.handleOpenVideo}
-                  onOpenMedia={this.handleOpenMedia}
-                  onToggleHidden={this.handleToggleHidden}
-                  domain={domain}
-                  showMedia={this.state.showMedia}
-                  onToggleMediaVisibility={this.handleToggleMediaVisibility}
-                />
+          <HotKeys handlers={handlers}>
+            <div className={classNames('focusable', 'detailed-status__wrapper')} tabIndex='0' aria-label={textForScreenReader(intl, status, false)}>
+              <DetailedStatus
+                status={status}
+                onOpenVideo={this.handleOpenVideo}
+                onOpenMedia={this.handleOpenMedia}
+                onToggleHidden={this.handleToggleHidden}
+                domain={domain}
+                showMedia={this.state.showMedia}
+                onToggleMediaVisibility={this.handleToggleMediaVisibility}
+              />
 
-                <ActionBar
-                  status={status}
-                  onReply={this.handleReplyClick}
-                  onFavourite={this.handleFavouriteClick}
-                  onReblog={this.handleReblogClick}
-                  onDelete={this.handleDeleteClick}
-                  onDirect={this.handleDirectClick}
-                  onMention={this.handleMentionClick}
-                  onMute={this.handleMuteClick}
-                  onMuteConversation={this.handleConversationMuteClick}
-                  onBlock={this.handleBlockClick}
-                  onReport={this.handleReport}
-                  onPin={this.handlePin}
-                  onEmbed={this.handleEmbed}
-                />
-              </div>
-            </HotKeys>
+              <ActionBar
+                status={status}
+                onReply={this.handleReplyClick}
+                onFavourite={this.handleFavouriteClick}
+                onReblog={this.handleReblogClick}
+                onDelete={this.handleDeleteClick}
+                onDirect={this.handleDirectClick}
+                onMention={this.handleMentionClick}
+                onMute={this.handleMuteClick}
+                onMuteConversation={this.handleConversationMuteClick}
+                onBlock={this.handleBlockClick}
+                onReport={this.handleReport}
+                onPin={this.handlePin}
+                onEmbed={this.handleEmbed}
+              />
+            </div>
+          </HotKeys>
 
-            {descendants}
-          </div>
-        </ScrollContainer>
+          {descendants}
+        </div>
       </Column>
     );
   }
