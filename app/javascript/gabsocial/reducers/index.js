@@ -35,6 +35,7 @@ import trends from './trends';
 import groups from './groups';
 import group_relationships from './group_relationships';
 import group_lists from './group_lists';
+import group_editor from './group_editor';
 
 const reducers = {
   dropdown_menu,
@@ -73,6 +74,7 @@ const reducers = {
   groups,
   group_relationships,
   group_lists,
+  group_editor,
 };
 
 export default combineReducers(reducers);

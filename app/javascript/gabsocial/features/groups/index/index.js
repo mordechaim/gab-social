@@ -11,9 +11,10 @@ import GroupCard from './card';
 
 const messages = defineMessages({
 	heading: { id: 'column.groups', defaultMessage: 'Groups' },
-	tab_featured: { id: 'column.groups_tab_featured', defaultMessage: 'Featured' },
-	tab_member: { id: 'column.groups_tab_member', defaultMessage: 'Groups you\'re in' },
-	tab_admin: { id: 'column.groups_tab_admin', defaultMessage: 'Groups you manage' },
+	create: { id: 'groups.create', defaultMessage: 'Create group' },
+	tab_featured: { id: 'groups.tab_featured', defaultMessage: 'Featured' },
+	tab_member: { id: 'groups.tab_member', defaultMessage: 'Groups you\'re in' },
+	tab_admin: { id: 'groups.tab_admin', defaultMessage: 'Groups you manage' },
 });
 
 const mapStateToProps = (state, { activeTab }) => ({
@@ -49,6 +50,7 @@ class Groups extends ImmutablePureComponent {
 			<div>
 				<div className="group-column-header">
 					<div className="group-column-header__title">{intl.formatMessage(messages.heading)}</div>
+					<div className="group-column-header__cta"><Link to="/groups/create">{intl.formatMessage(messages.create)}</Link></div>
 					
 					<div className="column-header__wrapper">
 						<h1 className="column-header">

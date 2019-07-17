@@ -42,6 +42,10 @@ export function GroupRemovedAccounts () {
   return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/removed_accounts');
 }
 
+export function GroupCreate () {
+  return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/create');
+}
+
 export function Groups () {
   return import(/* webpackChunkName: "features/groups/index" */'../../groups/index');
 }
