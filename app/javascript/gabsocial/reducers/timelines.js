@@ -10,6 +10,7 @@ import {
   TIMELINE_UPDATE_QUEUE,
   TIMELINE_DEQUEUE,
   MAX_QUEUED_ITEMS,
+  TIMELINE_SCROLL_TOP,
 } from '../actions/timelines';
 import {
   ACCOUNT_BLOCK_SUCCESS,
@@ -137,6 +138,13 @@ const filterTimelines = (state, relationship, statuses) => {
   return state;
 };
 
+const updateTop = (state, timeline, top) => {
+  return state.update(timeline, initialTimeline, map => map.withMutations(mMap => {
+    if (top) mMap.set('unread', 0);
+    mMap.set('top', top);
+  }));
+};
+
 const filterTimeline = (timeline, state, relationship, statuses) =>
   state.updateIn([timeline, 'items'], ImmutableList(), list =>
     list.filterNot(statusId =>
@@ -171,6 +179,8 @@ export default function timelines(state = initialState, action) {
     return filterTimeline('home', state, action.relationship, action.statuses);
   case TIMELINE_CONNECT:
     return state.update(action.timeline, initialTimeline, map => map.set('online', true));
+  case TIMELINE_SCROLL_TOP:
+    return updateTop(state, action.timeline, action.top);
   case TIMELINE_DISCONNECT:
     return state.update(
       action.timeline,

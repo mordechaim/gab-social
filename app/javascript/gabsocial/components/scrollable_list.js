@@ -26,6 +26,8 @@ export default class ScrollableList extends PureComponent {
     alwaysPrepend: PropTypes.bool,
     emptyMessage: PropTypes.node,
     children: PropTypes.node,
+    onScrollToTop: PropTypes.func,
+    onScroll: PropTypes.func,
   };
 
   state = {
