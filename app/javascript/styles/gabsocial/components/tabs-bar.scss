@@ -116,7 +116,7 @@
 	}
 }
 
-
+//////////////////////////////////////////////////////////////////////////////////////////
 
 .tabs-bar__link {
 	display: flex;
@@ -126,70 +126,101 @@
 	text-decoration: none;
 	text-align: center;
 	background-repeat: no-repeat;
-
-	// NOTE - Explore not using SVG for the navigation icons.
-	// The icon pixels shift around too much on crappy screens in certain situations
-	// If switched to an @2x png sprite, subtle shading and color can be introduced
-
+	background-image: url('../images/sprite-main-navigation-links.png');
+	background-size: auto 84px;
+	@media screen and (max-width: $nav-breakpoint-1) {
+		background-size: auto 120px;
+		width: 46px;
+		height: 42px;
+		margin: 4px 0 0 0;
+		padding: 0 !important;
+		&.active {
+			height: 38px;
+			border-bottom: 4px solid $gab-default-text-light;
+		}
+		& span {display: none;}
+	}
 	&.home {
 		padding: 16px 0 0 25px;
-		background-image: url('../images/gab-icons/icon-home-sprite.svg');
-		background-size: 17px 114px;
-		background-position: 0 -82px;
-		&.active{background-position: 0 18px;}
+		background-position: 0 18px;
+		&.active {background-position: 0 -52px;}
 		@media screen and (max-width: $nav-breakpoint-1) {
-			background-size: 24px 160.94px;
-			@-moz-document url-prefix() {
-				&.active{background-position: center 10px !important;}
-			}
+			background-position: 11px 11px;
+			&.active {background-position: 11px -89px;}
 		}
 	}
-	&.explore,
-	&.notifications,
-	&.messages,
-	&.optional {
+	&.notifications {
 		padding: 16px 0 0 23px;
-		background-size: 14px 114px;
+		background-position: -140px 18px;
+		&.active {background-position: -140px -52px;}
 		@media screen and (max-width: $nav-breakpoint-1) {
-			background-size: 20px 160.94px;
+			background-position: -186px 11px;
+			&.active {background-position: -186px -89px;}
 		}
-
-		background-position: 0 -82px;
-		&.active{background-position: 0 18px;}
 	}
-	&.explore {background-image: url('../images/gab-icons/icon-explore-sprite.svg');}
-	&.notifications {background-image: url('../images/gab-icons/icon-notifications-sprite.svg');}
-	&.messages {background-image: url('../images/gab-icons/icon-messages-sprite.svg');}
-	&.optional {background-image: url('../images/gab-icons/icon-search-sprite.svg');}
-
-
+	&.groups {
+		padding: 16px 0 0 28px;
+		background-position: -280px 18px;
+		&.active {background-position: -280px -52px;}
+		@media screen and (max-width: $nav-breakpoint-1) {
+			background-position: -390px 11px;
+			&.active {background-position: -390px -89px;}
+		}
+	}
 	&.optional {
 		display: none;
-		@media screen and (max-width: $nav-breakpoint-2) {display: flex;}
+		@media screen and (max-width: $nav-breakpoint-2) {
+			display: flex;
+			background-position: -987px 11px;
+			&.active {background-position: -987px -89px;}
+		}
 	}
+
+
+
+	// &.notifications,
+	// &.explore,
+	// &.messages,
+	// &.optional {
+	// 	padding: 16px 0 0 23px;
+	// 	background-size: 14px 114px;
+	// 	@media screen and (max-width: $nav-breakpoint-1) {background-size: 20px 160.94px;}
+	// 	background-position: 0 -82px;
+	// 	&.active{background-position: 0 18px;}
+	// }
+	// &.explore {background-image: url('../images/gab-icons/icon-explore-sprite.svg');}
+	// &.notifications {background-image: url('../images/gab-icons/icon-notifications-sprite.svg');}
+	// &.messages {background-image: url('../images/gab-icons/icon-messages-sprite.svg');}
+	// &.groups {background-image: url('../images/gab-icons/icon-groups-sprite.svg');}
+	// &.optional {background-image: url('../images/gab-icons/icon-search-sprite.svg');}
+	// &.optional {
+	// 	display: none;
+	// 	@media screen and (max-width: $nav-breakpoint-2) {display: flex;}
+	// }
 
 
 	// REWORK THIS BECAUSE OF FIREFOX BUGS
 
-	@media screen and (max-width: $nav-breakpoint-1) {
-		&.home,
-		&.explore,
-		&.notifications,
-		&.messages,
-		&.optional {
-			width: 46px;
-			height: 42px;
-			margin: 4px 0 0 0;
-			padding: 0;
-			background-position: center -130px;
-			&.active {
-				height: 38px;
-				border-bottom: 4px solid $gab-default-text-light;
-				background-position: center 11px;
-			}
-		}
-		& span {display: none;}
-	}
+	// @media screen and (max-width: $nav-breakpoint-1) {
+	// 	&.home,
+	// 	&.notifications,
+	// 	&.groups,
+	// 	&.explore,
+	// 	&.messages,
+	// 	&.optional {
+	// 		width: 46px;
+	// 		height: 42px;
+	// 		margin: 4px 0 0 0;
+	// 		padding: 0;
+	// 		background-position: center -130px;
+	// 		&.active {
+	// 			height: 38px;
+	// 			border-bottom: 4px solid $gab-default-text-light;
+	// 			background-position: center 11px;
+	// 		}
+	// 	}
+	// 	& span {display: none;}
+	// }
 
 	// END REWORK
 
