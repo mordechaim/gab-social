@@ -35,7 +35,7 @@ export const create = (title, description, coverImage, routerHistory) => (dispat
 	const formData = new FormData();
 	formData.append('title', title);
 	formData.append('description', description);
-	debugger;
+
 	if (coverImage !== null) {
 		formData.append('cover_image', coverImage);
 	}
