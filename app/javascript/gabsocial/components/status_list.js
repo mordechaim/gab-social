@@ -25,6 +25,8 @@ export default class StatusList extends ImmutablePureComponent {
     timelineId: PropTypes.string,
     queuedItemSize: PropTypes.number,
     onDequeueTimeline: PropTypes.func,
+    onScrollToTop: PropTypes.func,
+    onScroll: PropTypes.func,
   };
 
   componentDidMount() {
