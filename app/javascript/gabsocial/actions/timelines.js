@@ -7,6 +7,7 @@ export const TIMELINE_DELETE  = 'TIMELINE_DELETE';
 export const TIMELINE_CLEAR   = 'TIMELINE_CLEAR';
 export const TIMELINE_UPDATE_QUEUE = 'TIMELINE_UPDATE_QUEUE';
 export const TIMELINE_DEQUEUE = 'TIMELINE_DEQUEUE';
+export const TIMELINE_SCROLL_TOP = 'TIMELINE_SCROLL_TOP';
 
 export const TIMELINE_EXPAND_REQUEST = 'TIMELINE_EXPAND_REQUEST';
 export const TIMELINE_EXPAND_SUCCESS = 'TIMELINE_EXPAND_SUCCESS';
@@ -208,5 +209,13 @@ export function disconnectTimeline(timeline) {
   return {
     type: TIMELINE_DISCONNECT,
     timeline,
+  };
+};
+
+export function scrollTopTimeline(timeline, top) {
+  return {
+    type: TIMELINE_SCROLL_TOP,
+    timeline,
+    top,
   };
 };

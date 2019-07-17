@@ -25,6 +25,8 @@ export default class StatusList extends ImmutablePureComponent {
     timelineId: PropTypes.string,
     queuedItemSize: PropTypes.number,
     onDequeueTimeline: PropTypes.func,
+    onScrollToTop: PropTypes.func,
+    onScroll: PropTypes.func,
   };
 
   componentDidMount() {
@@ -133,7 +135,7 @@ export default class StatusList extends ImmutablePureComponent {
 
     return [
       <TimelineQueueButtonHeader key='timeline-queue-button-header' onClick={this.handleDequeueTimeline} count={totalQueuedItemsCount} itemType='gab' />,
-      <ScrollableList key='scrollable-list' {...other} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
+      <ScrollableList key='scrollable-list' {...other} isLoading={isLoading} showLoading={isLoading && statusIds.size === 0} onLoadMore={onLoadMore && this.handleLoadOlder} ref={this.setRef}>
         {scrollableContent}
       </ScrollableList>
     ];

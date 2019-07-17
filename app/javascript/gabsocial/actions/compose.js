@@ -154,8 +154,6 @@ export function submitCompose(routerHistory) {
     }).then(function (response) {
       if (response.data.visibility === 'direct' && getState().getIn(['conversations', 'mounted']) <= 0 && routerHistory) {
         routerHistory.push('/messages');
-      } else if (routerHistory && routerHistory.location.pathname === '/posts/new' && window.history.state) {
-        routerHistory.goBack();
       }
 
       dispatch(insertIntoTagHistory(response.data.tags, status));

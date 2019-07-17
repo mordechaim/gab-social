@@ -12,7 +12,6 @@ import Column from '../ui/components/column';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import { getAccountGallery } from 'gabsocial/selectors';
 import MediaItem from './components/media_item';
-import { ScrollContainer } from 'react-router-scroll-4';
 import LoadMore from 'gabsocial/components/load_more';
 import MissingIndicator from 'gabsocial/components/missing_indicator';
 import { openModal } from 'gabsocial/actions/modal';
@@ -189,46 +188,44 @@ class AccountGallery extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ScrollContainer scrollKey='account_gallery'>
-          <div className='slist slist--flex' onScroll={this.handleScroll}>
-            <div className='account__section-headline'>
-              <div style={{width: '100%', display: 'flex'}}>
-                <NavLink exact to={`/${accountUsername}`}>
-                  <FormattedMessage id='account.posts' defaultMessage='Gabs' />
-                </NavLink>
-                <NavLink exact to={`/${accountUsername}/with_replies`}>
-                  <FormattedMessage id='account.posts_with_replies' defaultMessage='Gabs and replies' />
-                </NavLink>
-                <NavLink exact to={`/${accountUsername}/media`}>
-                  <FormattedMessage id='account.media' defaultMessage='Media' />
-                </NavLink>
-              </div>
+        <div className='slist slist--flex' onScroll={this.handleScroll}>
+          <div className='account__section-headline'>
+            <div style={{width: '100%', display: 'flex'}}>
+              <NavLink exact to={`/${accountUsername}`}>
+                <FormattedMessage id='account.posts' defaultMessage='Gabs' />
+              </NavLink>
+              <NavLink exact to={`/${accountUsername}/with_replies`}>
+                <FormattedMessage id='account.posts_with_replies' defaultMessage='Gabs and replies' />
+              </NavLink>
+              <NavLink exact to={`/${accountUsername}/media`}>
+                <FormattedMessage id='account.media' defaultMessage='Media' />
+              </NavLink>
             </div>
-
-            <div role='feed' className='account-gallery__container' ref={this.handleRef}>
-              {attachments.map((attachment, index) => attachment === null ? (
-                <LoadMoreMedia key={'more:' + attachments.getIn(index + 1, 'id')} maxId={index > 0 ? attachments.getIn(index - 1, 'id') : null} onLoadMore={this.handleLoadMore} />
-              ) : (
-                <MediaItem key={attachment.get('id')} attachment={attachment} displayWidth={width} onOpenMedia={this.handleOpenMedia} />
-              ))}
-
-              {
-                attachments.size == 0 &&
-                <div className='empty-column-indicator'>
-                  <FormattedMessage id='account_gallery.none' defaultMessage='No media to show.'/>
-                </div>
-              }
-
-              {loadOlder}
-            </div>
-
-            {isLoading && attachments.size === 0 && (
-              <div className='slist__append'>
-                <LoadingIndicator />
-              </div>
-            )}
           </div>
-        </ScrollContainer>
+
+          <div role='feed' className='account-gallery__container' ref={this.handleRef}>
+            {attachments.map((attachment, index) => attachment === null ? (
+              <LoadMoreMedia key={'more:' + attachments.getIn(index + 1, 'id')} maxId={index > 0 ? attachments.getIn(index - 1, 'id') : null} onLoadMore={this.handleLoadMore} />
+            ) : (
+              <MediaItem key={attachment.get('id')} attachment={attachment} displayWidth={width} onOpenMedia={this.handleOpenMedia} />
+            ))}
+
+            {
+              attachments.size == 0 &&
+              <div className='empty-column-indicator'>
+                <FormattedMessage id='account_gallery.none' defaultMessage='No media to show.'/>
+              </div>
+            }
+
+            {loadOlder}
+          </div>
+
+          {isLoading && attachments.size === 0 && (
+            <div className='slist__append'>
+              <LoadingIndicator />
+            </div>
+          )}
+        </div>
       </Column>
     );
   }

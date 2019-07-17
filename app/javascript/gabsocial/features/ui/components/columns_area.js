@@ -7,6 +7,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import ReactSwipeableViews from 'react-swipeable-views';
 import { links, getIndex, getLink } from './tabs_bar';
 import { Link } from 'react-router-dom';
+import { me } from 'gabsocial/initial_state';
 
 import BundleContainer from '../containers/bundle_container';
 import ColumnLoading from './column_loading';
@@ -64,8 +65,7 @@ class ColumnsArea extends ImmutablePureComponent {
                 {layout.RIGHT}
               </div>
             </div>
-
-            {floatingActionButton}
+            {me && floatingActionButton}
           </div>
         </div>
 
