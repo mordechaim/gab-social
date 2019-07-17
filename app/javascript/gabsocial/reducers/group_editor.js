@@ -28,6 +28,7 @@ export default function groupEditorReducer(state = initialState, action) {
         return state.withMutations(map => {
             map.set('groupId', action.group.get('id'));
             map.set('title', action.group.get('title'));
+            map.set('description', action.group.get('description'));
             map.set('isSubmitting', false);
         });
     case GROUP_EDITOR_VALUE_CHANGE:

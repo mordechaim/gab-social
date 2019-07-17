@@ -49,8 +49,8 @@ class Groups extends ImmutablePureComponent {
 		return (
 			<div>
 				<div className="group-column-header">
-					<div className="group-column-header__title">{intl.formatMessage(messages.heading)}</div>
 					<div className="group-column-header__cta"><Link to="/groups/create">{intl.formatMessage(messages.create)}</Link></div>
+					<div className="group-column-header__title">{intl.formatMessage(messages.heading)}</div>
 					
 					<div className="column-header__wrapper">
 						<h1 className="column-header">

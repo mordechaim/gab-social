@@ -58,6 +58,7 @@ import {
   GroupMembers,
   GroupRemovedAccounts,
   GroupCreate,
+  GroupEdit,
 } from './util/async-components';
 import { me, meUsername } from '../../initial_state';
 import { previewState as previewMediaState } from './components/media_modal';
@@ -180,6 +181,7 @@ class SwitchingColumnsArea extends React.PureComponent {
         <WrappedRoute path='/groups/browse/admin' page={GroupsPage} component={Groups} content={children} componentParams={{ activeTab: 'admin' }} />
         <WrappedRoute path='/groups/:id/members' page={GroupPage} component={GroupMembers} content={children} />
         <WrappedRoute path='/groups/:id/removed_accounts' page={GroupPage} component={GroupRemovedAccounts} content={children} />
+        <WrappedRoute path='/groups/:id/edit' page={GroupPage} component={GroupEdit} content={children} />
         <WrappedRoute path='/groups/:id' page={GroupPage} component={GroupTimeline} content={children} />
 
         <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />

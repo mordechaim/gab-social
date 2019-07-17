@@ -62,6 +62,41 @@ export const createFail = error => ({
     error,
 });
 
+export const update = (groupId, title, description, coverImage, routerHistory) => (dispatch, getState) => {
+	if (!me) return;
+
+	dispatch(updateRequest());
+
+	const formData = new FormData();
+	formData.append('title', title);
+	formData.append('description', description);
+
+	if (coverImage !== null) {
+		formData.append('cover_image', coverImage);
+	}
+  
+	api(getState).put(`/api/v1/groups/${groupId}`, formData, { headers: { 'Content-Type': 'multipart/form-data' } }).then(({ data }) => {
+		dispatch(updateSuccess(data));
+		routerHistory.push(`/groups/${data.id}`);
+	}).catch(err => dispatch(updateFail(err)));
+  };
+  
+
+export const updateRequest = id => ({
+	type: GROUP_UPDATE_REQUEST,
+	id,
+});
+
+export const updateSuccess = group => ({
+	type: GROUP_UPDATE_SUCCESS,
+	group,
+});
+
+export const updateFail = error => ({
+    type: GROUP_UPDATE_FAIL,
+    error,
+});
+
 export const changeValue = (field, value) => ({
 	type: GROUP_EDITOR_VALUE_CHANGE,
 	field,

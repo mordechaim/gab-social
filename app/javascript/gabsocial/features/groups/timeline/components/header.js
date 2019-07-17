@@ -10,7 +10,8 @@ import DropdownMenuContainer from '../../../../containers/dropdown_menu_containe
 const messages = defineMessages({
 	join: { id: 'groups.join', defaultMessage: 'Join group' },
 	leave: { id: 'groups.leave', defaultMessage: 'Leave group' },
-	removed_accounts: { id: 'groups.removed_accounts', defaultMessage: 'Removed Accounts' }
+	removed_accounts: { id: 'groups.removed_accounts', defaultMessage: 'Removed Accounts' },
+	edit: { id: 'groups.edit', defaultMessage: 'Edit' }
 });
 
 export default @injectIntl
@@ -42,6 +43,7 @@ class Header extends ImmutablePureComponent {
 		const { group, intl } = this.props;
 
 		const menu = [
+			{ text: intl.formatMessage(messages.edit), to: `/groups/${group.get('id')}/edit` },
 			{ text: intl.formatMessage(messages.removed_accounts), to: `/groups/${group.get('id')}/removed_accounts` },
 		];
 

@@ -46,6 +46,10 @@ export function GroupCreate () {
   return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/create');
 }
 
+export function GroupEdit () {
+  return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/edit');
+}
+
 export function Groups () {
   return import(/* webpackChunkName: "features/groups/index" */'../../groups/index');
 }
