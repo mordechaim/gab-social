@@ -201,6 +201,8 @@ Rails.application.routes.draw do
         post :remove_donor_badge
         post :add_investor_badge
         post :remove_investor_badge
+        get :edit_pro
+        put :save_pro
       end
 
       resource :change_email, only: [:show, :update]

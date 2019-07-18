@@ -2,7 +2,7 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :remove_avatar, :remove_header, :enable, :unsilence, :unsuspend, :memorialize, :approve, :reject, :verify, :unverify, :add_donor_badge, :remove_donor_badge, :add_investor_badge, :remove_investor_badge]
+    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :remove_avatar, :remove_header, :enable, :unsilence, :unsuspend, :memorialize, :approve, :reject, :verify, :unverify, :add_donor_badge, :remove_donor_badge, :add_investor_badge, :remove_investor_badge, :edit_pro, :save_pro]
     before_action :require_remote_account!, only: [:subscribe, :unsubscribe, :redownload]
     before_action :require_local_account!, only: [:enable, :memorialize, :approve, :reject]
 
@@ -162,6 +162,17 @@ module Admin
       redirect_to admin_account_path(@account.id)
     end
 
+    def edit_pro
+      authorize @account, :edit_pro?
+    end
+
+    def save_pro
+      authorize @account, :edit_pro?
+      
+      @account.update!(pro_params)
+      redirect_to edit_pro_admin_account_path(@account.id)
+    end
+
     private
 
     def set_account
@@ -195,6 +206,10 @@ module Admin
         :ip,
         :staff
       )
+    end
+
+    def pro_params
+      params.require(:account).permit(:is_pro, :pro_expires_at)
     end
   end
 end

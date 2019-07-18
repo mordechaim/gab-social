@@ -168,8 +168,7 @@ class Status extends ImmutablePureComponent {
       return;
     }
 
-    const { status } = this.props;
-    this.context.router.history.push(`/${status.getIn(['account', 'acct'])}/posts/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+    this.context.router.history.push(`/${this._properStatus().getIn(['account', 'acct'])}/posts/${this._properStatus().get('id')}`);
   }
 
   handleExpandClick = (e) => {
@@ -178,8 +177,7 @@ class Status extends ImmutablePureComponent {
         return;
       }
 
-      const { status } = this.props;
-      this.context.router.history.push(`/${status.getIn(['account', 'acct'])}/posts/${status.getIn(['reblog', 'id'], status.get('id'))}`);
+      this.context.router.history.push(`/${this._properStatus().getIn(['account', 'acct'])}/posts/${this._properStatus().get('id')}`);
     }
   }
 
@@ -218,7 +216,7 @@ class Status extends ImmutablePureComponent {
   }
 
   handleHotkeyOpen = () => {
-    this.context.router.history.push(`/${status.getIn(['account', 'acct'])}/posts/${this._properStatus().get('id')}`);
+    this.context.router.history.push(`/${this._properStatus().getIn(['account', 'acct'])}/posts/${this._properStatus().get('id')}`);
   }
 
   handleHotkeyOpenProfile = () => {

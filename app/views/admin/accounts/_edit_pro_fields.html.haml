@@ -1,0 +1,7 @@
+.fields-row
+  .fields-row__column.fields-row__column-6.fields-group
+    %label{for: "is_pro"}
+      PRO
+    = f.check_box :is_pro, wrapper: :with_label, hint: false, id: "is_pro"
+  .fields-row__column.fields-row__column-6.fields-group
+    = f.input :pro_expires_at, as: :string, wrapper: :with_label, hint: false

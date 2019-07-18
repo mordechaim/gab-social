@@ -1,0 +1,8 @@
+- content_for :page_title do
+  = 'Edit PRO status of @' + @account.acct
+
+= simple_form_for @account, url: save_pro_admin_account_path(@account.id), method: :put do |f|
+  = render 'edit_pro_fields', f: f
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit

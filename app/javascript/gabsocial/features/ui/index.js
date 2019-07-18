@@ -70,6 +70,7 @@ import '../../components/status';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Gab Social.' },
+  publish: { id: 'compose_form.publish', defaultMessage: 'Gab' },
 });
 
 const mapStateToProps = state => ({
@@ -131,6 +132,8 @@ const LAYOUT = {
     ],
   },
 };
+
+const shouldHideFAB = path => path.match(/^\/posts\/|^\/search|^\/getting-started/);
 
 class SwitchingColumnsArea extends React.PureComponent {
 
@@ -487,9 +490,13 @@ class UI extends React.PureComponent {
     this.context.router.history.push('/follow_requests');
   }
 
+  handleOpenComposeModal = () => {
+    this.props.dispatch(openModal("COMPOSE"));
+  }
+
   render () {
     const { draggingOver } = this.state;
-    const { children, isComposing, location, dropdownMenuIsOpen } = this.props;
+    const { intl, children, isComposing, location, dropdownMenuIsOpen } = this.props;
 
     const handlers = me ? {
       help: this.handleHotkeyToggleHelp,
@@ -509,6 +516,8 @@ class UI extends React.PureComponent {
       goToRequests: this.handleHotkeyGoToRequests,
     } : {};
 
+    const floatingActionButton = shouldHideFAB(this.context.router.history.location.pathname) ? null : <button key='floating-action-button' onClick={this.handleOpenComposeModal} className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}></button>;
+
     return (
       <HotKeys keyMap={keyMap} handlers={handlers} ref={this.setHotkeysRef} attach={window} focused>
         <div className={classNames('ui', { 'is-composing': isComposing })} ref={this.setRef} style={{ pointerEvents: dropdownMenuIsOpen ? 'none' : null }}>
@@ -516,6 +525,8 @@ class UI extends React.PureComponent {
           <SwitchingColumnsArea location={location} onLayoutChange={this.handleLayoutChange}>
             {children}
           </SwitchingColumnsArea>
+
+          {me && floatingActionButton}
 
           <NotificationsContainer />
           <LoadingBarContainer className='loading-bar' />

@@ -134,6 +134,9 @@
               - if @account.is_pro?
                 =fa_icon 'check'
                 %time.formatted{ datetime: @account.pro_expires_at.iso8601, title: l(@account.pro_expires_at) }= l @account.pro_expires_at
+            %td
+              - if @account.local?
+                = table_link_to '', t('admin.accounts.edit_pro'), edit_pro_admin_account_path(@account.id), class: 'button' if can?(:verify, @account)
 
           %tr
             %th= t('admin.accounts.is_verified')

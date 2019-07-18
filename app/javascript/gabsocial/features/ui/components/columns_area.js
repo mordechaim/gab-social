@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { defineMessages, injectIntl } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 
@@ -15,32 +15,19 @@ import BundleColumnError from './bundle_column_error';
 import { Compose, Notifications, HomeTimeline, CommunityTimeline, HashtagTimeline, DirectTimeline, FavouritedStatuses, ListTimeline } from '../../ui/util/async-components';
 import Icon from 'gabsocial/components/icon';
 
-const messages = defineMessages({
-  publish: { id: 'compose_form.publish', defaultMessage: 'Gab' },
-});
-
-const shouldHideFAB = path => path.match(/^\/statuses\/|^\/search|^\/getting-started/);
-
 export default @(component => injectIntl(component, { withRef: true }))
 class ColumnsArea extends ImmutablePureComponent {
-
-  static contextTypes = {
-    router: PropTypes.object.isRequired,
-  };
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
     columns: ImmutablePropTypes.list.isRequired,
-    isModalOpen: PropTypes.bool.isRequired,
     children: PropTypes.node,
     layout: PropTypes.object,
   };
 
   render () {
-    const { columns, children, isModalOpen, intl, onOpenCompose } = this.props;
+    const { columns, children, intl } = this.props;
     const layout = this.props.layout || {LEFT:null,RIGHT:null};
-
-    const floatingActionButton = shouldHideFAB(this.context.router.history.location.pathname) ? null : <button key='floating-action-button' onClick={onOpenCompose} className='floating-action-button' aria-label={intl.formatMessage(messages.publish)}></button>;
 
     return (
       <div className='page'>
@@ -64,8 +51,6 @@ class ColumnsArea extends ImmutablePureComponent {
                 {layout.RIGHT}
               </div>
             </div>
-
-            {floatingActionButton}
           </div>
         </div>
 

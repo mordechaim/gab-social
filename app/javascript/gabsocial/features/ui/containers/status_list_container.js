@@ -5,6 +5,7 @@ import { createSelector } from 'reselect';
 import { debounce } from 'lodash';
 import { me } from '../../../initial_state';
 import { dequeueTimeline } from 'gabsocial/actions/timelines';
+import { scrollTopTimeline } from '../../../actions/timelines';
 
 const makeGetStatusIds = () => createSelector([
   (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
@@ -45,6 +46,12 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
   onDequeueTimeline(timelineId) {
     dispatch(dequeueTimeline(timelineId, ownProps.onLoadMore));
   },
+  onScrollToTop: debounce(() => {
+    dispatch(scrollTopTimeline(ownProps.timelineId, true));
+  }, 100),
+  onScroll: debounce(() => {
+    dispatch(scrollTopTimeline(ownProps.timelineId, false));
+  }, 100),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StatusList);
