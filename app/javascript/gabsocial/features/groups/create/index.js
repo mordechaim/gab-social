@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeValue, submit, reset } from '../../../actions/group_editor';
-import IconButton from '../../../components/icon_button';
+import Icon from '../../../components/icon';
 import { defineMessages, injectIntl } from 'react-intl';
+import classNames from 'classnames';
 
 const messages = defineMessages({
-	heading: { id: 'groups.create.heading', defaultMessage: 'New group' },
-	title: { id: 'groups.form.title', defaultMessage: 'Title' },
-	description: { id: 'groups.form.description', defaultMessage: 'Description' },
-	coverImage: { id: 'groups.form.coverImage', defaultMessage: 'Cover Image' },
+	title: { id: 'groups.form.title', defaultMessage: 'Enter a new group title' },
+	description: { id: 'groups.form.description', defaultMessage: 'Enter the group description' },
+	coverImage: { id: 'groups.form.coverImage', defaultMessage: 'Upload a banner image' },
+	coverImageChange: { id: 'groups.form.coverImageChange', defaultMessage: 'Banner image selected' },
 	create: { id: 'groups.form.create', defaultMessage: 'Create group' },
 });
 
@@ -67,53 +68,46 @@ class Create extends React.PureComponent {
 		this.props.onSubmit(this.context.router.history);
 	}
 
-	handleClick = () => {
-		this.props.onSubmit(this.context.router.history);
-	}
-
 	render () {
 		const { title, description, coverImage, disabled, intl } = this.props;
 
 		return (
-			<form className='column-inline-form' onSubmit={this.handleSubmit}>
-				<h2>{intl.formatMessage(messages.heading)}</h2>
-				
-				<label>
+			<form className='group-form' onSubmit={this.handleSubmit}>
+				<div>
 					<input
-						className='setting-text'
+						className='group-form__input'
 						value={title}
 						disabled={disabled}
 						onChange={this.handleTitleChange}
 						placeholder={intl.formatMessage(messages.title)}
 					/>
-				</label>
+				</div>
 					
-				<label>
+				<div>
 					<input
-						className='setting-text'
+						className='group-form__input'
 						value={description}
 						disabled={disabled}
 						onChange={this.handleDescriptionChange}
 						placeholder={intl.formatMessage(messages.description)}
 					/>
-				</label>
+				</div>
 
-				<label>
+				<div>
+					<label htmlFor='group_cover_image' className={classNames('group-form__file-label', { 'group-form__file-label--selected': coverImage !== null })}>
+						<Icon id='camera' /> {intl.formatMessage(coverImage === null ? messages.coverImage : messages.coverImageChange)}
+					</label>
+					
 					<input
 						type='file'
-						className='setting-text'
+						className='group-form__file'
+						id='group_cover_image'
 						disabled={disabled}
 						onChange={this.handleCoverImageChange}
-						placeholder={intl.formatMessage(messages.coverImage)}
 					/>
-				</label>
 
-				<IconButton
-					disabled={disabled}
-					icon='plus'
-					title={title}
-					onClick={this.handleClick}
-				/>
+					<button>{intl.formatMessage(messages.create)}</button>
+				</div>
 			</form>
 		);
 	}

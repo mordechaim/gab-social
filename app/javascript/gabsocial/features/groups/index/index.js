@@ -8,6 +8,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import GroupCard from './card';
+import GroupCreate from '../create';
 
 const messages = defineMessages({
 	heading: { id: 'column.groups', defaultMessage: 'Groups' },
@@ -27,6 +28,7 @@ class Groups extends ImmutablePureComponent {
 	static propTypes = {
 		params: PropTypes.object.isRequired,
 		activeTab: PropTypes.string.isRequired,
+		showCreateForm: PropTypes.bool,
 		dispatch: PropTypes.func.isRequired,
 		groups: ImmutablePropTypes.map,
 		groupIds: ImmutablePropTypes.list,
@@ -43,31 +45,40 @@ class Groups extends ImmutablePureComponent {
 		}
 	}
 
+	renderHeader() {
+		const { intl, activeTab } = this.props;
+
+		return (
+			<div className="group-column-header">
+				<div className="group-column-header__cta"><Link to="/groups/create">{intl.formatMessage(messages.create)}</Link></div>
+				<div className="group-column-header__title">{intl.formatMessage(messages.heading)}</div>
+				
+				<div className="column-header__wrapper">
+					<h1 className="column-header">
+						<Link to='/groups' className={classNames('btn grouped', {'active': 'featured' === activeTab})}>
+							{intl.formatMessage(messages.tab_featured)}
+						</Link>
+						
+						<Link to='/groups/browse/member' className={classNames('btn grouped', {'active': 'member' === activeTab})}>
+							{intl.formatMessage(messages.tab_member)}
+						</Link>
+						
+						<Link to='/groups/browse/admin' className={classNames('btn grouped', {'active': 'admin' === activeTab})}>
+							{intl.formatMessage(messages.tab_admin)}
+						</Link>
+					</h1>
+				</div>
+			</div>
+		);
+	}
+
 	render () {
-		const { intl, groupIds, activeTab } = this.props;
-		
+		const { groupIds, showCreateForm } = this.props;
+
 		return (
 			<div>
-				<div className="group-column-header">
-					<div className="group-column-header__cta"><Link to="/groups/create">{intl.formatMessage(messages.create)}</Link></div>
-					<div className="group-column-header__title">{intl.formatMessage(messages.heading)}</div>
-					
-					<div className="column-header__wrapper">
-						<h1 className="column-header">
-							<Link to='/groups' className={classNames('btn grouped', {'active': 'featured' === activeTab})}>
-								{intl.formatMessage(messages.tab_featured)}
-							</Link>
-							
-							<Link to='/groups/browse/member' className={classNames('btn grouped', {'active': 'member' === activeTab})}>
-								{intl.formatMessage(messages.tab_member)}
-							</Link>
-							
-							<Link to='/groups/browse/admin' className={classNames('btn grouped', {'active': 'admin' === activeTab})}>
-								{intl.formatMessage(messages.tab_admin)}
-							</Link>
-						</h1>
-					</div>
-				</div>
+				{!showCreateForm && this.renderHeader()}
+				{showCreateForm && <GroupCreate /> }
 				
 				<div className="group-card-list">
 					{groupIds.map(id => <GroupCard key={id} id={id} />)}
