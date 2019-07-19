@@ -14,6 +14,7 @@ import LoadingIndicator from '../../components/loading_indicator';
 import Icon from 'gabsocial/components/icon';
 import HomeColumnHeader from '../../components/home_column_header';
 import { Link } from 'react-router-dom';
+import Button from 'gabsocial/components/button';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -102,6 +103,14 @@ class ListTimeline extends React.PureComponent {
       );
     }
 
+    const emptyMessage = (
+      <div>
+        <FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />
+        <br/><br/>
+        <Button onClick={this.handleEditClick}><FormattedMessage id='list.click_to_add' defaultMessage='Click here to add people'/></Button>
+      </div>
+    );
+
     return (
       <Column label={title}>
         <HomeColumnHeader activeItem='lists' activeSubItem={id} active={hasUnread}>
@@ -127,7 +136,7 @@ class ListTimeline extends React.PureComponent {
           scrollKey='list_timeline'
           timelineId={`list:${id}`}
           onLoadMore={this.handleLoadMore}
-          emptyMessage={<FormattedMessage id='empty_column.list' defaultMessage='There is nothing in this list yet. When members of this list post new statuses, they will appear here.' />}
+          emptyMessage={emptyMessage}
         />
       </Column>
     );

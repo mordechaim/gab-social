@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import { injectIntl } from 'react-intl';
+import { injectIntl, defineMessages } from 'react-intl';
 import { setupListEditor, clearListSuggestions, resetListEditor } from '../../actions/lists';
 import Account from './components/account';
 import Search from './components/search';
 import EditListForm from './components/edit_list_form';
-import Motion from '../ui/util/optional_motion';
-import spring from 'react-motion/lib/spring';
+import ColumnSubheading from '../ui/components/column_subheading';
+import IconButton from 'gabsocial/components/icon_button';
 
 const mapStateToProps = state => ({
   accountIds: state.getIn(['listEditor', 'accounts', 'items']),
@@ -20,6 +20,14 @@ const mapDispatchToProps = dispatch => ({
   onInitialize: listId => dispatch(setupListEditor(listId)),
   onClear: () => dispatch(clearListSuggestions()),
   onReset: () => dispatch(resetListEditor()),
+});
+
+const messages = defineMessages({
+  close: { id: 'lightbox.close', defaultMessage: 'Close' },
+  changeTitle: { id: 'lists.edit.submit', defaultMessage: 'Change title' },
+  addToList: { id: 'lists.account.add', defaultMessage: 'Add to list' },
+  removeFromList: { id: 'lists.account.remove', defaultMessage: 'Remove from list' },
+  editList: { id: 'lists.edit', defaultMessage: 'Edit list' },
 });
 
 export default @connect(mapStateToProps, mapDispatchToProps)
@@ -48,29 +56,40 @@ class ListEditor extends ImmutablePureComponent {
   }
 
   render () {
-    const { accountIds, searchAccountIds, onClear } = this.props;
+    const { accountIds, searchAccountIds, onClear, intl } = this.props;
     const showSearch = searchAccountIds.size > 0;
 
     return (
-      <div className='modal-root__modal list-editor'>
-        <EditListForm />
+      <div className='modal-root__modal compose-modal'>
+        <div className='compose-modal__header'>
+          <h3 className='compose-modal__header__title'>
+            {intl.formatMessage(messages.editList)}
+          </h3>
+          <IconButton className='compose-modal__close' title={intl.formatMessage(messages.close)} icon='times' onClick={this.onClickClose} size={20} />
+        </div>
+        <div className='compose-modal__content'>
+          <div className='list-editor'>
+            <ColumnSubheading text={intl.formatMessage(messages.changeTitle)} />
+            <EditListForm />
+            <br/>
 
-        <Search />
-
-        <div className='drawer__pager'>
-          <div className='drawer__inner list-editor__accounts'>
-            {accountIds.map(accountId => <Account key={accountId} accountId={accountId} added />)}
-          </div>
-
-          {showSearch && <div role='button' tabIndex='-1' className='drawer__backdrop' onClick={onClear} />}
-
-          <Motion defaultStyle={{ x: -100 }} style={{ x: spring(showSearch ? 0 : -100, { stiffness: 210, damping: 20 }) }}>
-            {({ x }) => (
-              <div className='drawer__inner backdrop' style={{ transform: x === 0 ? null : `translateX(${x}%)`, visibility: x === -100 ? 'hidden' : 'visible' }}>
-                {searchAccountIds.map(accountId => <Account key={accountId} accountId={accountId} />)}
+            {
+              accountIds.size > 0 &&
+              <div>
+                <ColumnSubheading text={intl.formatMessage(messages.removeFromList)} />
+                <div className='list-editor__accounts'>
+                  {accountIds.map(accountId => <Account key={accountId} accountId={accountId} added />)}
+                </div>
               </div>
-            )}
-          </Motion>
+            }
+
+            <br/>
+            <ColumnSubheading text={intl.formatMessage(messages.addToList)} />
+            <Search />
+            <div className='list-editor__accounts'>
+              {searchAccountIds.map(accountId => <Account key={accountId} accountId={accountId} />)}
+            </div>
+          </div>
         </div>
       </div>
     );

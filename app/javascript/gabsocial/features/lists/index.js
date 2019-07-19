@@ -16,6 +16,7 @@ import ScrollableList from '../../components/scrollable_list';
 const messages = defineMessages({
   heading: { id: 'column.lists', defaultMessage: 'Lists' },
   subheading: { id: 'lists.subheading', defaultMessage: 'Your lists' },
+  add: { id: 'lists.new.create', defaultMessage: 'Add List' },
 });
 
 const getOrderedLists = createSelector([state => state.get('lists')], lists => {
@@ -60,8 +61,10 @@ class Lists extends ImmutablePureComponent {
 
     return (
       <Column icon='list-ul' heading={intl.formatMessage(messages.heading)} backBtnSlim>
+        <br/>
+        <ColumnSubheading text={intl.formatMessage(messages.add)} />
         <NewListForm />
-
+        <br/>
         <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
         <ScrollableList
           scrollKey='lists'

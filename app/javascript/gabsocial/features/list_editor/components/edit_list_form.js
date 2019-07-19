@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeListEditorTitle, submitListEditor } from '../../../actions/lists';
-import IconButton from '../../../components/icon_button';
+import Button from '../../../components/button';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   title: { id: 'lists.edit.submit', defaultMessage: 'Change title' },
+  save: { id: 'lists.new.save_title', defaultMessage: 'Save' },
 });
 
 const mapStateToProps = state => ({
@@ -48,21 +49,23 @@ class ListForm extends React.PureComponent {
     const { value, disabled, intl } = this.props;
 
     const title = intl.formatMessage(messages.title);
+    const save = intl.formatMessage(messages.save);
 
     return (
       <form className='column-inline-form' onSubmit={this.handleSubmit}>
         <input
-          className='setting-text'
+          className='setting-text new-list-form__input'
           value={value}
           onChange={this.handleChange}
         />
 
-        <IconButton
+        <Button
+          className='new-list-form__btn'
           disabled={disabled}
-          icon='check'
-          title={title}
           onClick={this.handleClick}
-        />
+        >
+          {save}
+        </Button>
       </form>
     );
   }

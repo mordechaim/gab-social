@@ -4380,12 +4380,11 @@ noscript {
 }
 
 .list-editor {
-	background: $ui-base-color;
 	flex-direction: column;
-	border-radius: 8px;
-	box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-	width: 380px;
+	width: 100%;
 	overflow: hidden;
+	height: 100%;
+	overflow-y: scroll;
 
 	@media screen and (max-width: 420px) {
 		width: 90%;
@@ -4400,10 +4399,6 @@ noscript {
 		border-radius: 8px 8px 0 0;
 	}
 
-	.drawer__pager {
-		height: 50vh;
-	}
-
 	.drawer__inner {
 		border-radius: 0 0 8px 8px;
 
@@ -4415,7 +4410,9 @@ noscript {
 	}
 
 	&__accounts {
+		background: lighten($ui-base-color, 13%);
 		overflow-y: auto;
+		max-height: 200px;
 	}
 
 	.account__display-name {
@@ -4434,12 +4431,11 @@ noscript {
 }
 
 .list-adder {
-	background: $ui-base-color;
 	flex-direction: column;
-	border-radius: 8px;
-	box-shadow: 2px 4px 15px rgba($base-shadow-color, 0.4);
-	width: 380px;
+	width: 100%;
 	overflow: hidden;
+	height: 100%;
+	overflow-y: scroll;
 
 	@media screen and (max-width: 420px) {
 		width: 90%;
@@ -4447,22 +4443,24 @@ noscript {
 
 	&__account {
 		background: lighten($ui-base-color, 13%);
+		border-radius: 4px;
 	}
 
 	&__lists {
 		background: lighten($ui-base-color, 13%);
-		height: 50vh;
-		border-radius: 0 0 8px 8px;
-		overflow-y: auto;
 	}
 
 	.list {
-		padding: 10px;
+		padding: 4px;
 		border-bottom: 1px solid lighten($ui-base-color, 8%);
 	}
 
 	.list__wrapper {
 		display: flex;
+
+		.account__relationship {
+			padding: 8px 5px 0 5px;
+		}
 	}
 
 	.list__display-name {
@@ -4471,6 +4469,18 @@ noscript {
 		text-decoration: none;
 		font-size: 16px;
 		padding: 10px;
+	}
+}
+
+.new-list-form,
+.edit-list-form {
+	&__btn {
+		margin-left: 6px;
+		width: 80px;
+	}
+
+	&__input {
+		height: 36px;
 	}
 }
 
