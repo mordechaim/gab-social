@@ -1,20 +1,39 @@
 'use strict';
 
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import classNames from 'classnames';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import { Link } from 'react-router-dom';
 import Icon from 'gabsocial/components/icon';
+import { me } from 'gabsocial/initial_state';
+import { fetchLists } from 'gabsocial/actions/lists';
+import { createSelector } from 'reselect';
 
 const messages = defineMessages({
   show: { id: 'column_header.show_settings', defaultMessage: 'Show settings' },
   hide: { id: 'column_header.hide_settings', defaultMessage: 'Hide settings' },
   homeTitle: { id: 'home_column_header.home', defaultMessage: 'Home' },
   allTitle: { id: 'home_column_header.all', defaultMessage: 'All' },
+  listTitle: { id: 'home_column.lists', defaultMessage: 'Lists' },
 });
 
-export default @injectIntl
+const getOrderedLists = createSelector([state => state.get('lists')], lists => {
+  if (!lists) {
+    return lists;
+  }
+
+  return lists.toList().filter(item => !!item).sort((a, b) => a.get('title').localeCompare(b.get('title')));
+});
+
+const mapStateToProps = state => {
+  return {
+    lists: getOrderedLists(state),
+  };
+};
+
 class ColumnHeader extends React.PureComponent {
 
   static contextTypes = {
@@ -23,15 +42,23 @@ class ColumnHeader extends React.PureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
     active: PropTypes.bool,
     children: PropTypes.node,
     activeItem: PropTypes.string,
+    activeSubItem: PropTypes.string,
+    lists: ImmutablePropTypes.list,
   };
 
   state = {
     collapsed: true,
     animating: false,
+    expandedFor: null, //lists, groups, etc.
   };
+
+  componentDidMount() {
+    this.props.dispatch(fetchLists());
+  }
 
   handleToggleClick = (e) => {
     e.stopPropagation();
@@ -42,9 +69,15 @@ class ColumnHeader extends React.PureComponent {
     this.setState({ animating: false });
   }
 
+  expandLists = () => {
+    this.setState({
+      expandedFor: 'lists',
+    });
+  }
+
   render () {
-    const { active, children, intl: { formatMessage }, activeItem } = this.props;
-    const { collapsed, animating } = this.state;
+    const { active, children, intl: { formatMessage }, activeItem, activeSubItem, lists } = this.props;
+    const { collapsed, animating, expandedFor } = this.state;
 
     const wrapperClassName = classNames('column-header__wrapper', {
       'active': active,
@@ -63,6 +96,10 @@ class ColumnHeader extends React.PureComponent {
       'active': !collapsed,
     });
 
+    const expansionClassName = classNames('column-header column-header__expansion', {
+      'open': expandedFor,
+    });
+
     let extraContent, collapseButton;
 
     if (children) {
@@ -79,6 +116,23 @@ class ColumnHeader extends React.PureComponent {
       extraContent,
     ];
 
+    let expandedContent = null;
+    if ((expandedFor === 'lists' || activeItem === 'lists') && lists) {
+      expandedContent = lists.map(list =>
+        <Link
+          key={list.get('id')}
+          to={`/list/${list.get('id')}`}
+          className={
+            classNames('btn btn--sub grouped', {
+              'active': list.get('id') === activeSubItem
+            })
+          }
+        >
+          {list.get('title')}
+        </Link>
+      )
+    }
+
     return (
       <div className={wrapperClassName}>
         <h1 className={buttonClassName}>
@@ -92,10 +146,24 @@ class ColumnHeader extends React.PureComponent {
             {formatMessage(messages.allTitle)}
           </Link>
 
+          {
+            <a onClick={this.expandLists} className={classNames('btn grouped', {'active': 'lists' === activeItem})}>
+              <Icon id='list' fixedWidth className='column-header__icon' />
+              {formatMessage(messages.listTitle)}
+            </a>
+          }
+
           <div className='column-header__buttons'>
             {collapseButton}
           </div>
         </h1>
+
+        {
+          expandedContent &&
+          <h1 className={expansionClassName}>
+            {expandedContent}
+          </h1>
+        }
 
         <div className={collapsibleClassName} tabIndex={collapsed ? -1 : null} onTransitionEnd={this.handleTransitionEnd}>
           <div className='column-header__collapsible-inner'>
@@ -105,5 +173,6 @@ class ColumnHeader extends React.PureComponent {
       </div>
     );
   }
-
 }
+
+export default injectIntl(connect(mapStateToProps)(ColumnHeader));

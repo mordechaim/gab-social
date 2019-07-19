@@ -70,10 +70,7 @@ class HomeTimeline extends React.PureComponent {
 
     return (
       <Column label={intl.formatMessage(messages.title)}>
-        <HomeColumnHeader
-          activeItem='home'
-          active={hasUnread}
-        >
+        <HomeColumnHeader activeItem='home' active={hasUnread}>
           <ColumnSettingsContainer />
         </HomeColumnHeader>
         <StatusListContainer

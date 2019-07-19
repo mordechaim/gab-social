@@ -2495,10 +2495,13 @@ a.status-card.compact:hover {
 		background: transparent;
 		font: inherit;
 		text-align: left;
-		text-overflow: ellipsis;
 		text-decoration: none;
-		overflow: hidden;
 		white-space: nowrap;
+
+		&--sub {
+			font-size: 14px;
+    	padding: 6px 10px;
+		}
 
 		&.grouped {
 			margin: 6px;
@@ -2597,6 +2600,13 @@ a.status-card.compact:hover {
 }
 
 .column-header__setting-btn {
+	&--link {
+		text-decoration: none;
+
+		.fa {
+			margin-left: 10px;
+		}
+	}
 	&:hover {
 		color: $darker-text-color;
 		text-decoration: underline;
@@ -2613,6 +2623,12 @@ a.status-card.compact:hover {
 			padding-right: 0;
 		}
 	}
+}
+
+.column-header__expansion {
+	overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
 }
 
 .text-btn {

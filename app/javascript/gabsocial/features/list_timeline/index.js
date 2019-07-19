@@ -12,6 +12,8 @@ import { openModal } from '../../actions/modal';
 import MissingIndicator from '../../components/missing_indicator';
 import LoadingIndicator from '../../components/loading_indicator';
 import Icon from 'gabsocial/components/icon';
+import HomeColumnHeader from '../../components/home_column_header';
+import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
   deleteMessage: { id: 'confirmations.delete_list.message', defaultMessage: 'Are you sure you want to permanently delete this list?' },
@@ -102,7 +104,7 @@ class ListTimeline extends React.PureComponent {
 
     return (
       <Column label={title}>
-        <ColumnHeader icon='list-ul' active={hasUnread} title={title} >
+        <HomeColumnHeader activeItem='lists' activeSubItem={id} active={hasUnread}>
           <div className='column-header__links'>
             <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleEditClick}>
               <Icon id='pencil' /> <FormattedMessage id='lists.edit' defaultMessage='Edit list' />
@@ -111,10 +113,15 @@ class ListTimeline extends React.PureComponent {
             <button className='text-btn column-header__setting-btn' tabIndex='0' onClick={this.handleDeleteClick}>
               <Icon id='trash' /> <FormattedMessage id='lists.delete' defaultMessage='Delete list' />
             </button>
-          </div>
 
-          <hr />
-        </ColumnHeader>
+            <hr/>
+
+            <Link to='/lists' className='text-btn column-header__setting-btn column-header__setting-btn--link'>
+              <FormattedMessage id='lists.view_all' defaultMessage='View all lists' />
+              <Icon id='arrow-right' />
+            </Link>
+          </div>
+        </HomeColumnHeader>
 
         <StatusListContainer
           scrollKey='list_timeline'
