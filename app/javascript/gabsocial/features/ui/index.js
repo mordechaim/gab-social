@@ -111,8 +111,8 @@ const LAYOUT = {
   },
   DEFAULT: {
     LEFT: [
-      <WhoToFollowPanel />,
-      <LinkFooter />,
+      <WhoToFollowPanel key='0' />,
+      <LinkFooter key='1' />,
     ],
     RIGHT: [
       // <TrendsPanel />,
@@ -122,9 +122,9 @@ const LAYOUT = {
     TOP: null,
     LEFT: null,
     RIGHT: [
-      <WhoToFollowPanel />,
+      <WhoToFollowPanel key='0' />,
       // <TrendsPanel />,
-      <LinkFooter />,
+      <LinkFooter key='1' />,
     ],
   },
 };
