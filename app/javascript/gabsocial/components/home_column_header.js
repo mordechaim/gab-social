@@ -146,11 +146,17 @@ class ColumnHeader extends React.PureComponent {
             {formatMessage(messages.allTitle)}
           </Link>
 
-          {
+          { lists.size > 0 &&
             <a onClick={this.expandLists} className={classNames('btn grouped', {'active': 'lists' === activeItem})}>
               <Icon id='list' fixedWidth className='column-header__icon' />
               {formatMessage(messages.listTitle)}
             </a>
+          }
+          { lists.size == 0 &&
+            <Link to='/lists' className='btn grouped'>
+              <Icon id='list' fixedWidth className='column-header__icon' />
+              {formatMessage(messages.listTitle)}
+            </Link>
           }
 
           <div className='column-header__buttons'>
