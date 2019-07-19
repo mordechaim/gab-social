@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import LoadingIndicator from '../../../components/loading_indicator';
 import Column from '../../ui/components/column';
-import ColumnBackButtonSlim from '../../../components/column_back_button_slim';
 import { fetchGroups } from '../../../actions/groups';
 import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
@@ -60,9 +59,7 @@ class Groups extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.groups' defaultMessage="No groups." />;
 
     return (
-      <Column icon='list-ul' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
-
+      <Column icon='list-ul' heading={intl.formatMessage(messages.heading)} backBtnSlim>
         <NewGroupForm />
 
         <ColumnSubheading text={intl.formatMessage(messages.subheading)} />

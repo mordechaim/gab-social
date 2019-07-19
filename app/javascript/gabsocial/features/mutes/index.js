@@ -7,7 +7,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { debounce } from 'lodash';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountContainer from '../../containers/account_container';
 import { fetchMutes, expandMutes } from '../../actions/mutes';
 import ScrollableList from '../../components/scrollable_list';
@@ -55,8 +54,7 @@ class Mutes extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.mutes' defaultMessage="You haven't muted any users yet." />;
 
     return (
-      <Column icon='volume-off' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
+      <Column icon='volume-off' heading={intl.formatMessage(messages.heading)} backBtnSlim>
         <ScrollableList
           scrollKey='mutes'
           onLoadMore={this.handleLoadMore}

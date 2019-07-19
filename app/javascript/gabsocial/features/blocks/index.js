@@ -7,7 +7,6 @@ import { debounce } from 'lodash';
 import PropTypes from 'prop-types';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountContainer from '../../containers/account_container';
 import { fetchBlocks, expandBlocks } from '../../actions/blocks';
 import ScrollableList from '../../components/scrollable_list';
@@ -55,8 +54,7 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.blocks' defaultMessage="You haven't blocked any users yet." />;
 
     return (
-      <Column icon='ban' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
+      <Column icon='ban' heading={intl.formatMessage(messages.heading)} backBtnSlim>
         <ScrollableList
           scrollKey='blocks'
           onLoadMore={this.handleLoadMore}

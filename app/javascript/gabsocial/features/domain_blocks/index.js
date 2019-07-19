@@ -7,7 +7,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { debounce } from 'lodash';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import DomainContainer from '../../containers/domain_container';
 import { fetchDomainBlocks, expandDomainBlocks } from '../../actions/domain_blocks';
 import ScrollableList from '../../components/scrollable_list';
@@ -56,8 +55,7 @@ class Blocks extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.domain_blocks' defaultMessage='There are no hidden domains yet.' />;
 
     return (
-      <Column icon='minus-circle' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
+      <Column icon='minus-circle' heading={intl.formatMessage(messages.heading)} backBtnSlim>
         <ScrollableList
           scrollKey='domain_blocks'
           onLoadMore={this.handleLoadMore}

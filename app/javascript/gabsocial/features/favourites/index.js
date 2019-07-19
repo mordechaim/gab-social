@@ -8,7 +8,6 @@ import { fetchFavourites } from '../../actions/interactions';
 import { FormattedMessage } from 'react-intl';
 import AccountContainer from '../../containers/account_container';
 import Column from '../ui/components/column';
-import ColumnBackButton from '../../components/column_back_button';
 import ScrollableList from '../../components/scrollable_list';
 
 const mapStateToProps = (state, props) => ({
@@ -49,8 +48,6 @@ class Favourites extends ImmutablePureComponent {
 
     return (
       <Column>
-        <ColumnBackButton />
-
         <ScrollableList
           scrollKey='favourites'
           emptyMessage={emptyMessage}

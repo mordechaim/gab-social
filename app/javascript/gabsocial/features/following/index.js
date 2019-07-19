@@ -104,9 +104,11 @@ class Following extends ImmutablePureComponent {
 
     if (unavailable) {
       return (
-        <div className='empty-column-indicator'>
-          <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />
-        </div>
+        <Column>
+          <div className='empty-column-indicator'>
+            <FormattedMessage id='empty_column.account_unavailable' defaultMessage='Profile unavailable' />
+          </div>
+        </Column>
       );
     }
 

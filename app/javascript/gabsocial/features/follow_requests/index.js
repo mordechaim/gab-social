@@ -7,7 +7,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { debounce } from 'lodash';
 import LoadingIndicator from '../../components/loading_indicator';
 import Column from '../ui/components/column';
-import ColumnBackButtonSlim from '../../components/column_back_button_slim';
 import AccountAuthorizeContainer from './containers/account_authorize_container';
 import { fetchFollowRequests, expandFollowRequests } from '../../actions/accounts';
 import ScrollableList from '../../components/scrollable_list';
@@ -55,8 +54,7 @@ class FollowRequests extends ImmutablePureComponent {
     const emptyMessage = <FormattedMessage id='empty_column.follow_requests' defaultMessage="You don't have any follow requests yet. When you receive one, it will show up here." />;
 
     return (
-      <Column icon='user-plus' heading={intl.formatMessage(messages.heading)}>
-        <ColumnBackButtonSlim />
+      <Column icon='user-plus' heading={intl.formatMessage(messages.heading)} backBtnSlim>
         <ScrollableList
           scrollKey='follow_requests'
           onLoadMore={this.handleLoadMore}
