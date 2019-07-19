@@ -55,6 +55,10 @@ class ListEditor extends ImmutablePureComponent {
     onReset();
   }
 
+  onClickClose = () => {
+    this.props.onClose('LIST_ADDER');
+  };
+
   render () {
     const { accountIds, searchAccountIds, onClear, intl } = this.props;
     const showSearch = searchAccountIds.size > 0;
