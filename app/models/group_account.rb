@@ -9,6 +9,7 @@
 #  role              :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  unread_count      :integer          default(0)
 #
 
 class GroupAccount < ApplicationRecord

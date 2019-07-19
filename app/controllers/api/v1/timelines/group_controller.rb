@@ -9,12 +9,18 @@ class Api::V1::Timelines::GroupController < Api::BaseController
   after_action :insert_pagination_headers, unless: -> { @statuses.empty? }
 
   def show
+    mark_as_unread
+
     render json: @statuses,
            each_serializer: REST::StatusSerializer,
            relationships: StatusRelationshipsPresenter.new(@statuses, current_user.account_id)
   end
 
   private
+
+  def mark_as_unread
+    GroupAccount.where(group: @group, account: current_account).update_all("unread_count = 0")
+  end
 
   def set_group
     @group = Group.find(params[:id])
