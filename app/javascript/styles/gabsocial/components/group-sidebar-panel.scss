@@ -1,6 +1,10 @@
 .group-sidebar-panel {
     &__items {
         padding: 0 15px 15px;
+
+        &__show-all {
+            color: $primary-text-color;
+        }
     }
 
     &__item {

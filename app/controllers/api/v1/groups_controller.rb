@@ -14,7 +14,7 @@ class Api::V1::GroupsController < Api::BaseController
       when 'featured'
         @groups = Group.where(is_featured: true).limit(25).all
       when 'member'
-        @groups = Group.joins(:group_accounts).where(is_archived: false, group_accounts: { account: current_account }).all
+        @groups = Group.joins(:group_accounts).where(is_archived: false, group_accounts: { account: current_account }).order('group_accounts.unread_count DESC, group_accounts.id DESC').all
       when 'admin'
         @groups = Group.joins(:group_accounts).where(is_archived: false, group_accounts: { account: current_account, role: :admin }).all
     end

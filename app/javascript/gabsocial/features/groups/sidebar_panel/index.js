@@ -5,9 +5,11 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import Item from './item';
 import Icon from 'gabsocial/components/icon';
+import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
     title: { id: 'groups.sidebar-panel.title', defaultMessage: 'Groups you\'re in' },
+    show_all: { id: 'groups.sidebar-panel.show_all', defaultMessage: 'Show all' },
 });
 
 const mapStateToProps = (state, { id }) => ({
@@ -23,9 +25,10 @@ class GroupSidebarPanel extends ImmutablePureComponent {
 
     render() {
         const { intl, groupIds } = this.props;
+        const count = groupIds.count();
 
         // Only when there are groups to show
-        if (groupIds.count() === 0) return null;
+        if (count === 0) return null;
 
         return (
             <div className='wtf-panel group-sidebar-panel'>
@@ -36,7 +39,8 @@ class GroupSidebarPanel extends ImmutablePureComponent {
                 
                 <div className='wtf-panel__content'>
                     <div className="group-sidebar-panel__items">
-                        {groupIds.map(groupId => <Item key={groupId} id={groupId} />)}
+                        {groupIds.slice(0, 10).map(groupId => <Item key={groupId} id={groupId} />)}
+                        {count > 10 && <Link className="group-sidebar-panel__items__show-all" to='/groups/browse/member'>{intl.formatMessage(messages.show_all)}</Link>}
                     </div>
                 </div>
             </div>
