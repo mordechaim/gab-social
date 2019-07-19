@@ -4854,6 +4854,7 @@ noscript {
 	border-radius: 6px;
 	flex-direction: column;
 	width: 600px;
+	margin: 10px 0;
 
 	&__header {
 		display: block;
@@ -4895,8 +4896,9 @@ noscript {
 	}
 
 	@media screen and (max-width:895px) {
-		height: 100vh;
-		width: 100vw;
+		margin: 0;
+		height: 98vh;
+		width: 98vw;
 	}
 }
 
