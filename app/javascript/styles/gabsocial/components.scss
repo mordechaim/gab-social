@@ -4427,7 +4427,22 @@ noscript {
 	}
 
 	.search {
-		margin-bottom: 0;
+    display: flex;
+		flex-direction: row;
+		margin: 10px 0;
+
+		> label {
+			flex: 1 1;
+		}
+
+		> .search__icon .fa {
+			right: 102px !important;
+		}
+
+		> .button {
+			width: 80px;
+			margin-left: 10px;
+		}
 	}
 }
 

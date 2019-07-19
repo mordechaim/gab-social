@@ -5,9 +5,11 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { fetchListSuggestions, clearListSuggestions, changeListSuggestions } from '../../../actions/lists';
 import classNames from 'classnames';
 import Icon from 'gabsocial/components/icon';
+import Button from 'gabsocial/components/button';
 
 const messages = defineMessages({
   search: { id: 'lists.search', defaultMessage: 'Search among people you follow' },
+  searchTitle: { id: 'tabs_bar.search', defaultMessage: 'Search' },
 });
 
 const mapStateToProps = state => ({
@@ -42,6 +44,10 @@ class Search extends React.PureComponent {
     }
   }
 
+  handleSubmit = () => {
+    this.props.onSubmit(this.props.value);
+  }
+
   handleClear = () => {
     this.props.onClear();
   }
@@ -69,6 +75,7 @@ class Search extends React.PureComponent {
           <Icon id='search' className={classNames({ active: !hasValue })} />
           <Icon id='times-circle' aria-label={intl.formatMessage(messages.search)} className={classNames({ active: hasValue })} />
         </div>
+        <Button onClick={this.handleSubmit}>{intl.formatMessage(messages.searchTitle)}</Button>
       </div>
     );
   }
