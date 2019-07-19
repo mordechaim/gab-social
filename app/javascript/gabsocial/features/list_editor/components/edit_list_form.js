@@ -7,7 +7,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   title: { id: 'lists.edit.submit', defaultMessage: 'Change title' },
-  save: { id: 'lists.new.save_title', defaultMessage: 'Save' },
+  save: { id: 'lists.new.save_title', defaultMessage: 'Save Title' },
 });
 
 const mapStateToProps = state => ({
@@ -59,13 +59,14 @@ class ListForm extends React.PureComponent {
           onChange={this.handleChange}
         />
 
-        <Button
-          className='new-list-form__btn'
-          disabled={disabled}
-          onClick={this.handleClick}
-        >
-          {save}
-        </Button>
+        { !disabled &&
+          <Button
+            className='new-list-form__btn'
+            onClick={this.handleClick}
+          >
+            {save}
+          </Button>
+        }
       </form>
     );
   }
