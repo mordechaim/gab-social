@@ -1,5 +1,3 @@
-$height: 80px; 
-
 .group-column-header {
     border-radius: 10px;
     background: $gab-background-container;
@@ -41,7 +39,6 @@ $height: 80px;
     overflow: hidden;
 
     .group-card__header {
-        height: $height;
         overflow: hidden;
         
         img {
