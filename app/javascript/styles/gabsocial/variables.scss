@@ -32,6 +32,17 @@ $gab-default-text-light: #6c6c6c;
 // theme mixins
 @mixin light-theme-shadow() {box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);}
 
+// NOTE - probably a better place to put this
+@mixin gab-container-standards() {
+	border-radius: 10px;
+	background: $gab-background-container;
+	body.theme-gabsocial-light & {
+		@include light-theme-shadow();
+		background: $gab-background-container-light;
+	}
+}
+
+
 
 // BREAKPOINT SETS
 

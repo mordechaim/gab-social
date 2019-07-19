@@ -1,22 +1,16 @@
 .group-column-header {
-    border-radius: 10px;
-    background: $gab-background-container;
     overflow: hidden;
-
+    @include gab-container-standards();
     .group-column-header__title {
         padding: 15px;
         font-size: 20px;
         font-weight: bold;
     }
-
     .group-column-header__cta {
         float: right;
         padding: 15px;
         font-size: 17px;
-
-        a {
-            color: $primary-text-color;
-        }
+        a {color: #fff;}
     }
 }
 
