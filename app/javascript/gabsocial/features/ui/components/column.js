@@ -13,7 +13,7 @@ export default class Column extends React.PureComponent {
     children: PropTypes.node,
     active: PropTypes.bool,
     hideHeadingOnMobile: PropTypes.bool,
-    backBtnSlim: PropTypes.string,
+    backBtnSlim: PropTypes.bool,
   };
 
   render () {
