@@ -1321,7 +1321,7 @@ a.account__display-name {
 			pointer-events: none;
 			display: flex;
 			justify-content: flex-end;
-			padding-top: 10px;
+			padding-top: 15px;
 
 			&--start {
 				justify-content: flex-start;
@@ -1501,7 +1501,7 @@ a.account__display-name {
 	}
 
 	@media screen and (min-width: 360px) {
-		padding: 10px 0;
+		padding: 15px 0;
 	}
 
 	@media screen and (min-width: 630px) {
