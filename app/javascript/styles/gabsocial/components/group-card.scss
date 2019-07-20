@@ -20,12 +20,12 @@
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .group-card {
     display: block;
-    flex: 0 0 calc(50% - 15px/2);
+    flex: 0 0 calc(50% - 20px/2);
     margin-bottom: 15px;
     background: $gab-background-container;
     text-decoration: none;
