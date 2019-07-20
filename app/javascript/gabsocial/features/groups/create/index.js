@@ -82,7 +82,6 @@ class Create extends React.PureComponent {
 						placeholder={intl.formatMessage(messages.title)}
 					/>
 				</div>
-					
 				<div>
 					<input
 						className='group-form__input'
@@ -92,12 +91,10 @@ class Create extends React.PureComponent {
 						placeholder={intl.formatMessage(messages.description)}
 					/>
 				</div>
-
 				<div>
 					<label htmlFor='group_cover_image' className={classNames('group-form__file-label', { 'group-form__file-label--selected': coverImage !== null })}>
 						<Icon id='camera' /> {intl.formatMessage(coverImage === null ? messages.coverImage : messages.coverImageChange)}
 					</label>
-					
 					<input
 						type='file'
 						className='group-form__file'
@@ -105,8 +102,7 @@ class Create extends React.PureComponent {
 						disabled={disabled}
 						onChange={this.handleCoverImageChange}
 					/>
-
-					<button>{intl.formatMessage(messages.create)}</button>
+					<button className='standard-small'>{intl.formatMessage(messages.create)}</button>
 				</div>
 			</form>
 		);

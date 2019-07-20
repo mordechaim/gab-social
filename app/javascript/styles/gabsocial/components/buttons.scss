@@ -1,0 +1,19 @@
+button {
+	&.standard {
+		&-small {
+			background: $gab-blue;
+			color: white;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			font-size: 14px;
+			border: none;
+			border-radius: 4px;
+			height: 25px;
+			padding: 1px 12px;
+			font-weight: bold;
+		}
+	}
+}
+
+
+
