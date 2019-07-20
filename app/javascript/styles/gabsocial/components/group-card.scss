@@ -27,10 +27,9 @@
 .group-card {
     display: block;
     flex: 0 0 calc(50% - 20px/2);
+    @include gab-container-standards();
     margin-bottom: 15px;
-    background: $gab-background-container;
     text-decoration: none;
-    border-radius: 10px;
     overflow: hidden;
 
     .group-card__header {
