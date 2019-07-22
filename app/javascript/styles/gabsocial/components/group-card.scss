@@ -17,7 +17,6 @@
 .group-card-list {
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
@@ -34,7 +33,7 @@
 
     .group-card__header {
         overflow: hidden;
-        
+
         img {
             pointer-events: none;
             width: 100%;
