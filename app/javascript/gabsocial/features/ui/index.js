@@ -124,17 +124,17 @@ const LAYOUT = {
     ],
     RIGHT: [
       // <TrendsPanel />,
-      <GroupSidebarPanel />
+      <GroupSidebarPanel key='0' />
     ],
   },
   STATUS: {
     TOP: null,
     LEFT: null,
     RIGHT: [
-      <GroupSidebarPanel />,
-      <WhoToFollowPanel key='0' />,
+      <GroupSidebarPanel key='0' />,
+      <WhoToFollowPanel key='1' />,
       // <TrendsPanel />,
-      <LinkFooter key='1' />,
+      <LinkFooter key='2' />,
     ],
   },
 };

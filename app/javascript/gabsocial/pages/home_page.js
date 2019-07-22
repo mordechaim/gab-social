@@ -48,8 +48,8 @@ class HomePage extends ImmutablePureComponent {
 
             <div className='columns-area__panels__pane columns-area__panels__pane--right'>
               <div className='columns-area__panels__pane__inner'>
-                <WhoToFollowPanel />
                 <GroupSidebarPanel />
+                <WhoToFollowPanel />
               </div>
             </div>
           </div>
