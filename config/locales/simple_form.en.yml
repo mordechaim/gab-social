@@ -105,6 +105,7 @@ en:
         setting_hide_network: Hide your network
         setting_noindex: Opt-out of search engine indexing
         setting_reduce_motion: Reduce motion in animations
+        setting_group_in_home_feed: Show posts from your groups”
         setting_show_application: Disclose application used to send gabs
         setting_system_font_ui: Use system's default font
         setting_theme: Site theme

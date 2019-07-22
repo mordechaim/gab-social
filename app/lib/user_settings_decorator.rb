@@ -34,6 +34,7 @@ class UserSettingsDecorator
     user.settings['aggregate_reblogs']   = aggregate_reblogs_preference if change?('setting_aggregate_reblogs')
     user.settings['show_application']    = show_application_preference if change?('setting_show_application')
     user.settings['advanced_layout']     = advanced_layout_preference if change?('setting_advanced_layout')
+    user.settings['group_in_home_feed']  = group_in_home_feed_preference if change?('setting_group_in_home_feed')
   end
 
   def merged_notification_emails
@@ -110,6 +111,10 @@ class UserSettingsDecorator
 
   def advanced_layout_preference
     boolean_cast_setting 'setting_advanced_layout'
+  end
+
+  def group_in_home_feed_preference
+    boolean_cast_setting 'setting_group_in_home_feed'
   end
 
   def boolean_cast_setting(key)
