@@ -33,7 +33,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def avatar
-    if object.avatar_remote_url and object.avatar_remote_url.start_with? "gab://avatar/"
+    if object.avatar_file_name.nil? and object.avatar_remote_url and object.avatar_remote_url.start_with? "gab://avatar/"
       return object.avatar_remote_url.sub("gab://avatar/", "https://gab.com/media/user/") 
     end
 
@@ -41,7 +41,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def avatar_static
-    if object.avatar_remote_url and object.avatar_remote_url.start_with? "gab://avatar/"
+    if object.avatar_file_name.nil? and object.avatar_remote_url and object.avatar_remote_url.start_with? "gab://avatar/"
       return object.avatar_remote_url.sub("gab://avatar/", "https://gab.com/media/user/") 
     end
 
@@ -49,7 +49,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def header
-    if object.header_remote_url and object.header_remote_url.start_with? "gab://header/"
+    if object.header_file_name.nil? and object.header_remote_url and object.header_remote_url.start_with? "gab://header/"
       return object.header_remote_url.sub("gab://header/", "https://gab.com/media/user/") 
     end
 
@@ -57,7 +57,7 @@ class REST::AccountSerializer < ActiveModel::Serializer
   end
 
   def header_static
-    if object.header_remote_url and object.header_remote_url.start_with? "gab://header/"
+    if object.header_file_name.nil? and object.header_remote_url and object.header_remote_url.start_with? "gab://header/"
       return object.header_remote_url.sub("gab://header/", "https://gab.com/media/user/") 
     end
 
