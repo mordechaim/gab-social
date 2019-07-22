@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { openModal } from '../../../actions/modal';
 import PropTypes from 'prop-types';
 import IconButton from '../../../components/icon_button';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -31,7 +33,12 @@ const messages = defineMessages({
   copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
 });
 
-export default @injectIntl
+const mapDispatchToProps = (dispatch) => ({
+  onOpenUnauthorizedModal() {
+    dispatch(openModal('UNAUTHORIZED'));
+  },
+});
+
 class ActionBar extends React.PureComponent {
 
   static contextTypes = {
@@ -53,18 +60,31 @@ class ActionBar extends React.PureComponent {
     onPin: PropTypes.func,
     onEmbed: PropTypes.func,
     intl: PropTypes.object.isRequired,
+    onOpenUnauthorizedModal: PropTypes.func.isRequired,
   };
 
   handleReplyClick = () => {
-    this.props.onReply(this.props.status);
+    if (me) {
+      this.props.onReply(this.props.status);
+    } else {
+      this.props.onOpenUnauthorizedModal();
+    }
   }
 
   handleReblogClick = (e) => {
-    this.props.onReblog(this.props.status, e);
+    if (me) {
+      this.props.onReblog(this.props.status, e);
+    } else {
+      this.props.onOpenUnauthorizedModal();
+    }
   }
 
   handleFavouriteClick = () => {
-    this.props.onFavourite(this.props.status);
+    if (me) {
+      this.props.onFavourite(this.props.status);
+    } else {
+      this.props.onOpenUnauthorizedModal();
+    }
   }
 
   handleDeleteClick = () => {
@@ -205,5 +225,6 @@ class ActionBar extends React.PureComponent {
       </div>
     );
   }
-
 }
+
+export default injectIntl(connect(null, mapDispatchToProps)(ActionBar));
