@@ -165,9 +165,6 @@ cd ~
 # Clone the gabsocial git repository into ~/live
 git clone https://code.gab.com/gab/social/gab-social live
 
-# Or, clone the developer version (requires credentials)
-git clone https://code.gab.com/gab/social/gab-social live
-
 # Change directory to ~/live
 cd ~/live
 
