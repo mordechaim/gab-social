@@ -1,5 +1,7 @@
-import api from '../api';
+import api, { getLinks } from '../api';
 import { me } from 'gabsocial/initial_state';
+import { importFetchedAccounts } from './importer';
+import { fetchRelationships } from './accounts';
 
 export const GROUP_FETCH_REQUEST = 'GROUP_FETCH_REQUEST';
 export const GROUP_FETCH_SUCCESS = 'GROUP_FETCH_SUCCESS';
@@ -20,6 +22,34 @@ export const GROUP_JOIN_FAIL    = 'GROUP_JOIN_FAIL';
 export const GROUP_LEAVE_REQUEST = 'GROUP_LEAVE_REQUEST';
 export const GROUP_LEAVE_SUCCESS = 'GROUP_LEAVE_SUCCESS';
 export const GROUP_LEAVE_FAIL    = 'GROUP_LEAVE_FAIL';
+
+export const GROUP_MEMBERS_FETCH_REQUEST = 'GROUP_MEMBERS_FETCH_REQUEST';
+export const GROUP_MEMBERS_FETCH_SUCCESS = 'GROUP_MEMBERS_FETCH_SUCCESS';
+export const GROUP_MEMBERS_FETCH_FAIL    = 'GROUP_MEMBERS_FETCH_FAIL';
+
+export const GROUP_MEMBERS_EXPAND_REQUEST = 'GROUP_MEMBERS_EXPAND_REQUEST';
+export const GROUP_MEMBERS_EXPAND_SUCCESS = 'GROUP_MEMBERS_EXPAND_SUCCESS';
+export const GROUP_MEMBERS_EXPAND_FAIL    = 'GROUP_MEMBERS_EXPAND_FAIL';
+
+export const GROUP_REMOVED_ACCOUNTS_FETCH_REQUEST = 'GROUP_REMOVED_ACCOUNTS_FETCH_REQUEST';
+export const GROUP_REMOVED_ACCOUNTS_FETCH_SUCCESS = 'GROUP_REMOVED_ACCOUNTS_FETCH_SUCCESS';
+export const GROUP_REMOVED_ACCOUNTS_FETCH_FAIL    = 'GROUP_REMOVED_ACCOUNTS_FETCH_FAIL';
+
+export const GROUP_REMOVED_ACCOUNTS_EXPAND_REQUEST = 'GROUP_REMOVED_ACCOUNTS_EXPAND_REQUEST';
+export const GROUP_REMOVED_ACCOUNTS_EXPAND_SUCCESS = 'GROUP_REMOVED_ACCOUNTS_EXPAND_SUCCESS';
+export const GROUP_REMOVED_ACCOUNTS_EXPAND_FAIL    = 'GROUP_REMOVED_ACCOUNTS_EXPAND_FAIL';
+
+export const GROUP_REMOVED_ACCOUNTS_REMOVE_REQUEST = 'GROUP_REMOVED_ACCOUNTS_REMOVE_REQUEST';
+export const GROUP_REMOVED_ACCOUNTS_REMOVE_SUCCESS = 'GROUP_REMOVED_ACCOUNTS_REMOVE_SUCCESS';
+export const GROUP_REMOVED_ACCOUNTS_REMOVE_FAIL    = 'GROUP_REMOVED_ACCOUNTS_REMOVE_FAIL';
+
+export const GROUP_REMOVED_ACCOUNTS_CREATE_REQUEST = 'GROUP_REMOVED_ACCOUNTS_CREATE_REQUEST';
+export const GROUP_REMOVED_ACCOUNTS_CREATE_SUCCESS = 'GROUP_REMOVED_ACCOUNTS_CREATE_SUCCESS';
+export const GROUP_REMOVED_ACCOUNTS_CREATE_FAIL    = 'GROUP_REMOVED_ACCOUNTS_CREATE_FAIL';
+
+export const GROUP_REMOVE_STATUS_REQUEST = 'GROUP_REMOVE_STATUS_REQUEST';
+export const GROUP_REMOVE_STATUS_SUCCESS = 'GROUP_REMOVE_STATUS_SUCCESS';
+export const GROUP_REMOVE_STATUS_FAIL    = 'GROUP_REMOVE_STATUS_FAIL';
 
 export const fetchGroup = id => (dispatch, getState) => {
   if (!me) return;
@@ -98,13 +128,16 @@ export function fetchGroupRelationshipsFail(error) {
   };
 };
 
-export const fetchGroups = () => (dispatch, getState) => {
+export const fetchGroups = (tab) => (dispatch, getState) => {
   if (!me) return;
 
   dispatch(fetchGroupsRequest());
 
-  api(getState).get('/api/v1/groups')
-    .then(({ data }) => dispatch(fetchGroupsSuccess(data)))
+  api(getState).get('/api/v1/groups?tab=' + tab)
+    .then(({ data }) => {
+      dispatch(fetchGroupsSuccess(data, tab));
+      dispatch(fetchGroupRelationships(data.map(item => item.id)));
+    })
     .catch(err => dispatch(fetchGroupsFail(err)));
 };
 
@@ -112,9 +145,10 @@ export const fetchGroupsRequest = () => ({
   type: GROUPS_FETCH_REQUEST,
 });
 
-export const fetchGroupsSuccess = groups => ({
+export const fetchGroupsSuccess = (groups, tab) => ({
   type: GROUPS_FETCH_SUCCESS,
   groups,
+  tab,
 });
 
 export const fetchGroupsFail = error => ({
@@ -188,6 +222,303 @@ export function leaveGroupSuccess(relationship) {
 export function leaveGroupFail(error) {
   return {
     type: GROUP_LEAVE_FAIL,
+    error,
+  };
+};
+
+export function fetchMembers(id) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    dispatch(fetchMembersRequest(id));
+
+    api(getState).get(`/api/v1/groups/${id}/accounts`).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(fetchMembersSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => {
+      dispatch(fetchMembersFail(id, error));
+    });
+  };
+};
+
+export function fetchMembersRequest(id) {
+  return {
+    type: GROUP_MEMBERS_FETCH_REQUEST,
+    id,
+  };
+};
+
+export function fetchMembersSuccess(id, accounts, next) {
+  return {
+    type: GROUP_MEMBERS_FETCH_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+};
+
+export function fetchMembersFail(id, error) {
+  return {
+    type: GROUP_MEMBERS_FETCH_FAIL,
+    id,
+    error,
+  };
+};
+
+export function expandMembers(id) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    const url = getState().getIn(['user_lists', 'groups', id, 'next']);
+
+    if (url === null) {
+      return;
+    }
+
+    dispatch(expandMembersRequest(id));
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(expandMembersSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => {
+      dispatch(expandMembersFail(id, error));
+    });
+  };
+};
+
+export function expandMembersRequest(id) {
+  return {
+    type: GROUP_MEMBERS_EXPAND_REQUEST,
+    id,
+  };
+};
+
+export function expandMembersSuccess(id, accounts, next) {
+  return {
+    type: GROUP_MEMBERS_EXPAND_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+};
+
+export function expandMembersFail(id, error) {
+  return {
+    type: GROUP_MEMBERS_EXPAND_FAIL,
+    id,
+    error,
+  };
+};
+
+export function fetchRemovedAccounts(id) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    dispatch(fetchRemovedAccountsRequest(id));
+
+    api(getState).get(`/api/v1/groups/${id}/removed_accounts`).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(fetchRemovedAccountsSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => {
+      dispatch(fetchRemovedAccountsFail(id, error));
+    });
+  };
+};
+
+export function fetchRemovedAccountsRequest(id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_FETCH_REQUEST,
+    id,
+  };
+};
+
+export function fetchRemovedAccountsSuccess(id, accounts, next) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_FETCH_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+};
+
+export function fetchRemovedAccountsFail(id, error) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_FETCH_FAIL,
+    id,
+    error,
+  };
+};
+
+export function expandRemovedAccounts(id) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    const url = getState().getIn(['user_lists', 'groups_removed_accounts', id, 'next']);
+
+    if (url === null) {
+      return;
+    }
+
+    dispatch(expandRemovedAccountsRequest(id));
+
+    api(getState).get(url).then(response => {
+      const next = getLinks(response).refs.find(link => link.rel === 'next');
+
+      dispatch(importFetchedAccounts(response.data));
+      dispatch(expandRemovedAccountsSuccess(id, response.data, next ? next.uri : null));
+      dispatch(fetchRelationships(response.data.map(item => item.id)));
+    }).catch(error => {
+      dispatch(expandRemovedAccountsFail(id, error));
+    });
+  };
+};
+
+export function expandRemovedAccountsRequest(id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_EXPAND_REQUEST,
+    id,
+  };
+};
+
+export function expandRemovedAccountsSuccess(id, accounts, next) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_EXPAND_SUCCESS,
+    id,
+    accounts,
+    next,
+  };
+};
+
+export function expandRemovedAccountsFail(id, error) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_EXPAND_FAIL,
+    id,
+    error,
+  };
+};
+
+export function removeRemovedAccount(groupId, id) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    dispatch(removeRemovedAccountRequest(groupId, id));
+
+    api(getState).delete(`/api/v1/groups/${groupId}/removed_accounts?account_id=${id}`).then(response => {
+      dispatch(removeRemovedAccountSuccess(groupId, id));
+    }).catch(error => {
+      dispatch(removeRemovedAccountFail(groupId, id, error));
+    });
+  };
+};
+
+export function removeRemovedAccountRequest(groupId, id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_REMOVE_REQUEST,
+    groupId,
+    id,
+  };
+};
+
+export function removeRemovedAccountSuccess(groupId, id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_REMOVE_SUCCESS,
+    groupId,
+    id,
+  };
+};
+
+export function removeRemovedAccountFail(groupId, id, error) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_REMOVE_FAIL,
+    groupId,
+    id,
+    error,
+  };
+};
+
+export function createRemovedAccount(groupId, id) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    dispatch(createRemovedAccountRequest(groupId, id));
+
+    api(getState).post(`/api/v1/groups/${groupId}/removed_accounts?account_id=${id}`).then(response => {
+      dispatch(createRemovedAccountSuccess(groupId, id));
+    }).catch(error => {
+      dispatch(createRemovedAccountFail(groupId, id, error));
+    });
+  };
+};
+
+export function createRemovedAccountRequest(groupId, id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_CREATE_REQUEST,
+    groupId,
+    id,
+  };
+};
+
+export function createRemovedAccountSuccess(groupId, id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_CREATE_SUCCESS,
+    groupId,
+    id,
+  };
+};
+
+export function createRemovedAccountFail(groupId, id, error) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_CREATE_FAIL,
+    groupId,
+    id,
+    error,
+  };
+};
+
+export function groupRemoveStatus(groupId, id) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    dispatch(groupRemoveStatusRequest(groupId, id));
+
+    api(getState).delete(`/api/v1/groups/${groupId}/statuses/${id}`).then(response => {
+      dispatch(groupRemoveStatusSuccess(groupId, id));
+    }).catch(error => {
+      dispatch(groupRemoveStatusFail(groupId, id, error));
+    });
+  };
+};
+
+export function groupRemoveStatusRequest(groupId, id) {
+  return {
+    type: GROUP_REMOVE_STATUS_REQUEST,
+    groupId,
+    id,
+  };
+};
+
+export function groupRemoveStatusSuccess(groupId, id) {
+  return {
+    type: GROUP_REMOVE_STATUS_SUCCESS,
+    groupId,
+    id,
+  };
+};
+
+export function groupRemoveStatusFail(groupId, id, error) {
+  return {
+    type: GROUP_REMOVE_STATUS_FAIL,
+    groupId,
+    id,
     error,
   };
 };

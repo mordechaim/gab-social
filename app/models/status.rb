@@ -256,6 +256,7 @@ class Status < ApplicationRecord
 
   after_create_commit :store_uri, if: :local?
   after_create_commit :update_statistics, if: :local?
+  after_create_commit :increase_group_unread_counts, if: Proc.new { |status| !status.group_id.nil? }
 
   around_create GabSocial::Snowflake::Callbacks
 
@@ -534,5 +535,9 @@ class Status < ApplicationRecord
     inbox_owners.each do |inbox_owner|
       AccountConversation.remove_status(inbox_owner, self)
     end
+  end
+
+  def increase_group_unread_counts
+    GroupAccount.where(group_id: group_id).where.not(account_id: account_id).update_all("unread_count = unread_count + 1")
   end
 end

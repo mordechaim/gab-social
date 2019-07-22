@@ -18,12 +18,17 @@
 @import 'gabsocial/components';
 
 // COMPONENTS
+@import 'gabsocial/components/buttons';
 @import 'gabsocial/components/tabs-bar';
 @import 'gabsocial/components/dropdown-menu';
 @import 'gabsocial/components/modal';
 @import 'gabsocial/components/account-header';
 @import 'gabsocial/components/user-panel';
 @import 'gabsocial/components/compose-form';
+@import 'gabsocial/components/group-card';
+@import 'gabsocial/components/group-detail';
+@import 'gabsocial/components/group-form';
+@import 'gabsocial/components/group-sidebar-panel';
 
 @import 'gabsocial/polls';
 @import 'gabsocial/introduction';

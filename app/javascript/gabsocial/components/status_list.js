@@ -25,6 +25,7 @@ export default class StatusList extends ImmutablePureComponent {
     timelineId: PropTypes.string,
     queuedItemSize: PropTypes.number,
     onDequeueTimeline: PropTypes.func,
+    withGroupAdmin: PropTypes.bool,
     onScrollToTop: PropTypes.func,
     onScroll: PropTypes.func,
   };
@@ -84,7 +85,7 @@ export default class StatusList extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, featuredStatusIds, onLoadMore, timelineId, totalQueuedItemsCount, isLoading, isPartial, ...other }  = this.props;
+    const { statusIds, featuredStatusIds, onLoadMore, timelineId, totalQueuedItemsCount, isLoading, isPartial, withGroupAdmin, ...other }  = this.props;
 
     if (isPartial) {
       return (
@@ -114,6 +115,7 @@ export default class StatusList extends ImmutablePureComponent {
           onMoveUp={this.handleMoveUp}
           onMoveDown={this.handleMoveDown}
           contextType={timelineId}
+          withGroupAdmin={withGroupAdmin}
           showThread
         />
       ))

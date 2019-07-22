@@ -15,11 +15,13 @@
 #  is_archived              :boolean          default(FALSE), not null
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
+#  member_count             :integer          default(0)
 #
 
 class Group < ApplicationRecord
   include Paginable
   include GroupInteractions
+  include GroupCoverImage
 
   PER_ACCOUNT_LIMIT = 50
 
@@ -28,16 +30,11 @@ class Group < ApplicationRecord
   has_many :group_accounts, inverse_of: :group, dependent: :destroy
   has_many :accounts, through: :group_accounts
 
+  has_many :group_removed_accounts, inverse_of: :group, dependent: :destroy
+  has_many :removed_accounts, source: :account, through: :group_removed_accounts
+
   validates :title, presence: true
   validates :description, presence: true
-
-  LIMIT            = 4.megabytes
-  IMAGE_MIME_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'].freeze
-
-  has_attached_file :cover_image
-  validates_attachment_content_type :cover_image, content_type: IMAGE_MIME_TYPES
-  validates_attachment_size :cover_image, less_than: LIMIT
-  remotable_attachment :cover_image, LIMIT
 
   validates_each :account_id, on: :create do |record, _attr, value|
     record.errors.add(:base, I18n.t('groups.errors.limit')) if Group.where(account_id: value).count >= PER_ACCOUNT_LIMIT

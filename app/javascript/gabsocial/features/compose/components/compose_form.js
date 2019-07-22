@@ -68,6 +68,7 @@ class ComposeForm extends ImmutablePureComponent {
     anyMedia: PropTypes.bool,
     shouldCondense: PropTypes.bool,
     autoFocus: PropTypes.bool,
+    group: ImmutablePropTypes.map,
     isModalOpen: PropTypes.bool,
   };
 
@@ -119,7 +120,7 @@ class ComposeForm extends ImmutablePureComponent {
       return;
     }
 
-    this.props.onSubmit(this.context.router ? this.context.router.history : null);
+    this.props.onSubmit(this.context.router ? this.context.router.history : null, this.props.group);
   }
 
   onSuggestionsClearRequested = () => {

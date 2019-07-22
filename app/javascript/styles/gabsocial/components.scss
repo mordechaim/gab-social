@@ -1303,7 +1303,7 @@ a.account__display-name {
 	flex: 1 1 auto;
 	flex-direction: row;
 	justify-content: flex-start;
-	overflow-x: auto;
+	//overflow-x: auto;
 	position: relative;
 
 	&__panels {
@@ -1321,14 +1321,14 @@ a.account__display-name {
 			pointer-events: none;
 			display: flex;
 			justify-content: flex-end;
-			padding-top: 10px;
+			padding-top: 15px;
 
 			&--start {
 				justify-content: flex-start;
 			}
 
 			&__inner {
-				width: 285px;
+				width: 265px;
 				pointer-events: auto;
 				height: 100%;
 			}
@@ -1342,7 +1342,8 @@ a.account__display-name {
 			flex-direction: column;
 
 			@media screen and (min-width: 360px) {
-				padding: 0 10px;
+				margin: 0 20px;
+				padding: 0;
 			}
 		}
 	}
@@ -1501,7 +1502,7 @@ a.account__display-name {
 	}
 
 	@media screen and (min-width: 360px) {
-		padding: 10px 0;
+		padding: 15px 0;
 	}
 
 	@media screen and (min-width: 630px) {

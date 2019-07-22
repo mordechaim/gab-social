@@ -23,7 +23,8 @@ class GroupPolicy < ApplicationPolicy
 
   def join?
     check_archive!
-    raise GabSocial::ValidationError, "User is already a member of this group." if is_member?
+    raise GabSocial::ValidationError, "Account is already a member of this group." if is_member?
+    raise GabSocial::ValidationError, "Account is removed from this group." if is_removed?
 
     return true
   end
@@ -42,7 +43,23 @@ class GroupPolicy < ApplicationPolicy
     is_group_admin?
   end
 
+  def show_removed_accounts?
+    is_group_admin?
+  end
+  
+  def create_removed_account?
+    is_group_admin?
+  end
+
+  def destroy_removed_account?
+    is_group_admin?
+  end
+
   private
+
+  def is_removed?
+    record.group_removed_accounts.where(account_id: current_account.id).exists?
+  end
 
   def is_member?
     record.group_accounts.where(account_id: current_account.id).exists?

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_07_000211) do
+ActiveRecord::Schema.define(version: 2019_07_22_003649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2019_06_07_000211) do
     t.bigint "account_id"
     t.string "image_file_name"
     t.string "image_content_type"
-    t.bigint "image_file_size"
+    t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -157,10 +157,10 @@ ActiveRecord::Schema.define(version: 2019_06_07_000211) do
     t.string "actor_type"
     t.boolean "discoverable"
     t.string "also_known_as", array: true
-    t.datetime "silenced_at"
-    t.datetime "suspended_at"
     t.boolean "is_pro", default: false, null: false
     t.datetime "pro_expires_at"
+    t.datetime "silenced_at"
+    t.datetime "suspended_at"
     t.boolean "is_verified", default: false, null: false
     t.boolean "is_donor", default: false, null: false
     t.boolean "is_investor", default: false, null: false
@@ -327,10 +327,22 @@ ActiveRecord::Schema.define(version: 2019_06_07_000211) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "unread_count", default: 0
     t.index ["account_id", "group_id"], name: "index_group_accounts_on_account_id_and_group_id", unique: true
     t.index ["account_id"], name: "index_group_accounts_on_account_id"
     t.index ["group_id", "account_id"], name: "index_group_accounts_on_group_id_and_account_id"
     t.index ["group_id"], name: "index_group_accounts_on_group_id"
+  end
+
+  create_table "group_removed_accounts", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id", "group_id"], name: "index_group_removed_accounts_on_account_id_and_group_id", unique: true
+    t.index ["account_id"], name: "index_group_removed_accounts_on_account_id"
+    t.index ["group_id", "account_id"], name: "index_group_removed_accounts_on_group_id_and_account_id"
+    t.index ["group_id"], name: "index_group_removed_accounts_on_group_id"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -346,6 +358,7 @@ ActiveRecord::Schema.define(version: 2019_06_07_000211) do
     t.boolean "is_archived", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "member_count", default: 0
     t.index ["account_id"], name: "index_groups_on_account_id"
   end
 
@@ -645,8 +658,8 @@ ActiveRecord::Schema.define(version: 2019_06_07_000211) do
   create_table "status_pins", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "status_id", null: false
-    t.datetime "created_at", default: -> { "now()" }, null: false
-    t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
   end
 
@@ -849,6 +862,8 @@ ActiveRecord::Schema.define(version: 2019_06_07_000211) do
   add_foreign_key "follows", "accounts", name: "fk_32ed1b5560", on_delete: :cascade
   add_foreign_key "group_accounts", "accounts", on_delete: :cascade
   add_foreign_key "group_accounts", "groups", on_delete: :cascade
+  add_foreign_key "group_removed_accounts", "accounts", on_delete: :cascade
+  add_foreign_key "group_removed_accounts", "groups", on_delete: :cascade
   add_foreign_key "identities", "users", name: "fk_bea040f377", on_delete: :cascade
   add_foreign_key "imports", "accounts", name: "fk_6db1b6e408", on_delete: :cascade
   add_foreign_key "invites", "users", on_delete: :cascade

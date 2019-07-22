@@ -2,77 +2,88 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import LoadingIndicator from '../../../components/loading_indicator';
-import Column from '../../ui/components/column';
 import { fetchGroups } from '../../../actions/groups';
-import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
+import { defineMessages, injectIntl } from 'react-intl';
 import ImmutablePureComponent from 'react-immutable-pure-component';
-import ColumnLink from '../../ui/components/column_link';
-import ColumnSubheading from '../../ui/components/column_subheading';
-import NewGroupForm from '../create';
-import { createSelector } from 'reselect';
-import ScrollableList from '../../../components/scrollable_list';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+import GroupCard from './card';
+import GroupCreate from '../create';
 
 const messages = defineMessages({
-  heading: { id: 'column.groups', defaultMessage: 'Groups' },
-  subheading: { id: 'groups.subheading', defaultMessage: 'Your groups' },
+	heading: { id: 'column.groups', defaultMessage: 'Groups' },
+	create: { id: 'groups.create', defaultMessage: 'Create group' },
+	tab_featured: { id: 'groups.tab_featured', defaultMessage: 'Featured' },
+	tab_member: { id: 'groups.tab_member', defaultMessage: 'Groups you\'re in' },
+	tab_admin: { id: 'groups.tab_admin', defaultMessage: 'Groups you manage' },
 });
 
-const getOrderedGroups = createSelector([state => state.get('groups')], groups => {
-  if (!groups) {
-    return groups;
-  }
-
-  return groups.toList().filter(item => !!item);
-});
-
-const mapStateToProps = state => ({
-  groups: getOrderedGroups(state),
+const mapStateToProps = (state, { activeTab }) => ({
+	groupIds: state.getIn(['group_lists', activeTab]),
 });
 
 export default @connect(mapStateToProps)
 @injectIntl
 class Groups extends ImmutablePureComponent {
+	static propTypes = {
+		params: PropTypes.object.isRequired,
+		activeTab: PropTypes.string.isRequired,
+		showCreateForm: PropTypes.bool,
+		dispatch: PropTypes.func.isRequired,
+		groups: ImmutablePropTypes.map,
+		groupIds: ImmutablePropTypes.list,
+		intl: PropTypes.object.isRequired,
+	};
 
-  static propTypes = {
-    params: PropTypes.object.isRequired,
-    dispatch: PropTypes.func.isRequired,
-    groups: ImmutablePropTypes.list,
-    intl: PropTypes.object.isRequired,
-  };
+	componentWillMount () {
+		this.props.dispatch(fetchGroups(this.props.activeTab));
+	}
 
-  componentWillMount () {
-    this.props.dispatch(fetchGroups());
-  }
+	componentDidUpdate(oldProps) {
+		if (this.props.activeTab && this.props.activeTab !== oldProps.activeTab) {
+			this.props.dispatch(fetchGroups(this.props.activeTab));
+		}
+	}
 
-  render () {
-    const { intl, groups } = this.props;
+	renderHeader() {
+		const { intl, activeTab } = this.props;
 
-    if (!groups) {
-      return (
-        <Column>
-          <LoadingIndicator />
-        </Column>
-      );
-    }
+		return (
+			<div className="group-column-header">
+				<div className="group-column-header__cta"><Link to="/groups/create" className="button standard-small">{intl.formatMessage(messages.create)}</Link></div>
+				<div className="group-column-header__title">{intl.formatMessage(messages.heading)}</div>
 
-    const emptyMessage = <FormattedMessage id='empty_column.groups' defaultMessage="No groups." />;
+				<div className="column-header__wrapper">
+					<h1 className="column-header">
+						<Link to='/groups' className={classNames('btn grouped', {'active': 'featured' === activeTab})}>
+							{intl.formatMessage(messages.tab_featured)}
+						</Link>
 
-    return (
-      <Column icon='list-ul' heading={intl.formatMessage(messages.heading)} backBtnSlim>
-        <NewGroupForm />
+						<Link to='/groups/browse/member' className={classNames('btn grouped', {'active': 'member' === activeTab})}>
+							{intl.formatMessage(messages.tab_member)}
+						</Link>
 
-        <ColumnSubheading text={intl.formatMessage(messages.subheading)} />
-        <ScrollableList
-          scrollKey='lists'
-          emptyMessage={emptyMessage}
-        >
-          {groups.map(group =>
-            <ColumnLink key={group.get('id')} to={`/groups/${group.get('id')}`} icon='list-ul' text={group.get('title')} />
-          )}
-        </ScrollableList>
-      </Column>
-    );
-  }
+						<Link to='/groups/browse/admin' className={classNames('btn grouped', {'active': 'admin' === activeTab})}>
+							{intl.formatMessage(messages.tab_admin)}
+						</Link>
+					</h1>
+				</div>
+			</div>
+		);
+	}
 
+	render () {
+		const { groupIds, showCreateForm } = this.props;
+
+		return (
+			<div>
+				{!showCreateForm && this.renderHeader()}
+				{showCreateForm && <GroupCreate /> }
+
+				<div className="group-card-list">
+					{groupIds.map(id => <GroupCard key={id} id={id} />)}
+				</div>
+			</div>
+		);
+	}
 }

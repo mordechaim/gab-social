@@ -54,6 +54,7 @@
   "column.lists": "Lists",
   "column.mutes": "Muted users",
   "column.notifications": "Notifications",
+  "column.groups": "Groups",
   "column.pins": "Pinned gabs",
   "column.public": "Federated timeline",
   "column_back_button.label": "Back",

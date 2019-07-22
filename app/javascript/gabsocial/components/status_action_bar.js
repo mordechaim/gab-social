@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -36,6 +37,8 @@ const messages = defineMessages({
   admin_account: { id: 'status.admin_account', defaultMessage: 'Open moderation interface for @{name}' },
   admin_status: { id: 'status.admin_status', defaultMessage: 'Open this status in the moderation interface' },
   copy: { id: 'status.copy', defaultMessage: 'Copy link to status' },
+  group_remove_account: { id: 'status.remove_account_from_group', defaultMessage: 'Remove account from group' },
+  group_remove_post: { id: 'status.remove_post_from_group', defaultMessage: 'Remove status from group' },
 });
 
 class StatusActionBar extends ImmutablePureComponent {
@@ -59,6 +62,7 @@ class StatusActionBar extends ImmutablePureComponent {
     onMuteConversation: PropTypes.func,
     onPin: PropTypes.func,
     withDismiss: PropTypes.bool,
+    withGroupAdmin: PropTypes.bool,
     intl: PropTypes.object.isRequired,
   };
 
@@ -164,9 +168,21 @@ class StatusActionBar extends ImmutablePureComponent {
       document.body.removeChild(textarea);
     }
   }
+  
+  handleGroupRemoveAccount = () => {
+    const { status } = this.props;
+
+    this.props.onGroupRemoveAccount(status.get('group_id'), status.getIn(['account', 'id']));
+  }
+
+  handleGroupRemovePost = () => {
+    const { status } = this.props;
+
+    this.props.onGroupRemoveStatus(status.get('group_id'), status.get('id'));
+  }
 
   _makeMenu = (publicStatus) => {
-    const { status, intl, withDismiss } = this.props;
+    const { status, intl, withDismiss, withGroupAdmin } = this.props;
     const mutingConversation = status.get('muted');
 
     let menu = [];
@@ -212,6 +228,12 @@ class StatusActionBar extends ImmutablePureComponent {
         menu.push(null);
         menu.push({ text: intl.formatMessage(messages.admin_account, { name: status.getIn(['account', 'username']) }), href: `/admin/accounts/${status.getIn(['account', 'id'])}` });
         menu.push({ text: intl.formatMessage(messages.admin_status), href: `/admin/accounts/${status.getIn(['account', 'id'])}/statuses/${status.get('id')}` });
+      }
+
+      if (withGroupAdmin) {
+        menu.push(null);
+        menu.push({ text: intl.formatMessage(messages.group_remove_account), action: this.handleGroupRemoveAccount });
+        menu.push({ text: intl.formatMessage(messages.group_remove_post), action: this.handleGroupRemovePost });
       }
     }
 

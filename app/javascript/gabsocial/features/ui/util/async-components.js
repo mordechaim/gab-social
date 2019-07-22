@@ -34,6 +34,22 @@ export function GroupTimeline () {
   return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/timeline');
 }
 
+export function GroupMembers () {
+  return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/members');
+}
+
+export function GroupRemovedAccounts () {
+  return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/removed_accounts');
+}
+
+export function GroupCreate () {
+  return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/create');
+}
+
+export function GroupEdit () {
+  return import(/* webpackChunkName: "features/groups/timeline" */'../../groups/edit');
+}
+
 export function Groups () {
   return import(/* webpackChunkName: "features/groups/index" */'../../groups/index');
 }
