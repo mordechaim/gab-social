@@ -38,7 +38,10 @@
         img {
             pointer-events: none;
             width: 100%;
-            background: $gab-background-container;;
+            background: $gab-background-container;
+            body.theme-gabsocial-light & {
+          		background: $gab-background-container-light;
+          	}
         }
     }
 
