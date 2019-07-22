@@ -9,6 +9,7 @@ import PromoPanel from '../features/ui/components/promo_panel';
 import UserPanel from '../features/ui/components/user_panel';
 import ComposeFormContainer from '../features/compose/containers/compose_form_container';
 import Avatar from '../components/avatar';
+import GroupSidebarPanel from '../features/groups/sidebar_panel';
 
 const mapStateToProps = state => ({
   account: state.getIn(['accounts', me]),
@@ -48,6 +49,7 @@ class HomePage extends ImmutablePureComponent {
             <div className='columns-area__panels__pane columns-area__panels__pane--right'>
               <div className='columns-area__panels__pane__inner'>
                 <WhoToFollowPanel />
+                <GroupSidebarPanel />
               </div>
             </div>
           </div>

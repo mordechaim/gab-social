@@ -8,7 +8,7 @@ import LinkFooter from '../features/ui/components/link_footer';
 import PromoPanel from '../features/ui/components/promo_panel';
 import HeaderContainer from '../features/groups/timeline/containers/header_container';
 import GroupPanel from '../features/groups/timeline/components/panel';
-import { fetchGroup, fetchGroups } from '../actions/groups';
+import { fetchGroup } from '../actions/groups';
 import GroupSidebarPanel from '../features/groups/sidebar_panel';
 
 const mapStateToProps = (state, { params: { id } }) => ({
@@ -28,7 +28,6 @@ class GroupPage extends ImmutablePureComponent {
 	componentWillMount() {
 		const { params: { id }, dispatch } = this.props;
 
-		dispatch(fetchGroups('member'));
 		dispatch(fetchGroup(id));
 	}
 

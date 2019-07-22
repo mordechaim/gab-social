@@ -29,6 +29,7 @@ import GroupsPage from 'gabsocial/pages/groups_page';
 import GroupPage from 'gabsocial/pages/group_page';
 import SearchPage from 'gabsocial/pages/search_page';
 import HomePage from 'gabsocial/pages/home_page';
+import GroupSidebarPanel from '../groups/sidebar_panel';
 
 import {
   Status,
@@ -67,6 +68,7 @@ import { previewState as previewVideoState } from './components/video_modal';
 // Dummy import, to make sure that <Status /> ends up in the application bundle.
 // Without this it ends up in ~8 very commonly used bundles.
 import '../../components/status';
+import { fetchGroups } from '../../actions/groups';
 
 const messages = defineMessages({
   beforeUnload: { id: 'ui.beforeunload', defaultMessage: 'Your draft will be lost if you leave Gab Social.' },
@@ -120,12 +122,14 @@ const LAYOUT = {
     ],
     RIGHT: [
       // <TrendsPanel />,
+      <GroupSidebarPanel />
     ],
   },
   STATUS: {
     TOP: null,
     LEFT: null,
     RIGHT: [
+      <GroupSidebarPanel />,
       <WhoToFollowPanel />,
       // <TrendsPanel />,
       <LinkFooter />,
@@ -370,6 +374,7 @@ class UI extends React.PureComponent {
     if (me) {
       this.props.dispatch(expandHomeTimeline());
       this.props.dispatch(expandNotifications());
+      this.props.dispatch(fetchGroups('member'));
 
       setTimeout(() => this.props.dispatch(fetchFilters()), 500);
     }
