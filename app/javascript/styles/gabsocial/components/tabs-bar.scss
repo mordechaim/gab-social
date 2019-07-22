@@ -116,8 +116,6 @@
 	}
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////
-
 .tabs-bar__link {
 	display: flex;
 	flex: 1 1 auto;
@@ -140,8 +138,10 @@
 		}
 		& > span {display: none;}
 	}
+
+	// REMINDER - to add the remaining icons (globe / word balloon) from the sprite into this css as necessary
 	&.home {
-		padding: 16px 0 0 25px;
+		padding: 16px 0 0 26px;
 		background-position: 0 18px;
 		&.active {background-position: 0 -52px;}
 		@media screen and (max-width: $nav-breakpoint-1) {
@@ -150,7 +150,7 @@
 		}
 	}
 	&.notifications {
-		padding: 16px 0 0 23px;
+		padding: 16px 0 0 22px;
 		background-position: -140px 18px;
 		&.active {background-position: -140px -52px;}
 		@media screen and (max-width: $nav-breakpoint-1) {
@@ -159,12 +159,12 @@
 		}
 	}
 	&.groups {
-		padding: 16px 0 0 28px;
+		padding: 16px 0 0 29px;
 		background-position: -280px 18px;
 		&.active {background-position: -280px -52px;}
 		@media screen and (max-width: $nav-breakpoint-1) {
-			background-position: -390px 11px;
-			&.active {background-position: -390px -89px;}
+			background-position: -391px 11px;
+			&.active {background-position: -391px -89px;}
 		}
 	}
 	&.optional {
@@ -176,59 +176,9 @@
 		}
 	}
 
-
-
-	// &.notifications,
-	// &.explore,
-	// &.messages,
-	// &.optional {
-	// 	padding: 16px 0 0 23px;
-	// 	background-size: 14px 114px;
-	// 	@media screen and (max-width: $nav-breakpoint-1) {background-size: 20px 160.94px;}
-	// 	background-position: 0 -82px;
-	// 	&.active{background-position: 0 18px;}
-	// }
-	// &.explore {background-image: url('../images/gab-icons/icon-explore-sprite.svg');}
-	// &.notifications {background-image: url('../images/gab-icons/icon-notifications-sprite.svg');}
-	// &.messages {background-image: url('../images/gab-icons/icon-messages-sprite.svg');}
-	// &.groups {background-image: url('../images/gab-icons/icon-groups-sprite.svg');}
-	// &.optional {background-image: url('../images/gab-icons/icon-search-sprite.svg');}
-	// &.optional {
-	// 	display: none;
-	// 	@media screen and (max-width: $nav-breakpoint-2) {display: flex;}
-	// }
-
-
-	// REWORK THIS BECAUSE OF FIREFOX BUGS
-
-	// @media screen and (max-width: $nav-breakpoint-1) {
-	// 	&.home,
-	// 	&.notifications,
-	// 	&.groups,
-	// 	&.explore,
-	// 	&.messages,
-	// 	&.optional {
-	// 		width: 46px;
-	// 		height: 42px;
-	// 		margin: 4px 0 0 0;
-	// 		padding: 0;
-	// 		background-position: center -130px;
-	// 		&.active {
-	// 			height: 38px;
-	// 			border-bottom: 4px solid $gab-default-text-light;
-	// 			background-position: center 11px;
-	// 		}
-	// 	}
-	// 	& span {display: none;}
-	// }
-
-	// END REWORK
-
 	&.active {color: $gab-text-highlight;}
-
 	&--logo {
 		display: block;
-
 
 		// NOTE - Revisit right-margin of home button / positioning between 376px and 350px
 		//		- want to keep the icons centered between logo and profile image while shrinking
@@ -248,7 +198,6 @@
 			border: none !important;
 		}
 	}
-
 	&--no-highlight,
 	&--no-highlight:hover,
 	&--no-highlight.active,
@@ -257,5 +206,4 @@
 		background: transparent !important;
 		border-bottom-color: transparent !important;
 	}
-
 }
