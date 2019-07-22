@@ -1,47 +1,38 @@
-$height: 80px; 
-
 .group-column-header {
-    border-radius: 10px;
-    background: $gab-background-container;
     overflow: hidden;
-
+    @include gab-container-standards();
     .group-column-header__title {
         padding: 15px;
         font-size: 20px;
         font-weight: bold;
     }
-
     .group-column-header__cta {
         float: right;
         padding: 15px;
         font-size: 17px;
-
-        a {
-            color: $primary-text-color;
-        }
+        a {color: #fff;}
     }
 }
 
 .group-card-list {
     display: flex;
     flex-direction: row;
+    align-items: flex-start;
     flex-wrap: wrap;
     justify-content: space-between;
     width: 100%;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .group-card {
     display: block;
-    flex: 0 0 calc(50% - 15px/2);
+    flex: 0 0 calc(50% - 20px/2);
+    @include gab-container-standards();
     margin-bottom: 15px;
-    background: $gab-background-container;
     text-decoration: none;
-    border-radius: 10px;
     overflow: hidden;
 
     .group-card__header {
-        height: $height;
         overflow: hidden;
         
         img {

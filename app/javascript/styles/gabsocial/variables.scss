@@ -12,7 +12,7 @@ $gab-brand-default: #21cf7a;
 $gab-alert-red: #cc6643;
 $gab-secondary-text: #999;
 $gab-text-highlight: $gab-brand-default;
-$gab-blue: #627ff2;
+$gab-small-cta-primary: #607CF5;
 
 
 // THEME COLORS
@@ -29,8 +29,7 @@ $gab-background-container-light: #fff;
 $gab-default-text-light: #6c6c6c;
 
 
-// theme mixins
-@mixin light-theme-shadow() {box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);}
+
 
 
 // BREAKPOINT SETS
