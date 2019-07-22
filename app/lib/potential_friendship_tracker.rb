@@ -28,7 +28,7 @@ class PotentialFriendshipTracker
       redis.zrem("interactions:#{account_id}", target_account_id)
     end
 
-    def get(account_id, limit: 20, offset: 0)
+    def get(account_id, limit: 10, offset: 0)
       account_ids = redis.zrevrange("interactions:#{account_id}", offset, limit)
       return [] if account_ids.empty?
       Account.searchable.where(id: account_ids)
