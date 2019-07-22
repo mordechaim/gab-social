@@ -1,5 +1,8 @@
 .group-form {
     background: $gab-background-container;
+    body.theme-gabsocial-light & {
+      background: $gab-background-container-light;
+    }
     padding: 15px;
     border-radius: 10px;
 
