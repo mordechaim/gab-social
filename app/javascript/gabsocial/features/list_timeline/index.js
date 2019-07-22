@@ -43,8 +43,22 @@ class ListTimeline extends React.PureComponent {
   };
 
   componentDidMount () {
+    this.handleConnect(this.props.params.id);
+  }
+
+  componentWillUnmount () {
+    this.handleDisconnect();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.id !== this.props.params.id) {
+      this.handleDisconnect();
+      this.handleConnect(nextProps.params.id);
+    }
+  }
+
+  handleConnect(id) {
     const { dispatch } = this.props;
-    const { id } = this.props.params;
 
     dispatch(fetchList(id));
     dispatch(expandListTimeline(id));
@@ -52,7 +66,7 @@ class ListTimeline extends React.PureComponent {
     this.disconnect = dispatch(connectListStream(id));
   }
 
-  componentWillUnmount () {
+  handleDisconnect() {
     if (this.disconnect) {
       this.disconnect();
       this.disconnect = null;
