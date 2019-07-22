@@ -8,7 +8,7 @@ import Icon from 'gabsocial/components/icon';
 import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
-    title: { id: 'groups.sidebar-panel.title', defaultMessage: 'Groups you\'re in' },
+    title: { id: 'groups.sidebar-panel.title', defaultMessage: 'Groups You\'re In' },
     show_all: { id: 'groups.sidebar-panel.show_all', defaultMessage: 'Show all' },
 });
 
@@ -36,7 +36,7 @@ class GroupSidebarPanel extends ImmutablePureComponent {
                     <Icon id='users' className='wtf-panel-header__icon' />
                     <span className='wtf-panel-header__label'>{intl.formatMessage(messages.title)}</span>
                 </div>
-                
+
                 <div className='wtf-panel__content'>
                     <div className="group-sidebar-panel__items">
                         {groupIds.slice(0, 10).map(groupId => <Item key={groupId} id={groupId} />)}
