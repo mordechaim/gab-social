@@ -15,6 +15,7 @@
 #  is_archived              :boolean          default(FALSE), not null
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
+#  member_count             :integer          default(0)
 #
 
 class Group < ApplicationRecord

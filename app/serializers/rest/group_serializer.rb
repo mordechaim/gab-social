@@ -22,8 +22,4 @@ class REST::GroupSerializer < ActiveModel::Serializer
 
     full_asset_url(object.cover_image.url)
   end
-
-  def member_count
-    object.accounts.count
-  end
 end
