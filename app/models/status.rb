@@ -539,5 +539,6 @@ class Status < ApplicationRecord
 
   def increase_group_unread_counts
     GroupAccount.where(group_id: group_id).where.not(account_id: account_id).update_all("unread_count = unread_count + 1")
+    Rails.cache.delete("relationship:#{account_id}:group#{group_id}")
   end
 end
