@@ -53,6 +53,8 @@ import {
   Explore,
   Groups,
   GroupTimeline,
+  ListTimeline,
+  Lists,
 } from './util/async-components';
 import { me, meUsername } from '../../initial_state';
 import { previewState as previewMediaState } from './components/media_modal';
@@ -109,8 +111,8 @@ const LAYOUT = {
   },
   DEFAULT: {
     LEFT: [
-      <WhoToFollowPanel />,
-      <LinkFooter />,
+      <WhoToFollowPanel key='0' />,
+      <LinkFooter key='1' />,
     ],
     RIGHT: [
       // <TrendsPanel />,
@@ -120,9 +122,9 @@ const LAYOUT = {
     TOP: null,
     LEFT: null,
     RIGHT: [
-      <WhoToFollowPanel />,
+      <WhoToFollowPanel key='0' />,
       // <TrendsPanel />,
-      <LinkFooter />,
+      <LinkFooter key='1' />,
     ],
   },
 };
@@ -177,8 +179,8 @@ class SwitchingColumnsArea extends React.PureComponent {
 
         <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
 
-        <Redirect from='/lists' to='/home' />
-        <Redirect from='/list' to='/home' />
+        <WrappedRoute path='/lists' layout={LAYOUT.DEFAULT} component={Lists} content={children} />
+        <WrappedRoute path='/list/:id' page={HomePage} component={ListTimeline} content={children} />
 
         <WrappedRoute path='/notifications' layout={LAYOUT.DEFAULT} component={Notifications} content={children} />
 

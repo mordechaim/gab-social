@@ -8,6 +8,7 @@ import { expandHashtagTimeline, clearTimeline } from '../../actions/timelines';
 import { FormattedMessage } from 'react-intl';
 import { connectHashtagStream } from '../../actions/streaming';
 import { isEqual } from 'lodash';
+import ColumnBackButton from '../../components/column_back_button';
 
 const mapStateToProps = (state, props) => ({
   hasUnread: state.getIn(['timelines', `hashtag:${props.params.id}`, 'unread']) > 0,
@@ -107,6 +108,7 @@ class HashtagTimeline extends React.PureComponent {
 
     return (
       <Column label={`#${id}`}>
+        <ColumnBackButton />
         <ColumnHeader icon='hashtag' active={hasUnread} title={this.title()} />
         <StatusListContainer
           scrollKey='hashtag_timeline'

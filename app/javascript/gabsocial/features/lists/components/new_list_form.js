@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { changeListEditorTitle, submitListEditor } from '../../../actions/lists';
-import IconButton from '../../../components/icon_button';
+import Button from '../../../components/button';
 import { defineMessages, injectIntl } from 'react-intl';
 
 const messages = defineMessages({
   label: { id: 'lists.new.title_placeholder', defaultMessage: 'New list title' },
   title: { id: 'lists.new.create', defaultMessage: 'Add list' },
+  create: { id: 'lists.new.create_title', defaultMessage: 'Create' },
 });
 
 const mapStateToProps = state => ({
@@ -50,6 +51,7 @@ class NewListForm extends React.PureComponent {
 
     const label = intl.formatMessage(messages.label);
     const title = intl.formatMessage(messages.title);
+    const create = intl.formatMessage(messages.create);
 
     return (
       <form className='column-inline-form' onSubmit={this.handleSubmit}>
@@ -57,7 +59,7 @@ class NewListForm extends React.PureComponent {
           <span style={{ display: 'none' }}>{label}</span>
 
           <input
-            className='setting-text'
+            className='setting-text new-list-form__input'
             value={value}
             disabled={disabled}
             onChange={this.handleChange}
@@ -65,12 +67,13 @@ class NewListForm extends React.PureComponent {
           />
         </label>
 
-        <IconButton
+        <Button
+          className='new-list-form__btn'
           disabled={disabled}
-          icon='plus'
-          title={title}
           onClick={this.handleClick}
-        />
+        >
+          {create}
+        </Button>
       </form>
     );
   }

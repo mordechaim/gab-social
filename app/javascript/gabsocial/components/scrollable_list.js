@@ -82,7 +82,7 @@ export default class ScrollableList extends PureComponent {
 
   componentDidMount () {
     this.window = window;
-    this.documentElement = document.documentElement;
+    this.documentElement = document.scrollingElement || document.documentElement;
 
     this.attachScrollListener();
     this.attachIntersectionObserver();
@@ -124,10 +124,11 @@ export default class ScrollableList extends PureComponent {
 
   handleScroll = throttle(() => {
     if (this.window) {
-      const { scrollTop, scrollHeight, clientHeight } = this.documentElement;
-      const offset = scrollHeight - scrollTop - clientHeight;
+      const { scrollTop, scrollHeight } = this.documentElement;
+      const { innerHeight } = this.window;
+      const offset = scrollHeight - scrollTop - innerHeight;
 
-      if (600 > offset && this.props.onLoadMore && this.props.hasMore && !this.props.isLoading) {
+      if (400 > offset && this.props.onLoadMore && this.props.hasMore && !this.props.isLoading) {
         this.props.onLoadMore();
       }
 
@@ -174,6 +175,7 @@ export default class ScrollableList extends PureComponent {
 
   componentWillUnmount () {
     this.clearMouseIdleTimer();
+    this.detachScrollListener();
     this.detachIntersectionObserver();
   }
 
