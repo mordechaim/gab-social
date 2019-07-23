@@ -52,6 +52,7 @@ RUN apt update && \
 
 ENV PATH="${PATH}:/opt/ruby/bin:/opt/node/bin"
 
+# Install package dependency managers
 RUN npm install -g yarn && \
 	gem install bundler && \
 	apt update && \
@@ -60,6 +61,7 @@ RUN npm install -g yarn && \
 
 COPY Gemfile* package.json yarn.lock /opt/gabsocial/
 
+# Install application dependencies
 RUN cd /opt/gabsocial && \
 	bundle install -j$(nproc) --deployment --without development test && \
 	yarn install --pure-lockfile
@@ -81,12 +83,12 @@ RUN apt update && \
 	echo "Etc/UTC" > /etc/localtime && \
 	ln -s /opt/jemalloc/lib/* /usr/lib/ && \
 	apt -y dist-upgrade && \
-	apt install -y whois wget && \
+	apt install -y vim whois wget && \
 	addgroup --gid $GID gabsocial && \
 	useradd -m -u $UID -g $GID -d /opt/gabsocial gabsocial && \
 	echo "gabsocial:`head /dev/urandom | tr -dc A-Za-z0-9 | head -c 24 | mkpasswd -s -m sha-256`" | chpasswd
 
-# Install masto runtime deps
+# Install gabsocial runtime deps
 RUN apt -y --no-install-recommends install \
 	  libssl1.1 libpq5 imagemagick ffmpeg \
 	  libicu60 libprotobuf10 libidn11 libyaml-0-2 \
