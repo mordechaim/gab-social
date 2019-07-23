@@ -2,7 +2,7 @@ input {
 	&.standard {
 		&[type='text'] {
 			border: 1px solid;
-			corner-radius: 4px;
+			border-radius: 4px;
 			@include font-size(16);
 			border-color: $gab-placeholder-accent;
 			background: $gab-background-container;
