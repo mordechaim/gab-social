@@ -235,23 +235,14 @@
 	}
 }
 
-.ellipsis {
-	&::after {
-		content: "…";
-	}
-}
+.ellipsis::after {content: "…";}
 
 .timeline-compose-block {
 	display: flex;
 	align-items: flex-start;
 	padding: 20px;
-	border-radius: 10px;
-	margin-bottom: 10px;
-	background: $gab-background-container;
-	body.theme-gabsocial-light & {
-		@include light-theme-shadow();
-		background: $gab-background-container-light;
-	}
+	margin-bottom: 20px;
+	@include gab-container-standards();
 	.emoji-picker-wrapper {
 		.emoji-picker-dropdown {top: 10px;}
 	}
@@ -1294,16 +1285,11 @@ a.account__display-name {
 	text-decoration: none;
 }
 
-
-//////////////////////////////////
-
-
 .columns-area {
 	display: flex;
 	flex: 1 1 auto;
 	flex-direction: row;
 	justify-content: flex-start;
-	//overflow-x: auto;
 	position: relative;
 
 	&__panels {
@@ -1314,10 +1300,6 @@ a.account__display-name {
 
 		&__pane {
 			height: 100%;
-
-			// NOTE: regression-watch -- watch for regressions on this before deleting permanently
-			//overflow: hidden;
-
 			pointer-events: none;
 			display: flex;
 			justify-content: flex-end;
@@ -1477,57 +1459,33 @@ a.account__display-name {
 	flex-direction: column;
 	width: 100%;
 	margin: 0 auto;
-	overflow: hidden;
-
 	.column,
 	.drawer {
 		width: 100%;
 		height: 100%;
 		padding: 0;
 	}
-
-	.autosuggest-textarea__textarea {
-		font-size: 16px;
-	}
-
+	.autosuggest-textarea__textarea {font-size: 16px;}
 	.search__input {
 		line-height: 18px;
 		font-size: 16px;
 		padding: 15px;
 		padding-right: 30px;
 	}
-
-	.search__icon .fa {
-		top: 15px;
-	}
-
-	@media screen and (min-width: 360px) {
-		padding: 15px 0;
-	}
-
+	.search__icon .fa {top: 15px;}
+	@media screen and (min-width: 360px) {padding: 15px 0;}
 	@media screen and (min-width: 630px) {
 		.detailed-status {
 			padding: 15px;
-
 			.media-gallery,
 			.video-player {
 				margin-top: 15px;
 			}
 		}
-
-		.account__header__bar {
-			padding: 5px 10px;
-		}
-
+		.account__header__bar {padding: 5px 10px;}
 		.navigation-bar,
-		.compose-form {
-			padding: 15px;
-		}
-
-		.compose-form .compose-form__publish .compose-form__publish-button-wrapper {
-			padding-top: 15px;
-		}
-
+		.compose-form {padding: 15px;}
+		.compose-form .compose-form__publish .compose-form__publish-button-wrapper {padding-top: 15px;}
 		.status {
 			padding: 15px 15px 15px (48px + 15px * 2);
 			min-height: 48px + 2px;
@@ -2445,12 +2403,11 @@ a.status-card.compact:hover {
 	}
 }
 
+.columns-area--mobile .column {@include gab-container-standards();}
 .column-header__wrapper {
 	position: relative;
 	flex: 0 0 auto;
-	border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  overflow: hidden;
+	overflow: hidden;
 
 	&.active {
 		&::before {

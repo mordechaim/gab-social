@@ -15,7 +15,13 @@
 	}
 }
 
-
+// SHORTCUTS
+@mixin input-placeholder($color) {
+	&::-webkit-input-placeholder {color: $color;}
+	&::-moz-placeholder {color: $color;}
+	&:-ms-input-placeholder {color: $color;}
+	&:-moz-placeholder {color: $color;}
+}
 
 // OLDER MIXINS
 @mixin avatar-radius() {
