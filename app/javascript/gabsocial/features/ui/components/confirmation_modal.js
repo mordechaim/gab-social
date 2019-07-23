@@ -14,6 +14,7 @@ class ConfirmationModal extends React.PureComponent {
     secondary: PropTypes.string,
     onSecondary: PropTypes.func,
     intl: PropTypes.object.isRequired,
+    onCancel: PropTypes.func,
   };
 
   componentDidMount() {
@@ -31,7 +32,9 @@ class ConfirmationModal extends React.PureComponent {
   }
 
   handleCancel = () => {
-    this.props.onClose();
+    const {onClose, onCancel} = this.props;
+    onClose();
+    if (onCancel) onCancel();
   }
 
   setRef = (c) => {
