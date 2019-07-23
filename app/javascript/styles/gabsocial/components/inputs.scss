@@ -1,0 +1,34 @@
+input {
+	&.standard {
+		&[type='text'] {
+			border: 1px solid;
+			corner-radius: 4px;
+			@include font-size(16);
+			border-color: $gab-placeholder-accent;
+			background: $gab-background-container;
+			body.theme-gabsocial-light & {
+				border-color: $gab-secondary-text;
+				background: $gab-background-base-light;	
+			}
+		}
+	}
+}
+
+
+// .group-form__input {
+//     height: 40px;
+//     padding: 0 15px;
+//     display: block;
+//     color: $primary-text-color;
+//     background: none;
+//     border: 1px solid $secondary-text-color;
+//     border-radius: 4px;
+//     margin-bottom: 10px;
+//     width: 100%;
+//     box-sizing: border-box;
+
+//     &:focus {
+//         outline: none;
+//         border-color:  $primary-text-color;
+//     }
+// }

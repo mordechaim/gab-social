@@ -106,7 +106,8 @@ class Edit extends React.PureComponent {
 			<form className='group-form' onSubmit={this.handleSubmit}>
 				<div>
 					<input
-						className='group-form__input'
+						className='standard'
+						type='text'
 						value={title}
 						disabled={disabled}
 						onChange={this.handleTitleChange}
@@ -116,7 +117,8 @@ class Edit extends React.PureComponent {
 					
 				<div>
 					<input
-						className='group-form__input'
+						className='standard'
+						type='text'
 						value={description}
 						disabled={disabled}
 						onChange={this.handleDescriptionChange}

@@ -1,51 +1,25 @@
 .group-form {
-    padding: 15px;
-    @include gab-container-standards();
-    .group-form__input {
-        height: 40px;
-        padding: 0 15px;
-        display: block;
-        color: $primary-text-color;
-        background: none;
-        border: 1px solid $secondary-text-color;
-        border-radius: 4px;
-        margin-bottom: 10px;
-        width: 100%;
-        box-sizing: border-box;
-
-        &:focus {
-            outline: none;
-            border-color:  $primary-text-color;
-        }
-    }
-
-    .group-form__file-label {
-        font-size: 13px;
-        color: $secondary-text-color;
-        cursor: pointer;
-
-        &:hover {
-            color: $primary-text-color;
-        }
-
-        .fa {
-            font-size: 18px;
-            margin-right: 5px;
-            transform: translatey(2px);
-        }
-
-        &.group-form__file-label--selected {
-            color: $primary-text-color;
-        }
-    }
-
-    .group-form__file {
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        opacity: 0;
-        position: absolute;
-        pointer-events: none;
-    }
-    button {float: right;}
+	padding: 20px;
+	@include gab-container-standards();
+	.group-form__file-label {
+		font-size: 13px;
+		color: $secondary-text-color;
+		cursor: pointer;
+		&:hover {color: $primary-text-color;}
+		.fa {
+			font-size: 18px;
+			margin-right: 5px;
+			transform: translatey(2px);
+		}
+		&.group-form__file-label--selected {color: $primary-text-color;}
+	}
+	.group-form__file {
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		opacity: 0;
+		position: absolute;
+		pointer-events: none;
+	}
+	button {float: right;}
 }
