@@ -8,14 +8,18 @@ import Avatar from '../../../components/avatar';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import ComposeFormContainer from '../../compose/containers/compose_form_container';
 import IconButton from 'gabsocial/components/icon_button';
+import { openModal } from '../../../actions/modal';
+import { cancelReplyCompose } from '../../../actions/compose';
 
 const messages = defineMessages({
   close: { id: 'lightbox.close', defaultMessage: 'Close' },
+  confirm: { id: 'confirmations.delete.confirm', defaultMessage: 'Delete' },
 });
 
 const mapStateToProps = state => {
   return {
     account: state.getIn(['accounts', me]),
+    composeText: state.getIn(['compose', 'text']),
   };
 };
 
@@ -25,14 +29,28 @@ class ComposeModal extends ImmutablePureComponent {
     account: ImmutablePropTypes.map,
     intl: PropTypes.object.isRequired,
     onClose: PropTypes.func.isRequired,
+    composeText: PropTypes.string,
+    dispatch: PropTypes.func.isRequired,
   };
 
   onClickClose = () => {
-    this.props.onClose('COMPOSE');
+    const {composeText, dispatch, onClose, intl} = this.props;
+
+    if (composeText) {
+      dispatch(openModal('CONFIRM', {
+        message: <FormattedMessage id='confirmations.delete.message' defaultMessage='Are you sure you want to delete this status?' />,
+        confirm: intl.formatMessage(messages.confirm),
+        onConfirm: () => dispatch(cancelReplyCompose()),
+        onCancel: () => dispatch(openModal('COMPOSE')),
+      }));
+    }
+    else {
+      onClose('COMPOSE');
+    }
   };
 
   render () {
-    const { intl, onClose, account } = this.props;
+    const { intl, account } = this.props;
 
     return (
       <div className='modal-root__modal compose-modal'>
