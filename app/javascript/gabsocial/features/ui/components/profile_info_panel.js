@@ -8,8 +8,10 @@ import { defineMessages, injectIntl, FormattedMessage } from 'react-intl';
 import Button from 'gabsocial/components/button';
 import ImmutablePureComponent from 'react-immutable-pure-component';
 import Icon from 'gabsocial/components/icon';
-import DisplayNameBadge from 'gabsocial/components/display_name_badge';
 import VerificationBadge from 'gabsocial/components/verification_badge';
+import ProBadge from 'gabsocial/components/pro_badge';
+import DonorBadge from 'gabsocial/components/donor_badge';
+import InvestorBadge from 'gabsocial/components/investor_badge';
 import { List as ImmutableList } from 'immutable';
 
 const messages = defineMessages({
@@ -59,6 +61,7 @@ class ProfileInfoPanel extends ImmutablePureComponent {
     const fields = account.get('fields');
     const acct = account.get('acct');
     const displayNameHtml = { __html: account.get('display_name_html') };
+    const memberSinceDate = intl.formatDate(account.get('created_at'), { month: 'long', year: 'numeric' });
 
     return (
       <div className='profile-info-panel'>
@@ -68,10 +71,21 @@ class ProfileInfoPanel extends ImmutablePureComponent {
             <h1>
               <span dangerouslySetInnerHTML={displayNameHtml} />
                 {account.get('is_verified') && <VerificationBadge />}
-                {account.get('is_pro') && <DisplayNameBadge label="PRO" />}
                 {badge}
               <small>@{acct} {lockedIcon}</small>
             </h1>
+          </div>
+
+          <div className='profile-info-panel-content__badges'>
+            {account.get('is_pro') && <ProBadge />}
+            {account.get('is_donor') && <DonorBadge />}
+            {account.get('is_investor') && <InvestorBadge />}
+            <div className='profile-info-panel-content__badges__join-date'>
+              <Icon id="calendar"/>
+              <FormattedMessage id='account.member_since' defaultMessage='Member since {date}' values={{
+                date: memberSinceDate
+              }} />
+            </div>
           </div>
 
           {

@@ -4942,6 +4942,29 @@ noscript {
 	.profile-info-panel-content {
 		display: flex;
 
+		&__badges {
+			display: flex;
+	    margin: 5px 0;
+	    flex-direction: row;
+			flex-wrap: wrap;
+
+			&__join-date {
+				display: block;
+				margin-top: 5px;
+
+				.fa {
+					margin-right: 8px;
+				}
+
+				span {
+					color: $primary-text-color;
+					body.theme-gabsocial-light & {color: $gab-default-text-light;}
+					font-size: 15px;
+					line-height: 1.25;
+				}
+			}
+		}
+
 		&__name {
 			display: block;
 
@@ -5179,5 +5202,28 @@ noscript {
 		span {
 			height: 46px;
 		}
+	}
+}
+
+.badge {
+	font-size: 12px;
+	text-transform: uppercase;
+	padding: 2px 6px;
+	border-radius: 2px;
+	margin: 0 5px 5px 0;
+
+	&--pro {
+		background-color: blueviolet;
+		color: #fff;
+	}
+
+	&--investor {
+		background-color: gold;
+		color: #000;
+	}
+
+	&--donor {
+		background-color: lightgreen;
+    color: #000;
 	}
 }

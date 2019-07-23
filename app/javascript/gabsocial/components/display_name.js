@@ -1,7 +1,6 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import DisplayNameBadge from './display_name_badge';
 import VerificationBadge from './verification_badge';
 
 export default class DisplayName extends React.PureComponent {
@@ -39,7 +38,6 @@ export default class DisplayName extends React.PureComponent {
         {displayName}
         {account.get('is_verified') && <VerificationBadge />}
         {suffix}
-        {account.get('is_pro') && <DisplayNameBadge label="PRO" />}
       </span>
     );
   }
