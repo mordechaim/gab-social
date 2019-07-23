@@ -170,7 +170,7 @@ module GabSocial
 
     desc 'delete USERNAME', 'Delete a user'
     long_desc <<-LONG_DESC
-      Remove a user account with a given USERNAME.
+      Suspend the account matching USERNAME and remove the associated user (can't be undone).
     LONG_DESC
     def delete(username)
       account = Account.find_local(username)
@@ -180,7 +180,7 @@ module GabSocial
         exit(1)
       end
 
-      say("Deleting user with #{account.statuses_count} statuses, this might take a while...")
+      say("Suspending account, removing #{account.statuses_count} statuses and user...")
       SuspendAccountService.new.call(account, including_user: true)
       say('OK', :green)
     end
@@ -437,6 +437,23 @@ module GabSocial
 
         say("OK, removed #{processed} followers, skipped #{failed}", :green)
       end
+    end
+
+    desc 'suspend USERNAME', 'Suspend a user'
+    long_desc <<-LONG_DESC
+      Suspend the user account with the given USERNAME (can be undone).
+    LONG_DESC
+    def suspend(username)
+      account = Account.find_local(username)
+
+      if account.nil?
+        say('No user with such username', :red)
+        exit(1)
+      end
+
+      say("Suspending user and removing #{account.statuses_count} statuses...")
+      SuspendAccountService.new.call(account, including_user: false)
+      say('OK', :green)
     end
 
     option :number, type: :numeric, aliases: [:n]
