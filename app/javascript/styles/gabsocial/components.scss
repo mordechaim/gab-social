@@ -2412,12 +2412,11 @@ a.status-card.compact:hover {
 	}
 }
 
+.columns-area--mobile .column {@include gab-container-standards();}
 .column-header__wrapper {
 	position: relative;
 	flex: 0 0 auto;
-	border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  overflow: hidden;
+	overflow: hidden;
 
 	&.active {
 		&::before {
