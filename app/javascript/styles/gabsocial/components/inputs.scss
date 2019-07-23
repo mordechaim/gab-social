@@ -1,34 +1,23 @@
-input {
+input[type='text'],
+textarea {
 	&.standard {
-		&[type='text'] {
-			border: 1px solid;
-			border-radius: 4px;
-			@include font-size(16);
-			border-color: $gab-placeholder-accent;
-			background: $gab-background-container;
-			body.theme-gabsocial-light & {
-				border-color: $gab-secondary-text;
-				background: $gab-background-base-light;	
-			}
+		box-sizing: border-box;
+		padding: 7px 10px;
+		border: 1px solid;
+		border-radius: 4px;
+		@include font-size(16);
+		@include line-height(18);
+		color: $gab-brand-default;
+		border-color: $gab-placeholder-accent;
+		background: $gab-background-container;
+		@include input-placeholder($gab-placeholder-accent);
+		body.theme-gabsocial-light & {
+			color: $gab-placeholder-accent;
+			border-color: $gab-secondary-text;
+			background: $gab-background-base-light;	
+			@include input-placeholder($gab-secondary-text);
 		}
+		&:focus {outline: none;}
 	}
 }
-
-
-// .group-form__input {
-//     height: 40px;
-//     padding: 0 15px;
-//     display: block;
-//     color: $primary-text-color;
-//     background: none;
-//     border: 1px solid $secondary-text-color;
-//     border-radius: 4px;
-//     margin-bottom: 10px;
-//     width: 100%;
-//     box-sizing: border-box;
-
-//     &:focus {
-//         outline: none;
-//         border-color:  $primary-text-color;
-//     }
-// }
+textarea.standard {resize: vertical;}

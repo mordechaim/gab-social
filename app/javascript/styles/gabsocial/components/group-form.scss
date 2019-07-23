@@ -1,6 +1,14 @@
 .group-form {
 	padding: 20px;
 	@include gab-container-standards();
+	input[type=text],
+	textarea {
+		&.standard {
+			width: 100%;
+			margin: 0 0 10px;
+		}
+	}
+	textarea {height: 88px;}
 	.group-form__file-label {
 		font-size: 13px;
 		color: $secondary-text-color;

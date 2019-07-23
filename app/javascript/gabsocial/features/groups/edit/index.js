@@ -116,7 +116,7 @@ class Edit extends React.PureComponent {
 				</div>
 					
 				<div>
-					<input
+					<textarea
 						className='standard'
 						type='text'
 						value={description}
