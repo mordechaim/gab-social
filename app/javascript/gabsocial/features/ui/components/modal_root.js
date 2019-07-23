@@ -77,7 +77,7 @@ export default class ModalRoot extends React.PureComponent {
     const visible = !!type;
 
     return (
-      <Base onClose={this.onClickClose}>
+      <Base onClose={this.onClickClose} type={type}>
         {visible && (
           <BundleContainer fetchComponent={MODAL_COMPONENTS[type]} loading={this.renderLoading(type)} error={this.renderError} renderDelay={200}>
             {(SpecificComponent) => <SpecificComponent {...props} onClose={this.onClickClose} />}
