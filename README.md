@@ -44,7 +44,19 @@ The repository includes deployment configurations for **Docker and docker-compos
 
 A **stand-alone** installation guide will be provided as soon as possible.
 
-A **Vagrant** configuration is included for development purposes.
+## Local development
+
+To get started developing on Gab, you will need to run a version of it locally.
+The following instructions assume you are already familiar with using a terminal program.
+
+1. Install [Vagrant](https://www.vagrantup.com/) and [VirtualBox](https://www.virtualbox.org/) if you haven't already.
+2. Clone this repository with `git clone https://code.gab.com/gab/social/gab-social.git`
+3. Change into the project directory with `cd gab-social`
+4. Run `vagrant up` to provision the virtual machine. This will take a while.
+5. Finally, run `vagrant ssh -c "cd /vagrant && foreman start"` to start the local web server.
+6. Visit http://0.0.0.0:3000 in your web browser to see Gab's splash screen. If it doesn't load, or styling is missing, wait another minute and refresh the page.
+7. Log in with the username `admin` and password `administrator`
+8. Have fun developing on Gab!
 
 ## License
 
