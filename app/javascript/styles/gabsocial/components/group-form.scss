@@ -32,12 +32,10 @@
 		background-image: url('../images/sprite-post-functions.png');
 		background-size: 100px 1200px;
 		&:hover {
-			// dont forget the active icon state
 			color: $gab-brand-default;
 			background-position: 0 -100px;
 		}
 		&.group-form__file-label--selected {
-			// dont forget the active icon state
 			background-position: 0 -100px;
 			color: $gab-brand-default;;
 		}
