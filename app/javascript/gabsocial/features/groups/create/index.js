@@ -95,7 +95,7 @@ class Create extends React.PureComponent {
 				</div>
 				<div>
 					<label htmlFor='group_cover_image' className={classNames('group-form__file-label', { 'group-form__file-label--selected': coverImage !== null })}>
-						<Icon id='camera' /> {intl.formatMessage(coverImage === null ? messages.coverImage : messages.coverImageChange)}
+						{intl.formatMessage(coverImage === null ? messages.coverImage : messages.coverImageChange)}
 					</label>
 					<input
 						type='file'
