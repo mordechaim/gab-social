@@ -1310,7 +1310,7 @@ a.account__display-name {
 			}
 
 			&__inner {
-				width: 285px;
+				width: 265px;
 				pointer-events: auto;
 				height: 100%;
 			}
@@ -1324,7 +1324,9 @@ a.account__display-name {
 			flex-direction: column;
 
 			@media screen and (min-width: 360px) {
-				padding: 0 10px;
+				margin: 0 20px;
+				padding: 0;
+				//padding: 0 10px;
 			}
 		}
 	}
