@@ -565,6 +565,21 @@
 			}
 		}
 	}
+
+	&__meta {
+		font-size: 14px;
+		color: $gab-secondary-text;
+
+		a {
+			color: $gab-brand-default;
+			font-weight: bold;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
 }
 
 .notification-favourite {

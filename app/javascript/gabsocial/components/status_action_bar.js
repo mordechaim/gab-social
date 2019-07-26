@@ -173,13 +173,13 @@ class StatusActionBar extends ImmutablePureComponent {
   handleGroupRemoveAccount = () => {
     const { status } = this.props;
 
-    this.props.onGroupRemoveAccount(status.get('group_id'), status.getIn(['account', 'id']));
+    this.props.onGroupRemoveAccount(status.getIn(['group', 'id']), status.getIn(['account', 'id']));
   }
 
   handleGroupRemovePost = () => {
     const { status } = this.props;
 
-    this.props.onGroupRemoveStatus(status.get('group_id'), status.get('id'));
+    this.props.onGroupRemoveStatus(status.getIn(['group', 'id']), status.get('id'));
   }
 
   _makeMenu = (publicStatus) => {

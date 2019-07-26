@@ -104,6 +104,7 @@ class Status < ApplicationRecord
 
   cache_associated :application,
                    :media_attachments,
+                   :group,
                    :conversation,
                    :status_stat,
                    :tags,

@@ -88,6 +88,7 @@ class Status extends ImmutablePureComponent {
     updateScrollBottom: PropTypes.func,
     cacheMediaWidth: PropTypes.func,
     cachedMediaWidth: PropTypes.number,
+    group: ImmutablePropTypes.map,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -257,7 +258,7 @@ class Status extends ImmutablePureComponent {
     let media = null;
     let statusAvatar, prepend, rebloggedByText, reblogContent;
 
-    const { intl, hidden, featured, otherAccounts, unread, showThread } = this.props;
+    const { intl, hidden, featured, otherAccounts, unread, showThread, group } = this.props;
 
     let { status, account, ...other } = this.props;
 
@@ -425,6 +426,12 @@ class Status extends ImmutablePureComponent {
                 <DisplayName account={status.get('account')} others={otherAccounts} />
               </NavLink>
             </div>
+
+            {!group && status.get('group') && (
+              <div className='status__meta'>
+                Posted in <NavLink to={`/groups/${status.getIn(['group', 'id'])}`}>{status.getIn(['group', 'title'])}</NavLink>
+              </div>
+            )}
 
             <StatusContent
               status={status}
