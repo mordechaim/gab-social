@@ -426,6 +426,12 @@ class Status extends ImmutablePureComponent {
               </NavLink>
             </div>
 
+            {status.get('group') && (
+              <div className='status__meta'>
+                Posted in <NavLink to={`/groups/${status.getIn(['group', 'id'])}`}>{status.getIn(['group', 'title'])}</NavLink>
+              </div>
+            )}
+
             <StatusContent
               status={status}
               reblogContent={reblogContent}
