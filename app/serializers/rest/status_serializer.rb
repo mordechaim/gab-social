@@ -4,7 +4,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
              :uri, :url, :replies_count, :reblogs_count,
-             :favourites_count, :group_id
+             :favourites_count
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
@@ -17,6 +17,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   belongs_to :reblog, serializer: REST::StatusSerializer
   belongs_to :application, if: :show_application?
   belongs_to :account, serializer: REST::AccountSerializer
+  belongs_to :group, serializer: REST::GroupSerializer
 
   has_many :media_attachments, serializer: REST::MediaAttachmentSerializer
   has_many :ordered_mentions, key: :mentions
