@@ -22,11 +22,18 @@ export default class ActionsModal extends ImmutablePureComponent {
       return <li key={`sep-${i}`} className='dropdown-menu__separator' />;
     }
 
-    const { icon = null, text, meta = null, active = false, href = '#' } = action;
+    const { icon = null, text, meta = null, active = false, href = '#', isLogout } = action;
 
     return (
       <li key={`${text}-${i}`}>
-        <a href={href} target='_blank' rel='noopener' onClick={this.props.onClick} data-index={i} className={classNames({ active })}>
+        <a
+          href={href}
+          rel='noopener'
+          onClick={this.props.onClick}
+          data-index={i}
+          className={classNames({ active })}
+          data-method={isLogout ? 'delete' : null}
+        >
           {icon && <IconButton title={text} icon={icon} role='presentation' tabIndex='-1' inverted />}
           <div>
             <div className={classNames({ 'actions-modal__item-label': !!meta })}>{text}</div>
