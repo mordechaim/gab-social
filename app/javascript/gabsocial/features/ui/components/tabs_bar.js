@@ -27,6 +27,9 @@ export const privateLinks = [
   <NavLink className='tabs-bar__link groups' to='/groups' data-preview-title-id='column.groups' >
     <FormattedMessage id='tabs_bar.groups' defaultMessage='Groups' />
   </NavLink>,
+  <a className='tabs-bar__link apps' target='_blank' href='https://apps.gab.com' data-preview-title-id='tabs_bar.apps' >
+    <FormattedMessage id='tabs_bar.apps' defaultMessage='Apps' />
+  </a>,
   <NavLink className='tabs-bar__link optional' to='/search' data-preview-title-id='tabs_bar.search' >
     <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
   </NavLink>,

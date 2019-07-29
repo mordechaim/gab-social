@@ -18,7 +18,7 @@
 		padding: 0 15px;
 
 		// NOTE - might need to adjust this based on column sizing
-		@media screen and (max-width: $nav-breakpoint-4) {padding: 0 20px;}
+		@media screen and (max-width: $nav-breakpoint-4) {padding: 0 10px;}
 
 	}
 
@@ -43,6 +43,14 @@
 		width: 251px;
 		.search {
 			margin: 0;
+		}
+
+		@media (min-width:852px) and (max-width: 960px) {
+			width: 160px;
+		}
+
+		@media (min-width:$nav-breakpoint-2) and (max-width: 852px) {
+			width: 200px;
 		}
 	}
 
@@ -128,12 +136,11 @@
 	background-size: auto 84px;
 	@media screen and (max-width: $nav-breakpoint-1) {
 		background-size: auto 120px;
-		width: 46px;
+		width: 36px;
 		height: 42px;
-		margin: 4px 0 0 0;
+		margin: 4px 4px 0 0;
 		padding: 0 !important;
 		&.active {
-			height: 38px;
 			border-bottom: 4px solid $gab-default-text-light;
 		}
 		& > span {display: none;}
@@ -145,8 +152,8 @@
 		background-position: 0 18px;
 		&.active {background-position: 0 -52px;}
 		@media screen and (max-width: $nav-breakpoint-1) {
-			background-position: 11px 11px;
-			&.active {background-position: 11px -89px;}
+			background-position: 6px 11px;
+			&.active {background-position: 6px -89px;}
 		}
 	}
 	&.notifications {
@@ -154,8 +161,8 @@
 		background-position: -140px 18px;
 		&.active {background-position: -140px -52px;}
 		@media screen and (max-width: $nav-breakpoint-1) {
-			background-position: -186px 11px;
-			&.active {background-position: -186px -89px;}
+			background-position: -190px 11px;
+			&.active {background-position: -190px -89px;}
 		}
 	}
 	&.groups {
@@ -163,16 +170,23 @@
 		background-position: -280px 18px;
 		&.active {background-position: -280px -52px;}
 		@media screen and (max-width: $nav-breakpoint-1) {
-			background-position: -391px 11px;
-			&.active {background-position: -391px -89px;}
+			background-position: -395px 11px;
+			&.active {background-position: -395px -89px;}
+		}
+	}
+	&.apps {
+		padding: 16px 0 0 29px;
+		background-position: -825px 18px;
+		@media screen and (max-width: $nav-breakpoint-1) {
+			background-position: -1170px 11px;
 		}
 	}
 	&.optional {
 		display: none;
 		@media screen and (max-width: $nav-breakpoint-2) {
 			display: flex;
-			background-position: -987px 11px;
-			&.active {background-position: -987px -89px;}
+			background-position: -992px 11px;
+			&.active {background-position: -992px -89px;}
 		}
 	}
 
@@ -186,7 +200,7 @@
 
 		width: 50px;
 		height: 50px;
-		margin-right: 35px;
+		margin-right: 28px;
 		border: none;
 		background-image: url('../images/gab_logo.svg');
 		background-repeat: no-repeat;
@@ -197,6 +211,8 @@
 			background-color: #000 !important;
 			border: none !important;
 		}
+
+
 	}
 	&--no-highlight,
 	&--no-highlight:hover,
