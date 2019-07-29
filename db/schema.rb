@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_22_003649) do
+ActiveRecord::Schema.define(version: 2019_08_04_115634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_003649) do
     t.bigint "account_id"
     t.string "image_file_name"
     t.string "image_content_type"
-    t.bigint "image_file_size"
+    t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -157,10 +157,10 @@ ActiveRecord::Schema.define(version: 2019_07_22_003649) do
     t.string "actor_type"
     t.boolean "discoverable"
     t.string "also_known_as", array: true
-    t.datetime "silenced_at"
-    t.datetime "suspended_at"
     t.boolean "is_pro", default: false, null: false
     t.datetime "pro_expires_at"
+    t.datetime "silenced_at"
+    t.datetime "suspended_at"
     t.boolean "is_verified", default: false, null: false
     t.boolean "is_donor", default: false, null: false
     t.boolean "is_investor", default: false, null: false
@@ -658,8 +658,8 @@ ActiveRecord::Schema.define(version: 2019_07_22_003649) do
   create_table "status_pins", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "status_id", null: false
-    t.datetime "created_at", default: -> { "now()" }, null: false
-    t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
   end
 
@@ -693,10 +693,12 @@ ActiveRecord::Schema.define(version: 2019_07_22_003649) do
     t.bigint "in_reply_to_account_id"
     t.bigint "poll_id"
     t.integer "group_id"
+    t.bigint "quote_of_id"
     t.index ["account_id", "id", "visibility", "updated_at"], name: "index_statuses_20180106", order: { id: :desc }
     t.index ["group_id"], name: "index_statuses_on_group_id"
     t.index ["in_reply_to_account_id"], name: "index_statuses_on_in_reply_to_account_id"
     t.index ["in_reply_to_id"], name: "index_statuses_on_in_reply_to_id"
+    t.index ["quote_of_id"], name: "index_statuses_on_quote_of_id"
     t.index ["reblog_of_id", "account_id"], name: "index_statuses_on_reblog_of_id_and_account_id"
     t.index ["uri"], name: "index_statuses_on_uri", unique: true
   end
@@ -905,6 +907,7 @@ ActiveRecord::Schema.define(version: 2019_07_22_003649) do
   add_foreign_key "statuses", "accounts", name: "fk_9bda1543f7", on_delete: :cascade
   add_foreign_key "statuses", "groups", on_delete: :nullify
   add_foreign_key "statuses", "statuses", column: "in_reply_to_id", on_delete: :nullify
+  add_foreign_key "statuses", "statuses", column: "quote_of_id", on_delete: :nullify
   add_foreign_key "statuses", "statuses", column: "reblog_of_id", on_delete: :cascade
   add_foreign_key "statuses_tags", "statuses", on_delete: :cascade
   add_foreign_key "statuses_tags", "tags", name: "fk_3081861e21", on_delete: :cascade
