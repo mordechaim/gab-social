@@ -1,0 +1,26 @@
+- content_for :page_title do
+  = t('admin.groups.title')
+
+= form_tag admin_groups_url, method: 'GET', class: 'simple_form' do
+  .fields-group
+    .input.string.optional
+      = text_field_tag :title, params[:title], class: 'string optional', placeholder: I18n.t("admin.groups.name")
+
+    .actions
+      %button= t('admin.accounts.search')
+      = link_to t('admin.accounts.reset'), admin_groups_path, class: 'button negative'
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('admin.groups.id')
+        %th= t('admin.groups.title')
+        %th= t('admin.groups.member_count')
+        %th
+        %th
+        %th
+    %tbody
+      = render @groups
+
+= paginate @groups
