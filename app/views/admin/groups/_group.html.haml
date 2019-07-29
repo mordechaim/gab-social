@@ -1,0 +1,14 @@
+%tr
+  %td= group.id
+  %td= group.title
+  %td= group.member_count
+  %td
+    - if group.is_featured?
+      = t('admin.groups.featured')
+  %td
+    - if not group.is_featured?
+      = table_link_to 'power-off', t('admin.groups.enable_featured'), enable_featured_admin_group_path(group, page: params[:page], **@filter_params), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+    - else
+      = table_link_to 'power-off', t('admin.groups.disable_featured'), disable_featured_admin_group_path(group, page: params[:page], **@filter_params), method: :post, data: { confirm: t('admin.accounts.are_you_sure') }
+  %td
+    = table_link_to 'times', t('admin.groups.delete'), admin_group_path(group, page: params[:page], **@filter_params), method: :delete, data: { confirm: t('admin.accounts.are_you_sure') }

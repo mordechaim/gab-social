@@ -1,14 +1,26 @@
 # frozen_string_literal: true
 
 class GroupPolicy < ApplicationPolicy
+  def index?
+    true
+  end
+
   def update?
-    check_archive!
-    is_group_admin?
+    if admin?
+      true
+    else
+      check_archive!
+      is_group_admin?
+    end
   end
 
   def destroy?
-    check_archive!
-    is_group_admin?
+    if admin?
+      true
+    else
+      check_archive!
+      is_group_admin?
+    end
   end
 
   def approve_status?

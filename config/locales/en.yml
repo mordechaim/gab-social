@@ -224,6 +224,13 @@ en:
         update_status: "%{name} updated status by %{target}"
       deleted_status: "(deleted status)"
       title: Audit log
+    groups:
+      title: Groups
+      name: Group title
+      member_count: Members
+      featured: Featured
+      enable_featured: Feature
+      disable_featured: Unfeature
     custom_emojis:
       by_domain: Domain
       copied_msg: Successfully created local copy of the emoji

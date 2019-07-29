@@ -245,6 +245,13 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :groups, only: [:index, :destroy] do
+      member do
+        post :enable_featured
+        post :disable_featured
+      end
+    end
+
     resources :account_moderation_notes, only: [:create, :destroy]
 
     resources :tags, only: [:index] do
