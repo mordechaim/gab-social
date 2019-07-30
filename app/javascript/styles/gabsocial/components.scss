@@ -2488,6 +2488,19 @@ a.status-card.compact:hover {
 			border-radius: 10px;
 			background-color: rgba($highlight-text-color, .1);
 		}
+
+		@media screen and (max-width: $nav-breakpoint-2) {
+			padding: 8px;
+			font-size: 14px;
+
+			&.grouped {
+				margin: 6px 2px 6px 6px;
+			}
+
+			&.active {
+				border-radius: 5px;
+			}
+		}
 	}
 
 	& > .column-header__back-button {
