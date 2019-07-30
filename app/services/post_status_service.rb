@@ -164,6 +164,7 @@ class PostStatusService < BaseService
     {
       text: @text,
       group_id: @options[:group_id],
+      quote_of_id: @options[:quote_of_id],
       media_attachments: @media || [],
       thread: @in_reply_to,
       poll_attributes: poll_attributes,
