@@ -14,8 +14,8 @@ const messages = defineMessages({
 	heading: { id: 'column.groups', defaultMessage: 'Groups' },
 	create: { id: 'groups.create', defaultMessage: 'Create group' },
 	tab_featured: { id: 'groups.tab_featured', defaultMessage: 'Featured' },
-	tab_member: { id: 'groups.tab_member', defaultMessage: 'Groups you\'re in' },
-	tab_admin: { id: 'groups.tab_admin', defaultMessage: 'Groups you manage' },
+	tab_member: { id: 'groups.tab_member', defaultMessage: 'Member' },
+	tab_admin: { id: 'groups.tab_admin', defaultMessage: 'Manage' },
 });
 
 const mapStateToProps = (state, { activeTab }) => ({
