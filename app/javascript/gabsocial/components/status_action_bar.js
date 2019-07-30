@@ -23,9 +23,11 @@ const messages = defineMessages({
   more: { id: 'status.more', defaultMessage: 'More' },
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
   reblog: { id: 'status.reblog', defaultMessage: 'Repost' },
+  quote: { id: 'status.quote', defaultMessage: 'Quote' },
   reblog_private: { id: 'status.reblog_private', defaultMessage: 'Repost to original audience' },
   cancel_reblog_private: { id: 'status.cancel_reblog_private', defaultMessage: 'Un-repost' },
   cannot_reblog: { id: 'status.cannot_reblog', defaultMessage: 'This post cannot be reposted' },
+  cannot_quote: { id: 'status.cannot_quote', defaultMessage: 'This post cannot be quoted' },
   favourite: { id: 'status.favourite', defaultMessage: 'Favorite' },
   open: { id: 'status.open', defaultMessage: 'Expand this status' },
   report: { id: 'status.report', defaultMessage: 'Report @{name}' },
@@ -51,6 +53,7 @@ class StatusActionBar extends ImmutablePureComponent {
     status: ImmutablePropTypes.map.isRequired,
     onOpenUnauthorizedModal: PropTypes.func.isRequired,
     onReply: PropTypes.func,
+    onQuote: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
@@ -77,6 +80,14 @@ class StatusActionBar extends ImmutablePureComponent {
   handleReplyClick = () => {
     if (me) {
       this.props.onReply(this.props.status, this.context.router.history);
+    } else {
+      this.props.onOpenUnauthorizedModal();
+    }
+  }
+
+  handleQuoteClick = () => {
+    if (me) {
+      this.props.onQuote(this.props.status, this.context.router.history);
     } else {
       this.props.onOpenUnauthorizedModal();
     }
@@ -282,6 +293,9 @@ class StatusActionBar extends ImmutablePureComponent {
         <div className='status__action-bar__counter'>
           <IconButton className='status__action-bar-button' disabled={!publicStatus} active={status.get('reblogged')} pressed={status.get('reblogged')} title={!publicStatus ? intl.formatMessage(messages.cannot_reblog) : intl.formatMessage(messages.reblog)} icon={reblogIcon} onClick={this.handleReblogClick} />
           {reblogCount !== 0 && <Link to={`/${status.getIn(['account', 'acct'])}/posts/${status.get('id')}/reblogs`} className='detailed-status__link'>{reblogCount}</Link>}
+        </div>
+        <div className='status__action-bar__counter'>
+          <IconButton className='status__action-bar-button' disabled={!publicStatus} title={!publicStatus ? intl.formatMessage(messages.cannot_quote) : intl.formatMessage(messages.quote)} icon='quote' onClick={this.handleQuoteClick} />
         </div>
         <div className='status__action-bar__counter'>
           <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
