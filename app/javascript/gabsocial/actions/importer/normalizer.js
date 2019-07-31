@@ -43,6 +43,10 @@ export function normalizeStatus(status, normalOldStatus) {
     normalStatus.reblog = status.reblog.id;
   }
 
+  if (status.quote && status.quote.id) {
+    normalStatus.quote = status.quote.id;
+  }
+
   if (status.poll && status.poll.id) {
     normalStatus.poll = status.poll.id;
   }
