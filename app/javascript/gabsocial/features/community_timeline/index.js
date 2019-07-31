@@ -41,11 +41,6 @@ class CommunityTimeline extends React.PureComponent {
     router: PropTypes.object,
   };
 
-  static defaultProps = {
-    onlyMedia: false,
-    allFediverse: false,
-  };
-
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,

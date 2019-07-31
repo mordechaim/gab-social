@@ -57,6 +57,10 @@ const initialState = ImmutableMap({
   }),
 
   community: ImmutableMap({
+    other: ImmutableMap({
+      allFediverse: false,
+      onlyMedia: false,
+    }),
     regex: ImmutableMap({
       body: '',
     }),
