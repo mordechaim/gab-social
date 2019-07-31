@@ -25,7 +25,7 @@ class Settings::NotificationsController < Settings::BaseController
 
   def user_settings_params
     params.require(:user).permit(
-      notification_emails: %i(follow follow_request reblog favourite mention digest report pending_account),
+      notification_emails: %i(follow follow_request reblog favourite mention digest report pending_account emails_from_gabcom),
       interactions: %i(must_be_follower must_be_following must_be_following_dm)
     )
   end
