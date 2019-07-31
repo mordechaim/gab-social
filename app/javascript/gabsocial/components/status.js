@@ -7,6 +7,7 @@ import AvatarComposite from './avatar_composite';
 import RelativeTimestamp from './relative_timestamp';
 import DisplayName from './display_name';
 import StatusContent from './status_content';
+import StatusQuote from './status_quote';
 import StatusActionBar from './status_action_bar';
 import AttachmentList from './attachment_list';
 import Card from '../features/status/components/card';
@@ -444,6 +445,10 @@ class Status extends ImmutablePureComponent {
             />
 
             {media}
+
+            {status.get('quote') && <StatusQuote
+              id={status.get('quote')}
+            />}
 
             {showThread && status.get('in_reply_to_id') && status.get('in_reply_to_account_id') === status.getIn(['account', 'id']) && (
               <button className='status__content__read-more-button' onClick={this.handleClick}>
