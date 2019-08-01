@@ -132,6 +132,7 @@ en:
         pending_account: Send e-mail when a new account needs review
         reblog: Send e-mail when someone reposts your status
         report: Send e-mail when a new report is submitted
+        emails_from_gabcom: Receive e-mail from Gab.com with announcements and other information
     'no': 'No'
     required:
       mark: "*"

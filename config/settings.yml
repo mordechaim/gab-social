@@ -41,6 +41,7 @@ defaults: &defaults
     digest: true
     report: true
     pending_account: true
+    emails_from_gabcom: true
   interactions:
     must_be_follower: false
     must_be_following: false
