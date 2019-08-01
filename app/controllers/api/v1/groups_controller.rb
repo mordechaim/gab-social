@@ -33,6 +33,8 @@ class Api::V1::GroupsController < Api::BaseController
   end
 
   def create
+    authorize :group, :create?
+    
     @group = Group.create!(group_params.merge(account: current_account))
     render json: @group, serializer: REST::GroupSerializer
   end
