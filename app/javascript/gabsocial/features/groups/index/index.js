@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import GroupCard from './card';
 import GroupCreate from '../create';
+import { me } from 'gabsocial/initial_state';
 
 const messages = defineMessages({
 	heading: { id: 'column.groups', defaultMessage: 'Groups' },
@@ -20,6 +21,7 @@ const messages = defineMessages({
 
 const mapStateToProps = (state, { activeTab }) => ({
 	groupIds: state.getIn(['group_lists', activeTab]),
+	account: state.getIn(['accounts', me]),
 });
 
 export default @connect(mapStateToProps)
@@ -46,11 +48,11 @@ class Groups extends ImmutablePureComponent {
 	}
 
 	renderHeader() {
-		const { intl, activeTab } = this.props;
+		const { intl, activeTab, account } = this.props;
 
 		return (
 			<div className="group-column-header">
-				<div className="group-column-header__cta"><Link to="/groups/create" className="button standard-small">{intl.formatMessage(messages.create)}</Link></div>
+				{account && account.get('is_pro') && <div className="group-column-header__cta"><Link to="/groups/create" className="button standard-small">{intl.formatMessage(messages.create)}</Link></div>}
 				<div className="group-column-header__title">{intl.formatMessage(messages.heading)}</div>
 
 				<div className="column-header__wrapper">
