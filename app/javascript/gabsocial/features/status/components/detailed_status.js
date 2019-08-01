@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Avatar from '../../../components/avatar';
 import DisplayName from '../../../components/display_name';
 import StatusContent from '../../../components/status_content';
+import StatusQuote from '../../../components/status_quote';
 import MediaGallery from '../../../components/media_gallery';
 import { Link, NavLink } from 'react-router-dom';
 import { FormattedDate, FormattedNumber } from 'react-intl';
@@ -194,6 +195,10 @@ export default class DetailedStatus extends ImmutablePureComponent {
           <StatusContent status={status} expanded={!status.get('hidden')} onExpandedToggle={this.handleExpandedToggle} />
 
           {media}
+
+          {status.get('quote') && <StatusQuote
+            id={status.get('quote')}
+          />}
 
           <div className='detailed-status__meta'>
             <a className='detailed-status__datetime' href={status.get('url')} target='_blank' rel='noopener'>
