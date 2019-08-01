@@ -28,7 +28,6 @@ class Admin::AccountAction
       process_warning!
     end
 
-    queue_email!
     process_reports!
   end
 
@@ -116,12 +115,6 @@ class Admin::AccountAction
 
   def queue_suspension_worker!
     Admin::SuspensionWorker.perform_async(target_account.id)
-  end
-
-  def queue_email!
-    return unless warnable?
-
-    UserMailer.warning(target_account.user, warning).deliver_later!
   end
 
   def warnable?
