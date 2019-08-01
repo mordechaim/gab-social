@@ -330,7 +330,7 @@ Rails.application.routes.draw do
 
       get '/search', to: 'search#index', as: :search
 
-      get '/account_by_username/:username', to: 'account_by_username#show'
+      get '/account_by_username/:username', to: 'account_by_username#show', username: /(.*)/
 
       resources :follows,      only: [:create]
       resources :media,        only: [:create, :update]
