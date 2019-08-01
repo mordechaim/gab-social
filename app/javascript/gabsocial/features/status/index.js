@@ -21,6 +21,7 @@ import {
   replyCompose,
   mentionCompose,
   directCompose,
+  quoteCompose,
 } from '../../actions/compose';
 import { blockAccount } from '../../actions/accounts';
 import {
@@ -187,6 +188,24 @@ class Status extends ImmutablePureComponent {
     } else {
       dispatch(replyCompose(status, this.context.router.history));
     }
+  }
+
+  handleQuoteClick = (status) => {
+    let { dispatch, intl } = this.props;
+    const router = this.context.router.history;
+    
+    dispatch((_, getState) => {
+      let state = getState();
+      if (state.getIn(['compose', 'text']).trim().length !== 0) {
+        dispatch(openModal('CONFIRM', {
+          message: intl.formatMessage(messages.quoteMessage),
+          confirm: intl.formatMessage(messages.quoteConfirm),
+          onConfirm: () => dispatch(quoteCompose(status, router)),
+        }));
+      } else {
+        dispatch(quoteCompose(status, router));
+      }
+    });
   }
 
   handleModalReblog = (status) => {
@@ -489,6 +508,7 @@ class Status extends ImmutablePureComponent {
                 status={status}
                 onReply={this.handleReplyClick}
                 onFavourite={this.handleFavouriteClick}
+                onQuote={this.handleQuoteClick}
                 onReblog={this.handleReblogClick}
                 onDelete={this.handleDeleteClick}
                 onDirect={this.handleDirectClick}
