@@ -4903,6 +4903,10 @@ noscript {
 				max-height: 100%;
 				display: flex;
 				flex-direction: column;
+
+				.compose-form__autosuggest-wrapper .autosuggest-textarea__textarea {
+					max-height: calc(100vh - 263px) !important;
+				}
 			}
 		}
 	}
