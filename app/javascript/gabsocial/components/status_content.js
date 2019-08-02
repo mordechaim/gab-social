@@ -45,7 +45,7 @@ export default class StatusContent extends React.PureComponent {
       }
       link.classList.add('status-link');
 
-      let mention = this.props.status.get('mentions').find(item => link.href === `/${item.get('acct')}`);
+      let mention = this.props.status.get('mentions').find(item => link.href === `${item.get('url')}`);
 
       if (mention) {
         link.addEventListener('click', this.onMentionClick.bind(this, mention), false);
@@ -139,7 +139,7 @@ export default class StatusContent extends React.PureComponent {
     const { status, reblogContent } = this.props;
 
     const properContent = status.get('contentHtml');
-    
+
     return reblogContent
       ? `${reblogContent} <div class='status__quote'>${properContent}</div>`
       : properContent;
