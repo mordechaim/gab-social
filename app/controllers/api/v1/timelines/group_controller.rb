@@ -38,7 +38,7 @@ class Api::V1::Timelines::GroupController < Api::BaseController
     statuses = group_timeline_statuses.without_replies.paginate_by_id(
       limit_param(DEFAULT_STATUSES_LIMIT),
       params_slice(:max_id, :since_id, :min_id)
-    )
+    ).reject { |status| FeedManager.instance.filter?(:home, status, current_account.id) }
 
     if truthy_param?(:only_media)
       # `SELECT DISTINCT id, updated_at` is too slow, so pluck ids at first, and then select id, updated_at with ids.
