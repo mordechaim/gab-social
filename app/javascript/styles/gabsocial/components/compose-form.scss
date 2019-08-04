@@ -282,4 +282,17 @@
 			padding-top: 10px;
 		}
 	}
+
+	&__quote-preview {
+		font-size: 14px;
+		padding: 5px 10px 0;
+		background: darken($simple-background-color, 8%);
+		border-bottom: 1px solid darken($simple-background-color, 22%);
+		color: #555;
+
+		.status__content {
+			font-size: 0.9em;
+			color: #555;
+		}
+	}
 } // end .compose-form

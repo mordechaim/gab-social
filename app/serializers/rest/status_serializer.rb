@@ -4,7 +4,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attributes :id, :created_at, :in_reply_to_id, :in_reply_to_account_id,
              :sensitive, :spoiler_text, :visibility, :language,
              :uri, :url, :replies_count, :reblogs_count,
-             :favourites_count
+             :favourites_count, :quote_of_id
 
   attribute :favourited, if: :current_user?
   attribute :reblogged, if: :current_user?
@@ -15,6 +15,7 @@ class REST::StatusSerializer < ActiveModel::Serializer
   attribute :text, if: :source_requested?
 
   belongs_to :reblog, serializer: REST::StatusSerializer
+  belongs_to :quote, serializer: REST::StatusSerializer
   belongs_to :application, if: :show_application?
   belongs_to :account, serializer: REST::AccountSerializer
   belongs_to :group, serializer: REST::GroupSerializer
@@ -37,6 +38,10 @@ class REST::StatusSerializer < ActiveModel::Serializer
 
   def in_reply_to_account_id
     object.in_reply_to_account_id&.to_s
+  end
+
+  def quote_of_id
+    object.quote_of_id&.to_s
   end
 
   def current_user?

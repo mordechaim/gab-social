@@ -21,6 +21,7 @@ import ImmutablePureComponent from 'react-immutable-pure-component';
 import { length } from 'stringz';
 import { countableText } from '../util/counter';
 import Icon from 'gabsocial/components/icon';
+import QuotedStatusPreviewContainer from '../containers/quoted_status_preview_container';
 
 const allowedAroundShortCode = '><\u0085\u0020\u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\u0009\u000a\u000b\u000c\u000d';
 const maxPostCharacterCount = 3000;
@@ -199,7 +200,7 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, onPaste, showSearch, anyMedia, shouldCondense, autoFocus, isModalOpen } = this.props;
+    const { intl, onPaste, showSearch, anyMedia, shouldCondense, autoFocus, isModalOpen, quoteOfId } = this.props;
     const condensed = shouldCondense && !this.props.text && !this.state.composeFocused;
     const disabled = this.props.isSubmitting;
     const text     = [this.props.spoilerText, countableText(this.props.text)].join('');
@@ -270,6 +271,8 @@ class ComposeForm extends ImmutablePureComponent {
             </div>
           }
         </AutosuggestTextarea>
+
+        {quoteOfId && <QuotedStatusPreviewContainer id={quoteOfId} />}
 
         {
           !condensed &&
