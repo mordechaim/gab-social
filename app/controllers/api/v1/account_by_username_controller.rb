@@ -11,12 +11,11 @@ class Api::V1::AccountByUsernameController < Api::BaseController
   end
 
   def set_account
-    user = params[:username].split("@")
-    if user[1]
-      user[1] = "#{user[1]}.#{params[:format]}"
-      @account = Account.find_remote!(user[0], user[1])
+    username, domain = params[:username].split("@")
+    if domain
+      @account = Account.find_remote!(username, domain)
     else
-      @account = Account.find_local!(user[0])
+      @account = Account.find_local!(username)
     end
   end
 
