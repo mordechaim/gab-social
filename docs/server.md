@@ -105,17 +105,17 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 Refresh your user session to pick up the environment changes added by `nvm`. Then, let's install Node.js v10.15.3LTS, verify that it was installed correctly, and install Yarn:
 
 ```sh
-# ask NVM to install 10.15.3LTS
-nvm install 10.15.3 --lts
+# ask NVM to install 10.16.1LTS
+nvm install --lts 10.16.1
 
 # ask Node to print it's version number and exit.
 node --version
 
 # (should display)
-v10.15.3
+v10.16.1
 
 # Install Yarn, globally
-npm install -g yarn
+npm install -g yarn forever
 ```
 
 #### rbenv, Ruby, Rails, Rake
@@ -358,8 +358,6 @@ After that successfully completes, we will use the webroot method. This requires
 
 ```sh
 systemctl start nginx
-# The certbot tool will ask if you want to keep the existing certificate or renew it. Choose to renew it.
-certbot certonly --webroot -d example.com -w /home/gabsocial/live/public/
 ```
 
 ### Automated Renewal Of Let's Encrypt Certificate

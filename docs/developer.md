@@ -65,7 +65,7 @@ Node.js is required for running the [Gab Social](https://code.gab.com/gab/social
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 
 # Install the Node.js runtime
-nvm install 10.15.3
+nvm install --lts 10.16
 
 # Install Yarn
 npm install -g yarn
