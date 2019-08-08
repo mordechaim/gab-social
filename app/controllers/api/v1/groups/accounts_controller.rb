@@ -26,7 +26,8 @@ class Api::V1::Groups::AccountsController < Api::BaseController
   def update
     authorize @group, :update_account?
 
-    GroupAccount.where(group: @group, account_id: current_account.id).update(group_account_params)
+    @account = @group.accounts.find(params[:account_id])
+    GroupAccount.where(group: @group, account: @account).update(group_account_params)
     render_empty
   end
 
