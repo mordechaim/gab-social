@@ -59,6 +59,7 @@ class Notification < ApplicationRecord
   def target_status
     case type
     when :reblog
+      return status if status&.quote?
       status&.reblog
     when :favourite
       favourite&.status
