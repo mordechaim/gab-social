@@ -24,6 +24,12 @@ const initialState = ImmutableMap({
     }),
   }),
 
+  group: ImmutableMap({
+    shows: ImmutableMap({
+      reply: true,
+    }),
+  }),
+
   notifications: ImmutableMap({
     alerts: ImmutableMap({
       follow: true,

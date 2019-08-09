@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import StatusListContainer from '../../ui/containers/status_list_container';
 import Column from '../../../components/column';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import { connectGroupStream } from '../../../actions/streaming';
 import { expandGroupTimeline } from '../../../actions/timelines';
 import MissingIndicator from '../../../components/missing_indicator';
@@ -12,6 +12,12 @@ import LoadingIndicator from '../../../components/loading_indicator';
 import ComposeFormContainer from '../../../../gabsocial/features/compose/containers/compose_form_container';
 import { me } from 'gabsocial/initial_state';
 import Avatar from '../../../components/avatar';
+import { Link } from 'react-router-dom';
+import classNames from 'classnames';
+
+const messages = defineMessages({
+  tabLatest: { id: 'group.timeline.tab_latest', defaultMessage: 'Latest' },
+});
 
 const mapStateToProps = (state, props) => ({
 	account: state.getIn(['accounts', me]),
@@ -60,7 +66,7 @@ class GroupTimeline extends React.PureComponent {
 	}
 
 	render () {
-		const { columnId, group, relationships, account } = this.props;
+		const { columnId, group, relationships, account, intl } = this.props;
 		const { id } = this.props.params;
 
 		if (typeof group === 'undefined' || !relationships) {
@@ -89,6 +95,14 @@ class GroupTimeline extends React.PureComponent {
 				)}
 
 				<div className='group__feed'>
+					<div className="column-header__wrapper">
+						<h1 className="column-header">
+							<Link to={`/groups/${id}`} className={classNames('btn grouped active')}>
+								{intl.formatMessage(messages.tabLatest)}
+							</Link>
+						</h1>
+					</div>
+
 					<StatusListContainer
 						alwaysPrepend
 						scrollKey={`group_timeline-${columnId}`}
