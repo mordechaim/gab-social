@@ -14,9 +14,13 @@ import { me } from 'gabsocial/initial_state';
 import Avatar from '../../../components/avatar';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import ColumnSettingsContainer from "./containers/column_settings_container";
+import Icon from 'gabsocial/components/icon';
 
 const messages = defineMessages({
   tabLatest: { id: 'group.timeline.tab_latest', defaultMessage: 'Latest' },
+  show: { id: 'group.timeline.show_settings', defaultMessage: 'Show settings' },
+  hide: { id: 'group.timeline.hide_settings', defaultMessage: 'Hide settings' },
 });
 
 const mapStateToProps = (state, props) => ({
@@ -44,6 +48,10 @@ class GroupTimeline extends React.PureComponent {
 		intl: PropTypes.object.isRequired,
 	};
 
+	state = {
+		collapsed: true,
+	}
+
 	componentDidMount () {
 		const { dispatch } = this.props;
 		const { id } = this.props.params;
@@ -65,8 +73,14 @@ class GroupTimeline extends React.PureComponent {
 		this.props.dispatch(expandGroupTimeline(id, { maxId }));
 	}
 
+	handleToggleClick = (e) => {
+		e.stopPropagation();
+		this.setState({ collapsed: !this.state.collapsed });
+	  }
+
 	render () {
 		const { columnId, group, relationships, account, intl } = this.props;
+		const { collapsed } = this.state;
 		const { id } = this.props.params;
 
 		if (typeof group === 'undefined' || !relationships) {
@@ -100,7 +114,24 @@ class GroupTimeline extends React.PureComponent {
 							<Link to={`/groups/${id}`} className={classNames('btn grouped active')}>
 								{intl.formatMessage(messages.tabLatest)}
 							</Link>
+
+							<div className='column-header__buttons'>
+								<button
+									className={classNames('column-header__button', { 'active': !collapsed })} 
+									title={intl.formatMessage(collapsed ? messages.show : messages.hide)}
+									aria-label={intl.formatMessage(collapsed ? messages.show : messages.hide)}
+									aria-pressed={collapsed ? 'false' : 'true'}
+									onClick={this.handleToggleClick}
+								><Icon id='sliders' /></button>
+							</div>
 						</h1>
+						{!collapsed && <div className='column-header__collapsible'>
+							<div className='column-header__collapsible-inner'>
+								<div className='column-header__collapsible__extra'>
+									<ColumnSettingsContainer />
+								</div>
+							</div>
+						</div>}
 					</div>
 
 					<StatusListContainer
