@@ -46,6 +46,16 @@ class FanOutOnWriteService < BaseService
     end
   end
 
+  def deliver_to_group_members(status)
+    Rails.logger.debug "Delivering status #{status.id} to group members #{status.group.id}"
+    
+    status.group.accounts_for_local_distribution.select(:id).reorder(nil).find_in_batches do |members|
+      FeedInsertWorker.push_bulk(members) do |member|
+        [status.id, member.id, :home]
+      end
+    end
+  end
+
   def deliver_to_lists(status)
     Rails.logger.debug "Delivering status #{status.id} to lists"
 
@@ -62,6 +72,8 @@ class FanOutOnWriteService < BaseService
     Rails.logger.debug "Delivering status #{status.id} to group"
 
     Redis.current.publish("timeline:group:#{status.group_id}", @payload)
+
+    deliver_to_group_members(status)
   end
 
   def deliver_to_mentioned_followers(status)

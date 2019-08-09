@@ -28,4 +28,10 @@ module GroupInteractions
     end
   end
 
+  def accounts_for_local_distribution
+    accounts.local
+      .joins(:user)
+      .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+  end
+
 end
