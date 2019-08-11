@@ -19,7 +19,6 @@ const messages = defineMessages({
   mute: { id: 'account.mute', defaultMessage: 'Mute @{name}' },
   block: { id: 'account.block', defaultMessage: 'Block @{name}' },
   reply: { id: 'status.reply', defaultMessage: 'Reply' },
-  share: { id: 'status.share', defaultMessage: 'Share' },
   more: { id: 'status.more', defaultMessage: 'More' },
   replyAll: { id: 'status.replyAll', defaultMessage: 'Reply to thread' },
   reblog: { id: 'status.reblog', defaultMessage: 'Repost' },
@@ -91,15 +90,6 @@ class StatusActionBar extends ImmutablePureComponent {
     } else {
       this.props.onOpenUnauthorizedModal();
     }
-  }
-
-  handleShareClick = () => {
-    navigator.share({
-      text: this.props.status.get('search_index'),
-      url: this.props.status.get('url'),
-    }).catch((e) => {
-      if (e.name !== 'AbortError') console.error(e);
-    });
   }
 
   handleFavouriteClick = () => {
@@ -280,10 +270,6 @@ class StatusActionBar extends ImmutablePureComponent {
       replyTitle = intl.formatMessage(messages.replyAll);
     }
 
-    const shareButton = ('share' in navigator) && status.get('visibility') === 'public' && (
-      <IconButton className='status__action-bar-button' title={intl.formatMessage(messages.share)} icon='share-alt' onClick={this.handleShareClick} />
-    );
-
     return (
       <div className='status__action-bar'>
         <div className='status__action-bar__counter'>
@@ -301,7 +287,6 @@ class StatusActionBar extends ImmutablePureComponent {
           <IconButton className='status__action-bar-button star-icon' animate active={status.get('favourited')} pressed={status.get('favourited')} title={intl.formatMessage(messages.favourite)} icon='star' onClick={this.handleFavouriteClick} />
           {favoriteCount !== 0 && <span className='detailed-status__link'>{favoriteCount}</span>}
         </div>
-        {shareButton}
 
         <div className='status__action-bar-dropdown'>
           <DropdownMenuContainer status={status} items={menu} icon='ellipsis-h' size={18} direction='right' title={intl.formatMessage(messages.more)} />
