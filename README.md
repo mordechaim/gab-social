@@ -8,15 +8,15 @@ Our goal is to establish the foundation of a federated network of social network
 
 ## Project goals
 
-We have diverged from Gab Social in several ways in pursuit of our own goals.
+We have diverged from Mastodon in several ways in pursuit of our own goals.
 
 1. Node.js has been updated to 10.15.3LTS for hosting the Streaming API in compliance with the Gab Platform.
 1. Statuses were renamed from 'toots' to 'gabs'
 1. The maximum length of a status was increased to 3,000 characters
-1. Advanced media (MP4, WebM, etc.) was limited to PRO subscribers
-1. The creation of custom emoji was limited to PRO subscribers
 1. The browser client user experience has been significantly altered to match what users of Gab will expect
 1. Features were added to integrate the system with the Gab platform (accessing trends from Dissenter, for example)
+1. Groups and group moderation
+1. Quote posting
 
 ## BTCPay
 In order to make BTC flow work, 3 enviornment variables need to be set:
