@@ -51,6 +51,10 @@ export const GROUP_REMOVE_STATUS_REQUEST = 'GROUP_REMOVE_STATUS_REQUEST';
 export const GROUP_REMOVE_STATUS_SUCCESS = 'GROUP_REMOVE_STATUS_SUCCESS';
 export const GROUP_REMOVE_STATUS_FAIL    = 'GROUP_REMOVE_STATUS_FAIL';
 
+export const GROUP_UPDATE_ROLE_REQUEST = 'GROUP_UPDATE_ROLE_REQUEST';
+export const GROUP_UPDATE_ROLE_SUCCESS = 'GROUP_UPDATE_ROLE_SUCCESS';
+export const GROUP_UPDATE_ROLE_FAIL    = 'GROUP_UPDATE_ROLE_FAIL';
+
 export const fetchGroup = id => (dispatch, getState) => {
   if (!me) return;
 
@@ -517,6 +521,45 @@ export function groupRemoveStatusSuccess(groupId, id) {
 export function groupRemoveStatusFail(groupId, id, error) {
   return {
     type: GROUP_REMOVE_STATUS_FAIL,
+    groupId,
+    id,
+    error,
+  };
+};
+
+export function updateRole(groupId, id, role) {
+  return (dispatch, getState) => {
+    if (!me) return;
+
+    dispatch(updateRoleRequest(groupId, id));
+
+    api(getState).patch(`/api/v1/groups/${groupId}/accounts?account_id=${id}`, { role }).then(response => {
+      dispatch(updateRoleSuccess(groupId, id));
+    }).catch(error => {
+      dispatch(updateRoleFail(groupId, id, error));
+    });
+  };
+};
+
+export function updateRoleRequest(groupId, id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_CREATE_REQUEST,
+    groupId,
+    id,
+  };
+};
+
+export function updateRoleSuccess(groupId, id) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_CREATE_SUCCESS,
+    groupId,
+    id,
+  };
+};
+
+export function updateRoleFail(groupId, id, error) {
+  return {
+    type: GROUP_REMOVED_ACCOUNTS_CREATE_FAIL,
     groupId,
     id,
     error,

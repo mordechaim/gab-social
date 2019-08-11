@@ -8,8 +8,8 @@ import { dequeueTimeline } from 'gabsocial/actions/timelines';
 import { scrollTopTimeline } from '../../../actions/timelines';
 
 const makeGetStatusIds = () => createSelector([
-  (state, { type }) => state.getIn(['settings', type], ImmutableMap()),
-  (state, { type }) => state.getIn(['timelines', type, 'items'], ImmutableList()),
+  (state, { type, id }) => state.getIn(['settings', type], ImmutableMap()),
+  (state, { type, id }) => state.getIn(['timelines', id, 'items'], ImmutableList()),
   (state)           => state.get('statuses'),
 ], (columnSettings, statusIds, statuses) => {
   return statusIds.filter(id => {
@@ -34,7 +34,7 @@ const mapStateToProps = (state, {timelineId}) => {
   const getStatusIds = makeGetStatusIds();
 
   return {
-    statusIds: getStatusIds(state, { type: timelineId }),
+    statusIds: getStatusIds(state, { type: timelineId.substring(0,5) === 'group' ? 'group' : timelineId, id: timelineId }),
     isLoading: state.getIn(['timelines', timelineId, 'isLoading'], true),
     isPartial: state.getIn(['timelines', timelineId, 'isPartial'], false),
     hasMore:   state.getIn(['timelines', timelineId, 'hasMore']),
