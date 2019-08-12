@@ -68,6 +68,7 @@ class PostStatusService < BaseService
 
     process_hashtags_service.call(@status)
     process_mentions_service.call(@status)
+    process_quote_service.call(@status)
   end
 
   def schedule_status!
@@ -117,6 +118,10 @@ class PostStatusService < BaseService
     ISO_639.find(str)&.alpha2
   end
 
+  def process_quote_service
+    ProcessQuoteService.new
+  end
+  
   def process_mentions_service
     ProcessMentionsService.new
   end
