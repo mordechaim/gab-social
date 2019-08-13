@@ -293,6 +293,8 @@
 		.status__content {
 			font-size: 0.9em;
 			color: #555;
+			max-height: 100px;
+			overflow-y: auto;
 		}
 	}
 } // end .compose-form
