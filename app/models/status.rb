@@ -162,6 +162,10 @@ class Status < ApplicationRecord
     !reblog_of_id.nil?
   end
 
+  def quote?
+    !quote_of_id.nil?
+  end
+
   def within_realtime_window?
     created_at >= REAL_TIME_WINDOW.ago
   end
