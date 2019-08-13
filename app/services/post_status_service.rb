@@ -68,7 +68,9 @@ class PostStatusService < BaseService
 
     process_hashtags_service.call(@status)
     process_mentions_service.call(@status)
-    process_quote_service.call(@status)
+    if @status.quote
+      process_quote_service.call(@status)
+    end
   end
 
   def schedule_status!
@@ -98,7 +100,7 @@ class PostStatusService < BaseService
 
   def validate_group!
     group_id = @options[:group_id]
-    
+
     return if group_id.blank?
 
     raise GabSocial::ValidationError, I18n.t('statuses.not_a_member_of_group') if not GroupAccount.where(account: @account, group_id: group_id).exists?
@@ -121,7 +123,7 @@ class PostStatusService < BaseService
   def process_quote_service
     ProcessQuoteService.new
   end
-  
+
   def process_mentions_service
     ProcessMentionsService.new
   end
