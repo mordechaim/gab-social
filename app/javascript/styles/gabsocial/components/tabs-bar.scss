@@ -8,6 +8,19 @@
 	position: sticky;
 	top: 0;
 	z-index: 1000;
+	transition: transform 0.2s ease;
+
+	// body.theme-gabsocial-light & {
+	// 	background: #fff;
+	// 	border-bottom: 1px solid #ddd;
+	// }
+
+	&--collapsed {
+		@media screen and (max-width: 895px) {
+			margin-top: -46px;
+			transform: translateY(-46px);
+		}
+	}
 
 	&__container {
 		display: flex;
@@ -19,7 +32,6 @@
 
 		// NOTE - might need to adjust this based on column sizing
 		@media screen and (max-width: $nav-breakpoint-4) {padding: 0 10px;}
-
 	}
 
 	&__split {
@@ -39,18 +51,10 @@
 
 	&__search-container {
 		display: block;
-		@media screen and (max-width: $nav-breakpoint-2) {display: none;}
 		width: 251px;
-		.search {
-			margin: 0;
-		}
 
-		@media (min-width:852px) and (max-width: 960px) {
-			width: 160px;
-		}
-
-		@media (min-width:$nav-breakpoint-2) and (max-width: 852px) {
-			width: 200px;
+		@media screen and (max-width: 1024px) {
+			display: none;
 		}
 	}
 
@@ -77,8 +81,17 @@
 				height: 42px;
 				background-size: 42px 42px;
 			}
+		}
 
+		@media screen and (max-width: 895px) {
+			width: 30px;
+			height: 30px;
+			background-size: 30px 30px;
 
+			.account__avatar {
+				width: 30px;
+				height: 30px;
+			}
 		}
 
 		.compose__action-bar {
@@ -92,8 +105,41 @@
 			i {
 				display: none;
 			}
+
+			@media screen and (max-width: 895px) {
+				display: none;
+			}
 		}
 	}
+
+	&__sidebar-btn {
+		display: block;
+		position: absolute;
+		top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+		width: 30px;
+		opacity: 0;
+
+		@media (min-width: 895px) {
+			display: none;
+		}
+	}
+
+	&__page-name {
+		display: block;
+    margin-left: 18px;
+    line-height: 30px;
+    font-weight: 600;
+    font-size: 18px;
+		color: #fff;
+
+		@media (min-width: 895px) {
+			display: none;
+		}
+	}
+
 	&__button-compose {
 		display: block;
 		@media screen and (max-width: $nav-breakpoint-3) {display: none;}
@@ -122,81 +168,162 @@
 	.flex {
 		display: flex;
 	}
+
+	@media (max-width: 895px) {
+		height: 92px;
+
+		&__search-container,
+		&__button-compose {
+			display: none;
+		}
+
+		&__container {
+			max-width: 560px;
+			flex-direction: column-reverse;
+			padding: 0;
+		}
+
+		&__profile {
+			margin: 0;
+		}
+
+		&__split {
+			flex-direction: row;
+			align-items: stretch;
+
+			&--left {
+				margin: 0;
+				width: 100%;
+			}
+
+			&--right {
+				padding: 6px 0 6px 20px;
+				margin-left: 0;
+				margin-right: auto;
+			}
+		}
+	}
 }
 
 .tabs-bar__link {
 	display: flex;
 	flex: 1 1 auto;
-	margin: 0 25px 0 0;
+	margin: 0 20px 0 0;
 	color: white;
 	text-decoration: none;
-	text-align: center;
-	background-repeat: no-repeat;
-	background-image: url('../images/sprite-main-navigation-links.png');
-	background-size: auto 84px;
-	@media screen and (max-width: $nav-breakpoint-1) {
-		background-size: auto 120px;
+
+	@media screen and (max-width: 895px) {
 		width: 36px;
 		height: 42px;
 		margin: 4px 4px 0 0;
-		padding: 0 !important;
+		justify-content: center;
+
 		&.active {
-			border-bottom: 4px solid $gab-default-text-light;
+			border-bottom: 2px solid $gab-brand-default;
 		}
 		& > span {display: none;}
 	}
 
-	// REMINDER - to add the remaining icons (globe / word balloon) from the sprite into this css as necessary
-	&.home {
-		padding: 16px 0 0 26px;
-		background-position: 0 18px;
-		&.active {background-position: 0 -52px;}
-		@media screen and (max-width: $nav-breakpoint-1) {
-			background-position: 6px 11px;
-			&.active {background-position: 6px -89px;}
-		}
+	> span {
+		font-size: 15px;
+		line-height: 50px;
+    margin-left: 4px;
 	}
-	&.notifications {
-		padding: 16px 0 0 22px;
-		background-position: -140px 18px;
-		&.active {background-position: -140px -52px;}
-		@media screen and (max-width: $nav-breakpoint-1) {
-			background-position: -190px 11px;
-			&.active {background-position: -190px -89px;}
-		}
-	}
-	&.groups {
-		padding: 16px 0 0 29px;
-		background-position: -280px 18px;
-		&.active {background-position: -280px -52px;}
-		@media screen and (max-width: $nav-breakpoint-1) {
-			background-position: -395px 11px;
-			&.active {background-position: -395px -89px;}
-		}
-	}
-	&.apps {
-		padding: 16px 0 0 29px;
-		background-position: -825px 18px;
-		@media screen and (max-width: $nav-breakpoint-1) {
-			background-position: -1170px 11px;
-		}
-	}
-	&.optional {
-		display: none;
-		@media screen and (max-width: $nav-breakpoint-2) {
-			display: flex;
-			background-position: -992px 11px;
-			&.active {background-position: -992px -89px;}
+
+	&--search {
+		@media (min-width: 1024px) {
+			display: none;
 		}
 	}
 
-	&.active {color: $gab-text-highlight;}
+	@media screen and (max-width:895px) {
+		&.apps {
+			display: none;
+		}
+	}
+
+	&__icon {
+		width: 20px;
+		background-repeat: no-repeat;
+		background-image: url('../images/sprite-main-navigation-links.png');
+		background-size: auto 84px;
+
+		@media screen and (max-width: 895px) {
+			width: 32px;
+			background-size: auto 120px;
+		}
+
+		&.home {
+			background-position: 0 18px;
+			@media screen and (max-width: 895px) {
+				background-position: 1px 11px;
+			}
+		}
+		&.notifications {
+			background-position: -140px 18px;
+			@media screen and (max-width: 895px) {
+				background-position: -195px 11px;
+			}
+		}
+		&.groups {
+			background-position: -280px 18px;
+			@media screen and (max-width: 895px) {
+				background-position: -400px 11px;
+			}
+		}
+		&.apps {
+			background-position: -825px 18px;
+		}
+		&.tabs-bar__link__icon--search {
+			background-position: -697px 18px;
+			@media screen and (max-width: 895px) {
+				background-position: -995px 11px;
+			}
+		}
+	}
+
+	&.active {
+		color: $gab-text-highlight;
+		font-weight: 700;
+	}
+
+	&.active & {
+		&__icon {
+			&.home {
+				background-position: 0 -52px;
+				@media screen and (max-width: 895px) {
+					background-position: 1px -89px;
+				}
+			}
+			&.notifications {
+				background-position: -140px -52px;
+				@media screen and (max-width: 895px) {
+					background-position: -195px -89px;
+				}
+			}
+			&.groups {
+				background-position: -280px -52px;
+				@media screen and (max-width: 895px) {
+					background-position: -400px -89px;
+				}
+			}
+			&.tabs-bar__link__icon--search {
+				@media (min-width: 895px) and (max-width: 1024px) {
+					background-position: -697px -52px;
+				}
+				@media screen and (max-width: 895px) {
+					background-position: -995px -89px;
+				}
+			}
+		}
+	}
+
 	&--logo {
 		display: block;
 
 		// NOTE - Revisit right-margin of home button / positioning between 376px and 350px
 		//		- want to keep the icons centered between logo and profile image while shrinking
-		@media screen and (max-width: $nav-breakpoint-4) {display:none;}
+		@media screen and (max-width: 895px) {display:none;}
 
 		width: 50px;
 		height: 50px;
