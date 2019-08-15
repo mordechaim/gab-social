@@ -57,6 +57,14 @@ class SidebarMenu extends ImmutablePureComponent {
     onClose: PropTypes.func.isRequired,
   };
 
+  componentDidUpdate () {
+    if (this.props.sidebarOpen) {
+      document.body.classList.add('with-modals--active');
+    } else {
+      document.body.classList.remove('with-modals--active');
+    }
+  }
+
   render () {
     const { sidebarOpen, onClose, intl, account } = this.props;
     const acct = account.get('acct');
@@ -120,6 +128,10 @@ class SidebarMenu extends ImmutablePureComponent {
             </div>
 
             <div className='sidebar-menu__section'>
+              <a className='sidebar-menu-item' href='/settings/preferences'>
+                <Icon id='cog' />
+                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.preferences)}</span>
+              </a>
               <NavLink className='sidebar-menu-item' to='/follow_requests' onClick={onClose}>
                 <Icon id='user-plus' />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.follow_requests)}</span>
@@ -139,10 +151,6 @@ class SidebarMenu extends ImmutablePureComponent {
               <a className='sidebar-menu-item' href='/filters'>
                 <Icon id='filter' />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.filters)}</span>
-              </a>
-              <a className='sidebar-menu-item' href='/settings/preferences'>
-                <Icon id='cog' />
-                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.preferences)}</span>
               </a>
             </div>
 
