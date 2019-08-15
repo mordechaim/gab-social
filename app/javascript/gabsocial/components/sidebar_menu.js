@@ -87,7 +87,7 @@ class SidebarMenu extends ImmutablePureComponent {
 
             <div className='sidebar-menu-profile'>
               <div className='sidebar-menu-profile__avatar'>
-                <Link to={`/${acct}}`} title={acct} onClick={onClose}>
+                <Link to={`/${acct}`} title={acct} onClick={onClose}>
                   <Avatar account={account} />
                 </Link>
               </div>
