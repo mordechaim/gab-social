@@ -44,8 +44,7 @@
   }
 
   &__section {
-    display: flex;
-    flex-direction: column;
+    display: block;
     margin: 4px 0;
     border-top: 1px solid lighten($ui-base-color, 4%);
 
@@ -93,8 +92,7 @@
 }
 
 .sidebar-menu-profile {
-  display: flex;
-  flex-direction: column;
+  display: block;
   padding: 14px 18px;
 
   &__avatar {
