@@ -1575,7 +1575,7 @@ a.account__display-name {
 .floating-action-button {
 	z-index: 1000;
 	display: none;
-	@media screen and (max-width: $nav-breakpoint-3) {display: flex;}
+	@media screen and (max-width: 895px) {display: flex;}
 	position: fixed;
 	bottom: 14px;
 	right: 14px;
