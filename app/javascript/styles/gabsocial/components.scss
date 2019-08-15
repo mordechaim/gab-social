@@ -1628,12 +1628,8 @@ a.account__display-name {
 	&__badge {
 		position: absolute;
 		box-sizing: border-box;
-		left: -16px;
-		top: -14px;
-		@media screen and (max-width: $nav-breakpoint-1) {
-			left: 27px;
-			top: 0;
-		}
+		left: -10px;
+    top: 1px;
 		min-width: 16px;
 		height: 16px;
 		padding: 1px 3px 0;
