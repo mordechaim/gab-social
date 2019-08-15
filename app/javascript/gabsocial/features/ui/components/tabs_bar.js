@@ -11,6 +11,7 @@ import SearchContainer from 'gabsocial/features/compose/containers/search_contai
 import Avatar from '../../../components/avatar';
 import ActionBar from 'gabsocial/features/compose/components/action_bar';
 import { openModal } from '../../../actions/modal';
+import { openSidebar } from '../../../actions/sidebar';
 
 export const privateLinks = [
   <NavLink key='pr0' className='tabs-bar__link--logo' to='/home#' data-preview-title-id='column.home' style={{ padding: '0' }}>
@@ -60,6 +61,7 @@ class TabsBar extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     onOpenCompose: PropTypes.func,
+    onOpenSidebar: PropTypes.func.isRequired,
   }
 
   state = {
@@ -182,6 +184,7 @@ class TabsBar extends React.PureComponent {
               <div className='flex'>
                 <div className='tabs-bar__profile'>
                   <Avatar account={account} />
+                  <button className='tabs-bar__sidebar-btn' onClick={onOpenSidebar}></button>
                   <ActionBar account={account} size={34} />
                 </div>
                 <span className='tabs-bar__page-name'>{pathTitle}</span>
@@ -217,6 +220,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => ({
   onOpenCompose() {
     dispatch(openModal('COMPOSE'));
+  },
+  onOpenSidebar() {
+    dispatch(openSidebar());
   },
 });
 

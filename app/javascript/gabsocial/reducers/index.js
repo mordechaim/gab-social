@@ -36,6 +36,7 @@ import groups from './groups';
 import group_relationships from './group_relationships';
 import group_lists from './group_lists';
 import group_editor from './group_editor';
+import sidebar from './sidebar';
 
 const reducers = {
   dropdown_menu,
@@ -75,6 +76,7 @@ const reducers = {
   group_relationships,
   group_lists,
   group_editor,
+  sidebar,
 };
 
 export default combineReducers(reducers);

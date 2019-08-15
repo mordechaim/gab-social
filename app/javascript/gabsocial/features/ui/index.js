@@ -30,6 +30,7 @@ import GroupPage from 'gabsocial/pages/group_page';
 import SearchPage from 'gabsocial/pages/search_page';
 import HomePage from 'gabsocial/pages/home_page';
 import GroupSidebarPanel from '../groups/sidebar_panel';
+import SidebarMenu from '../../components/sidebar_menu';
 
 import {
   Status,
@@ -539,6 +540,7 @@ class UI extends React.PureComponent {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
+          <SidebarMenu />
         </div>
       </HotKeys>
     );
