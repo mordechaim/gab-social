@@ -14,9 +14,9 @@ class HomeController < ApplicationController
 
   def set_data_for_meta
     if params[:username].present?
-      @account = Account.find_local!(params[:username])
+      @account = Account.find_local(params[:username])
     elsif params[:account_username].present?
-      @account = Account.find_local!(params[:account_username])
+      @account = Account.find_local(params[:account_username])
 
       if params[:id].present?
         @status = @account.statuses.find(params[:id])
@@ -26,7 +26,7 @@ class HomeController < ApplicationController
     end
 
     if request.path.starts_with?('/tags') && params[:tag].present?
-      @tag = Tag.find_normalized!(params[:tag])
+      @tag = Tag.find_normalized(params[:tag])
     end
 
   end
