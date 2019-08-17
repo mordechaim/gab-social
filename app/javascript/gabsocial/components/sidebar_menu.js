@@ -58,6 +58,8 @@ class SidebarMenu extends ImmutablePureComponent {
   };
 
   componentDidUpdate () {
+    if (!me) return;
+
     if (this.props.sidebarOpen) {
       document.body.classList.add('with-modals--active');
     } else {
@@ -67,6 +69,9 @@ class SidebarMenu extends ImmutablePureComponent {
 
   render () {
     const { sidebarOpen, onClose, intl, account } = this.props;
+
+    if (!me || !account) return null;
+
     const acct = account.get('acct');
 
     const classes = classNames('sidebar-menu__root', {
