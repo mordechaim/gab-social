@@ -446,6 +446,7 @@ Rails.application.routes.draw do
   get '/about/dmca',         to: 'about#dmca'
   get '/about/sales',        to: 'about#sales'
 
+  get '/tags/:tag', to: 'home#index'
   get '/:username', to: 'home#index', as: :short_account
   get '/:username/with_replies', to: 'home#index', as: :short_account_with_replies
   get '/:username/media', to: 'home#index', as: :short_account_media
