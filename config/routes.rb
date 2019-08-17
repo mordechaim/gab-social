@@ -446,6 +446,14 @@ Rails.application.routes.draw do
   get '/about/dmca',         to: 'about#dmca'
   get '/about/sales',        to: 'about#sales'
 
+  get '/:username', to: 'home#index', as: :short_account
+  get '/:username/with_replies', to: 'home#index', as: :short_account_with_replies
+  get '/:username/media', to: 'home#index', as: :short_account_media
+  get '/:username/tagged/:tag', to: 'home#index', as: :short_account_tag
+  get '/:username/posts/:statusId/reblogs', to: 'home#index'
+  get '/:account_username/posts/:id', to: 'home#index', as: :short_account_status
+  get '/:account_username/posts/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
+
   get '/(*any)', to: 'home#index', as: :web
   root 'home#index'
 
@@ -453,13 +461,6 @@ Rails.application.routes.draw do
   # TODO : Consolidate
   get '/explore', to: 'directories#index', as: :explore
   get '/explore/:id', to: 'directories#show', as: :explore_hashtag
-
-  get '/:username', to: 'accounts#show', as: :short_account
-  get '/:username/with_replies', to: 'accounts#show', as: :short_account_with_replies
-  get '/:username/media', to: 'accounts#show', as: :short_account_media
-  get '/:username/tagged/:tag', to: 'accounts#show', as: :short_account_tag
-  get '/:account_username/posts/:id', to: 'statuses#show', as: :short_account_status
-  get '/:account_username/posts/:id/embed', to: 'statuses#embed', as: :embed_short_account_status
 
   resources :tags, only: [:show]
 
