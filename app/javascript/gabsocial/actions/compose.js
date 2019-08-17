@@ -151,7 +151,13 @@ export function submitCompose(routerHistory, group) {
     dispatch(submitComposeRequest());
     dispatch(closeModal());
 
-    api(getState).post('/api/v1/statuses', {
+    const id = getState().getIn(['compose', 'id']);
+    const endpoint = id === null
+      ? '/api/v1/statuses'
+      : `/api/v1/statuses/${id}`;
+    const method = id === null ? 'post' : 'put';
+
+    api(getState)[method](endpoint, {
       status,
       in_reply_to_id: getState().getIn(['compose', 'in_reply_to'], null),
       quote_of_id: getState().getIn(['compose', 'quote_of_id'], null),

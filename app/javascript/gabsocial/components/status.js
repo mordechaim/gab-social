@@ -71,6 +71,7 @@ class Status extends ImmutablePureComponent {
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
     onDelete: PropTypes.func,
+    onEdit: PropTypes.func,
     onDirect: PropTypes.func,
     onMention: PropTypes.func,
     onPin: PropTypes.func,

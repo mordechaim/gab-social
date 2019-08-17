@@ -20,6 +20,7 @@ const mapStateToProps = state => {
   return {
     account: state.getIn(['accounts', me]),
     composeText: state.getIn(['compose', 'text']),
+    composeId: state.getIn(['compose', 'id']),
   };
 };
 
@@ -34,9 +35,9 @@ class ComposeModal extends ImmutablePureComponent {
   };
 
   onClickClose = () => {
-    const {composeText, dispatch, onClose, intl} = this.props;
+    const {composeText, composeId, dispatch, onClose, intl} = this.props;
 
-    if (composeText) {
+    if (!composeId && composeText) {
       dispatch(openModal('CONFIRM', {
         message: <FormattedMessage id='confirmations.delete.message' defaultMessage='Are you sure you want to delete this status?' />,
         confirm: intl.formatMessage(messages.confirm),

@@ -140,6 +140,18 @@ export function redraft(status, raw_text) {
   };
 };
 
+export function editStatus(status) {
+  return dispatch => {
+    dispatch({
+      type: REDRAFT,
+      edit: true,
+      status,
+    });
+
+    dispatch(openModal('COMPOSE'));
+  };
+};
+
 export function deleteStatus(id, routerHistory, withRedraft = false) {
   return (dispatch, getState) => {
     if (!me) return;

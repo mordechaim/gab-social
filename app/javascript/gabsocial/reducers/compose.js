@@ -46,6 +46,7 @@ import { me } from '../initial_state';
 import { unescapeHTML } from '../utils/html';
 
 const initialState = ImmutableMap({
+  id: null,
   mounted: 0,
   sensitive: false,
   spoiler: false,
@@ -279,6 +280,7 @@ export default function compose(state = initialState, action) {
   case COMPOSE_REPLY_CANCEL:
   case COMPOSE_RESET:
     return state.withMutations(map => {
+      map.set('id', null);
       map.set('quote_of_id', null);
       map.set('in_reply_to', null);
       map.set('text', '');
@@ -353,6 +355,10 @@ export default function compose(state = initialState, action) {
       }));
   case REDRAFT:
     return state.withMutations(map => {
+      if (action.edit === true) {
+        map.set('id', action.status.get('id'));
+      }
+
       map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('quote_of_id', action.status.get('quote_of_id'));
