@@ -18,6 +18,13 @@
     %meta{ name: 'theme-color', content: '#282c37' }/
     %meta{ name: 'apple-mobile-web-app-capable', content: 'yes' }/
 
+    - if @tag
+      = render 'tags/meta', tag: @tag, initial_state_json: @initial_state_json
+    - elsif @stream_entry && @account
+      = render 'stream_entries/meta', stream_entry: @stream_entry, account: @account
+    - elsif @account
+      = render 'accounts/meta', account: @account, older_url: nil, newer_url: nil
+
     %title= content_for?(:page_title) ? safe_join([yield(:page_title).chomp.html_safe, title], ' - ') : title
 
     = stylesheet_pack_tag 'common', media: 'all'
