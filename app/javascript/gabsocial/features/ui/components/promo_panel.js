@@ -1,32 +1,29 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { injectIntl, FormattedMessage } from 'react-intl';
-import { me } from '../../../initial_state';
-import { makeGetAccount } from '../../../selectors';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import { FormattedMessage } from 'react-intl';
 import Icon from 'gabsocial/components/icon';
 
-const PromoPanel = () => (
-  <div className='promo-panel'>
-    <div className='promo-panel__container'>
+export default class PromoPanel extends React.PureComponent {
+  render() {
+    return (
+      <div className='promo-panel'>
+        <div className='promo-panel__container'>
 
-      <div className='promo-panel-item'>
-        <a className='promo-panel-item__btn button button-alternative-2' href='/invites'>
-          <Icon id='envelope' className='promo-panel-item__icon' fixedWidth />
-          <FormattedMessage id='promo.invite_heading' defaultMessage='Invite Friends' />
-        </a>
-        <p className='promo-panel-item__message promo-panel-item__message--dark'>
-          <FormattedMessage
-            id='promo.invite_message'
-            defaultMessage='Invite others to be a member of Gab.'
-          />
-        </p>
+          <div className='promo-panel-item'>
+            <a className='promo-panel-item__btn button button-alternative-2' href='https://apps.gab.com'>
+              <Icon id='th' className='promo-panel-item__icon' fixedWidth />
+              <FormattedMessage id='promo.gab_apps' defaultMessage='Gab Apps' />
+            </a>
+          </div>
+
+          <div className='promo-panel-item'>
+            <a className='promo-panel-item__btn button button-alternative-2' href='https://blog.gab.com'>
+              <Icon id='align-left' className='promo-panel-item__icon' fixedWidth />
+              <FormattedMessage id='promo.gab_news' defaultMessage='Gab News' />
+            </a>
+          </div>
+
+        </div>
       </div>
-
-    </div>
-  </div>
-);
-
-export default PromoPanel;
+    )
+  }
+}
