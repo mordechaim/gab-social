@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
   before_action :set_referrer_policy_header
   before_action :set_initial_state_json
+  before_action :set_data_for_meta
 
   def index
     @body_classes = 'app-body'
@@ -11,15 +12,38 @@ class HomeController < ApplicationController
 
   private
 
+  def set_data_for_meta
+    return if find_route_matches
+
+    if params[:username].present?
+      @account = Account.find_local(params[:username])
+    elsif params[:account_username].present?
+      @account = Account.find_local(params[:account_username])
+
+      if params[:id].present? && !@account.nil?
+        @status = @account.statuses.find(params[:id])
+        @stream_entry = @status.stream_entry
+        @type = @stream_entry.activity_type.downcase
+      end
+    end
+
+    if request.path.starts_with?('/tags') && params[:tag].present?
+      @tag = Tag.find_normalized(params[:tag])
+    end
+
+  end
+
   def authenticate_user!
     return if user_signed_in?
 
     # if no current user, dont allow to navigate to these paths
-    matches = request.path.match(/\A\/(home|groups|tags|lists|notifications|explore|follow_requests|blocks|domain_blocks|mutes)/)
-
-    if matches
+    if find_route_matches
       redirect_to(homepage_path)
     end
+  end
+
+  def find_route_matches
+    request.path.match(/\A\/(home|groups|lists|notifications|explore|follow_requests|blocks|domain_blocks|mutes)/)
   end
 
   def set_initial_state_json
