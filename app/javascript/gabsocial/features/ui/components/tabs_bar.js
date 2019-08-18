@@ -30,10 +30,6 @@ export const privateLinks = [
     <i className='tabs-bar__link__icon groups'/>
     <FormattedMessage id='tabs_bar.groups' defaultMessage='Groups' />
   </NavLink>,
-  <a key='pr4' className='tabs-bar__link apps' href='https://apps.gab.com' data-preview-title-id='tabs_bar.apps' >
-    <i className='tabs-bar__link__icon apps'/>
-    <FormattedMessage id='tabs_bar.apps' defaultMessage='Apps' />
-  </a>,
   <NavLink key='pr5' className='tabs-bar__link tabs-bar__link--search' to='/search' data-preview-title-id='tabs_bar.search' >
     <i className='tabs-bar__link__icon tabs-bar__link__icon--search'/>
     <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
