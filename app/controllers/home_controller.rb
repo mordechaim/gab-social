@@ -20,7 +20,7 @@ class HomeController < ApplicationController
     elsif params[:account_username].present?
       @account = Account.find_local(params[:account_username])
 
-      if params[:id].present?
+      if params[:id].present? && !@account.nil?
         @status = @account.statuses.find(params[:id])
         @stream_entry = @status.stream_entry
         @type = @stream_entry.activity_type.downcase
