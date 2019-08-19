@@ -9,6 +9,7 @@ class Settings::PreferencesController < Settings::BaseController
 
   def update
     user_settings.update(user_settings_params.to_h)
+    current_user.force_regeneration!
 
     if current_user.update(user_params)
       I18n.locale = current_user.locale

@@ -283,7 +283,13 @@ class Status < ApplicationRecord
     end
 
     def as_home_timeline(account)
-      where(account: [account] + account.following).or(where(group: account.groups)).where(visibility: [:public, :unlisted, :private])
+      query = where(account: [account] + account.following)
+      
+      if account.user.allows_group_in_home_feed?
+        query = query.or(where(group: account.groups))
+      end
+      
+      query.where(visibility: [:public, :unlisted, :private])
     end
 
     def as_group_timeline(group)
