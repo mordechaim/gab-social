@@ -84,7 +84,7 @@ apt -y install imagemagick ffmpeg libpq-dev libxml2-dev libxslt1-dev file git-co
 Let us create this user first:
 
 ```sh
-adduser gabsocial
+adduser --disabled-password gabsocial
 ```
 
 Log in as the `gabsocial` user:
