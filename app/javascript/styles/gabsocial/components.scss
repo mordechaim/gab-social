@@ -1649,32 +1649,38 @@ a.account__display-name {
 
 .promo-panel {
   margin-top: 10px;
-  padding: 10px 10px 20px 10px;
-  border-bottom: 1px solid lighten($ui-base-color, 4%);
+}
 
-  .promo-panel-item {
+.promo-panel-item {
 	display: block;
+	height: 42px;
+	line-height: 42px;
+	border-bottom: 1px solid lighten($ui-base-color, 8%);
 
-	&:not(:first-of-type) {
-	  margin-top: 20px;
+	&:last-of-type {
+		border-bottom: none;
+	}
+
+	&__btn {
+		display: block;
+		text-align: left;
+		color: $primary-text-color;
+		text-decoration: none;
+		font-size: 15px;
+		padding: 0 20px;
+
+		&:hover {
+			color: darken($primary-text-color, 14%);
+
+			span {
+				text-decoration: underline;
+			}
+		}
 	}
 
 	&__icon {
-	  margin-right: 12px;
+		margin-right: 12px;
 	}
-
-	&__message {
-	  display: block;
-	  font-size: 14px;
-	  line-height: 16px;
-	  margin-top: 6px;
-	  color: $primary-text-color;
-
-	  &--dark {
-		color: $ui-secondary-color;
-	  }
-	}
-  }
 }
 
 .drawer__pager {

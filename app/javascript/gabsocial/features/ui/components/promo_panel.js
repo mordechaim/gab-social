@@ -5,31 +5,31 @@ import Icon from 'gabsocial/components/icon';
 export default class PromoPanel extends React.PureComponent {
   render() {
     return (
-      <div className='promo-panel'>
+      <div className='wtf-panel promo-panel'>
         <div className='promo-panel__container'>
           <div className='promo-panel-item'>
-            <a className='promo-panel-item__btn button button-alternative-2' href='https://blog.gab.com'>
+            <a className='promo-panel-item__btn' href='https://blog.gab.com'>
               <Icon id='align-left' className='promo-panel-item__icon' fixedWidth />
               <FormattedMessage id='promo.gab_news' defaultMessage='Gab News' />
             </a>
           </div>
 
           <div className='promo-panel-item'>
-            <a className='promo-panel-item__btn button button-alternative-2' href='https://gumroad.com/getongab'>
-              <Icon id='align-left' className='promo-panel-item__icon' fixedWidth />
+            <a className='promo-panel-item__btn' href='https://gumroad.com/getongab'>
+              <Icon id='dollar' className='promo-panel-item__icon' fixedWidth />
               <FormattedMessage id='promo.store' defaultMessage='Store' />
             </a>
           </div>
 
           <div className='promo-panel-item'>
-            <a className='promo-panel-item__btn button button-alternative-2' href='https://blog.gab.com/support-gab'>
-              <Icon id='align-left' className='promo-panel-item__icon' fixedWidth />
+            <a className='promo-panel-item__btn' href='https://blog.gab.com/support-gab'>
+              <Icon id='users' className='promo-panel-item__icon' fixedWidth />
               <FormattedMessage id='promo.partners' defaultMessage='Affiliate Partners' />
             </a>
           </div>
 
           <div className='promo-panel-item'>
-            <a className='promo-panel-item__btn button button-alternative-2' href='https://apps.gab.com'>
+            <a className='promo-panel-item__btn' href='https://apps.gab.com'>
               <Icon id='th' className='promo-panel-item__icon' fixedWidth />
               <FormattedMessage id='promo.gab_apps' defaultMessage='Gab Apps' />
             </a>
