@@ -20,6 +20,11 @@ class Api::V1::Groups::AccountsController < Api::BaseController
     authorize @group, :join?
 
     @group.accounts << current_account
+
+    if current_user.allows_group_in_home_feed?
+      current_user.force_regeneration!
+    end
+
     render json: @group, serializer: REST::GroupRelationshipSerializer, relationships: relationships
   end
 
@@ -35,6 +40,11 @@ class Api::V1::Groups::AccountsController < Api::BaseController
     authorize @group, :leave?
 
     GroupAccount.where(group: @group, account_id: current_account.id).destroy_all
+
+    if current_user.allows_group_in_home_feed?
+      current_user.force_regeneration!
+    end
+
     render json: @group, serializer: REST::GroupRelationshipSerializer, relationships: relationships
   end
 
