@@ -4,6 +4,7 @@ import { evictStatus } from '../storage/modifier';
 import { deleteFromTimelines } from './timelines';
 import { importFetchedStatus, importFetchedStatuses, importAccount, importStatus } from './importer';
 import { ensureComposeIsVisible } from './compose';
+import { openModal, closeModal } from './modal';
 import { me } from 'gabsocial/initial_state';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
@@ -159,7 +160,7 @@ export function deleteStatus(id, routerHistory, withRedraft = false) {
 
       if (withRedraft) {
         dispatch(redraft(status, response.data.text));
-        ensureComposeIsVisible(getState, routerHistory);
+        dispatch(openModal('COMPOSE'));
       }
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));
@@ -272,7 +273,7 @@ export function muteStatusFail(id, error) {
 export function unmuteStatus(id) {
   return (dispatch, getState) => {
     if (!me) return;
-    
+
     dispatch(unmuteStatusRequest(id));
 
     api(getState).post(`/api/v1/statuses/${id}/unmute`).then(() => {
