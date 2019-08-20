@@ -7,14 +7,6 @@ export default class PromoPanel extends React.PureComponent {
     return (
       <div className='promo-panel'>
         <div className='promo-panel__container'>
-
-          <div className='promo-panel-item'>
-            <a className='promo-panel-item__btn button button-alternative-2' href='https://apps.gab.com'>
-              <Icon id='th' className='promo-panel-item__icon' fixedWidth />
-              <FormattedMessage id='promo.gab_apps' defaultMessage='Gab Apps' />
-            </a>
-          </div>
-
           <div className='promo-panel-item'>
             <a className='promo-panel-item__btn button button-alternative-2' href='https://blog.gab.com'>
               <Icon id='align-left' className='promo-panel-item__icon' fixedWidth />
@@ -22,6 +14,26 @@ export default class PromoPanel extends React.PureComponent {
             </a>
           </div>
 
+          <div className='promo-panel-item'>
+            <a className='promo-panel-item__btn button button-alternative-2' href='https://gumroad.com/getongab'>
+              <Icon id='align-left' className='promo-panel-item__icon' fixedWidth />
+              <FormattedMessage id='promo.store' defaultMessage='Store' />
+            </a>
+          </div>
+
+          <div className='promo-panel-item'>
+            <a className='promo-panel-item__btn button button-alternative-2' href='https://blog.gab.com/support-gab'>
+              <Icon id='align-left' className='promo-panel-item__icon' fixedWidth />
+              <FormattedMessage id='promo.partners' defaultMessage='Affiliate Partners' />
+            </a>
+          </div>
+
+          <div className='promo-panel-item'>
+            <a className='promo-panel-item__btn button button-alternative-2' href='https://apps.gab.com'>
+              <Icon id='th' className='promo-panel-item__icon' fixedWidth />
+              <FormattedMessage id='promo.gab_apps' defaultMessage='Gab Apps' />
+            </a>
+          </div>
         </div>
       </div>
     )
