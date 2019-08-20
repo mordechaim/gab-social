@@ -29,6 +29,9 @@ const messages = defineMessages({
   lists: { id: 'column.lists', defaultMessage: 'Lists', },
   apps: { id: 'tabs_bar.apps', defaultMessage: 'Apps' },
   news: { id: 'tabs_bar.news', defaultMessage: 'News' },
+  more: { id: 'sidebar.more', defaultMessage: 'More' },
+  partners: { id: 'promo.partners', defaultMessage: 'Affiliate Partners' },
+  store: { id: 'promo.store', defaultMessage: 'Store' },
 })
 
 const mapStateToProps = state => {
@@ -57,6 +60,10 @@ class SidebarMenu extends ImmutablePureComponent {
     onClose: PropTypes.func.isRequired,
   };
 
+  state = {
+    moreOpen: false,
+  }
+
   componentDidUpdate () {
     if (!me) return;
 
@@ -67,8 +74,22 @@ class SidebarMenu extends ImmutablePureComponent {
     }
   }
 
+  toggleMore = () => {
+    this.setState({
+      moreOpen: !this.state.moreOpen
+    });
+  }
+
+  handleSidebarClose = () => {
+    this.props.onClose();
+    this.setState({
+      moreOpen: false,
+    });
+  }
+
   render () {
-    const { sidebarOpen, onClose, intl, account } = this.props;
+    const { sidebarOpen, intl, account } = this.props;
+    const { moreOpen } = this.state;
 
     if (!me || !account) return null;
 
@@ -78,21 +99,24 @@ class SidebarMenu extends ImmutablePureComponent {
       'sidebar-menu__root--visible': sidebarOpen,
     });
 
+    const moreIcon = moreOpen ? 'minus' : 'plus';
+    const moreContainerStyle = { display: moreOpen ? 'block' : 'none' };
+
     return (
       <div className={classes}>
-        <div className='sidebar-menu__wrapper' role='button' onClick={onClose} />
+        <div className='sidebar-menu__wrapper' role='button' onClick={this.handleSidebarClose} />
         <div className='sidebar-menu'>
 
           <div className='sidebar-menu-header'>
             <span className='sidebar-menu-header__title'>Account Info</span>
-            <IconButton title='close' onClick={onClose} icon='close' className='sidebar-menu-header__btn' />
+            <IconButton title='close' onClick={this.handleSidebarClose} icon='close' className='sidebar-menu-header__btn' />
           </div>
 
           <div className='sidebar-menu__content'>
 
             <div className='sidebar-menu-profile'>
               <div className='sidebar-menu-profile__avatar'>
-                <Link to={`/${acct}`} title={acct} onClick={onClose}>
+                <Link to={`/${acct}`} title={acct} onClick={this.handleSidebarClose}>
                   <Avatar account={account} />
                 </Link>
               </div>
@@ -101,11 +125,11 @@ class SidebarMenu extends ImmutablePureComponent {
               </div>
 
               <div className='sidebar-menu-profile__stats'>
-                <NavLink className='sidebar-menu-profile-stat' to={`/${acct}/followers`} onClick={onClose} title={intl.formatNumber(account.get('followers_count'))}>
+                <NavLink className='sidebar-menu-profile-stat' to={`/${acct}/followers`} onClick={this.handleSidebarClose} title={intl.formatNumber(account.get('followers_count'))}>
                   <strong className='sidebar-menu-profile-stat__value'>{shortNumberFormat(account.get('followers_count'))}</strong>
                   <span className='sidebar-menu-profile-stat__label'>{intl.formatMessage(messages.followers)}</span>
                 </NavLink>
-                <NavLink className='sidebar-menu-profile-stat' to={`/${acct}/following`} onClick={onClose} title={intl.formatNumber(account.get('following_count'))}>
+                <NavLink className='sidebar-menu-profile-stat' to={`/${acct}/following`} onClick={this.handleSidebarClose} title={intl.formatNumber(account.get('following_count'))}>
                   <strong className='sidebar-menu-profile-stat__value'>{shortNumberFormat(account.get('following_count'))}</strong>
                   <span className='sidebar-menu-profile-stat__label'>{intl.formatMessage(messages.follows)}</span>
                 </NavLink>
@@ -114,49 +138,63 @@ class SidebarMenu extends ImmutablePureComponent {
             </div>
 
             <div className='sidebar-menu__section sidebar-menu__section--borderless'>
-              <NavLink className='sidebar-menu-item' to={`/${acct}`} onClick={onClose}>
+              <NavLink className='sidebar-menu-item' to={`/${acct}`} onClick={this.handleSidebarClose}>
                 <Icon id='user' />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.profile)}</span>
               </NavLink>
-              <NavLink className='sidebar-menu-item' to='/lists' onClick={onClose}>
-                <Icon id='list' />
-                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.lists)}</span>
-              </NavLink>
-              <a className='sidebar-menu-item' href='https://apps.gab.com'>
-                <Icon id='th' />
-                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.apps)}</span>
-              </a>
               <a className='sidebar-menu-item' href='https://blog.gab.com'>
                 <Icon id='align-left' />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.news)}</span>
               </a>
-            </div>
-
-            <div className='sidebar-menu__section'>
+              <a className='sidebar-menu-item' href='https://gumroad.com/getongab'>
+                <Icon id='dollar' />
+                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.store)}</span>
+              </a>
+              <a className='sidebar-menu-item' href='https://blog.gab.com/support-gab'>
+                <Icon id='users' />
+                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.partners)}</span>
+              </a>
+              <a className='sidebar-menu-item' href='https://apps.gab.com'>
+                <Icon id='th' />
+                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.apps)}</span>
+              </a>
               <a className='sidebar-menu-item' href='/settings/preferences'>
                 <Icon id='cog' />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.preferences)}</span>
               </a>
-              <NavLink className='sidebar-menu-item' to='/follow_requests' onClick={onClose}>
-                <Icon id='user-plus' />
-                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.follow_requests)}</span>
-              </NavLink>
-              <NavLink className='sidebar-menu-item' to='/blocks' onClick={onClose}>
-                <Icon id='ban' />
-                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.blocks)}</span>
-              </NavLink>
-              <NavLink className='sidebar-menu-item' to='/domain_blocks' onClick={onClose}>
-                <Icon id='ban' />
-                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.domain_blocks)}</span>
-              </NavLink>
-              <NavLink className='sidebar-menu-item' to='/mutes' onClick={onClose}>
-                <Icon id='times-circle' />
-                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.mutes)}</span>
-              </NavLink>
-              <a className='sidebar-menu-item' href='/filters'>
-                <Icon id='filter' />
-                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.filters)}</span>
-              </a>
+            </div>
+
+            <div className='sidebar-menu__section'>
+              <div className='sidebar-menu-item' onClick={this.toggleMore} role='button'>
+                <Icon id={moreIcon} />
+                <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.more)}</span>
+              </div>
+              <div style={moreContainerStyle}>
+                <NavLink className='sidebar-menu-item' to='/lists' onClick={this.handleSidebarClose}>
+                  <Icon id='list' />
+                  <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.lists)}</span>
+                </NavLink>
+                <NavLink className='sidebar-menu-item' to='/follow_requests' onClick={this.handleSidebarClose}>
+                  <Icon id='user-plus' />
+                  <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.follow_requests)}</span>
+                </NavLink>
+                <NavLink className='sidebar-menu-item' to='/blocks' onClick={this.handleSidebarClose}>
+                  <Icon id='ban' />
+                  <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.blocks)}</span>
+                </NavLink>
+                <NavLink className='sidebar-menu-item' to='/domain_blocks' onClick={this.handleSidebarClose}>
+                  <Icon id='sitemap' />
+                  <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.domain_blocks)}</span>
+                </NavLink>
+                <NavLink className='sidebar-menu-item' to='/mutes' onClick={this.handleSidebarClose}>
+                  <Icon id='times-circle' />
+                  <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.mutes)}</span>
+                </NavLink>
+                <a className='sidebar-menu-item' href='/filters'>
+                  <Icon id='filter' />
+                  <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.filters)}</span>
+                </a>
+              </div>
             </div>
 
             <div className='sidebar-menu__section'>
