@@ -32,6 +32,8 @@ module GroupInteractions
     accounts.local
       .joins(:user)
       .where('users.current_sign_in_at > ?', User::ACTIVE_DURATION.ago)
+      .where('users.id NOT IN (SELECT thing_id FROM settings WHERE thing_type = \'User\' AND var = \'group_in_home_feed\' AND value = \'--- false
+\')')
   end
 
 end
