@@ -3,8 +3,7 @@ import openDB from '../storage/db';
 import { evictStatus } from '../storage/modifier';
 import { deleteFromTimelines } from './timelines';
 import { importFetchedStatus, importFetchedStatuses, importAccount, importStatus } from './importer';
-import { ensureComposeIsVisible } from './compose';
-import { openModal, closeModal } from './modal';
+import { openModal } from './modal';
 import { me } from 'gabsocial/initial_state';
 
 export const STATUS_FETCH_REQUEST = 'STATUS_FETCH_REQUEST';
