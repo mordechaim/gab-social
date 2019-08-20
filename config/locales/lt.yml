@@ -675,9 +675,9 @@ lt:
         one: Beje, jūs gavote naują sekėją, kol buvote atsijungęs! Yay!
         other: Beje, jūs gavote %{count} naujų sekėjų, nuo jūsų paskutinio apsilankymo! Nuostabu!
       subject:
-        few: "%{count} nauji pranešimai, nuo paskutinio apsilankymo\U0001F418"
-        one: "1 naujas pranešimas nuo paskutinio apsilankymo \U0001F418"
-        other: "%{count} nauji pranešimai, nuo paskutinio apsilankymo\U0001F418"
+        few: "%{count} nauji pranešimai, nuo paskutinio apsilankymo"
+        one: "1 naujas pranešimas nuo paskutinio apsilankymo"
+        other: "%{count} nauji pranešimai, nuo paskutinio apsilankymo"
       title: Kol jūsų nebuvo...
     favourite:
       body: 'Jūsų statusą pamėgo %{name}:'

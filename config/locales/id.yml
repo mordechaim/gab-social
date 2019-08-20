@@ -290,8 +290,8 @@ id:
         one: Anda mendapatkan satu pengikut baru! Hore!
         other: Anda mendapatkan %{count} pengikut baru! Luar biasa!
       subject:
-        one: "1 notifikasi baru sejak kunjungan terakhir anda pada \U0001F418"
-        other: "%{count} notifikasi baru sejak kunjungan terakhir anda pada \U0001F418"
+        one: "1 notifikasi baru sejak kunjungan terakhir anda pada"
+        other: "%{count} notifikasi baru sejak kunjungan terakhir anda pada"
     favourite:
       body: 'Status anda disukai oleh %{name}:'
       subject: "%{name} menyukai status anda"

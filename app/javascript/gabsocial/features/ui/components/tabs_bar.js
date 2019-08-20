@@ -2,47 +2,50 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink, withRouter } from 'react-router-dom';
 import { FormattedMessage, injectIntl } from 'react-intl';
-import { debounce } from 'lodash';
+import { throttle } from 'lodash';
 import { connect } from 'react-redux';
-import { isUserTouching } from '../../../is_mobile';
 import { me } from '../../../initial_state';
-import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 import NotificationsCounterIcon from './notifications_counter_icon';
 import SearchContainer from 'gabsocial/features/compose/containers/search_container';
 import Avatar from '../../../components/avatar';
 import ActionBar from 'gabsocial/features/compose/components/action_bar';
 import { openModal } from '../../../actions/modal';
+import { openSidebar } from '../../../actions/sidebar';
 
 export const privateLinks = [
-  <NavLink className='tabs-bar__link--logo' to='/home#' data-preview-title-id='column.home' style={{ padding: '0' }}>
+  <NavLink key='pr0' className='tabs-bar__link--logo' to='/home#' data-preview-title-id='column.home' style={{ padding: '0' }}>
     <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
   </NavLink>,
-  <NavLink className='tabs-bar__link home' to='/home' data-preview-title-id='column.home'  >
+  <NavLink key='pr1' className='tabs-bar__link' to='/home' data-preview-title-id='column.home'  >
+    <i className='tabs-bar__link__icon home'/>
     <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
   </NavLink>,
-  <NavLink className='tabs-bar__link notifications' to='/notifications' data-preview-title-id='column.notifications' >
+  <NavLink key='pr2' className='tabs-bar__link' to='/notifications' data-preview-title-id='column.notifications' >
+    <i className='tabs-bar__link__icon notifications'/>
     <NotificationsCounterIcon />
     <FormattedMessage id='tabs_bar.notifications' defaultMessage='Notifications' />
   </NavLink>,
-  <NavLink className='tabs-bar__link groups' to='/groups' data-preview-title-id='column.groups' >
+  <NavLink key='pr3' className='tabs-bar__link' to='/groups' data-preview-title-id='column.groups' >
+    <i className='tabs-bar__link__icon groups'/>
     <FormattedMessage id='tabs_bar.groups' defaultMessage='Groups' />
   </NavLink>,
-  <a className='tabs-bar__link apps' href='https://apps.gab.com' data-preview-title-id='tabs_bar.apps' >
-    <FormattedMessage id='tabs_bar.apps' defaultMessage='Apps' />
-  </a>,
-  <NavLink className='tabs-bar__link optional' to='/search' data-preview-title-id='tabs_bar.search' >
+  <NavLink key='pr5' className='tabs-bar__link tabs-bar__link--search' to='/search' data-preview-title-id='tabs_bar.search' >
+    <i className='tabs-bar__link__icon tabs-bar__link__icon--search'/>
     <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
   </NavLink>,
 ];
 
 export const publicLinks = [
-  <a className='tabs-bar__link--logo' href='/#' data-preview-title-id='column.home' style={{ padding: '0' }}>
+  <a key='pl0' className='tabs-bar__link--logo' href='/#' data-preview-title-id='column.home' style={{ padding: '0' }}>
     <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
   </a>,
-  <a className='tabs-bar__link home' href='/home' data-preview-title-id='column.home'  >
+  <a key='pl1' className='tabs-bar__link' href='/home' data-preview-title-id='column.home'  >
+    <i className='tabs-bar__link__icon home'/>
     <FormattedMessage id='tabs_bar.home' defaultMessage='Home' />
   </a>,
-  <NavLink className='tabs-bar__link optional' to='/search' data-preview-title-id='tabs_bar.search' >
+  <NavLink key='pl2' className='tabs-bar__link tabs-bar__link--search' to='/search' data-preview-title-id='tabs_bar.search' >
+    <i className='tabs-bar__link__icon tabs-bar__link__icon--search'/>
     <FormattedMessage id='tabs_bar.search' defaultMessage='Search' />
   </NavLink>,
 ];
@@ -54,18 +57,104 @@ class TabsBar extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     onOpenCompose: PropTypes.func,
+    onOpenSidebar: PropTypes.func.isRequired,
+  }
+
+  state = {
+    collapsed: false,
+  }
+
+  static contextTypes = {
+    router: PropTypes.object,
+  }
+
+  lastScrollTop = 0;
+
+  componentDidMount () {
+    this.window = window;
+    this.documentElement = document.scrollingElement || document.documentElement;
+
+    this.attachScrollListener();
+    // Handle initial scroll posiiton
+    this.handleScroll();
+  }
+
+  componentWillUnmount () {
+    this.detachScrollListener();
   }
 
   setRef = ref => {
     this.node = ref;
   }
 
+  attachScrollListener () {
+    this.window.addEventListener('scroll', this.handleScroll);
+  }
+
+  detachScrollListener () {
+    this.window.removeEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = throttle(() => {
+    if (this.window) {
+      const { pageYOffset, innerWidth } = this.window;
+      if (innerWidth > 895) return;
+      const { scrollTop } = this.documentElement;
+
+      let st = pageYOffset || scrollTop;
+      if (st > this.lastScrollTop){
+        let offset = st - this.lastScrollTop;
+        if (offset > 50) this.setState({collapsed: true});
+      } else {
+        let offset = this.lastScrollTop - st;
+        if (offset > 50) this.setState({collapsed: false});
+      }
+
+      this.lastScrollTop = st <= 0 ? 0 : st;
+    }
+  }, 150, {
+    trailing: true,
+  });
+
   render () {
-    const { intl: { formatMessage }, account, onOpenCompose } = this.props;
+    const { intl: { formatMessage }, account, onOpenCompose, onOpenSidebar } = this.props;
+    const { collapsed } = this.state;
     const links = account ? privateLinks : publicLinks;
 
+    const pathname = this.context.router.route.location.pathname || '';
+    let pathTitle = '';
+    if (pathname.includes('/home')) {
+      pathTitle = 'Home';
+    } else if (pathname.includes('/timeline/all')) {
+      pathTitle = 'All';
+    } else if (pathname.includes('/group')) {
+      pathTitle = 'Groups';
+    } else if (pathname.includes('/tags')) {
+      pathTitle = 'Tags';
+    } else if (pathname.includes('/list')) {
+      pathTitle = 'Lists';
+    } else if (pathname.includes('/notifications')) {
+      pathTitle = 'Notifications';
+    } else if (pathname.includes('/search')) {
+      pathTitle = 'Search';
+    } else if (pathname.includes('/follow_requests')) {
+      pathTitle = 'Requests';
+    } else if (pathname.includes('/blocks')) {
+      pathTitle = 'Blocks';
+    } else if (pathname.includes('/domain_blocks')) {
+      pathTitle = 'Domain Blocks';
+    } else if (pathname.includes('/mutes')) {
+      pathTitle = 'Mutes';
+    } else {
+      pathTitle = 'Profile';
+    }
+
+    const classes = classNames('tabs-bar', {
+      'tabs-bar--collapsed': collapsed,
+    })
+
     return (
-      <nav className='tabs-bar' ref={this.setRef}>
+      <nav className={classes} ref={this.setRef}>
         <div className='tabs-bar__container'>
           <div className='tabs-bar__split tabs-bar__split--left'>
             {
@@ -91,8 +180,10 @@ class TabsBar extends React.PureComponent {
               <div className='flex'>
                 <div className='tabs-bar__profile'>
                   <Avatar account={account} />
+                  <button className='tabs-bar__sidebar-btn' onClick={onOpenSidebar}></button>
                   <ActionBar account={account} size={34} />
                 </div>
+                <span className='tabs-bar__page-name'>{pathTitle}</span>
                 <button className='tabs-bar__button-compose button' onClick={onOpenCompose} aria-label='Gab'>
                   <span>Gab</span>
                 </button>
@@ -125,6 +216,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = (dispatch) => ({
   onOpenCompose() {
     dispatch(openModal('COMPOSE'));
+  },
+  onOpenSidebar() {
+    dispatch(openSidebar());
   },
 });
 

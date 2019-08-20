@@ -303,8 +303,8 @@ tr:
         one: Yeni bir takipçiniz var!
         other: Yeni %{count} takipçiniz var!
       subject:
-        one: "Son ziyaretinizden beri 1 yeni bildiriminiz var \U0001F418"
-        other: "Son ziyaretinizden beri %{count} yeni bildiriminiz var \U0001F418"
+        one: "Son ziyaretinizden beri 1 yeni bildiriminiz var"
+        other: "Son ziyaretinizden beri %{count} yeni bildiriminiz var"
     favourite:
       body: "%{name} durumunuzu favorilere ekledi:"
       subject: "%{name} favorilere ekledi"

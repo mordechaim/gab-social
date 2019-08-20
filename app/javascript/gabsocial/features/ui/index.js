@@ -30,6 +30,7 @@ import GroupPage from 'gabsocial/pages/group_page';
 import SearchPage from 'gabsocial/pages/search_page';
 import HomePage from 'gabsocial/pages/home_page';
 import GroupSidebarPanel from '../groups/sidebar_panel';
+import SidebarMenu from '../../components/sidebar_menu';
 
 import {
   Status,
@@ -193,7 +194,7 @@ class SwitchingColumnsArea extends React.PureComponent {
         <WrappedRoute path='/groups/:id/edit' page={GroupPage} component={GroupEdit} content={children} />
         <WrappedRoute path='/groups/:id' page={GroupPage} component={GroupTimeline} content={children} />
 
-        <WrappedRoute path='/tags/:id' component={HashtagTimeline} content={children} />
+        <WrappedRoute path='/tags/:id' publicRoute component={HashtagTimeline} content={children} />
 
         <WrappedRoute path='/lists' layout={LAYOUT.DEFAULT} component={Lists} content={children} />
         <WrappedRoute path='/list/:id' page={HomePage} component={ListTimeline} content={children} />
@@ -539,6 +540,7 @@ class UI extends React.PureComponent {
           <LoadingBarContainer className='loading-bar' />
           <ModalContainer />
           <UploadArea active={draggingOver} onClose={this.closeUploadModal} />
+          { me && <SidebarMenu />}
         </div>
       </HotKeys>
     );

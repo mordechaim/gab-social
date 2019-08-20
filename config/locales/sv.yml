@@ -492,8 +492,8 @@ sv:
         one: Du har också förvärvat en ny följare! Jippie!
         other: Du har också fått %{count} nya följare medans du var iväg! Otroligt!
       subject:
-        one: "1 nytt meddelande sedan ditt senaste besök \U0001F418"
-        other: "%{count} nya meddelanden sedan ditt senaste besök \U0001F418"
+        one: "1 nytt meddelande sedan ditt senaste besök"
+        other: "%{count} nya meddelanden sedan ditt senaste besök"
       title: I din frånvaro...
     favourite:
       body: 'Din status favoriserades av %{name}:'

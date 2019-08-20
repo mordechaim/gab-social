@@ -723,8 +723,8 @@ ca:
         one: A més, has adquirit un nou seguidor durant la teva absència! Visca!
         other: A més, has adquirit %{count} nous seguidors mentre estaves fora! Increïble!
       subject:
-        one: "1 notificació nova des de la darrera visita \U0001F418"
-        other: "%{count} notificacions noves des de la darrera visita \U0001F418"
+        one: "1 notificació nova des de la darrera visita"
+        other: "%{count} notificacions noves des de la darrera visita"
       title: Durant la teva absència…
     favourite:
       body: "%{name} ha marcat com a favorit el teu estat:"

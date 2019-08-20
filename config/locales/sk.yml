@@ -703,9 +703,9 @@ sk:
         one: Tiež si získal/a jedného nového následovateľa zatiaľ čo si bol/a preč. Yay!
         other: Tiež si získal/a %{count} nových následovateľov za tú dobu čo si bol/a preč. Yay!
       subject:
-        few: "%{count} nové notifikácie od tvojej poslednej návštevy \U0001F418"
-        one: "1 nové oboznámenie od tvojej poslednej návštevy \U0001F418"
-        other: "%{count} nových oboznámení od tvojej poslednej návštevy \U0001F418"
+        few: "%{count} nové notifikácie od tvojej poslednej návštevy"
+        one: "1 nové oboznámenie od tvojej poslednej návštevy"
+        other: "%{count} nových oboznámení od tvojej poslednej návštevy"
       title: Zatiaľ čo si bol/a preč…
     favourite:
       body: 'Tvoj príspevok bol uložený medzi obľúbené užívateľa %{name}:'

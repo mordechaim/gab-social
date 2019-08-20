@@ -501,8 +501,8 @@ th:
         one: นอกจากนี้คุณยังมีหนึ่งผู้ติดตามใหม่ขณะที่ไม่อยู่! เย่!
         other: You have gotten %{count} new followers! Amazing!
       subject:
-        one: "1 new notification since your last visit \U0001F418"
-        other: "%{count} new notifications since your last visit \U0001F418"
+        one: "1 new notification since your last visit"
+        other: "%{count} new notifications since your last visit"
     favourite:
       body: 'สถานะของคุณได้รับการชื่นชอบโดย %{name}:'
       subject: "%{name} ได้ชื่นชอบสถานะของคุณ"

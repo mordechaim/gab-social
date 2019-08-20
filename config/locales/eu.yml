@@ -662,8 +662,8 @@ eu:
         one: Kanpoan zeundela jarraitzaile berri bat gehitu zaizu!
         other: Kanpoan zeundela %{count} jarraitzaile berri bat gehitu zaizkizu!
       subject:
-        one: "Jakinarazpen berri bat azken bisitatik \U0001F418"
-        other: "%{count} jakinarazpen berri azken bisitatik \U0001F418"
+        one: "Jakinarazpen berri bat azken bisitatik"
+        other: "%{count} jakinarazpen berri azken bisitatik"
       title: Kanpoan zeundela...
     favourite:
       body: "%{name}(e)k zure mezua gogoko du:"

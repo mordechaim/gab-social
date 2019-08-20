@@ -733,9 +733,9 @@ cs:
         one: Navíc jste získal/a jednoho nového sledujícího, zatímco jste byl/a pryč! Hurá!
         other: Navíc jste získal/a %{count} nových sledujících, zatímco jste byl/a pryč! Úžasné!
       subject:
-        few: "%{count} nová oznámení od vaší poslední návštěvy \U0001F418"
-        one: "1 nové oznámení od vaší poslední návštěvy \U0001F418"
-        other: "%{count} nových oznámení od vaší poslední návštěvy \U0001F418"
+        few: "%{count} nová oznámení od vaší poslední návštěvy"
+        one: "1 nové oznámení od vaší poslední návštěvy"
+        other: "%{count} nových oznámení od vaší poslední návštěvy"
       title: Ve vaší nepřítomnosti…
     favourite:
       body: 'Váš toot si oblíbil/a %{name}:'

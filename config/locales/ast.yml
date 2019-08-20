@@ -224,7 +224,7 @@ ast:
       body: Equí hai un resume de los mensaxes que nun viesti dende la última visita'l %{since}
       mention: "%{name} mentóte en:"
       subject:
-        other: "%{count} avisos nuevos dende la última visita \U0001F418"
+        other: "%{count} avisos nuevos dende la última visita"
     follow:
       body: "¡Agora %{name} ta siguiéndote!"
       title: Siguidor nuevu

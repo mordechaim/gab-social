@@ -567,7 +567,7 @@ zh-TW:
       body: 以下是自%{since}你最後一次登入以來錯過的訊息摘要
       mention: "%{name} 在此提及了你:"
       new_followers_summary: 而且，你不在的時候，有 %{count} 個人關注你了! 好棒!
-      subject: "自從上次登入以來，你收到 %{count} 則新的通知 \U0001F418"
+      subject: "自從上次登入以來，你收到 %{count} 則新的通知"
       title: 你不在的時候...
     favourite:
       body: '你的嘟文被 %{name} 加入了最愛:'
