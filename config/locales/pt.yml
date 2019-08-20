@@ -665,8 +665,8 @@ pt:
         one: Tens um novo seguidor! Boa!
         other: Tens %{count} novos seguidores! Fantástico!
       subject:
-        one: "1 nova notificação desde o último acesso \U0001F418"
-        other: "%{count} novas notificações desde o  último acesso \U0001F418"
+        one: "1 nova notificação desde o último acesso"
+        other: "%{count} novas notificações desde o  último acesso"
       title: Enquanto estiveste ausente…
     favourite:
       body: 'O teu post foi adicionado aos favoritos por %{name}:'

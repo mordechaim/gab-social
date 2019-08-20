@@ -431,8 +431,8 @@
         one: I tillegg har du fått en ny følger mens du var borte. Hurra!
         other: I tillegg har du har fått %{count} nye følgere mens du var borte! Imponerende!
       subject:
-        one: "1 ny hendelse siden ditt siste besøk \U0001F418"
-        other: "%{count} nye hendelser siden ditt siste besøk \U0001F418"
+        one: "1 ny hendelse siden ditt siste besøk"
+        other: "%{count} nye hendelser siden ditt siste besøk"
       title: I ditt fravær…
     favourite:
       body: 'Statusen din ble likt av %{name}:'

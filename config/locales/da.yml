@@ -591,8 +591,8 @@ da:
         one: Du har også fået dig en ny følger mens du var væk! Sådan!
         other: Du har også fået %{count} nye følgere mens du var væk! Fantastisk!
       subject:
-        one: "1 ny notifikation siden du sidst var her \U0001F418"
-        other: "%{count} nye notifikationer siden du sidst var her \U0001F418"
+        one: "1 ny notifikation siden du sidst var her"
+        other: "%{count} nye notifikationer siden du sidst var her"
       title: Mens du var væk...
     favourite:
       body: 'Din status blev favoriseret af %{name}:'

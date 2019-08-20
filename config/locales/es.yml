@@ -596,8 +596,8 @@ es:
         one: "¡Ademas, has adquirido un nuevo seguidor mientras no estabas! ¡Hurra!"
         other: "¡Ademas, has adquirido %{count} nuevos seguidores mientras no estabas! ¡Genial!"
       subject:
-        one: "1 nueva notificación desde tu última visita \U0001F418"
-        other: "%{count} nuevas notificaciones desde tu última visita \U0001F418"
+        one: "1 nueva notificación desde tu última visita"
+        other: "%{count} nuevas notificaciones desde tu última visita"
       title: En tu ausencia…
     favourite:
       body: 'Tu estado fue marcado como favorito por %{name}:'

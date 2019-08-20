@@ -562,7 +562,7 @@ zh-CN:
       new_followers_summary:
         one: 而且，你不在的时候，有一个人关注了你！耶！
         other: 而且，你不在的时候，有 %{count} 个人关注了你！好棒！
-      subject: "自从你最后一次登录以来，你错过了 %{count} 条新通知 \U0001F418"
+      subject: "自从你最后一次登录以来，你错过了 %{count} 条新通知"
       title: 在你不在的这段时间……
     favourite:
       body: 你的嘟文被 %{name} 收藏了：

@@ -663,8 +663,8 @@ fr:
         one: Vous avez un⋅e nouvel⋅le abonné⋅e ! Youpi !
         other: Vous avez %{count} nouveaux⋅elles abonné⋅e·s ! Incroyable !
       subject:
-        one: "Une nouvelle notification depuis votre dernière visite \U0001F418"
-        other: "%{count} nouvelles notifications depuis votre dernière visite \U0001F418"
+        one: "Une nouvelle notification depuis votre dernière visite"
+        other: "%{count} nouvelles notifications depuis votre dernière visite"
       title: Pendant votre absence…
     favourite:
       body: "%{name} a ajouté votre pouet à ses favoris :"
