@@ -1109,7 +1109,7 @@ en:
       image_hint: "JPG/PNG/GIF up to 4MB"
       already_requested: "You have a verification request awaiting moderation."
       already_verified_html: <p>On Gab, a verification badge shows that a person is who they say they are. You are already a verified account.</p>
-      only_allowed_for_pro: "<em>Only available to Gab PRO users.</em>"
+      only_allowed_for_pro: Only available to Gab PRO users.
       explanation_html: <p>On Gab, a verification badge shows that a person is who they say they are. PRO users can upload an image to start the verification process immediately. It will take 5-7 business days for us to review.</p><p>All you need to do is upload an image of yourself holding a government-issued ID card with the name section visible. No other information on the ID is needed. Once verified, this information is immediately deleted.</p><p>The name on your ID must match the display name on your profile and must include your first and last name. Middle names or initials are optional.</p><p>Please make sure that the image is high-resolution enough to read the name on your ID card and your face is visible.</p><br>
     moderation:
       title: "Verification Request Moderation"
