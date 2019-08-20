@@ -139,59 +139,59 @@ class SidebarMenu extends ImmutablePureComponent {
 
             <div className='sidebar-menu__section sidebar-menu__section--borderless'>
               <NavLink className='sidebar-menu-item' to={`/${acct}`} onClick={this.handleSidebarClose}>
-                <Icon id='user' />
+                <Icon id='user' fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.profile)}</span>
               </NavLink>
               <a className='sidebar-menu-item' href='https://blog.gab.com'>
-                <Icon id='align-left' />
+                <Icon id='align-left' fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.news)}</span>
               </a>
               <a className='sidebar-menu-item' href='https://gumroad.com/getongab'>
-                <Icon id='dollar' />
+                <Icon id='dollar' fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.store)}</span>
               </a>
               <a className='sidebar-menu-item' href='https://blog.gab.com/support-gab'>
-                <Icon id='users' />
+                <Icon id='users' fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.partners)}</span>
               </a>
               <a className='sidebar-menu-item' href='https://apps.gab.com'>
-                <Icon id='th' />
+                <Icon id='th' fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.apps)}</span>
               </a>
               <a className='sidebar-menu-item' href='/settings/preferences'>
-                <Icon id='cog' />
+                <Icon id='cog' fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.preferences)}</span>
               </a>
             </div>
 
             <div className='sidebar-menu__section'>
               <div className='sidebar-menu-item' onClick={this.toggleMore} role='button'>
-                <Icon id={moreIcon} />
+                <Icon id={moreIcon} fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.more)}</span>
               </div>
               <div style={moreContainerStyle}>
                 <NavLink className='sidebar-menu-item' to='/lists' onClick={this.handleSidebarClose}>
-                  <Icon id='list' />
+                  <Icon id='list' fixedWidth />
                   <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.lists)}</span>
                 </NavLink>
                 <NavLink className='sidebar-menu-item' to='/follow_requests' onClick={this.handleSidebarClose}>
-                  <Icon id='user-plus' />
+                  <Icon id='user-plus' fixedWidth />
                   <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.follow_requests)}</span>
                 </NavLink>
                 <NavLink className='sidebar-menu-item' to='/blocks' onClick={this.handleSidebarClose}>
-                  <Icon id='ban' />
+                  <Icon id='ban' fixedWidth />
                   <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.blocks)}</span>
                 </NavLink>
                 <NavLink className='sidebar-menu-item' to='/domain_blocks' onClick={this.handleSidebarClose}>
-                  <Icon id='sitemap' />
+                  <Icon id='sitemap' fixedWidth />
                   <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.domain_blocks)}</span>
                 </NavLink>
                 <NavLink className='sidebar-menu-item' to='/mutes' onClick={this.handleSidebarClose}>
-                  <Icon id='times-circle' />
+                  <Icon id='times-circle' fixedWidth />
                   <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.mutes)}</span>
                 </NavLink>
                 <a className='sidebar-menu-item' href='/filters'>
-                  <Icon id='filter' />
+                  <Icon id='filter' fixedWidth />
                   <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.filters)}</span>
                 </a>
               </div>
