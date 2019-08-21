@@ -2190,15 +2190,6 @@ a.account__display-name {
 	background-position: 0 100%;
 }
 
-.reduce-motion button.icon-button i.fa-retweet {
-	color: $action-button-color;
-	transition: color 100ms ease-in;
-}
-
-.reduce-motion button.icon-button.active i.fa-retweet {
-	color: $highlight-text-color;
-}
-
 .status-card {
 	display: flex;
 	font-size: 14px;
