@@ -15,13 +15,6 @@ export default class PromoPanel extends React.PureComponent {
           </div>
 
           <div className='promo-panel-item'>
-            <a className='promo-panel-item__btn' href='https://gumroad.com/getongab'>
-              <Icon id='dollar' className='promo-panel-item__icon' fixedWidth />
-              <FormattedMessage id='promo.store' defaultMessage='Store' />
-            </a>
-          </div>
-
-          <div className='promo-panel-item'>
             <a className='promo-panel-item__btn' href='https://blog.gab.com/support-gab'>
               <Icon id='users' className='promo-panel-item__icon' fixedWidth />
               <FormattedMessage id='promo.partners' defaultMessage='Affiliate Partners' />
