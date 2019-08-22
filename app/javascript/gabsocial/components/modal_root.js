@@ -10,6 +10,7 @@ const messages = defineMessages({
 });
 
 const mapStateToProps = state => ({
+  composeId: state.getIn(['compose', 'id']),
   composeText: state.getIn(['compose', 'text']),
 });
 
@@ -30,6 +31,7 @@ class ModalRoot extends React.PureComponent {
     onOpenModal: PropTypes.func.isRequired,
     onCancelReplyCompose: PropTypes.func.isRequired,
     intl: PropTypes.object.isRequired,
+    composeId: PropTypes.string,
     composeText: PropTypes.string,
     type: PropTypes.string,
   };
@@ -48,9 +50,9 @@ class ModalRoot extends React.PureComponent {
   }
 
   handleOnClose = () => {
-    const { onOpenModal, composeText, onClose, intl, type, onCancelReplyCompose } = this.props;
+    const { onOpenModal, composeText, composeId, onClose, intl, type, onCancelReplyCompose } = this.props;
 
-    if (composeText && type == 'COMPOSE') {
+    if (!composeId && composeText && type == 'COMPOSE') {
       onOpenModal('CONFIRM', {
         message: <FormattedMessage id='confirmations.delete.message' defaultMessage='Are you sure you want to delete this status?' />,
         confirm: intl.formatMessage(messages.confirm),

@@ -12,6 +12,7 @@ import {
 } from '../../../actions/compose';
 
 const mapStateToProps = state => ({
+  edit: state.getIn(['compose', 'id']) !== null,
   text: state.getIn(['compose', 'text']),
   suggestions: state.getIn(['compose', 'suggestions']),
   spoiler: state.getIn(['compose', 'spoiler']),

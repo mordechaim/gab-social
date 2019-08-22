@@ -46,6 +46,7 @@ class ComposeForm extends ImmutablePureComponent {
 
   static propTypes = {
     intl: PropTypes.object.isRequired,
+    edit: PropTypes.bool.isRequired,
     text: PropTypes.string.isRequired,
     suggestions: ImmutablePropTypes.list,
     spoiler: PropTypes.bool,
@@ -200,7 +201,7 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, onPaste, showSearch, anyMedia, shouldCondense, autoFocus, isModalOpen, quoteOfId } = this.props;
+    const { intl, onPaste, showSearch, anyMedia, shouldCondense, autoFocus, isModalOpen, quoteOfId, edit } = this.props;
     const condensed = shouldCondense && !this.props.text && !this.state.composeFocused;
     const disabled = this.props.isSubmitting;
     const text     = [this.props.spoilerText, countableText(this.props.text)].join('');
@@ -267,7 +268,7 @@ class ComposeForm extends ImmutablePureComponent {
             !condensed &&
             <div className='compose-form__modifiers'>
               <UploadFormContainer />
-              <PollFormContainer />
+              {!edit && <PollFormContainer />}
             </div>
           }
         </AutosuggestTextarea>
@@ -279,7 +280,7 @@ class ComposeForm extends ImmutablePureComponent {
           <div className='compose-form__buttons-wrapper'>
             <div className='compose-form__buttons'>
               <UploadButtonContainer />
-              <PollButtonContainer />
+              {!edit && <PollButtonContainer />}
               <PrivacyDropdownContainer />
               <SpoilerButtonContainer />
             </div>
