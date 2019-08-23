@@ -13,7 +13,6 @@ import { Link } from 'react-router-dom';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
-  redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   edit: { id: 'status.edit', defaultMessage: 'Edit' },
   direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
@@ -111,10 +110,6 @@ class StatusActionBar extends ImmutablePureComponent {
 
   handleDeleteClick = () => {
     this.props.onDelete(this.props.status, this.context.router.history);
-  }
-
-  handleRedraftClick = () => {
-    this.props.onDelete(this.props.status, this.context.router.history, true);
   }
 
   handleEditClick = () => {
@@ -222,7 +217,6 @@ class StatusActionBar extends ImmutablePureComponent {
       }
 
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
-      // menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
       menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });

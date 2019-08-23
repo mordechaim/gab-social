@@ -39,7 +39,7 @@ import {
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
-import { REDRAFT } from '../actions/statuses';
+import { STATUS_EDIT } from '../actions/statuses';
 import { Map as ImmutableMap, List as ImmutableList, OrderedSet as ImmutableOrderedSet, fromJS } from 'immutable';
 import uuid from '../uuid';
 import { me } from '../initial_state';
@@ -354,12 +354,9 @@ export default function compose(state = initialState, action) {
 
         return item;
       }));
-  case REDRAFT:
+  case STATUS_EDIT:
     return state.withMutations(map => {
-      if (action.edit === true) {
-        map.set('id', action.status.get('id'));
-      }
-
+      map.set('id', action.status.get('id'));
       map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('quote_of_id', action.status.get('quote_of_id'));

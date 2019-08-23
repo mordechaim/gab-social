@@ -10,7 +10,6 @@ import { me, isStaff } from '../../../initial_state';
 
 const messages = defineMessages({
   delete: { id: 'status.delete', defaultMessage: 'Delete' },
-  redraft: { id: 'status.redraft', defaultMessage: 'Delete & re-draft' },
   edit: { id: 'status.edit', defaultMessage: 'Edit' },
   direct: { id: 'status.direct', defaultMessage: 'Direct message @{name}' },
   mention: { id: 'status.mention', defaultMessage: 'Mention @{name}' },
@@ -107,10 +106,6 @@ class ActionBar extends React.PureComponent {
     this.props.onEdit(this.props.status);
   }
 
-  handleRedraftClick = () => {
-    this.props.onDelete(this.props.status, this.context.router.history, true);
-  }
-
   handleDirectClick = () => {
     this.props.onDirect(this.props.status.get('account'), this.context.router.history);
   }
@@ -196,7 +191,6 @@ class ActionBar extends React.PureComponent {
       menu.push({ text: intl.formatMessage(mutingConversation ? messages.unmuteConversation : messages.muteConversation), action: this.handleConversationMuteClick });
       menu.push(null);
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
-      // menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
       menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });

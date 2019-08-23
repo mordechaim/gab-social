@@ -29,7 +29,7 @@ export const STATUS_UNMUTE_FAIL    = 'STATUS_UNMUTE_FAIL';
 export const STATUS_REVEAL = 'STATUS_REVEAL';
 export const STATUS_HIDE   = 'STATUS_HIDE';
 
-export const REDRAFT = 'REDRAFT';
+export const STATUS_EDIT = 'STATUS_EDIT';
 
 export function fetchStatusRequest(id, skipLoading) {
   return {
@@ -132,19 +132,10 @@ export function fetchStatusFail(id, error, skipLoading) {
   };
 };
 
-export function redraft(status, raw_text) {
-  return {
-    type: REDRAFT,
-    status,
-    raw_text,
-  };
-};
-
 export function editStatus(status) {
   return dispatch => {
     dispatch({
-      type: REDRAFT,
-      edit: true,
+      type: STATUS_EDIT,
       status,
     });
 
@@ -152,7 +143,7 @@ export function editStatus(status) {
   };
 };
 
-export function deleteStatus(id, routerHistory, withRedraft = false) {
+export function deleteStatus(id, routerHistory) {
   return (dispatch, getState) => {
     if (!me) return;
 
@@ -168,11 +159,6 @@ export function deleteStatus(id, routerHistory, withRedraft = false) {
       evictStatus(id);
       dispatch(deleteStatusSuccess(id));
       dispatch(deleteFromTimelines(id));
-
-      if (withRedraft) {
-        dispatch(redraft(status, response.data.text));
-        dispatch(openModal('COMPOSE'));
-      }
     }).catch(error => {
       dispatch(deleteStatusFail(id, error));
     });
