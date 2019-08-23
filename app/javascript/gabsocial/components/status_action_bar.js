@@ -222,7 +222,7 @@ class StatusActionBar extends ImmutablePureComponent {
       }
 
       menu.push({ text: intl.formatMessage(messages.delete), action: this.handleDeleteClick });
-      menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
+      // menu.push({ text: intl.formatMessage(messages.redraft), action: this.handleRedraftClick });
       menu.push({ text: intl.formatMessage(messages.edit), action: this.handleEditClick });
     } else {
       menu.push({ text: intl.formatMessage(messages.mention, { name: status.getIn(['account', 'username']) }), action: this.handleMentionClick });

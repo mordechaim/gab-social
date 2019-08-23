@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { fetchStatus } from '../../actions/statuses';
+import { fetchStatus, editStatus } from '../../actions/statuses';
 import MissingIndicator from '../../components/missing_indicator';
 import DetailedStatus from './components/detailed_status';
 import ActionBar from './components/action_bar';
@@ -236,6 +236,10 @@ class Status extends ImmutablePureComponent {
         onConfirm: () => dispatch(deleteStatus(status.get('id'), history, withRedraft)),
       }));
     }
+  }
+
+  handleEditClick = (status) => {
+    this.props.dispatch(editStatus(status));
   }
 
   handleDirectClick = (account, router) => {
@@ -511,6 +515,7 @@ class Status extends ImmutablePureComponent {
                 onQuote={this.handleQuoteClick}
                 onReblog={this.handleReblogClick}
                 onDelete={this.handleDeleteClick}
+                onEdit={this.handleEditClick}
                 onDirect={this.handleDirectClick}
                 onMention={this.handleMentionClick}
                 onMute={this.handleMuteClick}
