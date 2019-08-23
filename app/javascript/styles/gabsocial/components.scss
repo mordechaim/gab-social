@@ -3580,13 +3580,6 @@ a.status-card.compact:hover {
 	position: relative;
 	border-radius: 4px;
 	overflow: hidden;
-
-	&.standalone {
-		.media-gallery__item-gifv-thumbnail {
-			transform: none;
-			top: 0;
-		}
-	}
 }
 
 .media-gallery__item-thumbnail {
@@ -3636,10 +3629,10 @@ a.status-card.compact:hover {
 	height: 100%;
 	object-fit: cover;
 	position: relative;
-	top: 50%;
-	transform: translateY(-50%);
 	width: 100%;
 	z-index: 1;
+	transform: none;
+	top: 0;
 }
 
 .media-gallery__item-thumbnail-label {
