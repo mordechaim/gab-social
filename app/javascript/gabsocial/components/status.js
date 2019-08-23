@@ -344,6 +344,7 @@ class Status extends ImmutablePureComponent {
                 blurhash={video.get('blurhash')}
                 src={video.get('url')}
                 alt={video.get('description')}
+                aspectRatio={video.getIn(['meta', 'small', 'aspect'])}
                 width={this.props.cachedMediaWidth}
                 height={110}
                 inline

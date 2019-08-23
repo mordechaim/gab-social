@@ -8,6 +8,7 @@ import { isFullscreen, requestFullscreen, exitFullscreen } from '../ui/util/full
 import { displayMedia } from '../../initial_state';
 import Icon from 'gabsocial/components/icon';
 import { decode } from 'blurhash';
+import { isPanoramic, isPortrait, minimumAspectRatio, maximumAspectRatio } from '../../utils/media_aspect_ratio';
 
 const messages = defineMessages({
   play: { id: 'video.play', defaultMessage: 'Play' },
@@ -107,6 +108,7 @@ class Video extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     blurhash: PropTypes.string,
     link: PropTypes.node,
+    aspectRatio: PropTypes.number,
   };
 
   state = {
@@ -373,7 +375,7 @@ class Video extends React.PureComponent {
   }
 
   render () {
-    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive, link } = this.props;
+    const { preview, src, inline, startTime, onOpenVideo, onCloseVideo, intl, alt, detailed, sensitive, link, aspectRatio } = this.props;
     const { containerWidth, currentTime, duration, volume, buffer, dragging, paused, fullscreen, hovered, muted, revealed } = this.state;
     const progress = (currentTime / duration) * 100;
 
@@ -384,8 +386,16 @@ class Video extends React.PureComponent {
     let { width, height } = this.props;
 
     if (inline && containerWidth) {
-      width  = containerWidth;
-      height = containerWidth / (16/9);
+      width = containerWidth;
+      const minSize = containerWidth / (16/9);
+
+      if (isPanoramic(aspectRatio)) {
+        height = Math.max(Math.floor(containerWidth / maximumAspectRatio), minSize);
+      } else if (isPortrait(aspectRatio)) {
+        height = Math.max(Math.floor(containerWidth / minimumAspectRatio), minSize);
+      } else {
+        height = Math.floor(containerWidth / aspectRatio);
+      }
 
       playerStyle.height = height;
     }
