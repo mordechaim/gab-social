@@ -92,6 +92,7 @@ function statusToTextMentions(state, status) {
 
 function clearAll(state) {
   return state.withMutations(map => {
+    map.set('id', null);
     map.set('text', '');
     map.set('spoiler', false);
     map.set('spoiler_text', '');
