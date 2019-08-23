@@ -8,6 +8,7 @@ import { isIOS } from '../is_mobile';
 import classNames from 'classnames';
 import { autoPlayGif, displayMedia } from '../initial_state';
 import { decode } from 'blurhash';
+import { isPanoramic, isPortrait, isNonConformingRatio, minimumAspectRatio, maximumAspectRatio } from '../utils/media_aspect_ratio';
 
 const messages = defineMessages({
   toggle_visible: { id: 'media_gallery.toggle_visible', defaultMessage: 'Toggle visibility' },
@@ -23,6 +24,7 @@ class Item extends React.PureComponent {
     onClick: PropTypes.func.isRequired,
     displayWidth: PropTypes.number,
     visible: PropTypes.bool.isRequired,
+    dimensions: PropTypes.object,
   };
 
   static defaultProps = {
@@ -101,62 +103,35 @@ class Item extends React.PureComponent {
   }
 
   render () {
-    const { attachment, index, size, standalone, displayWidth, visible } = this.props;
+    const { attachment, index, size, standalone, displayWidth, visible, dimensions } = this.props;
 
-    let width  = 50;
-    let height = 100;
+    const ar = attachment.getIn(['meta', 'small', 'aspect']);
+
+    let width  = 100;
+    let height = '100%';
     let top    = 'auto';
     let left   = 'auto';
     let bottom = 'auto';
     let right  = 'auto';
+    let float = 'left';
+    let position = 'relative';
 
-    if (size === 1) {
-      width = 100;
-    }
-
-    if (size === 4 || (size === 3 && index > 0)) {
-      height = 50;
-    }
-
-    if (size === 2) {
-      if (index === 0) {
-        right = '2px';
-      } else {
-        left = '2px';
-      }
-    } else if (size === 3) {
-      if (index === 0) {
-        right = '2px';
-      } else if (index > 0) {
-        left = '2px';
-      }
-
-      if (index === 1) {
-        bottom = '2px';
-      } else if (index > 1) {
-        top = '2px';
-      }
-    } else if (size === 4) {
-      if (index === 0 || index === 2) {
-        right = '2px';
-      }
-
-      if (index === 1 || index === 3) {
-        left = '2px';
-      }
-
-      if (index < 2) {
-        bottom = '2px';
-      } else {
-        top = '2px';
-      }
+    if (dimensions) {
+      width = dimensions.w;
+      height = dimensions.h;
+      top = dimensions.t || 'auto';
+      right = dimensions.r || 'auto';
+      bottom = dimensions.b || 'auto';
+      left = dimensions.l || 'auto';
+      float = dimensions.float || 'left';
+      position = dimensions.pos || 'relative';
     }
 
     let thumbnail = '';
 
     if (attachment.get('type') === 'unknown') {
       return (
-        <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+        <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ position, float, left, top, right, bottom, height, width: `${width}%` }}>
           <a className='media-gallery__item-thumbnail' href={attachment.get('remote_url')} target='_blank' style={{ cursor: 'pointer' }}>
             <canvas width={32} height={32} ref={this.setCanvasRef} className='media-gallery__preview' />
           </a>
@@ -222,7 +197,7 @@ class Item extends React.PureComponent {
     }
 
     return (
-      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ left: left, top: top, right: right, bottom: bottom, width: `${width}%`, height: `${height}%` }}>
+      <div className={classNames('media-gallery__item', { standalone })} key={attachment.get('id')} style={{ position, float, left, top, right, bottom, height, width: `${width}%` }}>
         <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': visible && this.state.loaded })} />
         {visible && thumbnail}
       </div>
@@ -278,7 +253,7 @@ class MediaGallery extends React.PureComponent {
   }
 
   handleRef = (node) => {
-    if (node /*&& this.isStandaloneEligible()*/) {
+    if (node) {
       // offsetWidth triggers a layout, so only calculate when we need to
       if (this.props.cacheWidth) this.props.cacheWidth(node.offsetWidth);
 
@@ -286,11 +261,6 @@ class MediaGallery extends React.PureComponent {
         width: node.offsetWidth,
       });
     }
-  }
-
-  isStandaloneEligible() {
-    const { media, standalone } = this.props;
-    return standalone && media.size === 1 && media.getIn([0, 'meta', 'small', 'aspect']);
   }
 
   render () {
@@ -302,24 +272,221 @@ class MediaGallery extends React.PureComponent {
     let children, spoilerButton;
 
     const style = {};
+    const size = media.take(4).size;
 
-    if (this.isStandaloneEligible()) {
-      if (width) {
-        style.height = width / this.props.media.getIn([0, 'meta', 'small', 'aspect']);
+    const standard169 = width / (16 / 9);
+    const standard169_percent = 100 / (16 / 9);
+    const standard169_px = `${standard169}px`;
+    const panoSize = Math.floor(width / maximumAspectRatio);
+    const panoSize_px = `${Math.floor(width / maximumAspectRatio)}px`;
+    let itemsDimensions = [];
+
+    if (size == 1 && width) {
+      const aspectRatio = media.getIn([0, 'meta', 'small', 'aspect']);
+
+      if (isPanoramic(aspectRatio)) {
+        style.height = Math.floor(width / maximumAspectRatio);
+      } else if (isPortrait(aspectRatio)) {
+        style.height = Math.floor(width / minimumAspectRatio);
+      } else {
+        style.height = Math.floor(width / aspectRatio);
       }
-    } else if (width) {
-      style.height = width / (16/9);
+    } else if (size > 1 && width) {
+      const ar1 = media.getIn([0, 'meta', 'small', 'aspect']);
+      const ar2 = media.getIn([1, 'meta', 'small', 'aspect']);
+      const ar3 = media.getIn([2, 'meta', 'small', 'aspect']);
+      const ar4 = media.getIn([3, 'meta', 'small', 'aspect']);
+
+      if (size == 2) {
+        if (isPortrait(ar1) && isPortrait(ar2)) {
+          style.height = width - (width / maximumAspectRatio);
+        } else if (isPanoramic(ar1) && isPanoramic(ar2)) {
+          style.height = panoSize * 2;
+        } else if (
+          (isPanoramic(ar1) && isPortrait(ar2)) ||
+          (isPortrait(ar1) && isPanoramic(ar2)) ||
+          (isPanoramic(ar1) && isNonConformingRatio(ar2)) ||
+          (isNonConformingRatio(ar1) && isPanoramic(ar2))
+        ) {
+          style.height = (width * 0.6) + (width / maximumAspectRatio);
+        } else {
+          style.height = width / 2;
+        }
+
+        //
+
+        if (isPortrait(ar1) && isPortrait(ar2)) {
+          itemsDimensions = [
+            { w: 50, h: '100%', r: '2px' },
+            { w: 50, h: '100%', l: '2px' }
+          ];
+        } else if (isPanoramic(ar1) && isPanoramic(ar2)) {
+          itemsDimensions = [
+            { w: 100, h: panoSize_px, b: '2px' },
+            { w: 100, h: panoSize_px, t: '2px' }
+          ];
+        } else if (
+          (isPanoramic(ar1) && isPortrait(ar2)) ||
+          (isPanoramic(ar1) && isNonConformingRatio(ar2))
+        ) {
+          itemsDimensions = [
+            { w: 100, h: `${(width / maximumAspectRatio)}px`, b: '2px' },
+            { w: 100, h: `${(width * 0.6)}px`, t: '2px' },
+          ];
+        } else if (
+          (isPortrait(ar1) && isPanoramic(ar2)) ||
+          (isNonConformingRatio(ar1) && isPanoramic(ar2))
+        ) {
+          itemsDimensions = [
+            { w: 100, h: `${(width * 0.6)}px`, b: '2px' },
+            { w: 100, h: `${(width / maximumAspectRatio)}px`, t: '2px' },
+          ];
+        } else {
+          itemsDimensions = [
+            { w: 50, h: '100%', r: '2px' },
+            { w: 50, h: '100%', l: '2px' }
+          ];
+        }
+      } else if (size == 3) {
+        if (isPanoramic(ar1) && isPanoramic(ar2) && isPanoramic(ar3)) {
+          style.height = panoSize * 3;
+        } else if (isPortrait(ar1) && isPortrait(ar2) && isPortrait(ar3)) {
+          style.height = Math.floor(width / minimumAspectRatio);
+        } else {
+          style.height = width;
+        }
+
+        //
+
+        if (isPanoramic(ar1) && isNonConformingRatio(ar2) && isNonConformingRatio(ar3)) {
+          itemsDimensions = [
+            { w: 100, h: `50%`, b: '2px' },
+            { w: 50, h: '50%', t: '2px', r: '2px' },
+            { w: 50, h: '50%', t: '2px', l: '2px' }
+          ];
+        } else if (isPanoramic(ar1) && isPanoramic(ar2) && isPanoramic(ar3)) {
+          itemsDimensions = [
+            { w: 100, h: panoSize_px, b: '4px' },
+            { w: 100, h: panoSize_px },
+            { w: 100, h: panoSize_px, t: '4px' }
+          ];
+        } else if (isPortrait(ar1) && isNonConformingRatio(ar2) && isNonConformingRatio(ar3)) {
+          itemsDimensions = [
+            { w: 50, h: `100%`, r: '2px' },
+            { w: 50, h: '50%', b: '2px', l: '2px' },
+            { w: 50, h: '50%', t: '2px', l: '2px' },
+          ];
+        } else if (isNonConformingRatio(ar1) && isNonConformingRatio(ar2) && isPortrait(ar3)) {
+          itemsDimensions = [
+            { w: 50, h: '50%', b: '2px', r: '2px' },
+            { w: 50, h: '50%', l: '-2px', b: '-2px', pos: 'absolute', float: 'none' },
+            { w: 50, h: `100%`, r: '-2px', t: '0px', b: '0px', pos: 'absolute', float: 'none' }
+          ];
+        } else if (
+          (isNonConformingRatio(ar1) && isPortrait(ar2) && isNonConformingRatio(ar3)) ||
+          (isPortrait(ar1) && isPortrait(ar2) && isPortrait(ar3))
+        ) {
+          itemsDimensions = [
+            { w: 50, h: '50%', b: '2px', r: '2px' },
+            { w: 50, h: `100%`, l: '2px', float: 'right' },
+            { w: 50, h: '50%', t: '2px', r: '2px' }
+          ];
+        } else if (
+          (isPanoramic(ar1) && isPanoramic(ar2) && isNonConformingRatio(ar3)) ||
+          (isPanoramic(ar1) && isPanoramic(ar2) && isPortrait(ar3))
+        ) {
+          itemsDimensions = [
+            { w: 50, h: panoSize_px, b: '2px', r: '2px' },
+            { w: 50, h: panoSize_px, b: '2px', l: '2px' },
+            { w: 100, h: `${width - panoSize}px`, t: '2px' }
+          ];
+        } else if (
+          (isNonConformingRatio(ar1) && isPanoramic(ar2) && isPanoramic(ar3)) ||
+          (isPortrait(ar1) && isPanoramic(ar2) && isPanoramic(ar3))
+        ) {
+          itemsDimensions = [
+            { w: 100, h: `${width - panoSize}px`, b: '2px' },
+            { w: 50, h: panoSize_px, t: '2px', r: '2px' },
+            { w: 50, h: panoSize_px, t: '2px', l: '2px' },
+          ];
+        } else {
+          itemsDimensions = [
+            { w: 50, h: '50%', b: '2px', r: '2px' },
+            { w: 50, h: '50%', b: '2px', l: '2px' },
+            { w: 100, h: `50%`, t: '2px' }
+          ];
+        }
+      } else if (size == 4) {
+        if (
+          (isPortrait(ar1) && isPortrait(ar2) && isPortrait(ar3) && isPortrait(ar4)) ||
+          (isPortrait(ar1) && isPortrait(ar2) && isPortrait(ar3) && isNonConformingRatio(ar4)) ||
+          (isPortrait(ar1) && isPortrait(ar2) && isNonConformingRatio(ar3) && isPortrait(ar4)) ||
+          (isPortrait(ar1) && isNonConformingRatio(ar2) && isPortrait(ar3) && isPortrait(ar4)) ||
+          (isNonConformingRatio(ar1) && isPortrait(ar2) && isPortrait(ar3) && isPortrait(ar4))
+        ) {
+          style.height = Math.floor(width / minimumAspectRatio);
+        } else if (isPanoramic(ar1) && isPanoramic(ar2) && isPanoramic(ar3) && isPanoramic(ar4)) {
+          style.height = panoSize * 2;
+        } else if (
+          (isPanoramic(ar1) && isPanoramic(ar2) && isNonConformingRatio(ar3) && isNonConformingRatio(ar4)) ||
+          (isNonConformingRatio(ar1) && isNonConformingRatio(ar2) && isPanoramic(ar3) && isPanoramic(ar4))
+        ) {
+          style.height = panoSize + (width / 2);
+        } else {
+          style.height = width;
+        }
+
+        //
+
+        if (isPanoramic(ar1) && isPanoramic(ar2) && isNonConformingRatio(ar3) && isNonConformingRatio(ar4)) {
+          itemsDimensions = [
+            { w: 50, h: panoSize_px, b: '2px', r: '2px' },
+            { w: 50, h: panoSize_px, b: '2px', l: '2px' },
+            { w: 50, h: `${(width / 2)}px`, t: '2px', r: '2px' },
+            { w: 50, h: `${(width / 2)}px`, t: '2px', l: '2px' },
+          ];
+        } else if (isNonConformingRatio(ar1) && isNonConformingRatio(ar2) && isPanoramic(ar3) && isPanoramic(ar4)) {
+          itemsDimensions = [
+            { w: 50, h: `${(width / 2)}px`, b: '2px', r: '2px' },
+            { w: 50, h: `${(width / 2)}px`, b: '2px', l: '2px' },
+            { w: 50, h: panoSize_px, t: '2px', r: '2px' },
+            { w: 50, h: panoSize_px, t: '2px', l: '2px' },
+          ];
+        } else if (
+          (isPortrait(ar1) && isNonConformingRatio(ar2) && isNonConformingRatio(ar3) && isNonConformingRatio(ar4)) ||
+          (isPortrait(ar1) && isPanoramic(ar2) && isPanoramic(ar3) && isPanoramic(ar4))
+        ) {
+          itemsDimensions = [
+            { w: 67, h: '100%', r: '2px' },
+            { w: 33, h: '33%', b: '4px', l: '2px' },
+            { w: 33, h: '33%', l: '2px' },
+            { w: 33, h: '33%', t: '4px', l: '2px' }
+          ];
+        } else {
+          itemsDimensions = [
+            { w: 50, h: '50%', b: '2px', r: '2px' },
+            { w: 50, h: '50%', b: '2px', l: '2px' },
+            { w: 50, h: '50%', t: '2px', r: '2px' },
+            { w: 50, h: '50%', t: '2px', l: '2px' },
+          ];
+        }
+      }
     } else {
       style.height = height;
     }
 
-    const size = media.take(4).size;
-
-    if (this.isStandaloneEligible()) {
-      children = <Item standalone onClick={this.handleClick} attachment={media.get(0)} displayWidth={width} visible={visible} />;
-    } else {
-      children = media.take(4).map((attachment, i) => <Item key={attachment.get('id')} onClick={this.handleClick} attachment={attachment} index={i} size={size} displayWidth={width} visible={visible} />);
-    }
+    children = media.take(4).map((attachment, i) => (
+      <Item
+        key={attachment.get('id')}
+        onClick={this.handleClick}
+        attachment={attachment}
+        index={i}
+        size={size}
+        displayWidth={width}
+        visible={visible}
+        dimensions={itemsDimensions[i]}
+      />
+    ));
 
     if (visible) {
       spoilerButton = <IconButton title={intl.formatMessage(messages.toggle_visible)} icon='eye-slash' overlay onClick={this.handleOpen} />;
