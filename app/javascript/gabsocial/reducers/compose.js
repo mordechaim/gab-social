@@ -194,7 +194,7 @@ const expandMentions = status => {
   const fragment = domParser.parseFromString(status.get('content'), 'text/html').documentElement;
 
   status.get('mentions').forEach(mention => {
-    fragment.querySelector(`a[href="/${mention.get('acct')}"]`).textContent = `@${mention.get('acct')}`;
+    fragment.querySelector(`a[href$="/${mention.get('acct')}"]`).textContent = `@${mention.get('acct')}`;
   });
 
   return fragment.innerHTML;
@@ -357,7 +357,7 @@ export default function compose(state = initialState, action) {
   case STATUS_EDIT:
     return state.withMutations(map => {
       map.set('id', action.status.get('id'));
-      map.set('text', action.raw_text || unescapeHTML(expandMentions(action.status)));
+      map.set('text', unescapeHTML(expandMentions(action.status)));
       map.set('in_reply_to', action.status.get('in_reply_to_id'));
       map.set('quote_of_id', action.status.get('quote_of_id'));
       map.set('privacy', action.status.get('visibility'));
@@ -372,14 +372,6 @@ export default function compose(state = initialState, action) {
       } else {
         map.set('spoiler', false);
         map.set('spoiler_text', '');
-      }
-
-      if (action.status.get('poll')) {
-        map.set('poll', ImmutableMap({
-          options: action.status.getIn(['poll', 'options']).map(x => x.get('title')),
-          multiple: action.status.getIn(['poll', 'multiple']),
-          expires_in: 24 * 3600,
-        }));
       }
     });
   case COMPOSE_POLL_ADD:
