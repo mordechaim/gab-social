@@ -432,6 +432,8 @@ class Video extends React.PureComponent {
         <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': revealed })} />
 
         {revealed && <video
+          muted
+          playsInline
           ref={this.setVideoRef}
           src={src}
           poster={preview}
@@ -451,6 +453,7 @@ class Video extends React.PureComponent {
           onLoadedData={this.handleLoadedData}
           onProgress={this.handleProgress}
           onVolumeChange={this.handleVolumeChange}
+          style={{border: '2px solid blue'}}
         />}
 
         <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed })}>
