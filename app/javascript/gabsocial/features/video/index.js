@@ -454,7 +454,6 @@ class Video extends React.PureComponent {
           onLoadedData={this.handleLoadedData}
           onProgress={this.handleProgress}
           onVolumeChange={this.handleVolumeChange}
-          style={{border: '2px solid blue'}}
         />}
 
         <div className={classNames('spoiler-button', { 'spoiler-button--hidden': revealed })}>
