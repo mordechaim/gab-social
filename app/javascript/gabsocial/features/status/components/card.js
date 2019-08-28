@@ -58,16 +58,12 @@ export default class Card extends React.PureComponent {
 
   static propTypes = {
     card: ImmutablePropTypes.map,
-    maxDescription: PropTypes.number,
     onOpenMedia: PropTypes.func.isRequired,
-    compact: PropTypes.bool,
     defaultWidth: PropTypes.number,
     cacheWidth: PropTypes.func,
   };
 
   static defaultProps = {
-    maxDescription: 50,
-    compact: false,
   };
 
   state = {
@@ -131,37 +127,52 @@ export default class Card extends React.PureComponent {
         ref={this.setRef}
         className='status-card__image status-card-video'
         dangerouslySetInnerHTML={content}
-        style={{ height }}
+        style={{
+          height,
+          paddingBottom: 0,
+        }}
       />
     );
   }
 
   render () {
-    const { card, maxDescription, compact } = this.props;
+    const { card } = this.props;
     const { width, embedded } = this.state;
 
     if (card === null) {
       return null;
     }
 
-    const provider    = card.get('provider_name').length === 0 ? decodeIDNA(getHostname(card.get('url'))) : card.get('provider_name');
-    const horizontal  = (!compact && card.get('width') > card.get('height') && (card.get('width') + 100 >= width)) || card.get('type') !== 'link' || embedded;
+    const maxDescription = 150;
+    const cardImg = card.get('image');
+    const provider = card.get('provider_name').length === 0 ? decodeIDNA(getHostname(card.get('url'))) : card.get('provider_name');
+    const horizontal = (card.get('width') > card.get('height') && (card.get('width') + 100 >= width)) || card.get('type') !== 'link' || embedded;
     const interactive = card.get('type') !== 'link';
-    const className   = classnames('status-card', { horizontal, compact, interactive });
-    const title       = interactive ? <a className='status-card__title' href={card.get('url')} title={card.get('title')} rel='noopener' target='_blank'><strong>{card.get('title')}</strong></a> : <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>;
-    const ratio       = card.get('width') / card.get('height');
-    const height      = (compact && !embedded) ? (width / (16 / 9)) : (width / ratio);
+    const className = classnames('status-card', {
+      horizontal,
+      interactive,
+      compact: !cardImg,
+    });
+    const title = interactive ?
+      <a className='status-card__title' href={card.get('url')} title={card.get('title')} rel='noopener' target='_blank'>
+        <strong>{card.get('title')}</strong>
+      </a>
+      : <strong className='status-card__title' title={card.get('title')}>{card.get('title')}</strong>;
 
     const description = (
       <div className='status-card__content'>
         {title}
-        {!(horizontal || compact) && <p className='status-card__description'>{trim(card.get('description') || '', maxDescription)}</p>}
-        <span className='status-card__host'>{provider}</span>
+        {!horizontal && <p className='status-card__description'>{trim(card.get('description') || '', maxDescription)}</p>}
+        <span className='status-card__host'>
+          <Icon id='link' fixedWidth />
+          {' '}
+          {provider}
+        </span>
       </div>
     );
 
-    let embed     = '';
-    let thumbnail = <div style={{ backgroundImage: `url(${card.get('image')})`, width: horizontal ? width : null, height: horizontal ? height : null }} className='status-card__image-image' />;
+    let embed = '';
+    let thumbnail = <div style={{ backgroundImage: `url(${cardImg})` }} className='status-card__image-image' />;
 
     if (interactive) {
       if (embedded) {
@@ -176,7 +187,6 @@ export default class Card extends React.PureComponent {
         embed = (
           <div className='status-card__image'>
             {thumbnail}
-
             <div className='status-card__actions'>
               <div>
                 <button onClick={this.handleEmbedClick}><Icon id={iconVariant} /></button>
@@ -190,10 +200,10 @@ export default class Card extends React.PureComponent {
       return (
         <div className={className} ref={this.setRef}>
           {embed}
-          {!compact && description}
+          {description}
         </div>
       );
-    } else if (card.get('image')) {
+    } else if (cardImg) {
       embed = (
         <div className='status-card__image'>
           {thumbnail}

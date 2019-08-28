@@ -127,6 +127,7 @@ export default class MediaItem extends ImmutablePureComponent {
             autoPlay={autoPlay}
             loop
             muted
+            playsInline
           />
 
           <span className='media-gallery__gifv__label'>GIF</span>

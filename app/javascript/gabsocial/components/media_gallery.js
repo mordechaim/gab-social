@@ -189,6 +189,7 @@ class Item extends React.PureComponent {
             autoPlay={autoPlay}
             loop
             muted
+            playsInline
           />
 
           <span className='media-gallery__gifv__label'>GIF</span>

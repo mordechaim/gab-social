@@ -10,6 +10,7 @@ import { updateNotificationsQueue, expandNotifications } from './notifications';
 import { updateConversations } from './conversations';
 import { fetchFilters } from './filters';
 import { getLocale } from '../locales';
+import { handleComposeSubmit } from './compose';
 
 const { messages } = getLocale();
 
@@ -61,3 +62,18 @@ export const connectHashtagStream   = (id, tag, accept) => connectTimelineStream
 export const connectDirectStream    = () => connectTimelineStream('direct', 'direct');
 export const connectListStream      = id => connectTimelineStream(`list:${id}`, `list&list=${id}`);
 export const connectGroupStream      = id => connectTimelineStream(`group:${id}`, `group&group=${id}`);
+
+export const connectStatusUpdateStream = () => {
+  return connectStream('statuscard', null, (dispatch, getState) => {
+    return {
+      onConnect() {},
+      onDisconnect() {},
+      onReceive (data) {
+        if (!data['event'] || !data['payload']) return;
+        if (data.event === 'update') {
+          handleComposeSubmit(dispatch, getState, {data: JSON.parse(data.payload)}, null)
+        }
+      },
+    };
+  });
+}

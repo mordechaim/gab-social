@@ -534,6 +534,11 @@ const startWorker = (workerId) => {
   app.use(authenticationMiddleware);
   app.use(errorMiddleware);
 
+  app.get('/api/v1/streaming/statuscard', (req, res) => {
+    const channel = `statuscard`;
+    streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req, subscriptionHeartbeat(channel)));
+  });
+
   app.get('/api/v1/streaming/user', (req, res) => {
     const channel = `timeline:${req.accountId}`;
     streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req, subscriptionHeartbeat(channel)));
@@ -608,6 +613,10 @@ const startWorker = (workerId) => {
     let channel;
 
     switch(location.query.stream) {
+    case 'statuscard':
+      channel = `statuscard`;
+      streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));
+      break;
     case 'user':
       channel = `timeline:${req.accountId}`;
       streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));

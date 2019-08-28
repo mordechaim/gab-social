@@ -344,6 +344,7 @@ class Video extends React.PureComponent {
   }
 
   handleProgress = () => {
+    if (!this.video.buffered) return;
     if (this.video.buffered.length > 0) {
       this.setState({ buffer: this.video.buffered.end(0) / this.video.duration * 100 });
     }
@@ -432,6 +433,7 @@ class Video extends React.PureComponent {
         <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': revealed })} />
 
         {revealed && <video
+          playsInline
           ref={this.setVideoRef}
           src={src}
           poster={preview}

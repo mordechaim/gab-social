@@ -44,9 +44,9 @@ export default class ExtendedVideoPlayer extends React.PureComponent {
     return (
       <div className='extended-video-player'>
         <video
+          playsInline
           ref={this.setRef}
           src={src}
-          autoPlay
           role='button'
           tabIndex='0'
           aria-label={alt}

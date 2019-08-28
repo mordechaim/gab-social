@@ -19,10 +19,10 @@ We have diverged from Mastodon in several ways in pursuit of our own goals.
 1. Quote posting
 
 ## BTCPay
-In order to make BTC flow work, 3 enviornment variables need to be set:
+In order to make BTC flow work, 3 environment variables need to be set:
 
-- `BTCPAY_LEGACY_TOKEN`: So called Legacy Tokens can be found in https://btcpay.xxx.com/stores/yyy/Tokens
-- `BTCPAY_PUB_KEY`: Public key that is used when creating an access token or pairing https://btcpay.xxx.com/stores/yyy/Tokens/Create
+- `BTCPAY_LEGACY_TOKEN`: So called Legacy Tokens can be found in https://btcpay.[yourdomain].com/stores/[yourstore]/Tokens
+- `BTCPAY_PUB_KEY`: Public key that is used when creating an access token or pairing https://btcpay.[yourdomain].com/stores/[yourstore]/Tokens/Create
 - `BTCPAY_MERCHANT_TOKEN`: Token created for facade *merchant*
 
 ## Deployment
