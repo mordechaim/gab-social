@@ -15,7 +15,15 @@ class FetchLinkCardService < BaseService
     @status = status
     @url    = parse_urls
 
-    return if @url.nil? || @status.preview_cards.any?
+    if @status.preview_cards.any?
+      if @url.nil?
+        detach_card
+        return
+      end
+      return if @status.preview_cards.first.url == @url
+    end
+
+    return if @url.nil?
 
     @url = @url.to_s
 
@@ -49,13 +57,23 @@ class FetchLinkCardService < BaseService
       end
     end
 
-    return if @html.nil?
+    if @html.nil?
+      detach_card
+      return
+    end
 
     attempt_oembed || attempt_opengraph
   end
 
   def attach_card
-    @status.preview_cards << @card
+    @status.preview_cards = [@card]
+    send_status_update_payload(@status)
+    Rails.cache.delete(@status)
+  end
+
+  def detach_card
+    @status.preview_cards = []
+    send_status_update_payload(@status)
     Rails.cache.delete(@status)
   end
 
@@ -164,5 +182,11 @@ class FetchLinkCardService < BaseService
 
   def lock_options
     { redis: Redis.current, key: "fetch:#{@url}" }
+  end
+
+  def send_status_update_payload(status)
+    @payload = InlineRenderer.render(status, nil, :status)
+    @payload = Oj.dump(event: :update, payload: @payload)
+    Redis.current.publish('statuscard', @payload)
   end
 end
