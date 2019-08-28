@@ -1,12 +1,33 @@
-# Manually Resetting a User's Password
+# Manually Setting a User's Password
 
-Open a shell in your instance's environment and start an interactive Ruby
-interpreter:
+There just isn't an Admin web interface for setting a user's password. You can reset a password and have the new one emailed to them by the system, but it's not possible to just directly set a user's login password using the Admin interface.
+
+If you are operating in a production environment, you can attach to a running container and execute a Bash shell:
 
 ```sh
-cd ~/live
+docker ps | grep live_web | awk '{ print $NF }'
+```
+
+This will output something like:
+
+```sh
+live_web_1
+```
+
+You can attach to that running container using:
+
+```sh
+docker exec -ti live_web_1 bash
+```
+
+## Set New User Password
+
+Start an interactive Ruby interpreter:
+
+```sh
 bin/rails c
 ```
+
 
 In the Ruby shell, you are going to load the account record, load the user
 record for that account, change the password for the User object, and save the
