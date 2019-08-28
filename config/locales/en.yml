@@ -92,6 +92,10 @@ en:
         new_email: New email
         submit: Change email
         title: Change email for %{username}
+      change_password:
+        button: Change Password
+        title: Change password for %{username}
+      set_new_password: Update
       confirm: Confirm
       confirmed: Confirmed
       confirming: Confirming

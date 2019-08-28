@@ -182,7 +182,7 @@ Rails.application.routes.draw do
 
     resources :report_notes, only: [:create, :destroy]
 
-    resources :accounts, only: [:index, :show] do
+    resources :accounts, only: [:index, :show, :edit, :update] do
       member do
         post :subscribe
         post :unsubscribe

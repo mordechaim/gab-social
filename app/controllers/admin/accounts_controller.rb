@@ -2,7 +2,7 @@
 
 module Admin
   class AccountsController < BaseController
-    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :remove_avatar, :remove_header, :enable, :unsilence, :unsuspend, :memorialize, :approve, :reject, :verify, :unverify, :add_donor_badge, :remove_donor_badge, :add_investor_badge, :remove_investor_badge, :edit_pro, :save_pro]
+    before_action :set_account, only: [:show, :subscribe, :unsubscribe, :redownload, :remove_avatar, :remove_header, :enable, :unsilence, :unsuspend, :memorialize, :approve, :reject, :verify, :unverify, :add_donor_badge, :remove_donor_badge, :add_investor_badge, :remove_investor_badge, :edit_pro, :save_pro, :edit, :update]
     before_action :require_remote_account!, only: [:subscribe, :unsubscribe, :redownload]
     before_action :require_local_account!, only: [:enable, :memorialize, :approve, :reject]
 
@@ -173,6 +173,22 @@ module Admin
       redirect_to edit_pro_admin_account_path(@account.id)
     end
 
+    def edit
+      redirect_to admin_account_path(@account.id) unless @account.local?
+      @user = @account.user
+    end
+
+    def update
+      redirect_to admin_account_path(@account.id) unless @account.local?
+      @user = @account.user
+      if @user.update(credentials_params)
+        redirect_to admin_account_path(@account.id), notice: I18n.t('generic.changes_saved_msg')
+      else
+        render action: :edit
+      end
+    end
+
+
     private
 
     def set_account
@@ -210,6 +226,15 @@ module Admin
 
     def pro_params
       params.require(:account).permit(:is_pro, :pro_expires_at)
+    end
+
+    def credentials_params
+      new_params = params.require(:user).permit(:email, :password, :password_confirmation)
+      if new_params[:password].blank? && new_params[:password_confirmation].blank?
+        new_params.delete(:password)
+        new_params.delete(:password_confirmation)
+      end
+      new_params
     end
   end
 end
