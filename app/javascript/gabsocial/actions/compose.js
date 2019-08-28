@@ -137,6 +137,32 @@ export function directCompose(account, routerHistory) {
   };
 };
 
+export function handleComposeSubmit(dispatch, getState, response, status) {
+  if (!dispatch || !getState) return;
+
+  dispatch(insertIntoTagHistory(response.data.tags, status));
+  dispatch(submitComposeSuccess({ ...response.data }));
+
+  // To make the app more responsive, immediately push the status into the columns
+  const insertIfOnline = timelineId => {
+    const timeline = getState().getIn(['timelines', timelineId]);
+
+    if (timeline && timeline.get('items').size > 0 && timeline.getIn(['items', 0]) !== null && timeline.get('online')) {
+      let dequeueArgs = {};
+      if (timelineId === 'community') dequeueArgs.onlyMedia = getState().getIn(['settings', 'community', 'other', 'onlyMedia']);
+      dispatch(dequeueTimeline(timelineId, null, dequeueArgs));
+      dispatch(updateTimeline(timelineId, { ...response.data }));
+    }
+  };
+
+  if (response.data.visibility !== 'direct') {
+    insertIfOnline('home');
+  } else if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
+    insertIfOnline('community');
+    insertIfOnline('public');
+  }
+}
+
 export function submitCompose(routerHistory, group) {
   return function (dispatch, getState) {
     if (!me) return;
@@ -175,33 +201,7 @@ export function submitCompose(routerHistory, group) {
       if (response.data.visibility === 'direct' && getState().getIn(['conversations', 'mounted']) <= 0 && routerHistory) {
         routerHistory.push('/messages');
       }
-
-      dispatch(insertIntoTagHistory(response.data.tags, status));
-      dispatch(submitComposeSuccess({ ...response.data }));
-
-      // To make the app more responsive, immediately push the status
-      // into the columns
-
-      const insertIfOnline = timelineId => {
-        const timeline = getState().getIn(['timelines', timelineId]);
-
-        if (timeline && timeline.get('items').size > 0 && timeline.getIn(['items', 0]) !== null && timeline.get('online')) {
-          let dequeueArgs = {};
-          if (timelineId === 'community') dequeueArgs.onlyMedia = getState().getIn(['settings', 'community', 'other', 'onlyMedia']),
-
-          dispatch(dequeueTimeline(timelineId, null, dequeueArgs));
-          dispatch(updateTimeline(timelineId, { ...response.data }));
-        }
-      };
-
-      if (response.data.visibility !== 'direct') {
-        insertIfOnline('home');
-      }
-
-      if (response.data.in_reply_to_id === null && response.data.visibility === 'public') {
-        insertIfOnline('community');
-        insertIfOnline('public');
-      }
+      handleComposeSubmit(dispatch, getState, response, status);
     }).catch(function (error) {
       dispatch(submitComposeFail(error));
     });
