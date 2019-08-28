@@ -433,7 +433,6 @@ class Video extends React.PureComponent {
         <canvas width={32} height={32} ref={this.setCanvasRef} className={classNames('media-gallery__preview', { 'media-gallery__preview--hidden': revealed })} />
 
         {revealed && <video
-          muted
           playsInline
           ref={this.setVideoRef}
           src={src}
