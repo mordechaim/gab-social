@@ -535,7 +535,7 @@ const startWorker = (workerId) => {
   app.use(errorMiddleware);
 
   app.get('/api/v1/streaming/statuscard', (req, res) => {
-    const channel = `statuscard`;
+    const channel = `statuscard:${req.accountId}`;
     streamFrom(channel, req, streamToHttp(req, res), streamHttpEnd(req, subscriptionHeartbeat(channel)));
   });
 
@@ -614,7 +614,7 @@ const startWorker = (workerId) => {
 
     switch(location.query.stream) {
     case 'statuscard':
-      channel = `statuscard`;
+      channel = `statuscard:${req.accountId}`;
       streamFrom(channel, req, streamToWs(req, ws), streamWsEnd(req, ws, subscriptionHeartbeat(channel)));
       break;
     case 'user':
