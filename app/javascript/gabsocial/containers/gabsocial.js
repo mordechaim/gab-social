@@ -11,7 +11,10 @@ import UI from '../features/ui';
 import Introduction from '../features/introduction';
 import { fetchCustomEmojis } from '../actions/custom_emojis';
 import { hydrateStore } from '../actions/store';
-import { connectUserStream } from '../actions/streaming';
+import {
+  connectUserStream,
+  connectStatusUpdateStream,
+} from '../actions/streaming';
 import { IntlProvider, addLocaleData } from 'react-intl';
 import { getLocale } from '../locales';
 import initialState from '../initial_state';
@@ -70,6 +73,7 @@ export default class GabSocial extends React.PureComponent {
 
   componentDidMount() {
     this.disconnect = store.dispatch(connectUserStream());
+    store.dispatch(connectStatusUpdateStream());
   }
 
   componentWillUnmount () {
