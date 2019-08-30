@@ -1484,6 +1484,7 @@ a.account__display-name {
 }
 
 .columns-area--mobile {
+	display: block;
 	flex-direction: column;
 	width: 100%;
 	margin: 0 auto;
