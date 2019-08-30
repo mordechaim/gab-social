@@ -187,6 +187,6 @@ class FetchLinkCardService < BaseService
   def send_status_update_payload(status)
     @payload = InlineRenderer.render(status, nil, :status)
     @payload = Oj.dump(event: :update, payload: @payload)
-    Redis.current.publish('statuscard', @payload)
+    Redis.current.publish("statuscard:#{status.account_id}", @payload)
   end
 end
