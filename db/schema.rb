@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_04_115634) do
+ActiveRecord::Schema.define(version: 2019_09_03_162122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2019_08_04_115634) do
     t.bigint "account_id"
     t.string "image_file_name"
     t.string "image_content_type"
-    t.bigint "image_file_size"
+    t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -157,10 +157,10 @@ ActiveRecord::Schema.define(version: 2019_08_04_115634) do
     t.string "actor_type"
     t.boolean "discoverable"
     t.string "also_known_as", array: true
-    t.datetime "silenced_at"
-    t.datetime "suspended_at"
     t.boolean "is_pro", default: false, null: false
     t.datetime "pro_expires_at"
+    t.datetime "silenced_at"
+    t.datetime "suspended_at"
     t.boolean "is_verified", default: false, null: false
     t.boolean "is_donor", default: false, null: false
     t.boolean "is_investor", default: false, null: false
@@ -578,6 +578,15 @@ ActiveRecord::Schema.define(version: 2019_08_04_115634) do
     t.index ["status_id", "preview_card_id"], name: "index_preview_cards_statuses_on_status_id_and_preview_card_id"
   end
 
+  create_table "promotions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "expires_at"
+    t.bigint "status_id", null: false
+    t.string "timeline_id"
+    t.integer "position", default: 10
+  end
+
   create_table "relays", force: :cascade do |t|
     t.string "inbox_url", default: "", null: false
     t.string "follow_activity_id"
@@ -658,8 +667,8 @@ ActiveRecord::Schema.define(version: 2019_08_04_115634) do
   create_table "status_pins", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "status_id", null: false
-    t.datetime "created_at", default: -> { "now()" }, null: false
-    t.datetime "updated_at", default: -> { "now()" }, null: false
+    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
     t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
   end
 

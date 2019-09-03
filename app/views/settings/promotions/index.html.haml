@@ -1,0 +1,16 @@
+- content_for :page_title do
+  = t('promotions.title')
+
+.table-wrapper
+  %table.table
+    %thead
+      %tr
+        %th= t('promotions.timeline_id')
+        %th= t('promotions.status_id')
+        %th= t('promotions.expires_at')
+        %th= t('promotions.position')
+        %th
+    %tbody
+      = render @promotions
+
+= link_to t('promotions.create'), new_settings_promotion_path, class: 'button'

@@ -55,6 +55,7 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :sidekiq, safe_join([fa_icon('diamond fw'), 'Sidekiq']), sidekiq_url, link_html: { target: 'sidekiq' }, if: -> { current_user.admin? }
       s.item :pghero, safe_join([fa_icon('database fw'), 'PgHero']), pghero_url, link_html: { target: 'pghero' }, if: -> { current_user.admin? }
       s.item :moderation, safe_join([fa_icon('id-card-o fw'), t('verifications.moderation.title')]), settings_verifications_moderation_url, if: -> { current_user.admin? }
+      s.item :promotions, safe_join([fa_icon('star fw'), t('promotions.title')]), settings_promotions_url, if: -> { current_user.admin? }
     end
 
     n.item :logout, safe_join([fa_icon('sign-out fw'), t('auth.logout')]), destroy_user_session_url, link_html: { 'data-method' => 'delete' }

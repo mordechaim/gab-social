@@ -29,11 +29,23 @@ export default class StatusList extends ImmutablePureComponent {
     withGroupAdmin: PropTypes.bool,
     onScrollToTop: PropTypes.func,
     onScroll: PropTypes.func,
+    promotion: PropTypes.object,
+    promotedStatus: ImmutablePropTypes.map,
+    fetchStatus: PropTypes.func,
   };
 
   componentDidMount() {
     this.handleDequeueTimeline();
+    this.fetchPromotedStatus();
   };
+
+  fetchPromotedStatus() {
+    const { promotion, promotedStatus, fetchStatus } = this.props;
+
+    if (promotion && !promotedStatus) {
+      fetchStatus(promotion.status_id);
+    }
+  }
 
   getFeaturedStatusCount = () => {
     return this.props.featuredStatusIds ? this.props.featuredStatusIds.size : 0;
@@ -86,7 +98,7 @@ export default class StatusList extends ImmutablePureComponent {
   }
 
   render () {
-    const { statusIds, featuredStatusIds, onLoadMore, timelineId, totalQueuedItemsCount, isLoading, isPartial, withGroupAdmin, group, ...other }  = this.props;
+    const { statusIds, featuredStatusIds, onLoadMore, timelineId, totalQueuedItemsCount, isLoading, isPartial, withGroupAdmin, group, promotion, promotedStatus, ...other }  = this.props;
 
     if (isPartial) {
       return (
@@ -110,16 +122,26 @@ export default class StatusList extends ImmutablePureComponent {
           onClick={onLoadMore}
         />
       ) : (
-        <StatusContainer
-          key={statusId}
-          id={statusId}
-          onMoveUp={this.handleMoveUp}
-          onMoveDown={this.handleMoveDown}
-          contextType={timelineId}
-          group={group}
-          withGroupAdmin={withGroupAdmin}
-          showThread
-        />
+        <React.Fragment key={statusId}>
+          <StatusContainer
+            id={statusId}
+            onMoveUp={this.handleMoveUp}
+            onMoveDown={this.handleMoveDown}
+            contextType={timelineId}
+            group={group}
+            withGroupAdmin={withGroupAdmin}
+            showThread
+          />
+
+          {promotedStatus && index === promotion.position && (
+            <StatusContainer
+              id={promotion.status_id}
+              contextType={timelineId}
+              promoted
+              showThread
+            />
+          )}
+        </React.Fragment>
       ))
     ) : null;
 

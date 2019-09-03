@@ -1,0 +1,8 @@
+%tr
+  %td= promotion.timeline_id
+  %td= promotion.status_id
+  %td= promotion.expires_at
+  %td= promotion.position
+  %td
+    = table_link_to 'pencil', t('promotions.edit'), edit_settings_promotion_path(promotion)
+    = table_link_to 'trash', t('promotions.delete'), settings_promotion_path(promotion), method: :delete, data: { confirm: t('settings.promotions.are_you_sure') }

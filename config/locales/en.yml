@@ -70,6 +70,8 @@ en:
       moderator: Mod
     unavailable: Profile unavailable
     unfollow: Unfollow
+  promotions:
+      title: Promotions
   admin:
     account_actions:
       action: Perform action
