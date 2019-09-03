@@ -89,6 +89,8 @@ Rails.application.routes.draw do
       post '/btcpay-notification', to: 'upgrade#btcpay_notification', as: :btcpay_notification
     end
 
+    resources :promotions, only: [:index, :new, :create, :edit, :update, :destroy]
+    
     namespace :verifications do
       get :moderation, to: 'moderation#index', as: :moderation
       get 'moderation/:id/approve', to: 'moderation#approve', as: :approve
@@ -236,7 +238,7 @@ Rails.application.routes.draw do
     resources :users, only: [] do
       resource :two_factor_authentication, only: [:destroy]
     end
-
+    
     resources :custom_emojis, only: [:index, :new, :create, :update, :destroy] do
       member do
         post :copy

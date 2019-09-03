@@ -1,0 +1,14 @@
+- content_for :page_title do
+  = t('promotions.title')
+
+= simple_form_for @promotion, url: settings_promotion_path(@promotion) do |f|
+  = render 'shared/error_messages', object: @promotion
+
+  .fields-group
+    = f.input :timeline_id, wrapper: :with_label, label: t('promotions.timeline_id')
+    = f.input :status_id, wrapper: :with_label, label: t('promotions.status_id')
+    = f.input :expires_at, as: :string, wrapper: :with_label, label: t('promotions.expires_at')
+    = f.input :position, wrapper: :with_label, label: t('promotions.position')
+
+  .actions
+    = f.button :button, t('generic.save_changes'), type: :submit
