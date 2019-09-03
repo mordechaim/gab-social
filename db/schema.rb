@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 2019_09_03_162122) do
     t.bigint "account_id"
     t.string "image_file_name"
     t.string "image_content_type"
-    t.integer "image_file_size"
+    t.bigint "image_file_size"
     t.datetime "image_updated_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -157,10 +157,10 @@ ActiveRecord::Schema.define(version: 2019_09_03_162122) do
     t.string "actor_type"
     t.boolean "discoverable"
     t.string "also_known_as", array: true
-    t.boolean "is_pro", default: false, null: false
-    t.datetime "pro_expires_at"
     t.datetime "silenced_at"
     t.datetime "suspended_at"
+    t.boolean "is_pro", default: false, null: false
+    t.datetime "pro_expires_at"
     t.boolean "is_verified", default: false, null: false
     t.boolean "is_donor", default: false, null: false
     t.boolean "is_investor", default: false, null: false
@@ -667,8 +667,8 @@ ActiveRecord::Schema.define(version: 2019_09_03_162122) do
   create_table "status_pins", force: :cascade do |t|
     t.bigint "account_id", null: false
     t.bigint "status_id", null: false
-    t.datetime "created_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
-    t.datetime "updated_at", default: -> { "CURRENT_TIMESTAMP" }, null: false
+    t.datetime "created_at", default: -> { "now()" }, null: false
+    t.datetime "updated_at", default: -> { "now()" }, null: false
     t.index ["account_id", "status_id"], name: "index_status_pins_on_account_id_and_status_id", unique: true
   end
 
