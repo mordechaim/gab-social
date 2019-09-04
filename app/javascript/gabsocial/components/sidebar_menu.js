@@ -141,11 +141,11 @@ class SidebarMenu extends ImmutablePureComponent {
                 <Icon id='user' fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.profile)}</span>
               </NavLink>
-              <a className='sidebar-menu-item' href='https://blog.gab.com'>
+              <a className='sidebar-menu-item' href='https://news.gab.com'>
                 <Icon id='align-left' fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.news)}</span>
               </a>
-              <a className='sidebar-menu-item' href='https://blog.gab.com/support-gab'>
+              <a className='sidebar-menu-item' href='https://news.gab.com/support-gab'>
                 <Icon id='users' fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.partners)}</span>
               </a>
