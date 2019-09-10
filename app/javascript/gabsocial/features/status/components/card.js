@@ -151,7 +151,7 @@ export default class Card extends React.PureComponent {
     const className = classnames('status-card', {
       horizontal,
       interactive,
-      compact: !cardImg,
+      compact: !cardImg && !interactive,
     });
     const title = interactive ?
       <a className='status-card__title' href={card.get('url')} title={card.get('title')} rel='noopener' target='_blank'>
@@ -172,7 +172,7 @@ export default class Card extends React.PureComponent {
     );
 
     let embed = '';
-    let thumbnail = <div style={{ backgroundImage: `url(${cardImg})` }} className='status-card__image-image' />;
+    let thumbnail = card ? <div style={{ backgroundImage: `url(${cardImg})` }} className='status-card__image-image' /> : thumbnail = <div className='status-card__image-image' />;
 
     if (interactive) {
       if (embedded) {
