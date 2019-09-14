@@ -11,10 +11,12 @@ class FollowLimitValidator < ActiveModel::Validator
 
   class << self
     def limit_for_account(account)
-      if account.following_count < LIMIT
-        LIMIT
+      adjusted_limit = account.is_pro ? 50000 : LIMIT
+
+      if account.following_count < adjusted_limit
+        adjusted_limit
       else
-        [(account.followers_count * RATIO).round, LIMIT].max
+        [(account.followers_count * RATIO).round, adjusted_limit].max
       end
     end
   end
