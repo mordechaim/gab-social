@@ -67,6 +67,12 @@ class InitialStateSerializer < ActiveModel::Serializer
   end
 
   def promotions
+    if object.current_account
+      if object.current_account.is_pro
+        return []
+      end
+    end
+
     ActiveModelSerializers::SerializableResource.new(Promotion.active, each_serializer: REST::PromotionSerializer)
   end
 
