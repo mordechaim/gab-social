@@ -25,9 +25,11 @@ class EditStatusService < BaseService
 
     validate_media!
     preprocess_attributes!
+    revision_text = prepare_revision_text
 
     process_status!
     postprocess_status!
+    create_revision! revision_text
 
     redis.setex(idempotency_key, 3_600, @status.id) if idempotency_given?
 
@@ -58,6 +60,25 @@ class EditStatusService < BaseService
 
   def postprocess_status!
     LinkCrawlWorker.perform_async(@status.id) unless @status.spoiler_text?
+  end
+
+  def prepare_revision_text
+    text              = @status.text
+    current_media_ids = @status.media_attachments.pluck(:id)
+    new_media_ids     = @options[:media_ids].take(4).map(&:to_i)
+
+    if current_media_ids.sort != new_media_ids.sort
+      text = "" if text == @options[:text]
+      text += " [Media attachments changed]"
+    end
+
+    text.strip()
+  end
+
+  def create_revision!(text)
+    @status.revisions.create!({
+      text: text
+    })
   end
 
   def validate_media!
@@ -100,6 +121,7 @@ class EditStatusService < BaseService
 
   def status_attributes
     {
+      revised_at: Time.now,
       text: @text,
       media_attachments: @media || [],
       sensitive: (@options[:sensitive].nil? ? @account.user&.setting_default_sensitive : @options[:sensitive]) || @options[:spoiler_text].present?,
