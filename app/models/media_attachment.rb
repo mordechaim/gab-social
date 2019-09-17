@@ -83,8 +83,8 @@ class MediaAttachment < ApplicationRecord
     },
   }.freeze
 
-  IMAGE_LIMIT = 8.megabytes
-  VIDEO_LIMIT = 40.megabytes
+  IMAGE_LIMIT = Proc.new { |account| account.is_pro ? 50.megabytes : 8.megabytes }
+  VIDEO_LIMIT = Proc.new { |account| account.is_pro ? 1.gigabytes : 40.megabytes}
 
   belongs_to :account,          inverse_of: :media_attachments, optional: true
   belongs_to :status,           inverse_of: :media_attachments, optional: true
@@ -111,6 +111,11 @@ class MediaAttachment < ApplicationRecord
   scope :remote,     -> { where.not(remote_url: '') }
 
   default_scope { order(id: :asc) }
+
+ def is_pro
+    return false if account_id.nil?
+    account.is_pro
+  end
 
   def local?
     remote_url.blank?
