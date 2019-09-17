@@ -105,6 +105,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     }
   },
 
+  onShowRevisions (status) {
+    dispatch(openModal('STATUS_REVISION', { status }));
+  },
+
   onFavourite (status) {
     if (status.get('favourited')) {
       dispatch(unfavourite(status));

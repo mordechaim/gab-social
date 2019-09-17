@@ -20,6 +20,7 @@ import {
   EmbedModal,
   ListEditor,
   ListAdder,
+  StatusRevisionModal,
 } from '../../../features/ui/util/async-components';
 
 const MODAL_COMPONENTS = {
@@ -35,6 +36,7 @@ const MODAL_COMPONENTS = {
   'FOCAL_POINT': () => Promise.resolve({ default: FocalPointModal }),
   'LIST_ADDER':ListAdder,
   'HOTKEYS': () => Promise.resolve({ default: HotkeysModal }),
+  'STATUS_REVISION': StatusRevisionModal,
   'COMPOSE': () => Promise.resolve({ default: ComposeModal }),
   'UNAUTHORIZED': () => Promise.resolve({ default: UnauthorizedModal }),
 };

@@ -37,6 +37,7 @@ import group_relationships from './group_relationships';
 import group_lists from './group_lists';
 import group_editor from './group_editor';
 import sidebar from './sidebar';
+import status_revision_list from './status_revision_list';
 
 const reducers = {
   dropdown_menu,
@@ -77,6 +78,7 @@ const reducers = {
   group_lists,
   group_editor,
   sidebar,
+  status_revision_list,
 };
 
 export default combineReducers(reducers);

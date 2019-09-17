@@ -67,6 +67,7 @@ class Status extends ImmutablePureComponent {
     otherAccounts: ImmutablePropTypes.list,
     onClick: PropTypes.func,
     onReply: PropTypes.func,
+    onShowRevisions: PropTypes.func,
     onQuote: PropTypes.func,
     onFavourite: PropTypes.func,
     onReblog: PropTypes.func,
@@ -438,9 +439,10 @@ class Status extends ImmutablePureComponent {
               </NavLink>
             </div>
 
-            {!group && status.get('group') && (
+            {((!group && status.get('group')) || status.get('revised_at') !== null) && (
               <div className='status__meta'>
-                Posted in <NavLink to={`/groups/${status.getIn(['group', 'id'])}`}>{status.getIn(['group', 'title'])}</NavLink>
+                {!group && status.get('group') && <React.Fragment>Posted in <NavLink to={`/groups/${status.getIn(['group', 'id'])}`}>{status.getIn(['group', 'title'])}</NavLink></React.Fragment>}
+                {status.get('revised_at') !== null && <a onClick={() => other.onShowRevisions(status)}> Edited</a>}
               </div>
             )}
 
