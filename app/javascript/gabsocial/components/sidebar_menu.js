@@ -31,6 +31,7 @@ const messages = defineMessages({
   news: { id: 'tabs_bar.news', defaultMessage: 'News' },
   more: { id: 'sidebar.more', defaultMessage: 'More' },
   partners: { id: 'promo.partners', defaultMessage: 'Affiliate Partners' },
+  pro: { id: 'promo.gab_pro', defaultMessage: 'Upgrade to GabPRO' },
 })
 
 const mapStateToProps = state => {
@@ -93,6 +94,7 @@ class SidebarMenu extends ImmutablePureComponent {
     if (!me || !account) return null;
 
     const acct = account.get('acct');
+    const isPro = account.get('is_pro');
 
     const classes = classNames('sidebar-menu__root', {
       'sidebar-menu__root--visible': sidebarOpen,
@@ -141,6 +143,13 @@ class SidebarMenu extends ImmutablePureComponent {
                 <Icon id='user' fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.profile)}</span>
               </NavLink>
+              {
+                !isPro &&
+                <a className='sidebar-menu-item' href='https://news.gab.com'>
+                  <Icon id='arrow-up' fixedWidth />
+                  <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.pro)}</span>
+                </a>
+              }
               <a className='sidebar-menu-item' href='https://news.gab.com'>
                 <Icon id='align-left' fixedWidth />
                 <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.news)}</span>
