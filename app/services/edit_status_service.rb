@@ -47,12 +47,7 @@ class EditStatusService < BaseService
   end
 
   def process_status!
-    # The following transaction block is needed to wrap the UPDATEs to
-    # the media attachments when the status is created
-
-    ApplicationRecord.transaction do
-      @status.update!(status_attributes)
-    end
+    @status.update!(status_attributes)
 
     process_hashtags_service.call(@status)
     process_mentions_service.call(@status)
