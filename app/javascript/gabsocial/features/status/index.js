@@ -175,6 +175,10 @@ class Status extends ImmutablePureComponent {
     }
   }
 
+  handleShowRevisions = (status) => {
+    this.props.dispatch(openModal('STATUS_REVISION', { status }));
+  }
+  
   handleReplyClick = (status) => {
     let { askReplyConfirmation, dispatch, intl } = this.props;
     if (askReplyConfirmation) {
@@ -504,6 +508,7 @@ class Status extends ImmutablePureComponent {
                 domain={domain}
                 showMedia={this.state.showMedia}
                 onToggleMediaVisibility={this.handleToggleMediaVisibility}
+                onShowRevisions={this.handleShowRevisions}
               />
 
               <ActionBar
