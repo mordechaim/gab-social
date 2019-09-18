@@ -24,6 +24,7 @@
 #  poll_id                :bigint(8)
 #  group_id               :integer
 #  quote_of_id            :bigint(8)
+#  revised_at             :datetime
 #
 
 class Status < ApplicationRecord
@@ -61,6 +62,7 @@ class Status < ApplicationRecord
   has_many :mentions, dependent: :destroy, inverse_of: :status
   has_many :active_mentions, -> { active }, class_name: 'Mention', inverse_of: :status
   has_many :media_attachments, dependent: :nullify
+  has_many :revisions, class_name: 'StatusRevision', dependent: :destroy
 
   has_and_belongs_to_many :tags
   has_and_belongs_to_many :preview_cards

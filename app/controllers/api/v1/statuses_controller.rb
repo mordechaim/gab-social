@@ -6,7 +6,7 @@ class Api::V1::StatusesController < Api::BaseController
   before_action -> { authorize_if_got_token! :read, :'read:statuses' }, except: [:create, :update, :destroy]
   before_action -> { doorkeeper_authorize! :write, :'write:statuses' }, only:   [:create, :update, :destroy]
   before_action :require_user!, except:  [:show, :context, :card]
-  before_action :set_status, only:       [:show, :context, :card, :update]
+  before_action :set_status, only:       [:show, :context, :card, :update, :revisions]
 
   respond_to :json
 
@@ -33,14 +33,10 @@ class Api::V1::StatusesController < Api::BaseController
     render json: @context, serializer: REST::ContextSerializer, relationships: StatusRelationshipsPresenter.new(statuses, current_user&.account_id)
   end
 
-  def card
-    @card = @status.preview_cards.first
+  def revisions
+    @revisions = @status.revisions
 
-    if @card.nil?
-      render_empty
-    else
-      render json: @card, serializer: REST::PreviewCardSerializer
-    end
+    render json: @revisions, each_serializer: REST::StatusRevisionSerializer
   end
 
   def create
