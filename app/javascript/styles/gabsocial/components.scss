@@ -668,6 +668,12 @@
 	font-size: 14px;
 	position: relative;
 
+	&--promoted {
+		border: 0 !important;
+		background: transparent !important;
+		background-color: transparent !important;
+	}
+
 	.status__display-name strong {
 		color: $dark-text-color;
 	}
