@@ -1649,7 +1649,9 @@ a.account__display-name {
 }
 
 .promo-panel {
-  margin-top: 10px;
+	margin-top: 10px;
+	background-color: transparent !important;
+	overflow: hidden;
 }
 
 .promo-panel-item {
@@ -1657,6 +1659,23 @@ a.account__display-name {
 	height: 42px;
 	line-height: 42px;
 	border-bottom: 1px solid lighten($ui-base-color, 8%);
+	background: $gab-background-container;
+	body.theme-gabsocial-light & {
+		@include light-theme-shadow();
+		background: $gab-background-container-light;
+	}
+
+	&--highlighted {
+		background-color: #30CE7D;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-bottom: 10px;
+	}
+
+	&--top-rounded {
+		border-top-right-radius: 10px;
+		border-top-left-radius: 10px;
+	}
 
 	&:last-of-type {
 		border-bottom: none;
