@@ -133,6 +133,7 @@ class PostStatusService < BaseService
   end
 
   def scheduled?
+    return false unless @account.is_pro
     @scheduled_at.present?
   end
 
