@@ -210,6 +210,10 @@ const mapDispatchToProps = (dispatch, { intl }) => ({
     dispatch(groupRemoveStatus(groupId, statusId));
   },
 
+  onOpenProUpgradeModal() {
+    dispatch(openModal('PRO_UPGRADE'));
+  },
+
 });
 
 export default injectIntl(connect(makeMapStateToProps, mapDispatchToProps)(Status));

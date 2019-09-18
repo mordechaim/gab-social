@@ -93,7 +93,8 @@ class Status extends ImmutablePureComponent {
     cacheMediaWidth: PropTypes.func,
     cachedMediaWidth: PropTypes.number,
     group: ImmutablePropTypes.map,
-    promoted: PropTypes.bool
+    promoted: PropTypes.bool,
+    onOpenProUpgradeModal: PropTypes.func,
   };
 
   // Avoid checking props that are functions (and whose equality will always
@@ -259,6 +260,10 @@ class Status extends ImmutablePureComponent {
     this.node = c;
   }
 
+  handleOpenProUpgradeModal = () => {
+    this.props.onOpenProUpgradeModal();
+	}
+
   render () {
     let media = null;
     let statusAvatar, prepend, rebloggedByText, reblogContent;
@@ -297,10 +302,10 @@ class Status extends ImmutablePureComponent {
 
     if (promoted) {
       prepend = (
-        <div className='status__prepend'>
+        <button className='status__prepend status__prepend--promoted' onClick={this.handleOpenProUpgradeModal}>
           <div className='status__prepend-icon-wrapper'><Icon id='star' className='status__prepend-icon' fixedWidth /></div>
           <FormattedMessage id='status.promoted' defaultMessage='Promoted gab' />
-        </div>
+        </button>
       );
     } else if (featured) {
       prepend = (
