@@ -5254,3 +5254,33 @@ noscript {
     color: #000;
 	}
 }
+.pro-upgrade-modal {
+	&__content {
+    overflow-y: scroll !important;
+	}
+
+	&__text {
+		display: flex;
+		text-align: center;
+		padding: 10px 0 15px;
+		flex-direction: column;
+		margin-bottom: 10px;
+	}
+
+	&__list {
+    display: block;
+    margin-bottom: 25px;
+		width: 100%;
+		background-color: lighten($ui-base-color, 10%);
+    text-align: center;
+    padding: 20px 0;
+	}
+
+	&__button {
+		width: 100%;
+
+		.fa {
+			margin-right: 10px;
+		}
+	}
+}
