@@ -23,7 +23,7 @@ class StatusRevisionModal extends ImmutablePureComponent {
         const { intl, onClose, status } = this.props;
 
         return (
-            <div className='modal-root__modal'>
+            <div className='modal-root__modal status-revisions-root'>
                 <div className='status-revisions'>
                     <div className='status-revisions__header'>
                         <h3 className='status-revisions__header__title'><FormattedMessage id='status_revisions.heading' defaultMessage='Revision History' /></h3>
