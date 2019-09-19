@@ -5260,6 +5260,30 @@ noscript {
     color: #000;
 	}
 }
+
+.schedule-post-dropdown {
+	display: flex;
+	align-items: center;
+
+	&__datepicker {
+		margin-left: 4px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    line-height: 22px;
+    padding-left: 6px;
+    width: 165px;
+	}
+
+	.react-datepicker-popper {
+		z-index: 1000;
+	}
+
+	.react-datepicker__day--selected,
+	li.react-datepicker__time-list-item--selected {
+		background-color: $gab-brand-default !important;
+	}
+}
+
 .pro-upgrade-modal {
 	&__content {
     overflow-y: scroll !important;
