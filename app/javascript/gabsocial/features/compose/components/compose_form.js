@@ -109,9 +109,9 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   handleClickOutside = () => {
-    const { shouldCondense, scheduledAt, text } = this.props;
+    const { shouldCondense, scheduledAt, text, isModalOpen } = this.props;
     const condensed = shouldCondense && !text;
-    if (condensed && scheduledAt) { //Reset scheduled date if condensing
+    if (condensed && scheduledAt && !isModalOpen) { //Reset scheduled date if condensing
       this.props.setScheduledAt(null);
     }
 
@@ -300,7 +300,9 @@ class ComposeForm extends ImmutablePureComponent {
               {!edit && <PollButtonContainer />}
               <PrivacyDropdownContainer />
               <SpoilerButtonContainer />
-              <SchedulePostDropdownContainer />
+              <SchedulePostDropdownContainer
+                position={isModalOpen ? 'top' : undefined}
+              />
             </div>
             <div className='character-counter__wrapper'><CharacterCounter max={maxPostCharacterCount} text={text} /></div>
           </div>

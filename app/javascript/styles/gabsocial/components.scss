@@ -5315,13 +5315,14 @@ noscript {
 	text-align: left;
 	width: 145px;
 	height: 26px;
-	line-height: 20px;
+	font-size: 11px;
 	color: $inverted-text-color;
 	background: $simple-background-color;
 
 	@media (max-width: 580px) {
-		width: 138px;
+		width: 124px;
 		font-size: 10px;
 		padding-left: 2px;
+		margin-left: 2px;
 	}
 }

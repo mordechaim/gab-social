@@ -37,6 +37,7 @@ class SchedulePostDropdown extends React.PureComponent {
     intl: PropTypes.object.isRequired,
     isPro: PropTypes.bool,
     onOpenProUpgradeModal: PropTypes.func.isRequired,
+    position: PropTypes.string,
   };
 
   handleToggle = () => {
@@ -54,12 +55,12 @@ class SchedulePostDropdown extends React.PureComponent {
   }
 
   render () {
-    const { intl, date, isPro } = this.props;
+    const { intl, date, isPro, position } = this.props;
 
     const open = !!date;
-
     const datePickerDisabled = !isPro;
     const withPortal = isMobile(window.innerWidth);
+    const popperPlacement = position || undefined;
 
     return (
       <div className='schedule-post-dropdown'>
@@ -92,6 +93,7 @@ class SchedulePostDropdown extends React.PureComponent {
             showTimeSelect
             customInput={<DatePickerWrapper />}
             withPortal={withPortal}
+            popperPlacement={popperPlacement}
             popperModifiers={{
               offset: {
                 enabled: true,
