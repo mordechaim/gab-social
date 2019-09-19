@@ -11,11 +11,22 @@ const messages = defineMessages({
   schedule_status: { id: 'schedule_status.title', defaultMessage: 'Schedule Status' },
 });
 
-const DatePickerWrapper = ({ value, onClick }) => (
-  <button className="schedule-post-dropdown-wrapper" onClick={onClick}>
-    {value}
-  </button>
-);
+class DatePickerWrapper extends React.PureComponent {
+  static propTypes = {
+    value: PropTypes.string,
+    onClick: PropTypes.func,
+  };
+
+  render() {
+    const { value, onClick } = this.props;
+
+    return (
+      <button className="schedule-post-dropdown-wrapper" onClick={onClick}>
+        {value}
+      </button>
+    )
+  }
+}
 
 export default @injectIntl
 class SchedulePostDropdown extends React.PureComponent {
@@ -28,23 +39,14 @@ class SchedulePostDropdown extends React.PureComponent {
     onOpenProUpgradeModal: PropTypes.func.isRequired,
   };
 
-  state = {
-    open: false,
-  };
-
   handleToggle = () => {
     if (!this.props.isPro) {
       return this.props.onOpenProUpgradeModal();
     }
 
-    const newOpen = !this.state.open;
-    const newDate = newOpen ? new Date() : null;
-
-    this.handleSetDate(newDate);
-
-    this.setState({
-      open: newOpen
-    });
+    const { date } = this.props;
+    const value = date ? null : new Date();
+    this.handleSetDate(value);
   }
 
   handleSetDate = (date) => {
@@ -53,7 +55,8 @@ class SchedulePostDropdown extends React.PureComponent {
 
   render () {
     const { intl, date, isPro } = this.props;
-    const { open } = this.state;
+
+    const open = !!date;
 
     const datePickerDisabled = !isPro;
     const withPortal = isMobile(window.innerWidth);
