@@ -50,7 +50,6 @@ class SchedulePostDropdown extends React.PureComponent {
     const { open } = this.state;
 
     const datePickerDisabled = !isPro;
-    const withPortal = isMobile(window.innerWidth);
 
     return (
       <div className='schedule-post-dropdown'>
@@ -81,7 +80,18 @@ class SchedulePostDropdown extends React.PureComponent {
             dateFormat="MMMM d, yyyy h:mm aa"
             disabled={datePickerDisabled}
             showTimeSelect
-            withPortal={withPortal}
+            startOpen
+            popperModifiers={{
+              offset: {
+                enabled: true,
+                offset: "0px, 5px"
+              },
+              preventOverflow: {
+                enabled: true,
+                escapeWithReference: false,
+                boundariesElement: "viewport"
+              }
+            }}
           />
         }
       </div>
