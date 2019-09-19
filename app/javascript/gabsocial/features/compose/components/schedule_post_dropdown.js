@@ -74,7 +74,7 @@ class SchedulePostDropdown extends React.PureComponent {
             minDate={new Date()}
             selected={date}
             onChange={date => this.handleSetDate(date)}
-            timeFormat="HH:mm"
+            timeFormat="p"
             timeIntervals={15}
             timeCaption="Time"
             dateFormat="MMMM d, yyyy h:mm aa"
