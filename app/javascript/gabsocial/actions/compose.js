@@ -61,6 +61,8 @@ export const COMPOSE_POLL_OPTION_CHANGE   = 'COMPOSE_POLL_OPTION_CHANGE';
 export const COMPOSE_POLL_OPTION_REMOVE   = 'COMPOSE_POLL_OPTION_REMOVE';
 export const COMPOSE_POLL_SETTINGS_CHANGE = 'COMPOSE_POLL_SETTINGS_CHANGE';
 
+export const COMPOSE_SCHEDULED_AT_CHANGE = 'COMPOSE_SCHEDULED_AT_CHANGE';
+
 const messages = defineMessages({
   uploadErrorLimit: { id: 'upload_error.limit', defaultMessage: 'File upload limit exceeded.' },
   uploadErrorPoll:  { id: 'upload_error.poll', defaultMessage: 'File upload not allowed with polls.' },
@@ -140,6 +142,12 @@ export function directCompose(account, routerHistory) {
 export function handleComposeSubmit(dispatch, getState, response, status) {
   if (!dispatch || !getState) return;
 
+  const isScheduledStatus = response.data['scheduled_at'] !== undefined;
+  if (isScheduledStatus) {
+    dispatch(submitComposeSuccess({ ...response.data }));
+    return;
+  }
+
   dispatch(insertIntoTagHistory(response.data.tags, status));
   dispatch(submitComposeSuccess({ ...response.data }));
 
@@ -193,6 +201,7 @@ export function submitCompose(routerHistory, group) {
       visibility: getState().getIn(['compose', 'privacy']),
       poll: getState().getIn(['compose', 'poll'], null),
       group_id: group ? group.get('id') : null,
+      scheduled_at: getState().getIn(['compose', 'scheduled_at'], null),
     }, {
       headers: {
         'Idempotency-Key': getState().getIn(['compose', 'idempotencyKey']),
@@ -578,5 +587,12 @@ export function changePollSettings(expiresIn, isMultiple) {
     type: COMPOSE_POLL_SETTINGS_CHANGE,
     expiresIn,
     isMultiple,
+  };
+};
+
+export function changeScheduledAt(date) {
+  return {
+    type: COMPOSE_SCHEDULED_AT_CHANGE,
+    date,
   };
 };

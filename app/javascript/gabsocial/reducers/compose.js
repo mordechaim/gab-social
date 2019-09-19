@@ -36,6 +36,7 @@ import {
   COMPOSE_POLL_OPTION_CHANGE,
   COMPOSE_POLL_OPTION_REMOVE,
   COMPOSE_POLL_SETTINGS_CHANGE,
+  COMPOSE_SCHEDULED_AT_CHANGE,
 } from '../actions/compose';
 import { TIMELINE_DELETE } from '../actions/timelines';
 import { STORE_HYDRATE } from '../actions/store';
@@ -72,6 +73,7 @@ const initialState = ImmutableMap({
   resetFileKey: Math.floor((Math.random() * 0x10000)),
   idempotencyKey: null,
   tagHistory: ImmutableList(),
+  scheduled_at: null,
 });
 
 const initialPoll = ImmutableMap({
@@ -105,6 +107,7 @@ function clearAll(state) {
     map.update('media_attachments', list => list.clear());
     map.set('poll', null);
     map.set('idempotencyKey', uuid());
+    map.set('scheduled_at', null);
   });
 };
 
@@ -293,6 +296,7 @@ export default function compose(state = initialState, action) {
       map.set('privacy', state.get('default_privacy'));
       map.set('poll', null);
       map.set('idempotencyKey', uuid());
+      map.set('scheduled_at', null);
     });
   case COMPOSE_SUBMIT_REQUEST:
     return state.set('is_submitting', true);
@@ -389,6 +393,8 @@ export default function compose(state = initialState, action) {
     return state.updateIn(['poll', 'options'], options => options.delete(action.index));
   case COMPOSE_POLL_SETTINGS_CHANGE:
     return state.update('poll', poll => poll.set('expires_in', action.expiresIn).set('multiple', action.isMultiple));
+  case COMPOSE_SCHEDULED_AT_CHANGE:
+    return state.set('scheduled_at', action.date);
   default:
     return state;
   }
