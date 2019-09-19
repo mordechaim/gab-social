@@ -7,7 +7,7 @@ import IconButton from '../../../components/icon_button';
 import "react-datepicker/dist/react-datepicker.css";
 
 const messages = defineMessages({
-  change_privacy: { id: 'privacy.change', defaultMessage: 'Adjust status privacy' },
+  schedule_status: { id: 'schedule_status.title', defaultMessage: 'Schedule Status' },
 });
 
 export default @injectIntl
@@ -57,7 +57,7 @@ class SchedulePostDropdown extends React.PureComponent {
             inverted
             className='schedule-post-dropdown__icon'
             icon='calendar'
-            title={intl.formatMessage(messages.change_privacy)}
+            title={intl.formatMessage(messages.schedule_status)}
             size={18}
             expanded={open}
             active={open}
