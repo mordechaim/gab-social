@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, defineMessages } from 'react-intl';
 import DatePicker from 'react-datepicker';
 import IconButton from '../../../components/icon_button';
+import { isMobile } from '../../../is_mobile';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -49,6 +50,7 @@ class SchedulePostDropdown extends React.PureComponent {
     const { open } = this.state;
 
     const datePickerDisabled = !isPro;
+    const withPortal = isMobile(window.innerWidth);
 
     return (
       <div className='schedule-post-dropdown'>
@@ -79,6 +81,7 @@ class SchedulePostDropdown extends React.PureComponent {
             dateFormat="MMMM d, yyyy h:mm aa"
             disabled={datePickerDisabled}
             showTimeSelect
+            withPortal={withPortal}
           />
         }
       </div>
