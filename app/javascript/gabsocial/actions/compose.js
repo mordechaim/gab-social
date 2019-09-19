@@ -144,6 +144,13 @@ export function handleComposeSubmit(dispatch, getState, response, status) {
 
   const isScheduledStatus = response.data['scheduled_at'] !== undefined;
   if (isScheduledStatus) {
+    dispatch(showAlertForError({
+      response: {
+        data: {},
+        status: 200,
+        statusText: 'Successfully scheduled status',
+      }
+    }));
     dispatch(submitComposeSuccess({ ...response.data }));
     return;
   }
