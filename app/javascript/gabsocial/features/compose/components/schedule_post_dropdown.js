@@ -11,6 +11,12 @@ const messages = defineMessages({
   schedule_status: { id: 'schedule_status.title', defaultMessage: 'Schedule Status' },
 });
 
+const DatePickerWrapper = ({ value, onClick }) => (
+  <button className="schedule-post-dropdown-wrapper" onClick={onClick}>
+    {value}
+  </button>
+);
+
 export default @injectIntl
 class SchedulePostDropdown extends React.PureComponent {
 
@@ -50,6 +56,7 @@ class SchedulePostDropdown extends React.PureComponent {
     const { open } = this.state;
 
     const datePickerDisabled = !isPro;
+    const withPortal = isMobile(window.innerWidth);
 
     return (
       <div className='schedule-post-dropdown'>
@@ -77,10 +84,11 @@ class SchedulePostDropdown extends React.PureComponent {
             timeFormat="p"
             timeIntervals={15}
             timeCaption="Time"
-            dateFormat="MMMM d, yyyy h:mm aa"
+            dateFormat="MMM d, yyyy h:mm aa"
             disabled={datePickerDisabled}
             showTimeSelect
-            startOpen
+            customInput={<DatePickerWrapper />}
+            withPortal={withPortal}
             popperModifiers={{
               offset: {
                 enabled: true,

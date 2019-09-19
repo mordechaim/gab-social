@@ -5265,20 +5265,6 @@ noscript {
 	display: flex;
 	align-items: center;
 
-	&__datepicker {
-		margin-left: 4px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    line-height: 22px;
-    padding-left: 6px;
-		width: 165px;
-
-		@media (max-width: 580px) {
-			width: 146px;
-			font-size: 10px;
-		}
-	}
-
 	.react-datepicker-popper {
 		z-index: 1000;
 	}
@@ -5317,5 +5303,25 @@ noscript {
 		.fa {
 			margin-right: 10px;
 		}
+	}
+}
+
+.schedule-post-dropdown-wrapper {
+	margin-left: 4px;
+	border-radius: 4px;
+	border: 1px solid darken($simple-background-color, 20%);
+	line-height: 22px;
+	padding-left: 6px;
+	text-align: left;
+	width: 145px;
+	height: 26px;
+	line-height: 20px;
+	color: $inverted-text-color;
+	background: $simple-background-color;
+
+	@media (max-width: 580px) {
+		width: 138px;
+		font-size: 10px;
+		padding-left: 2px;
 	}
 }
