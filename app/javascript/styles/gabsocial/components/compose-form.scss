@@ -248,6 +248,7 @@
 		flex: 0 0 auto;
 		.compose-form__buttons {
 			display: flex;
+			flex-wrap: wrap;
 			.compose-form__upload-button-icon {line-height: 27px;}
 			.compose-form__sensitive-button {
 				display: none;

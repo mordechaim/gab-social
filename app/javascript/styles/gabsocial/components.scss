@@ -5271,7 +5271,12 @@ noscript {
     border: 1px solid #ccc;
     line-height: 22px;
     padding-left: 6px;
-    width: 165px;
+		width: 165px;
+
+		@media (max-width: 580px) {
+			width: 146px;
+			font-size: 10px;
+		}
 	}
 
 	.react-datepicker-popper {
