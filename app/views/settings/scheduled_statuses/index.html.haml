@@ -1,0 +1,30 @@
+- content_for :page_title do
+  = t('settings.scheduled_posts')
+
+- unless @account.is_pro?
+  %span= t('scheduled_statuses.upgrade_to_pro_to_schedule_statuses')
+  %br
+  %br
+  = link_to "Upgrade to GabPRO", 'https://pro.gab.com', :class  => "button"
+  %br
+  %br
+
+- if @scheduled_statuses.empty?
+  %span= t('scheduled_statuses.no_scheduled_statuses_to_display')
+- else
+  .table-wrapper
+    %table.table
+      %thead
+        %tr
+          %th= t('scheduled_statuses.id')
+          %th= t('scheduled_statuses.scheduled_at')
+          %th= t('scheduled_statuses.text')
+          %th
+      %tbody
+        - @scheduled_statuses.each do |scheduled_status|
+          %tr
+            %td= scheduled_status.id
+            %td= scheduled_status.scheduled_at
+            %td= scheduled_status.params['text']
+            %td
+              = table_link_to 'trash', t('scheduled_statuses.delete'), settings_scheduled_status_path(scheduled_status), method: :delete

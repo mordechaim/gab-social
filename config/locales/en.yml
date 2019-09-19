@@ -903,7 +903,11 @@ en:
     profile: Profile
     relationships: Follows and followers
     two_factor_authentication: Two-factor Auth
+    posts: Posts
+    scheduled_posts: Scheduled Posts
   statuses:
+    are_you_sure: 'Are you sure?'
+    scheduled_title: 'Schedule'
     attached:
       description: 'Attached: %{attached}'
       image:

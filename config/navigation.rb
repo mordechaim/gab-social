@@ -20,6 +20,10 @@ SimpleNavigation::Configuration.run do |navigation|
       s.item :authorized_apps, safe_join([fa_icon('list fw'), t('settings.authorized_apps')]), oauth_authorized_applications_url
     end
 
+    n.item :posts, safe_join([fa_icon('bars fw'), t('settings.posts')]), settings_scheduled_statuses_url do |s|
+      s.item :scheduled_posts, safe_join([fa_icon('calendar fw'), t('settings.scheduled_posts')]), settings_scheduled_statuses_url
+    end
+
     n.item :requests, safe_join([fa_icon('id-card-o fw'), t('verifications.requests.title')]), settings_verifications_requests_url
 
     n.item :billing, safe_join([fa_icon('usd fw'), t('settings.billing')]), settings_billing_transactions_url do |s|
