@@ -28,7 +28,7 @@ SimpleNavigation::Configuration.run do |navigation|
 
     n.item :billing, safe_join([fa_icon('usd fw'), t('settings.billing')]), settings_billing_transactions_url do |s|
       s.item :transactions, safe_join([fa_icon('bars fw'), t('settings.transactions')]), settings_billing_transactions_url
-      s.item :upgrade, safe_join([fa_icon('usd fw'), t('settings.upgrade')]), settings_billing_upgrade_url
+      s.item :upgrade, safe_join([fa_icon('usd fw'), t('settings.upgrade')]), 'https://pro.gab.com'
     end
 
     n.item :data, safe_join([fa_icon('cloud-download fw'), t('settings.import_and_export')]), settings_export_url do |s|
