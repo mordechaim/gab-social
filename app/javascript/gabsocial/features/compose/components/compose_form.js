@@ -12,6 +12,7 @@ import UploadButtonContainer from '../containers/upload_button_container';
 import { defineMessages, injectIntl } from 'react-intl';
 import SpoilerButtonContainer from '../containers/spoiler_button_container';
 import PrivacyDropdownContainer from '../containers/privacy_dropdown_container';
+import SchedulePostDropdownContainer from '../containers/schedule_post_dropdown_container';
 import EmojiPickerDropdown from '../containers/emoji_picker_dropdown_container';
 import PollFormContainer from '../containers/poll_form_container';
 import UploadFormContainer from '../containers/upload_form_container';
@@ -31,6 +32,7 @@ const messages = defineMessages({
   spoiler_placeholder: { id: 'compose_form.spoiler_placeholder', defaultMessage: 'Write your warning here' },
   publish: { id: 'compose_form.publish', defaultMessage: 'Gab' },
   publishLoud: { id: 'compose_form.publish_loud', defaultMessage: '{publish}!' },
+  schedulePost: { id: 'compose_form.schedule_post', defaultMessage: 'Schedule Post' }
 });
 
 export default @injectIntl
@@ -72,6 +74,8 @@ class ComposeForm extends ImmutablePureComponent {
     autoFocus: PropTypes.bool,
     group: ImmutablePropTypes.map,
     isModalOpen: PropTypes.bool,
+    scheduledAt: PropTypes.instanceOf(Date),
+    setScheduledAt: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -96,12 +100,21 @@ class ComposeForm extends ImmutablePureComponent {
 
   handleClick = (e) => {
     if (!this.form) return false;
+    if (e.target) {
+      if (e.target.classList.contains('react-datepicker__time-list-item')) return;
+    }
     if (!this.form.contains(e.target)) {
       this.handleClickOutside();
     }
   }
 
   handleClickOutside = () => {
+    const { shouldCondense, scheduledAt, text } = this.props;
+    const condensed = shouldCondense && !text;
+    if (condensed && scheduledAt) { //Reset scheduled date if condensing
+      this.props.setScheduledAt(null);
+    }
+
     this.setState({
       composeFocused: false,
     });
@@ -201,7 +214,7 @@ class ComposeForm extends ImmutablePureComponent {
   }
 
   render () {
-    const { intl, onPaste, showSearch, anyMedia, shouldCondense, autoFocus, isModalOpen, quoteOfId, edit } = this.props;
+    const { intl, onPaste, showSearch, anyMedia, shouldCondense, autoFocus, isModalOpen, quoteOfId, edit, scheduledAt } = this.props;
     const condensed = shouldCondense && !this.props.text && !this.state.composeFocused;
     const disabled = this.props.isSubmitting;
     const text     = [this.props.spoilerText, countableText(this.props.text)].join('');
@@ -216,10 +229,14 @@ class ComposeForm extends ImmutablePureComponent {
       publishText = this.props.privacy !== 'unlisted' ? intl.formatMessage(messages.publishLoud, { publish: intl.formatMessage(messages.publish) }) : intl.formatMessage(messages.publish);
     }
 
+    if (scheduledAt) {
+      publishText = intl.formatMessage(messages.schedulePost);
+    }
+
     const composeClassNames = classNames({
       'compose-form': true,
       'condensed': condensed,
-    })
+    });
 
     return (
       <div className={composeClassNames} ref={this.setForm} onClick={this.handleClick}>
@@ -283,6 +300,7 @@ class ComposeForm extends ImmutablePureComponent {
               {!edit && <PollButtonContainer />}
               <PrivacyDropdownContainer />
               <SpoilerButtonContainer />
+              <SchedulePostDropdownContainer />
             </div>
             <div className='character-counter__wrapper'><CharacterCounter max={maxPostCharacterCount} text={text} /></div>
           </div>
