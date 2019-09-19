@@ -145,7 +145,7 @@ class SidebarMenu extends ImmutablePureComponent {
               </NavLink>
               {
                 !isPro &&
-                <a className='sidebar-menu-item' href='https://news.gab.com'>
+                <a className='sidebar-menu-item' href='https://pro.gab.com'>
                   <Icon id='arrow-up' fixedWidth />
                   <span className='sidebar-menu-item__title'>{intl.formatMessage(messages.pro)}</span>
                 </a>
