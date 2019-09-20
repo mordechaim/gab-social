@@ -34,7 +34,6 @@ class Auth::RegistrationsController < Devise::RegistrationsController
     resource.current_sign_in_ip = request.remote_ip
 
     resource.build_account if resource.account.nil?
-    resource.confirm!
   end
 
   def configure_sign_up_params
